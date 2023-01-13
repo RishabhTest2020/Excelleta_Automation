@@ -1,0 +1,73 @@
+{
+  "animation": {"v":"5.1.8","fr":25,"ip":0,"op":300,"w":1280,"h":720,"nm":"Photo07_widescreen","ddd":0,"assets":[{"id":"image_0","w":1280,"h":720,"u":"images/","p":"img_0.png"},{"id":"image_1","w":1280,"h":720,"u":"images/","p":"img_1.png"},{"id":"comp_34","layers":[{"ddd":0,"ind":1,"ty":1,"nm":"animationControl","hd":true,"sr":1,"ks":{"o":{"a":0,"k":0,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[640,360,0],"ix":2},"a":{"a":0,"k":[640,360,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"ef":[{"ty":5,"nm":"animationControl","np":3,"mn":"ADBE Slider Control","ix":1,"en":1,"ef":[{"ty":0,"nm":"Slider","mn":"ADBE Slider Control-0001","ix":1,"v":{"a":0,"k":1,"ix":1}}]}],"sw":1280,"sh":720,"sc":"#000000","ip":0,"op":300,"st":0,"bm":0},{"ddd":0,"ind":2,"ty":0,"nm":"panZoom right","refId":"comp_35","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11,"x":"var $bm_rt;\nif (thisComp.layer('animationControl').effect('animationControl')('Slider') == 1)\n    $bm_rt = 100;\nelse\n    $bm_rt = 0;"},"r":{"a":0,"k":0,"ix":10},"p":{"a":1,"k":[{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"n":"0p833_0p833_0p167_0p167","t":0,"s":[640,360,0],"e":[732,360,0],"to":[15.3333330154419,0,0],"ti":[-15.3333330154419,0,0]},{"t":299}],"ix":2},"a":{"a":0,"k":[640,360,0],"ix":1},"s":{"a":1,"k":[{"i":{"x":[0.833,0.833,0.833],"y":[0.833,0.833,0.833]},"o":{"x":[0.167,0.167,0.167],"y":[0.167,0.167,0.167]},"n":["0p833_0p833_0p167_0p167","0p833_0p833_0p167_0p167","0p833_0p833_0p167_0p167"],"t":0,"s":[100,100,100],"e":[115,115,100]},{"t":299}],"ix":6}},"ao":0,"w":1280,"h":720,"ip":0,"op":300,"st":0,"bm":0},{"ddd":0,"ind":3,"ty":0,"nm":"panZoom left","refId":"comp_35","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11,"x":"var $bm_rt;\nif (thisComp.layer('animationControl').effect('animationControl')('Slider') == 2)\n    $bm_rt = 100;\nelse\n    $bm_rt = 0;"},"r":{"a":0,"k":0,"ix":10},"p":{"a":1,"k":[{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"n":"0p833_0p833_0p167_0p167","t":0,"s":[640,360,0],"e":[544,360,0],"to":[-16,0,0],"ti":[16,0,0]},{"t":299}],"ix":2},"a":{"a":0,"k":[640,360,0],"ix":1},"s":{"a":1,"k":[{"i":{"x":[0.833,0.833,0.833],"y":[0.833,0.833,0.833]},"o":{"x":[0.167,0.167,0.167],"y":[0.167,0.167,0.167]},"n":["0p833_0p833_0p167_0p167","0p833_0p833_0p167_0p167","0p833_0p833_0p167_0p167"],"t":0,"s":[100,100,100],"e":[115,115,100]},{"t":299}],"ix":6}},"ao":0,"w":1280,"h":720,"ip":0,"op":300,"st":0,"bm":0},{"ddd":0,"ind":4,"ty":0,"nm":"pan left","refId":"comp_35","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11,"x":"var $bm_rt;\nif (thisComp.layer('animationControl').effect('animationControl')('Slider') == 3)\n    $bm_rt = 100;\nelse\n    $bm_rt = 0;"},"r":{"a":0,"k":0,"ix":10},"p":{"a":1,"k":[{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"n":"0p833_0p833_0p167_0p167","t":0,"s":[704,360,0],"e":[576,360,0],"to":[-21.3333339691162,0,0],"ti":[21.3333339691162,0,0]},{"t":299}],"ix":2},"a":{"a":0,"k":[640,360,0],"ix":1},"s":{"a":0,"k":[110,110,100],"ix":6}},"ao":0,"w":1280,"h":720,"ip":0,"op":300,"st":0,"bm":0},{"ddd":0,"ind":5,"ty":0,"nm":"pan right","refId":"comp_35","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11,"x":"var $bm_rt;\nif (thisComp.layer('animationControl').effect('animationControl')('Slider') == 4)\n    $bm_rt = 100;\nelse\n    $bm_rt = 0;"},"r":{"a":0,"k":0,"ix":10},"p":{"a":1,"k":[{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"n":"0p833_0p833_0p167_0p167","t":0,"s":[576,360,0],"e":[704,360,0],"to":[21.3333339691162,0,0],"ti":[-21.3333339691162,0,0]},{"t":299}],"ix":2},"a":{"a":0,"k":[640,360,0],"ix":1},"s":{"a":0,"k":[110,110,100],"ix":6}},"ao":0,"w":1280,"h":720,"ip":0,"op":300,"st":0,"bm":0},{"ddd":0,"ind":6,"ty":0,"nm":"zoom out","refId":"comp_35","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11,"x":"var $bm_rt;\nif (thisComp.layer('animationControl').effect('animationControl')('Slider') == 5)\n    $bm_rt = 100;\nelse\n    $bm_rt = 0;"},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[640,360,0],"ix":2},"a":{"a":0,"k":[640,360,0],"ix":1},"s":{"a":1,"k":[{"i":{"x":[0.833,0.833,0.833],"y":[0.833,0.833,0.833]},"o":{"x":[0.167,0.167,0.167],"y":[0.167,0.167,0.167]},"n":["0p833_0p833_0p167_0p167","0p833_0p833_0p167_0p167","0p833_0p833_0p167_0p167"],"t":0,"s":[120,120,100],"e":[100,100,100]},{"t":299}],"ix":6}},"ao":0,"w":1280,"h":720,"ip":0,"op":300,"st":0,"bm":0},{"ddd":0,"ind":7,"ty":0,"nm":"zoom in","refId":"comp_35","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11,"x":"var $bm_rt;\nif (thisComp.layer('animationControl').effect('animationControl')('Slider') == 6)\n    $bm_rt = 100;\nelse\n    $bm_rt = 0;"},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[640,360,0],"ix":2},"a":{"a":0,"k":[640,360,0],"ix":1},"s":{"a":1,"k":[{"i":{"x":[0.833,0.833,0.833],"y":[0.833,0.833,0.833]},"o":{"x":[0.167,0.167,0.167],"y":[0.167,0.167,0.167]},"n":["0p833_0p833_0p167_0p167","0p833_0p833_0p167_0p167","0p833_0p833_0p167_0p167"],"t":0,"s":[100,100,100],"e":[120,120,100]},{"t":299}],"ix":6}},"ao":0,"w":1280,"h":720,"ip":0,"op":300,"st":0,"bm":0},{"ddd":0,"ind":8,"ty":0,"nm":"none","refId":"comp_35","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11,"x":"var $bm_rt;\nif (thisComp.layer('animationControl').effect('animationControl')('Slider') == 7)\n    $bm_rt = 100;\nelse\n    $bm_rt = 0;"},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[640,360,0],"ix":2},"a":{"a":0,"k":[640,360,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"w":1280,"h":720,"ip":0,"op":300,"st":0,"bm":0},{"ddd":0,"ind":9,"ty":2,"nm":"img2.png","cl":"png","refId":"image_1","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[640,360,0],"ix":2},"a":{"a":0,"k":[640,360,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"ef":[{"ty":20,"nm":"Tint","np":7,"mn":"ADBE Tint","ix":1,"en":1,"ef":[{"ty":2,"nm":"Map Black To","mn":"ADBE Tint-0001","ix":1,"v":{"a":0,"k":[0,0,0,0],"ix":1}},{"ty":2,"nm":"Map White To","mn":"ADBE Tint-0002","ix":2,"v":{"a":0,"k":[1,1,1,0],"ix":2}},{"ty":0,"nm":"Amount to Tint","mn":"ADBE Tint-0003","ix":3,"v":{"a":0,"k":100,"ix":3}},{"ty":6,"nm":"","mn":"ADBE Tint-0004","ix":4,"v":0},{"ty":7,"nm":"GPU Rendering","mn":"ADBE Force CPU GPU","ix":5,"v":{"a":0,"k":1,"ix":5}}]}],"ip":0,"op":300,"st":0,"bm":0}]},{"id":"comp_35","layers":[{"ddd":0,"ind":1,"ty":2,"nm":"img1.png","cl":"png","refId":"image_0","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[640,360,0],"ix":2},"a":{"a":0,"k":[640,360,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"ip":0,"op":300,"st":0,"bm":0}]}],"layers":[{"ddd":0,"ind":1,"ty":0,"nm":"animations_widescreen","refId":"comp_34","sr":1,"ks":{"o":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":0,"s":[0],"e":[100]},{"t":20}],"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[640,360,0],"ix":2},"a":{"a":0,"k":[640,360,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"w":1280,"h":720,"ip":0,"op":300,"st":0,"bm":0}],"markers":[]},
+  "inDuration": 0.8,
+  "outDuration": 0.5,
+  "intermissionDuration": 10,
+  "inputs": [
+    {
+      "type": "image",
+      "name": "image",
+      "timestamp": 0,
+      "defaultValue": {
+        "type": "image",
+        "image": {
+          "url": "",
+          "srcWidth": 720,
+          "srcHeight": 720
+        }
+      }
+    },
+    {
+      "type": "image",
+      "name": "blurredImage",
+      "timestamp": 0,
+      "defaultValue": {
+        "type": "image",
+        "image": {
+          "url": "",
+          "srcWidth": 720,
+          "srcHeight": 720
+        }
+      }
+    },
+    {
+      "type": "photoAnimation",
+      "name": "animation",
+      "timestamp": 0,
+      "defaultValue": {
+        "type": "photoAnimation",
+        "animation": "zoomPanRight"
+      }
+    }
+  ],
+  "modifiers": [
+    {
+      "type": "setImage",
+      "assetIndex": 0,
+      "inputName": "image"
+    },
+    {
+      "type": "setImage",
+      "assetIndex": 1,
+      "inputName": "blurredImage"
+    },
+    {
+      "type": "setPhotoAnimation",
+      "inputName": "animation",
+      "slider": [
+        "asset",
+        2,
+        "layer",
+        0,
+        "effect",
+        0,
+        "value",
+        0
+      ]
+    }
+  ],
+  "timeScaler": {
+    "strategy": "noop"
+  },
+  "renderer": "canvas"
+}

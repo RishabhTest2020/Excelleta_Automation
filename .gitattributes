@@ -1,0 +1,2 @@
+/assets/*.txt filter=lfs diff=lfs merge=lfs -text lockable
+/assets filter=lfs diff=lfs merge=lfs -text lockable

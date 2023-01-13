@@ -1,0 +1,117 @@
+{
+  "animation": {"v":"5.1.7","fr":25,"ip":0,"op":125,"w":660,"h":295,"nm":"Animation21_R","ddd":0,"assets":[],"fonts":{"list":[{"origin":1,"fPath":"","fClass":"","fFamily":"Titillium Web","fWeight":"","fStyle":"Black","fName":"TitilliumWeb-Black","ascent":68.9987182617188}]},"layers":[{"ddd":0,"ind":1,"ty":3,"nm":"SCALE","sr":1,"ks":{"o":{"a":0,"k":0,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[645,30,0],"ix":2,"x":"var $bm_rt;\nvar x;\nx = effect('Slider Control')('Slider');\n$bm_rt = [\n    value[0],\n    value[1] + 23.5 * (x - 1)\n];"},"a":{"a":0,"k":[0,30,0],"ix":1,"x":"var $bm_rt;\nvar x;\nx = effect('Slider Control')('Slider');\n$bm_rt = [\n    value[0],\n    value[1] + 23.5 * (x - 1)\n];"},"s":{"a":0,"k":[100,100,100],"ix":6,"x":"var $bm_rt;\nvar a, b, c, d, e, f, x, w, resize;\na = thisComp.layer('text1').sourceRectAtTime() ? thisComp.layer('text1').sourceRectAtTime().width : 0;\nb = thisComp.layer('text2').sourceRectAtTime() ? thisComp.layer('text2').sourceRectAtTime().width : 0;\nc = thisComp.layer('text3').sourceRectAtTime() ? thisComp.layer('text3').sourceRectAtTime().width : 0;\nd = thisComp.layer('text4').sourceRectAtTime() ? thisComp.layer('text4').sourceRectAtTime().width : 0;\ne = thisComp.layer('text5').sourceRectAtTime() ? thisComp.layer('text5').sourceRectAtTime().width : 0;\nf = thisComp.layer('text6').sourceRectAtTime() ? thisComp.layer('text6').sourceRectAtTime().width : 0;\nx = Math.max(a, b, c, d, e, f);\nw = 630;\n$bm_rt = resize = mul(div(w, x), 100);\nif (x > w) {\n    $bm_rt = [\n        resize,\n        resize\n    ];\n} else {\n    $bm_rt = [\n        100,\n        100\n    ];\n}"}},"ao":0,"ef":[{"ty":5,"nm":"Slider Control","np":3,"mn":"ADBE Slider Control","ix":1,"en":1,"ef":[{"ty":0,"nm":"Slider","mn":"ADBE Slider Control-0001","ix":1,"v":{"a":0,"k":0,"ix":1,"x":"var $bm_rt;\nvar a, b, b, c, c, d, d, e, e, f, f;\na = 1;\nb = 1;\nif (thisComp.layer('text2').text.sourceText == 0)\n    b = 0;\nc = 1;\nif (thisComp.layer('text3').text.sourceText == 0)\n    c = 0;\nd = 1;\nif (thisComp.layer('text4').text.sourceText == 0)\n    d = 0;\ne = 1;\nif (thisComp.layer('text5').text.sourceText == 0)\n    e = 0;\nf = 1;\nif (thisComp.layer('text6').text.sourceText == 0)\n    f = 0;\n$bm_rt = [a + b + c + d + e + f];"}}]}],"ip":0,"op":126,"st":-6,"bm":0},{"ddd":0,"ind":2,"ty":5,"nm":"text1","parent":1,"sr":1,"ks":{"o":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":0,"s":[0],"e":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":20,"s":[100],"e":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":99,"s":[100],"e":[0]},{"t":119}],"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"s":true,"x":{"a":0,"k":0,"ix":3},"y":{"a":0,"k":31.959,"ix":4}},"a":{"a":0,"k":[-1.154,-12.441,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"t":{"d":{"k":[{"s":{"s":42,"f":"TitilliumWeb-Black","t":"{#DYNAMICINPUT_01#}","j":1,"tr":0,"lh":50.4,"ls":0,"fc":[1,1,1]},"t":0}]},"p":{},"m":{"g":1,"a":{"a":0,"k":[0,0],"ix":2}},"a":[]},"ip":0,"op":126,"st":0,"bm":0},{"ddd":0,"ind":3,"ty":5,"nm":"text2","parent":1,"sr":1,"ks":{"o":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":1,"s":[0],"e":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":21,"s":[100],"e":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":100,"s":[100],"e":[0]},{"t":120}],"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"s":true,"x":{"a":0,"k":0,"ix":3},"y":{"a":0,"k":78.959,"ix":4}},"a":{"a":0,"k":[-1.154,-12.441,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"t":{"d":{"k":[{"s":{"s":42,"f":"TitilliumWeb-Black","t":"{#DYNAMICINPUT_02#}","j":1,"tr":0,"lh":50.4,"ls":0,"fc":[1,1,1]},"t":0}]},"p":{},"m":{"g":1,"a":{"a":0,"k":[0,0],"ix":2}},"a":[]},"ip":0,"op":126,"st":0,"bm":0},{"ddd":0,"ind":4,"ty":5,"nm":"text3","parent":1,"sr":1,"ks":{"o":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":2,"s":[0],"e":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":22,"s":[100],"e":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":101,"s":[100],"e":[0]},{"t":121}],"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"s":true,"x":{"a":0,"k":0,"ix":3},"y":{"a":0,"k":125.959,"ix":4}},"a":{"a":0,"k":[-1.154,-12.441,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"t":{"d":{"k":[{"s":{"s":42,"f":"TitilliumWeb-Black","t":"{#DYNAMICINPUT_03#}","j":1,"tr":0,"lh":50.4,"ls":0,"fc":[1,1,1]},"t":0}]},"p":{},"m":{"g":1,"a":{"a":0,"k":[0,0],"ix":2}},"a":[]},"ip":0,"op":126,"st":0,"bm":0},{"ddd":0,"ind":5,"ty":5,"nm":"text4","parent":1,"sr":1,"ks":{"o":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":3,"s":[0],"e":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":23,"s":[100],"e":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":102,"s":[100],"e":[0]},{"t":122}],"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"s":true,"x":{"a":0,"k":0,"ix":3},"y":{"a":0,"k":172.959,"ix":4}},"a":{"a":0,"k":[-1.154,-12.441,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"t":{"d":{"k":[{"s":{"s":42,"f":"TitilliumWeb-Black","t":"{#DYNAMICINPUT_04#}","j":1,"tr":0,"lh":50.4,"ls":0,"fc":[1,1,1]},"t":0}]},"p":{},"m":{"g":1,"a":{"a":0,"k":[0,0],"ix":2}},"a":[]},"ip":0,"op":126,"st":0,"bm":0},{"ddd":0,"ind":6,"ty":5,"nm":"text5","parent":1,"sr":1,"ks":{"o":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":4,"s":[0],"e":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":24,"s":[100],"e":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":103,"s":[100],"e":[0]},{"t":123}],"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"s":true,"x":{"a":0,"k":0,"ix":3},"y":{"a":0,"k":219.959,"ix":4}},"a":{"a":0,"k":[-1.154,-12.441,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"t":{"d":{"k":[{"s":{"s":42,"f":"TitilliumWeb-Black","t":"{#DYNAMICINPUT_05#}","j":1,"tr":0,"lh":50.4,"ls":0,"fc":[1,1,1]},"t":0}]},"p":{},"m":{"g":1,"a":{"a":0,"k":[0,0],"ix":2}},"a":[]},"ip":0,"op":126,"st":0,"bm":0},{"ddd":0,"ind":7,"ty":5,"nm":"text6","parent":1,"sr":1,"ks":{"o":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":5,"s":[0],"e":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":25,"s":[100],"e":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":104,"s":[100],"e":[0]},{"t":124}],"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"s":true,"x":{"a":0,"k":0,"ix":3},"y":{"a":0,"k":266.959,"ix":4}},"a":{"a":0,"k":[-1.154,-12.441,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"t":{"d":{"k":[{"s":{"s":42,"f":"TitilliumWeb-Black","t":"{#DYNAMICINPUT_06#}","j":1,"tr":0,"lh":50.4,"ls":0,"fc":[1,1,1]},"t":0}]},"p":{},"m":{"g":1,"a":{"a":0,"k":[0,0],"ix":2}},"a":[]},"ip":0,"op":126,"st":0,"bm":0}],"markers":[]},
+  "inDuration": 1,
+  "outDuration": 1,
+  "intermissionDuration": 3,
+  "inputs": [
+    {
+      "type": "textList",
+      "name": "text",
+      "timestamp": 0,
+      "constraints": [],
+      "defaultValue": {
+        "type": "textList",
+        "textList": [
+          "YOUR TEXT",
+          "GOES HERE"
+        ]
+      }
+    },
+    {
+      "type": "color",
+      "name": "color1",
+      "timestamp": 0,
+      "defaultValue": {
+        "type": "color",
+        "color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1
+        }
+      }
+    },
+    {
+      "type": "font",
+      "name": "font1",
+      "timestamp": 0,
+      "defaultValue": {
+        "type": "font",
+        "font": {
+          "family": "Titillium Web",
+          "weight": 900,
+          "source": "google"
+        }
+      }
+    }
+  ],
+  "modifiers": [
+    {
+      "type": "setDefaultFonts"
+    },
+    {
+      "type": "setTextList",
+      "inputName": "text",
+      "textLayerPaths": [
+        ["layer", 1],
+        ["layer", 2],
+        ["layer", 3],
+        ["layer", 4],
+        ["layer", 5],
+        ["layer", 6]
+      ]
+    },
+    {
+      "type": "setFont",
+      "inputName": "font1",
+      "fontIndex": 0
+    },
+    {
+      "type": "setHeightByTextList",
+      "inputName": "text",
+      "heights": [
+        0,
+        60,
+        107,
+        154,
+        201,
+        248,
+        295
+      ]
+    },
+    {
+      "type": "setFillColor",
+      "inputName": "color1",
+      "paths": [
+        [
+          "layer",
+          1
+        ],
+        [
+          "layer",
+          2
+        ],
+        [
+          "layer",
+          3
+        ],
+        [
+          "layer",
+          4
+        ],
+        [
+          "layer",
+          5
+        ],
+        [
+          "layer",
+          6
+        ]
+      ]
+    }
+  ],
+  "timeScaler": {
+    "strategy": "cutOnThreshold",
+    "threshold": 3
+  }
+}

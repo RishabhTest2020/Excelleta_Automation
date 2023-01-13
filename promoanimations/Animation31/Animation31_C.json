@@ -1,0 +1,3086 @@
+{
+    "animation": {
+        "v": "5.3.4",
+        "fr": 25,
+        "ip": 0,
+        "op": 150,
+        "w": 660,
+        "h": 550,
+        "nm": "Animation_31_C",
+        "ddd": 0,
+        "assets": [],
+        "fonts": {
+            "list": [
+                {
+                    "origin": 0,
+                    "fPath": "",
+                    "fClass": "",
+                    "fFamily": "Neue Helvetica",
+                    "fWeight": "900",
+                    "fStyle": "",
+                    "fName": "HelveticaNeueLTPro-Blk",
+                    "ascent": 71.39892578125
+                }
+            ]
+        },
+        "layers": [
+            {
+                "ddd": 0,
+                "ind": 1,
+                "ty": 3,
+                "nm": "SCALE",
+                "sr": 1,
+                "ks": {
+                    "o": {
+                        "a": 0,
+                        "k": 0,
+                        "ix": 11
+                    },
+                    "r": {
+                        "a": 0,
+                        "k": 0,
+                        "ix": 10
+                    },
+                    "p": {
+                        "a": 0,
+                        "k": [
+                            330.75,
+                            -15.5,
+                            0
+                        ],
+                        "ix": 2,
+                        "x": "var $bm_rt;\nvar x;\nx = effect('Slider Control')('Slider');\n$bm_rt = [\n    value[0],\n    value[1] + 23.5 * (x - 1)\n];"
+                    },
+                    "a": {
+                        "a": 0,
+                        "k": [
+                            0.531,
+                            -18.355,
+                            0
+                        ],
+                        "ix": 1,
+                        "x": "var $bm_rt;\nvar x;\nx = effect('Slider Control')('Slider');\n$bm_rt = [\n    value[0],\n    value[1] + 23.5 * (x - 1)\n];"
+                    },
+                    "s": {
+                        "a": 0,
+                        "k": [
+                            100,
+                            100,
+                            100
+                        ],
+                        "ix": 6,
+                        "x": "var $bm_rt;\nvar a, b, c, d, e, f, x, w, resize;\na = thisComp.layer('Text01').sourceRectAtTime() ? thisComp.layer('Text01').sourceRectAtTime().width : 0;\nb = thisComp.layer('Text02').sourceRectAtTime() ? thisComp.layer('Text02').sourceRectAtTime().width : 0;\nc = thisComp.layer('Text03').sourceRectAtTime() ? thisComp.layer('Text03').sourceRectAtTime().width : 0;\nd = thisComp.layer('Text04').sourceRectAtTime() ? thisComp.layer('Text04').sourceRectAtTime().width : 0;\ne = thisComp.layer('Text05').sourceRectAtTime() ? thisComp.layer('Text05').sourceRectAtTime().width : 0;\nf = thisComp.layer('Text06').sourceRectAtTime() ? thisComp.layer('Text06').sourceRectAtTime().width : 0;\nx = Math.max(a, b, c, d, e, f);\nw = 570;\n$bm_rt = resize = mul(div(w, x), 100);\nif (x > w) {\n    $bm_rt = [\n        resize,\n        resize\n    ];\n} else {\n    $bm_rt = [\n        100,\n        100\n    ];\n}"
+                    }
+                },
+                "ao": 0,
+                "ef": [
+                    {
+                        "ty": 5,
+                        "nm": "Slider Control",
+                        "np": 3,
+                        "mn": "ADBE Slider Control",
+                        "ix": 1,
+                        "en": 1,
+                        "ef": [
+                            {
+                                "ty": 0,
+                                "nm": "Slider",
+                                "mn": "ADBE Slider Control-0001",
+                                "ix": 1,
+                                "v": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 1,
+                                    "x": "var $bm_rt;\nvar a, b, b, c, c, d, d, e, e, f, f;\na = 1;\nb = 1;\nif (thisComp.layer('Text02').text.sourceText == 0)\n    b = 0;\nc = 1;\nif (thisComp.layer('Text03').text.sourceText == 0)\n    c = 0;\nd = 1;\nif (thisComp.layer('Text04').text.sourceText == 0)\n    d = 0;\ne = 1;\nif (thisComp.layer('Text05').text.sourceText == 0)\n    e = 0;\nf = 1;\nif (thisComp.layer('Text06').text.sourceText == 0)\n    f = 0;\n$bm_rt = [a + b + c + d + e + f];"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "ip": 0,
+                "op": 150,
+                "st": -6,
+                "bm": 0
+            },
+            {
+                "ddd": 0,
+                "ind": 2,
+                "ty": 4,
+                "nm": "Block07",
+                "parent": 1,
+                "td": 1,
+                "sr": 1,
+                "ks": {
+                    "o": {
+                        "a": 0,
+                        "k": 100,
+                        "ix": 11
+                    },
+                    "r": {
+                        "a": 0,
+                        "k": 0,
+                        "ix": 10
+                    },
+                    "p": {
+                        "a": 0,
+                        "k": [
+                            -323.27,
+                            94.49,
+                            0
+                        ],
+                        "ix": 2
+                    },
+                    "a": {
+                        "a": 0,
+                        "k": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "ix": 1
+                    },
+                    "s": {
+                        "a": 1,
+                        "k": [
+                            {
+                                "i": {
+                                    "x": [
+                                        0.667,
+                                        0.667,
+                                        0.667
+                                    ],
+                                    "y": [
+                                        1,
+                                        1.001,
+                                        1
+                                    ]
+                                },
+                                "o": {
+                                    "x": [
+                                        0.333,
+                                        0.333,
+                                        0.333
+                                    ],
+                                    "y": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                },
+                                "n": [
+                                    "0p667_1_0p333_0",
+                                    "0p667_1p001_0p333_0",
+                                    "0p667_1_0p333_0"
+                                ],
+                                "t": 0,
+                                "s": [
+                                    100,
+                                    0,
+                                    100
+                                ],
+                                "e": [
+                                    100,
+                                    71.971,
+                                    100
+                                ]
+                            },
+                            {
+                                "i": {
+                                    "x": [
+                                        0.667,
+                                        0.667,
+                                        0.667
+                                    ],
+                                    "y": [
+                                        1,
+                                        1,
+                                        1
+                                    ]
+                                },
+                                "o": {
+                                    "x": [
+                                        0.333,
+                                        0.333,
+                                        0.333
+                                    ],
+                                    "y": [
+                                        0,
+                                        -0.988,
+                                        0
+                                    ]
+                                },
+                                "n": [
+                                    "0p667_1_0p333_0",
+                                    "0p667_1_0p333_-0p988",
+                                    "0p667_1_0p333_0"
+                                ],
+                                "t": 10,
+                                "s": [
+                                    100,
+                                    71.971,
+                                    100
+                                ],
+                                "e": [
+                                    100,
+                                    71.971,
+                                    100
+                                ]
+                            },
+                            {
+                                "i": {
+                                    "x": [
+                                        0.667,
+                                        0.667,
+                                        0.667
+                                    ],
+                                    "y": [
+                                        1,
+                                        1,
+                                        1
+                                    ]
+                                },
+                                "o": {
+                                    "x": [
+                                        0.333,
+                                        0.333,
+                                        0.333
+                                    ],
+                                    "y": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                },
+                                "n": [
+                                    "0p667_1_0p333_0",
+                                    "0p667_1_0p333_0",
+                                    "0p667_1_0p333_0"
+                                ],
+                                "t": 109,
+                                "s": [
+                                    100,
+                                    71.971,
+                                    100
+                                ],
+                                "e": [
+                                    100,
+                                    0,
+                                    100
+                                ]
+                            },
+                            {
+                                "t": 119.000183451681
+                            }
+                        ],
+                        "ix": 6
+                    }
+                },
+                "ao": 0,
+                "ef": [
+                    {
+                        "ty": 5,
+                        "nm": "AC IN [N1K] Scale",
+                        "np": 3,
+                        "mn": "ADBE Slider Control",
+                        "ix": 1,
+                        "en": 1,
+                        "ef": [
+                            {
+                                "ty": 0,
+                                "nm": "Slider",
+                                "mn": "ADBE Slider Control-0001",
+                                "ix": 1,
+                                "v": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 1
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "ty": 5,
+                        "nm": "AC OUT [N1K] 2 Scale",
+                        "np": 3,
+                        "mn": "ADBE Slider Control",
+                        "ix": 2,
+                        "en": 1,
+                        "ef": [
+                            {
+                                "ty": 0,
+                                "nm": "Slider",
+                                "mn": "ADBE Slider Control-0001",
+                                "ix": 1,
+                                "v": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 1
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "ty": 5,
+                        "nm": "Autoscale Source Freeze Time",
+                        "np": 3,
+                        "mn": "ADBE Checkbox Control",
+                        "ix": 3,
+                        "en": 1,
+                        "ef": [
+                            {
+                                "ty": 7,
+                                "nm": "Checkbox",
+                                "mn": "ADBE Checkbox Control-0001",
+                                "ix": 1,
+                                "v": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 1
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "ty": 5,
+                        "nm": "Autoscale Fixed Width",
+                        "np": 3,
+                        "mn": "ADBE Slider Control",
+                        "ix": 4,
+                        "en": 1,
+                        "ef": [
+                            {
+                                "ty": 0,
+                                "nm": "Slider",
+                                "mn": "ADBE Slider Control-0001",
+                                "ix": 1,
+                                "v": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 1
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "shapes": [
+                    {
+                        "ty": "gr",
+                        "it": [
+                            {
+                                "ty": "rc",
+                                "d": 1,
+                                "s": {
+                                    "a": 0,
+                                    "k": [
+                                        658.905,
+                                        99.505
+                                    ],
+                                    "ix": 2,
+                                    "x": "var $bm_rt;\nvar n, x;\nn = thisComp.layer('Text01');\nx = n.sourceRectAtTime() ? n.sourceRectAtTime().width : 0;\n$bm_rt = [\n    x + 40,\n    value[1]\n];"
+                                },
+                                "p": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 3
+                                },
+                                "r": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 4
+                                },
+                                "nm": "Rectangle Path 1",
+                                "mn": "ADBE Vector Shape - Rect",
+                                "hd": false
+                            },
+                            {
+                                "ty": "fl",
+                                "c": {
+                                    "a": 0,
+                                    "k": [
+                                        1,
+                                        1,
+                                        1,
+                                        1
+                                    ],
+                                    "ix": 4
+                                },
+                                "o": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 5
+                                },
+                                "r": 1,
+                                "nm": "Fill 1",
+                                "mn": "ADBE Vector Graphic - Fill",
+                                "hd": false
+                            },
+                            {
+                                "ty": "tr",
+                                "p": {
+                                    "a": 0,
+                                    "k": [
+                                        323.004,
+                                        -47.703
+                                    ],
+                                    "ix": 2
+                                },
+                                "a": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 1
+                                },
+                                "s": {
+                                    "a": 0,
+                                    "k": [
+                                        100,
+                                        100
+                                    ],
+                                    "ix": 3
+                                },
+                                "r": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 6
+                                },
+                                "o": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 7
+                                },
+                                "sk": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 4
+                                },
+                                "sa": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 5
+                                },
+                                "nm": "Transform"
+                            }
+                        ],
+                        "nm": "Rectangle 1",
+                        "np": 2,
+                        "cix": 2,
+                        "ix": 1,
+                        "mn": "ADBE Vector Group",
+                        "hd": false
+                    }
+                ],
+                "ip": 0,
+                "op": 150,
+                "st": 1.18084751418085,
+                "bm": 0
+            },
+            {
+                "ddd": 0,
+                "ind": 3,
+                "ty": 5,
+                "nm": "Text01",
+                "parent": 1,
+                "tt": 1,
+                "sr": 1,
+                "ks": {
+                    "o": {
+                        "a": 0,
+                        "k": 100,
+                        "ix": 11
+                    },
+                    "r": {
+                        "a": 0,
+                        "k": 0,
+                        "ix": 10
+                    },
+                    "p": {
+                        "s": true,
+                        "x": {
+                            "a": 0,
+                            "k": 0.901,
+                            "ix": 3
+                        },
+                        "y": {
+                            "a": 1,
+                            "k": [
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.302
+                                        ],
+                                        "y": [
+                                            0.931
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.071
+                                        ],
+                                        "y": [
+                                            0.394
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p302_0p931_0p071_0p394"
+                                    ],
+                                    "t": 0,
+                                    "s": [
+                                        -18.494
+                                    ],
+                                    "e": [
+                                        67.987
+                                    ]
+                                },
+                                {
+                                    "t": 10,
+                                    "s": [
+                                        67.987
+                                    ],
+                                    "h": 1
+                                },
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.929
+                                        ],
+                                        "y": [
+                                            0.606
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.698
+                                        ],
+                                        "y": [
+                                            0.069
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p929_0p606_0p698_0p069"
+                                    ],
+                                    "t": 109,
+                                    "s": [
+                                        67.987
+                                    ],
+                                    "e": [
+                                        -18.494
+                                    ]
+                                },
+                                {
+                                    "t": 119.000427510844
+                                }
+                            ],
+                            "ix": 4
+                        }
+                    },
+                    "a": {
+                        "a": 0,
+                        "k": [
+                            1.375,
+                            -8.525,
+                            0
+                        ],
+                        "ix": 1
+                    },
+                    "s": {
+                        "a": 0,
+                        "k": [
+                            100.309,
+                            100.309,
+                            100
+                        ],
+                        "ix": 6
+                    }
+                },
+                "ao": 0,
+                "ef": [
+                    {
+                        "ty": 5,
+                        "nm": "AC IN [4M2] Position",
+                        "np": 3,
+                        "mn": "ADBE Point Control",
+                        "ix": 1,
+                        "en": 1,
+                        "ef": [
+                            {
+                                "ty": 3,
+                                "nm": "Point",
+                                "mn": "ADBE Point Control-0001",
+                                "ix": 1,
+                                "v": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        -76.389
+                                    ],
+                                    "ix": 1
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "ty": 5,
+                        "nm": "AC OUT [4M2] 2 Position",
+                        "np": 3,
+                        "mn": "ADBE Point Control",
+                        "ix": 2,
+                        "en": 1,
+                        "ef": [
+                            {
+                                "ty": 3,
+                                "nm": "Point",
+                                "mn": "ADBE Point Control-0001",
+                                "ix": 1,
+                                "v": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        -76.389
+                                    ],
+                                    "ix": 1
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "t": {
+                    "d": {
+                        "k": [
+                            {
+                                "s": {
+                                    "s": 50,
+                                    "f": "HelveticaNeueLTPro-Blk",
+                                    "t": "{#DYNAMICINPUT_01#}",
+                                    "j": 2,
+                                    "tr": 0,
+                                    "lh": 60,
+                                    "ls": 0,
+                                    "fc": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                },
+                                "t": 0
+                            }
+                        ]
+                    },
+                    "p": {},
+                    "m": {
+                        "g": 1,
+                        "a": {
+                            "a": 0,
+                            "k": [
+                                0,
+                                0
+                            ],
+                            "ix": 2
+                        }
+                    },
+                    "a": [
+                        {
+                            "nm": "AC IN [4M2] Animator 1",
+                            "s": {
+                                "t": 0,
+                                "xe": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 7
+                                },
+                                "ne": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 8
+                                },
+                                "a": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 4
+                                },
+                                "b": 4,
+                                "rn": 0,
+                                "sh": 1,
+                                "s": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 1
+                                },
+                                "r": 1
+                            },
+                            "a": {
+                                "p": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 2
+                                }
+                            }
+                        },
+                        {
+                            "nm": "AC OUT [4M2] 2 Animator 1",
+                            "s": {
+                                "t": 0,
+                                "xe": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 7
+                                },
+                                "ne": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 8
+                                },
+                                "a": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 4
+                                },
+                                "b": 4,
+                                "rn": 0,
+                                "sh": 1,
+                                "s": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 1
+                                },
+                                "r": 1
+                            },
+                            "a": {
+                                "p": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 2
+                                }
+                            }
+                        }
+                    ]
+                },
+                "ip": 0,
+                "op": 150,
+                "st": -2.15582248915582,
+                "bm": 0
+            },
+            {
+                "ddd": 0,
+                "ind": 4,
+                "ty": 4,
+                "nm": "Block01",
+                "parent": 1,
+                "sr": 1,
+                "ks": {
+                    "o": {
+                        "a": 0,
+                        "k": 100,
+                        "ix": 11
+                    },
+                    "r": {
+                        "a": 0,
+                        "k": 0,
+                        "ix": 10
+                    },
+                    "p": {
+                        "a": 0,
+                        "k": [
+                            -323.27,
+                            94.49,
+                            0
+                        ],
+                        "ix": 2
+                    },
+                    "a": {
+                        "a": 0,
+                        "k": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "ix": 1
+                    },
+                    "s": {
+                        "a": 1,
+                        "k": [
+                            {
+                                "i": {
+                                    "x": [
+                                        0.667,
+                                        0.667,
+                                        0.667
+                                    ],
+                                    "y": [
+                                        1,
+                                        1.001,
+                                        1
+                                    ]
+                                },
+                                "o": {
+                                    "x": [
+                                        0.333,
+                                        0.333,
+                                        0.333
+                                    ],
+                                    "y": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                },
+                                "n": [
+                                    "0p667_1_0p333_0",
+                                    "0p667_1p001_0p333_0",
+                                    "0p667_1_0p333_0"
+                                ],
+                                "t": 0,
+                                "s": [
+                                    100,
+                                    0,
+                                    100
+                                ],
+                                "e": [
+                                    100,
+                                    71.971,
+                                    100
+                                ]
+                            },
+                            {
+                                "i": {
+                                    "x": [
+                                        0.667,
+                                        0.667,
+                                        0.667
+                                    ],
+                                    "y": [
+                                        1,
+                                        1,
+                                        1
+                                    ]
+                                },
+                                "o": {
+                                    "x": [
+                                        0.333,
+                                        0.333,
+                                        0.333
+                                    ],
+                                    "y": [
+                                        0,
+                                        -0.988,
+                                        0
+                                    ]
+                                },
+                                "n": [
+                                    "0p667_1_0p333_0",
+                                    "0p667_1_0p333_-0p988",
+                                    "0p667_1_0p333_0"
+                                ],
+                                "t": 10,
+                                "s": [
+                                    100,
+                                    71.971,
+                                    100
+                                ],
+                                "e": [
+                                    100,
+                                    71.971,
+                                    100
+                                ]
+                            },
+                            {
+                                "i": {
+                                    "x": [
+                                        0.667,
+                                        0.667,
+                                        0.667
+                                    ],
+                                    "y": [
+                                        1,
+                                        1,
+                                        1
+                                    ]
+                                },
+                                "o": {
+                                    "x": [
+                                        0.333,
+                                        0.333,
+                                        0.333
+                                    ],
+                                    "y": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                },
+                                "n": [
+                                    "0p667_1_0p333_0",
+                                    "0p667_1_0p333_0",
+                                    "0p667_1_0p333_0"
+                                ],
+                                "t": 109,
+                                "s": [
+                                    100,
+                                    71.971,
+                                    100
+                                ],
+                                "e": [
+                                    100,
+                                    0,
+                                    100
+                                ]
+                            },
+                            {
+                                "t": 119.000183451681
+                            }
+                        ],
+                        "ix": 6
+                    }
+                },
+                "ao": 0,
+                "shapes": [
+                    {
+                        "ty": "gr",
+                        "it": [
+                            {
+                                "ty": "rc",
+                                "d": 1,
+                                "s": {
+                                    "a": 0,
+                                    "k": [
+                                        658.905,
+                                        99.505
+                                    ],
+                                    "ix": 2,
+                                    "x": "var $bm_rt;\nvar n, x;\nn = thisComp.layer('Text01');\nx = n.sourceRectAtTime() ? n.sourceRectAtTime().width : 0;\n$bm_rt = [\n    x + 40,\n    value[1]\n];"
+                                },
+                                "p": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 3
+                                },
+                                "r": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 4
+                                },
+                                "nm": "Rectangle Path 1",
+                                "mn": "ADBE Vector Shape - Rect",
+                                "hd": false
+                            },
+                            {
+                                "ty": "fl",
+                                "c": {
+                                    "a": 0,
+                                    "k": [
+                                        1,
+                                        0,
+                                        0,
+                                        1
+                                    ],
+                                    "ix": 4
+                                },
+                                "o": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 5
+                                },
+                                "r": 1,
+                                "nm": "Fill 1",
+                                "mn": "ADBE Vector Graphic - Fill",
+                                "hd": false
+                            },
+                            {
+                                "ty": "tr",
+                                "p": {
+                                    "a": 0,
+                                    "k": [
+                                        323.004,
+                                        -47.703
+                                    ],
+                                    "ix": 2
+                                },
+                                "a": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 1
+                                },
+                                "s": {
+                                    "a": 0,
+                                    "k": [
+                                        100,
+                                        100
+                                    ],
+                                    "ix": 3
+                                },
+                                "r": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 6
+                                },
+                                "o": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 7
+                                },
+                                "sk": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 4
+                                },
+                                "sa": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 5
+                                },
+                                "nm": "Transform"
+                            }
+                        ],
+                        "nm": "Rectangle 1",
+                        "np": 2,
+                        "cix": 2,
+                        "ix": 1,
+                        "mn": "ADBE Vector Group",
+                        "hd": false
+                    }
+                ],
+                "ip": 0,
+                "op": 150,
+                "st": 1.18084751418085,
+                "bm": 0
+            },
+            {
+                "ddd": 0,
+                "ind": 5,
+                "ty": 4,
+                "nm": "Block02",
+                "parent": 1,
+                "td": 1,
+                "sr": 1,
+                "ks": {
+                    "o": {
+                        "a": 0,
+                        "k": 100,
+                        "ix": 11
+                    },
+                    "r": {
+                        "a": 0,
+                        "k": 0,
+                        "ix": 10
+                    },
+                    "p": {
+                        "a": 0,
+                        "k": [
+                            227.249,
+                            128.549,
+                            0
+                        ],
+                        "ix": 2
+                    },
+                    "a": {
+                        "a": 0,
+                        "k": [
+                            477.572,
+                            4.251,
+                            0
+                        ],
+                        "ix": 1
+                    },
+                    "s": {
+                        "a": 0,
+                        "k": [
+                            95.54,
+                            75,
+                            100
+                        ],
+                        "ix": 6
+                    }
+                },
+                "ao": 0,
+                "shapes": [
+                    {
+                        "ty": "gr",
+                        "it": [
+                            {
+                                "ty": "rc",
+                                "d": 1,
+                                "s": {
+                                    "a": 0,
+                                    "k": [
+                                        921,
+                                        70
+                                    ],
+                                    "ix": 2,
+                                    "x": "var $bm_rt;\nvar n, x;\nn = thisComp.layer('Text02');\nx = n.sourceRectAtTime() ? n.sourceRectAtTime().width : 0;\n$bm_rt = [\n    x + 40,\n    value[1]\n];"
+                                },
+                                "p": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 3,
+                                    "x": "var $bm_rt;\n$bm_rt = [\n    value[0] - (content('Rectangle 1').content('Rectangle Path 1').size[0] - 40) / 2,\n    value[1]\n];"
+                                },
+                                "r": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 4
+                                },
+                                "nm": "Rectangle Path 1",
+                                "mn": "ADBE Vector Shape - Rect",
+                                "hd": false
+                            },
+                            {
+                                "ty": "fl",
+                                "c": {
+                                    "a": 0,
+                                    "k": [
+                                        1,
+                                        1,
+                                        1,
+                                        1
+                                    ],
+                                    "ix": 4
+                                },
+                                "o": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 5
+                                },
+                                "r": 1,
+                                "nm": "Fill 1",
+                                "mn": "ADBE Vector Graphic - Fill",
+                                "hd": false
+                            },
+                            {
+                                "ty": "tr",
+                                "p": {
+                                    "a": 0,
+                                    "k": [
+                                        239.714,
+                                        0
+                                    ],
+                                    "ix": 2,
+                                    "x": "var $bm_rt;\n$bm_rt = [\n    value[0] + (content('Rectangle 1').content('Rectangle Path 1').size[0] - 40) / 2,\n    value[1]\n];"
+                                },
+                                "a": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 1
+                                },
+                                "s": {
+                                    "a": 0,
+                                    "k": [
+                                        100,
+                                        100
+                                    ],
+                                    "ix": 3
+                                },
+                                "r": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 6
+                                },
+                                "o": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 7
+                                },
+                                "sk": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 4
+                                },
+                                "sa": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 5
+                                },
+                                "nm": "Transform"
+                            }
+                        ],
+                        "nm": "Rectangle 1",
+                        "np": 2,
+                        "cix": 2,
+                        "ix": 1,
+                        "mn": "ADBE Vector Group",
+                        "hd": false
+                    }
+                ],
+                "ip": 0,
+                "op": 150,
+                "st": 0,
+                "bm": 0
+            },
+            {
+                "ddd": 0,
+                "ind": 6,
+                "ty": 5,
+                "nm": "Text02",
+                "parent": 1,
+                "tt": 1,
+                "sr": 1,
+                "ks": {
+                    "o": {
+                        "a": 0,
+                        "k": 100,
+                        "ix": 11
+                    },
+                    "r": {
+                        "a": 0,
+                        "k": 0,
+                        "ix": 10
+                    },
+                    "p": {
+                        "s": true,
+                        "x": {
+                            "a": 0,
+                            "k": 5.048,
+                            "ix": 3
+                        },
+                        "y": {
+                            "a": 1,
+                            "k": [
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.667
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.333
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p667_1_0p333_0"
+                                    ],
+                                    "t": 9,
+                                    "s": [
+                                        176.618
+                                    ],
+                                    "e": [
+                                        116.433
+                                    ]
+                                },
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.579
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.23
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p579_1_0p23_0"
+                                    ],
+                                    "t": 17,
+                                    "s": [
+                                        116.433
+                                    ],
+                                    "e": [
+                                        116.433
+                                    ]
+                                },
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.696
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.279
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p696_1_0p279_0"
+                                    ],
+                                    "t": 34,
+                                    "s": [
+                                        116.433
+                                    ],
+                                    "e": [
+                                        116.433
+                                    ]
+                                },
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.667
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.333
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p667_1_0p333_0"
+                                    ],
+                                    "t": 108,
+                                    "s": [
+                                        116.433
+                                    ],
+                                    "e": [
+                                        176.618
+                                    ]
+                                },
+                                {
+                                    "t": 116
+                                }
+                            ],
+                            "ix": 4
+                        }
+                    },
+                    "a": {
+                        "a": 0,
+                        "k": [
+                            7,
+                            -26.5,
+                            0
+                        ],
+                        "ix": 1
+                    },
+                    "s": {
+                        "a": 0,
+                        "k": [
+                            95.54,
+                            95.54,
+                            100
+                        ],
+                        "ix": 6
+                    }
+                },
+                "ao": 0,
+                "t": {
+                    "d": {
+                        "k": [
+                            {
+                                "s": {
+                                    "s": 40,
+                                    "f": "HelveticaNeueLTPro-Blk",
+                                    "t": "{#DYNAMICINPUT_02#}",
+                                    "j": 2,
+                                    "tr": 0,
+                                    "lh": 48,
+                                    "ls": 0,
+                                    "fc": [
+                                        1,
+                                        1,
+                                        1
+                                    ]
+                                },
+                                "t": 0
+                            }
+                        ]
+                    },
+                    "p": {},
+                    "m": {
+                        "g": 1,
+                        "a": {
+                            "a": 0,
+                            "k": [
+                                0,
+                                0
+                            ],
+                            "ix": 2
+                        }
+                    },
+                    "a": []
+                },
+                "ip": 0,
+                "op": 150,
+                "st": -1,
+                "bm": 0
+            },
+            {
+                "ddd": 0,
+                "ind": 7,
+                "ty": 4,
+                "nm": "Block03",
+                "parent": 1,
+                "td": 1,
+                "sr": 1,
+                "ks": {
+                    "o": {
+                        "a": 0,
+                        "k": 100,
+                        "ix": 11
+                    },
+                    "r": {
+                        "a": 0,
+                        "k": 0,
+                        "ix": 10
+                    },
+                    "p": {
+                        "a": 0,
+                        "k": [
+                            -248.078,
+                            180.211,
+                            0
+                        ],
+                        "ix": 2
+                    },
+                    "a": {
+                        "a": 0,
+                        "k": [
+                            -20,
+                            0,
+                            0
+                        ],
+                        "ix": 1
+                    },
+                    "s": {
+                        "a": 0,
+                        "k": [
+                            95.246,
+                            75,
+                            100
+                        ],
+                        "ix": 6
+                    }
+                },
+                "ao": 0,
+                "shapes": [
+                    {
+                        "ty": "gr",
+                        "it": [
+                            {
+                                "ty": "rc",
+                                "d": 1,
+                                "s": {
+                                    "a": 0,
+                                    "k": [
+                                        921,
+                                        70
+                                    ],
+                                    "ix": 2,
+                                    "x": "var $bm_rt;\nvar n, x;\nn = thisComp.layer('Text03');\nx = n.sourceRectAtTime() ? n.sourceRectAtTime().width : 0;\n$bm_rt = [\n    x + 40,\n    value[1]\n];"
+                                },
+                                "p": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 3,
+                                    "x": "var $bm_rt;\n$bm_rt = [\n    value[0] - (content('Rectangle 1').content('Rectangle Path 1').size[0] - 40) / 2,\n    value[1]\n];"
+                                },
+                                "r": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 4
+                                },
+                                "nm": "Rectangle Path 1",
+                                "mn": "ADBE Vector Shape - Rect",
+                                "hd": false
+                            },
+                            {
+                                "ty": "fl",
+                                "c": {
+                                    "a": 0,
+                                    "k": [
+                                        1,
+                                        1,
+                                        1,
+                                        1
+                                    ],
+                                    "ix": 4
+                                },
+                                "o": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 5
+                                },
+                                "r": 1,
+                                "nm": "Fill 1",
+                                "mn": "ADBE Vector Graphic - Fill",
+                                "hd": false
+                            },
+                            {
+                                "ty": "tr",
+                                "p": {
+                                    "a": 0,
+                                    "k": [
+                                        240.182,
+                                        0
+                                    ],
+                                    "ix": 2,
+                                    "x": "var $bm_rt;\n$bm_rt = [\n    value[0] + (content('Rectangle 1').content('Rectangle Path 1').size[0] - 40) / 2,\n    value[1]\n];"
+                                },
+                                "a": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 1
+                                },
+                                "s": {
+                                    "a": 0,
+                                    "k": [
+                                        100,
+                                        100
+                                    ],
+                                    "ix": 3
+                                },
+                                "r": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 6
+                                },
+                                "o": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 7
+                                },
+                                "sk": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 4
+                                },
+                                "sa": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 5
+                                },
+                                "nm": "Transform"
+                            }
+                        ],
+                        "nm": "Rectangle 1",
+                        "np": 2,
+                        "cix": 2,
+                        "ix": 1,
+                        "mn": "ADBE Vector Group",
+                        "hd": false
+                    }
+                ],
+                "ip": 0,
+                "op": 150,
+                "st": 0,
+                "bm": 0
+            },
+            {
+                "ddd": 0,
+                "ind": 8,
+                "ty": 5,
+                "nm": "Text03",
+                "parent": 1,
+                "tt": 1,
+                "sr": 1,
+                "ks": {
+                    "o": {
+                        "a": 0,
+                        "k": 100,
+                        "ix": 11
+                    },
+                    "r": {
+                        "a": 0,
+                        "k": 0,
+                        "ix": 10
+                    },
+                    "p": {
+                        "s": true,
+                        "x": {
+                            "a": 0,
+                            "k": 3.725,
+                            "ix": 3
+                        },
+                        "y": {
+                            "a": 1,
+                            "k": [
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.667
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.333
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p667_1_0p333_0"
+                                    ],
+                                    "t": 11,
+                                    "s": [
+                                        231.865
+                                    ],
+                                    "e": [
+                                        171.68
+                                    ]
+                                },
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.581
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.234
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p581_1_0p234_0"
+                                    ],
+                                    "t": 19,
+                                    "s": [
+                                        171.68
+                                    ],
+                                    "e": [
+                                        171.68
+                                    ]
+                                },
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.695
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.274
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p695_1_0p274_0"
+                                    ],
+                                    "t": 34,
+                                    "s": [
+                                        171.68
+                                    ],
+                                    "e": [
+                                        171.68
+                                    ]
+                                },
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.667
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.333
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p667_1_0p333_0"
+                                    ],
+                                    "t": 106,
+                                    "s": [
+                                        171.68
+                                    ],
+                                    "e": [
+                                        231.865
+                                    ]
+                                },
+                                {
+                                    "t": 114
+                                }
+                            ],
+                            "ix": 4
+                        }
+                    },
+                    "a": {
+                        "a": 0,
+                        "k": [
+                            7,
+                            -26.5,
+                            0
+                        ],
+                        "ix": 1
+                    },
+                    "s": {
+                        "a": 0,
+                        "k": [
+                            95.54,
+                            95.54,
+                            100
+                        ],
+                        "ix": 6
+                    }
+                },
+                "ao": 0,
+                "t": {
+                    "d": {
+                        "k": [
+                            {
+                                "s": {
+                                    "s": 40,
+                                    "f": "HelveticaNeueLTPro-Blk",
+                                    "t": "{#DYNAMICINPUT_03#}",
+                                    "j": 2,
+                                    "tr": 0,
+                                    "lh": 48,
+                                    "ls": 0,
+                                    "fc": [
+                                        1,
+                                        1,
+                                        1
+                                    ]
+                                },
+                                "t": 0
+                            }
+                        ]
+                    },
+                    "p": {},
+                    "m": {
+                        "g": 1,
+                        "a": {
+                            "a": 0,
+                            "k": [
+                                0,
+                                0
+                            ],
+                            "ix": 2
+                        }
+                    },
+                    "a": []
+                },
+                "ip": 0,
+                "op": 150,
+                "st": 0,
+                "bm": 0
+            },
+            {
+                "ddd": 0,
+                "ind": 9,
+                "ty": 4,
+                "nm": "Block04",
+                "parent": 1,
+                "td": 1,
+                "sr": 1,
+                "ks": {
+                    "o": {
+                        "a": 0,
+                        "k": 100,
+                        "ix": 11
+                    },
+                    "r": {
+                        "a": 0,
+                        "k": 0,
+                        "ix": 10
+                    },
+                    "p": {
+                        "a": 0,
+                        "k": [
+                            -250.103,
+                            235.897,
+                            0
+                        ],
+                        "ix": 2
+                    },
+                    "a": {
+                        "a": 0,
+                        "k": [
+                            -20,
+                            0,
+                            0
+                        ],
+                        "ix": 1
+                    },
+                    "s": {
+                        "a": 0,
+                        "k": [
+                            95.246,
+                            75,
+                            100
+                        ],
+                        "ix": 6
+                    }
+                },
+                "ao": 0,
+                "shapes": [
+                    {
+                        "ty": "gr",
+                        "it": [
+                            {
+                                "ty": "rc",
+                                "d": 1,
+                                "s": {
+                                    "a": 0,
+                                    "k": [
+                                        921,
+                                        70
+                                    ],
+                                    "ix": 2,
+                                    "x": "var $bm_rt;\nvar n, x;\nn = thisComp.layer('Text04');\nx = n.sourceRectAtTime() ? n.sourceRectAtTime().width : 0;\n$bm_rt = [\n    x + 40,\n    value[1]\n];"
+                                },
+                                "p": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 3,
+                                    "x": "var $bm_rt;\n$bm_rt = [\n    value[0] - (content('Rectangle 1').content('Rectangle Path 1').size[0] - 40) / 2,\n    value[1]\n];"
+                                },
+                                "r": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 4
+                                },
+                                "nm": "Rectangle Path 1",
+                                "mn": "ADBE Vector Shape - Rect",
+                                "hd": false
+                            },
+                            {
+                                "ty": "fl",
+                                "c": {
+                                    "a": 0,
+                                    "k": [
+                                        1,
+                                        1,
+                                        1,
+                                        1
+                                    ],
+                                    "ix": 4
+                                },
+                                "o": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 5
+                                },
+                                "r": 1,
+                                "nm": "Fill 1",
+                                "mn": "ADBE Vector Graphic - Fill",
+                                "hd": false
+                            },
+                            {
+                                "ty": "tr",
+                                "p": {
+                                    "a": 0,
+                                    "k": [
+                                        242.307,
+                                        0
+                                    ],
+                                    "ix": 2,
+                                    "x": "var $bm_rt;\n$bm_rt = [\n    value[0] + (content('Rectangle 1').content('Rectangle Path 1').size[0] - 40) / 2,\n    value[1]\n];"
+                                },
+                                "a": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 1
+                                },
+                                "s": {
+                                    "a": 0,
+                                    "k": [
+                                        100,
+                                        100
+                                    ],
+                                    "ix": 3
+                                },
+                                "r": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 6
+                                },
+                                "o": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 7
+                                },
+                                "sk": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 4
+                                },
+                                "sa": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 5
+                                },
+                                "nm": "Transform"
+                            }
+                        ],
+                        "nm": "Rectangle 1",
+                        "np": 2,
+                        "cix": 2,
+                        "ix": 1,
+                        "mn": "ADBE Vector Group",
+                        "hd": false
+                    }
+                ],
+                "ip": 0,
+                "op": 150,
+                "st": 0,
+                "bm": 0
+            },
+            {
+                "ddd": 0,
+                "ind": 10,
+                "ty": 5,
+                "nm": "Text04",
+                "parent": 1,
+                "tt": 1,
+                "sr": 1,
+                "ks": {
+                    "o": {
+                        "a": 0,
+                        "k": 100,
+                        "ix": 11
+                    },
+                    "r": {
+                        "a": 0,
+                        "k": 0,
+                        "ix": 10
+                    },
+                    "p": {
+                        "s": true,
+                        "x": {
+                            "a": 0,
+                            "k": 5.048,
+                            "ix": 3
+                        },
+                        "y": {
+                            "a": 1,
+                            "k": [
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.667
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.333
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p667_1_0p333_0"
+                                    ],
+                                    "t": 13,
+                                    "s": [
+                                        287.983
+                                    ],
+                                    "e": [
+                                        227.798
+                                    ]
+                                },
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.584
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.238
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p584_1_0p238_0"
+                                    ],
+                                    "t": 21,
+                                    "s": [
+                                        227.798
+                                    ],
+                                    "e": [
+                                        227.798
+                                    ]
+                                },
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.693
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.268
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p693_1_0p268_0"
+                                    ],
+                                    "t": 34,
+                                    "s": [
+                                        227.798
+                                    ],
+                                    "e": [
+                                        227.798
+                                    ]
+                                },
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.667
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.333
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p667_1_0p333_0"
+                                    ],
+                                    "t": 104,
+                                    "s": [
+                                        227.798
+                                    ],
+                                    "e": [
+                                        287.983
+                                    ]
+                                },
+                                {
+                                    "t": 112
+                                }
+                            ],
+                            "ix": 4
+                        }
+                    },
+                    "a": {
+                        "a": 0,
+                        "k": [
+                            7,
+                            -26.5,
+                            0
+                        ],
+                        "ix": 1
+                    },
+                    "s": {
+                        "a": 0,
+                        "k": [
+                            95.54,
+                            95.54,
+                            100
+                        ],
+                        "ix": 6
+                    }
+                },
+                "ao": 0,
+                "t": {
+                    "d": {
+                        "k": [
+                            {
+                                "s": {
+                                    "s": 40,
+                                    "f": "HelveticaNeueLTPro-Blk",
+                                    "t": "{#DYNAMICINPUT_04#}",
+                                    "j": 2,
+                                    "tr": 0,
+                                    "lh": 48,
+                                    "ls": 0,
+                                    "fc": [
+                                        1,
+                                        1,
+                                        1
+                                    ]
+                                },
+                                "t": 0
+                            }
+                        ]
+                    },
+                    "p": {},
+                    "m": {
+                        "g": 1,
+                        "a": {
+                            "a": 0,
+                            "k": [
+                                0,
+                                0
+                            ],
+                            "ix": 2
+                        }
+                    },
+                    "a": []
+                },
+                "ip": 0,
+                "op": 150,
+                "st": 1,
+                "bm": 0
+            },
+            {
+                "ddd": 0,
+                "ind": 11,
+                "ty": 4,
+                "nm": "Block05",
+                "parent": 1,
+                "td": 1,
+                "sr": 1,
+                "ks": {
+                    "o": {
+                        "a": 0,
+                        "k": 100,
+                        "ix": 11
+                    },
+                    "r": {
+                        "a": 0,
+                        "k": 0,
+                        "ix": 10
+                    },
+                    "p": {
+                        "a": 0,
+                        "k": [
+                            -0.266,
+                            294.904,
+                            0
+                        ],
+                        "ix": 2
+                    },
+                    "a": {
+                        "a": 0,
+                        "k": [
+                            0,
+                            4.428,
+                            0
+                        ],
+                        "ix": 1
+                    },
+                    "s": {
+                        "a": 0,
+                        "k": [
+                            95.246,
+                            75,
+                            100
+                        ],
+                        "ix": 6
+                    }
+                },
+                "ao": 0,
+                "shapes": [
+                    {
+                        "ty": "gr",
+                        "it": [
+                            {
+                                "ty": "rc",
+                                "d": 1,
+                                "s": {
+                                    "a": 0,
+                                    "k": [
+                                        921,
+                                        70
+                                    ],
+                                    "ix": 2,
+                                    "x": "var $bm_rt;\nvar n, x;\nn = thisComp.layer('Text05');\nx = n.sourceRectAtTime() ? n.sourceRectAtTime().width : 0;\n$bm_rt = [\n    x + 40,\n    value[1]\n];"
+                                },
+                                "p": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 3
+                                },
+                                "r": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 4
+                                },
+                                "nm": "Rectangle Path 1",
+                                "mn": "ADBE Vector Shape - Rect",
+                                "hd": false
+                            },
+                            {
+                                "ty": "fl",
+                                "c": {
+                                    "a": 0,
+                                    "k": [
+                                        1,
+                                        1,
+                                        1,
+                                        1
+                                    ],
+                                    "ix": 4
+                                },
+                                "o": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 5
+                                },
+                                "r": 1,
+                                "nm": "Fill 1",
+                                "mn": "ADBE Vector Graphic - Fill",
+                                "hd": false
+                            },
+                            {
+                                "ty": "tr",
+                                "p": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 2
+                                },
+                                "a": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 1
+                                },
+                                "s": {
+                                    "a": 0,
+                                    "k": [
+                                        100,
+                                        100
+                                    ],
+                                    "ix": 3
+                                },
+                                "r": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 6
+                                },
+                                "o": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 7
+                                },
+                                "sk": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 4
+                                },
+                                "sa": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 5
+                                },
+                                "nm": "Transform"
+                            }
+                        ],
+                        "nm": "Rectangle 1",
+                        "np": 2,
+                        "cix": 2,
+                        "ix": 1,
+                        "mn": "ADBE Vector Group",
+                        "hd": false
+                    }
+                ],
+                "ip": 0,
+                "op": 150,
+                "st": 0,
+                "bm": 0
+            },
+            {
+                "ddd": 0,
+                "ind": 12,
+                "ty": 5,
+                "nm": "Text05",
+                "parent": 1,
+                "tt": 1,
+                "sr": 1,
+                "ks": {
+                    "o": {
+                        "a": 0,
+                        "k": 100,
+                        "ix": 11
+                    },
+                    "r": {
+                        "a": 0,
+                        "k": 0,
+                        "ix": 10
+                    },
+                    "p": {
+                        "s": true,
+                        "x": {
+                            "a": 0,
+                            "k": 5.048,
+                            "ix": 3
+                        },
+                        "y": {
+                            "a": 1,
+                            "k": [
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.667
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.333
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p667_1_0p333_0"
+                                    ],
+                                    "t": 15,
+                                    "s": [
+                                        344.101
+                                    ],
+                                    "e": [
+                                        283.916
+                                    ]
+                                },
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.587
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.244
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p587_1_0p244_0"
+                                    ],
+                                    "t": 23,
+                                    "s": [
+                                        283.916
+                                    ],
+                                    "e": [
+                                        283.916
+                                    ]
+                                },
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.692
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.261
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p692_1_0p261_0"
+                                    ],
+                                    "t": 34,
+                                    "s": [
+                                        283.916
+                                    ],
+                                    "e": [
+                                        283.916
+                                    ]
+                                },
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.667
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.333
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p667_1_0p333_0"
+                                    ],
+                                    "t": 102,
+                                    "s": [
+                                        283.916
+                                    ],
+                                    "e": [
+                                        344.101
+                                    ]
+                                },
+                                {
+                                    "t": 110
+                                }
+                            ],
+                            "ix": 4
+                        }
+                    },
+                    "a": {
+                        "a": 0,
+                        "k": [
+                            7,
+                            -26.5,
+                            0
+                        ],
+                        "ix": 1
+                    },
+                    "s": {
+                        "a": 0,
+                        "k": [
+                            95.54,
+                            95.54,
+                            100
+                        ],
+                        "ix": 6
+                    }
+                },
+                "ao": 0,
+                "t": {
+                    "d": {
+                        "k": [
+                            {
+                                "s": {
+                                    "s": 40,
+                                    "f": "HelveticaNeueLTPro-Blk",
+                                    "t": "{#DYNAMICINPUT_05#}",
+                                    "j": 2,
+                                    "tr": 0,
+                                    "lh": 48,
+                                    "ls": 0,
+                                    "fc": [
+                                        1,
+                                        1,
+                                        1
+                                    ]
+                                },
+                                "t": 0
+                            }
+                        ]
+                    },
+                    "p": {},
+                    "m": {
+                        "g": 1,
+                        "a": {
+                            "a": 0,
+                            "k": [
+                                0,
+                                0
+                            ],
+                            "ix": 2
+                        }
+                    },
+                    "a": []
+                },
+                "ip": 0,
+                "op": 150,
+                "st": 2,
+                "bm": 0
+            },
+            {
+                "ddd": 0,
+                "ind": 13,
+                "ty": 4,
+                "nm": "Block06",
+                "parent": 1,
+                "td": 1,
+                "sr": 1,
+                "ks": {
+                    "o": {
+                        "a": 0,
+                        "k": 100,
+                        "ix": 11
+                    },
+                    "r": {
+                        "a": 0,
+                        "k": 0,
+                        "ix": 10
+                    },
+                    "p": {
+                        "a": 0,
+                        "k": [
+                            -19.846,
+                            348.769,
+                            0
+                        ],
+                        "ix": 2
+                    },
+                    "a": {
+                        "a": 0,
+                        "k": [
+                            -20,
+                            0,
+                            0
+                        ],
+                        "ix": 1
+                    },
+                    "s": {
+                        "a": 0,
+                        "k": [
+                            95.246,
+                            75,
+                            100
+                        ],
+                        "ix": 6
+                    }
+                },
+                "ao": 0,
+                "shapes": [
+                    {
+                        "ty": "gr",
+                        "it": [
+                            {
+                                "ty": "rc",
+                                "d": 1,
+                                "s": {
+                                    "a": 0,
+                                    "k": [
+                                        921,
+                                        70
+                                    ],
+                                    "ix": 2,
+                                    "x": "var $bm_rt;\nvar n, x;\nn = thisComp.layer('Text06');\nx = n.sourceRectAtTime() ? n.sourceRectAtTime().width : 0;\n$bm_rt = [\n    x + 40,\n    value[1]\n];"
+                                },
+                                "p": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 3
+                                },
+                                "r": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 4
+                                },
+                                "nm": "Rectangle Path 1",
+                                "mn": "ADBE Vector Shape - Rect",
+                                "hd": false
+                            },
+                            {
+                                "ty": "fl",
+                                "c": {
+                                    "a": 0,
+                                    "k": [
+                                        1,
+                                        1,
+                                        1,
+                                        1
+                                    ],
+                                    "ix": 4
+                                },
+                                "o": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 5
+                                },
+                                "r": 1,
+                                "nm": "Fill 1",
+                                "mn": "ADBE Vector Graphic - Fill",
+                                "hd": false
+                            },
+                            {
+                                "ty": "tr",
+                                "p": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 2
+                                },
+                                "a": {
+                                    "a": 0,
+                                    "k": [
+                                        0,
+                                        0
+                                    ],
+                                    "ix": 1
+                                },
+                                "s": {
+                                    "a": 0,
+                                    "k": [
+                                        100,
+                                        100
+                                    ],
+                                    "ix": 3
+                                },
+                                "r": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 6
+                                },
+                                "o": {
+                                    "a": 0,
+                                    "k": 100,
+                                    "ix": 7
+                                },
+                                "sk": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 4
+                                },
+                                "sa": {
+                                    "a": 0,
+                                    "k": 0,
+                                    "ix": 5
+                                },
+                                "nm": "Transform"
+                            }
+                        ],
+                        "nm": "Rectangle 1",
+                        "np": 2,
+                        "cix": 2,
+                        "ix": 1,
+                        "mn": "ADBE Vector Group",
+                        "hd": false
+                    }
+                ],
+                "ip": 0,
+                "op": 150,
+                "st": 0,
+                "bm": 0
+            },
+            {
+                "ddd": 0,
+                "ind": 14,
+                "ty": 5,
+                "nm": "Text06",
+                "parent": 1,
+                "tt": 1,
+                "sr": 1,
+                "ks": {
+                    "o": {
+                        "a": 0,
+                        "k": 100,
+                        "ix": 11
+                    },
+                    "r": {
+                        "a": 0,
+                        "k": 0,
+                        "ix": 10
+                    },
+                    "p": {
+                        "s": true,
+                        "x": {
+                            "a": 0,
+                            "k": 5.048,
+                            "ix": 3
+                        },
+                        "y": {
+                            "a": 1,
+                            "k": [
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.667
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.333
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p667_1_0p333_0"
+                                    ],
+                                    "t": 17,
+                                    "s": [
+                                        400.22
+                                    ],
+                                    "e": [
+                                        340.034
+                                    ]
+                                },
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.592
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.251
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p592_1_0p251_0"
+                                    ],
+                                    "t": 25,
+                                    "s": [
+                                        340.034
+                                    ],
+                                    "e": [
+                                        340.034
+                                    ]
+                                },
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.69
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.252
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p69_1_0p252_0"
+                                    ],
+                                    "t": 34,
+                                    "s": [
+                                        340.034
+                                    ],
+                                    "e": [
+                                        340.034
+                                    ]
+                                },
+                                {
+                                    "i": {
+                                        "x": [
+                                            0.667
+                                        ],
+                                        "y": [
+                                            1
+                                        ]
+                                    },
+                                    "o": {
+                                        "x": [
+                                            0.333
+                                        ],
+                                        "y": [
+                                            0
+                                        ]
+                                    },
+                                    "n": [
+                                        "0p667_1_0p333_0"
+                                    ],
+                                    "t": 100,
+                                    "s": [
+                                        340.034
+                                    ],
+                                    "e": [
+                                        400.22
+                                    ]
+                                },
+                                {
+                                    "t": 108
+                                }
+                            ],
+                            "ix": 4
+                        }
+                    },
+                    "a": {
+                        "a": 0,
+                        "k": [
+                            7,
+                            -26.5,
+                            0
+                        ],
+                        "ix": 1
+                    },
+                    "s": {
+                        "a": 0,
+                        "k": [
+                            95.54,
+                            95.54,
+                            100
+                        ],
+                        "ix": 6
+                    }
+                },
+                "ao": 0,
+                "t": {
+                    "d": {
+                        "k": [
+                            {
+                                "s": {
+                                    "s": 40,
+                                    "f": "HelveticaNeueLTPro-Blk",
+                                    "t": "{#DYNAMICINPUT_06#}",
+                                    "j": 2,
+                                    "tr": 0,
+                                    "lh": 48,
+                                    "ls": 0,
+                                    "fc": [
+                                        1,
+                                        1,
+                                        1
+                                    ]
+                                },
+                                "t": 0
+                            }
+                        ]
+                    },
+                    "p": {},
+                    "m": {
+                        "g": 1,
+                        "a": {
+                            "a": 0,
+                            "k": [
+                                0,
+                                0
+                            ],
+                            "ix": 2
+                        }
+                    },
+                    "a": []
+                },
+                "ip": 0,
+                "op": 150,
+                "st": 3,
+                "bm": 0
+            }
+        ],
+        "markers": []
+    },
+    "inDuration": 1,
+    "outDuration": 0.76,
+    "intermissionDuration": 3,
+    "inputs": [
+        {
+            "type": "textList",
+            "name": "text",
+            "timestamp": 0,
+            "constraints": [],
+            "defaultValue": {
+                "type": "textList",
+                "textList": [
+                    "YOUR TEXT",
+                    "GOES HERE"
+                ]
+            }
+        },
+        {
+            "type": "color",
+            "name": "color1",
+            "timestamp": 0,
+            "defaultValue": {
+                "type": "color",
+                "color": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 1
+                }
+            }
+        },
+        {
+            "type": "color",
+            "name": "color2",
+            "timestamp": 0,
+            "defaultValue": {
+                "type": "color",
+                "color": {
+                    "r": 0.5372549019607843,
+                    "g": 0.18823529411764706,
+                    "b": 0.9098039215686274,
+                    "a": 1
+                }
+            }
+        },
+        {
+            "type": "font",
+            "name": "font1",
+            "timestamp": 0,
+            "defaultValue": {
+                "type": "font",
+                "font": {
+                    "family": "Rubik",
+                    "weight": 700,
+                    "source": "google"
+                }
+            }
+        }
+    ],
+    "modifiers": [
+    {
+      "type": "setDefaultFonts"
+    },
+    {
+            "type": "setFont",
+            "inputName": "font1",
+            "fontIndex": 0
+        },
+        {
+            "type": "setHeightByTextList",
+            "inputName": "text",
+            "heights": [
+                0,
+                110,
+                170,
+                230,
+                290,
+                350,
+                410
+            ]
+        },
+        {
+            "type": "setFillColor",
+            "inputName": "color1",
+            "paths": [
+                [
+                    "layer",
+                    5
+                ],
+                [
+                    "layer",
+                    2
+                ],
+                [
+                    "layer",
+                    7
+                ],
+                [
+                    "layer",
+                    9
+                ],
+                [
+                    "layer",
+                    13
+                ],
+                [
+                    "layer",
+                    11
+                ]
+            ]
+        },
+        {
+            "type": "setFillColor",
+            "inputName": "color2",
+            "paths": [
+                [
+                    "layer",
+                    3,
+                    "shape",
+                    0,
+                    "shape",
+                    1
+                ]
+            ]
+        },
+        {
+            "type": "setTextList",
+            "inputName": "text",
+            "textLayerPaths": [
+                ["layer", 2],
+                ["layer", 5],
+                ["layer", 7],
+                ["layer", 9],
+                ["layer", 11],
+                ["layer", 13]
+            ]
+        }
+    ],
+    "timeScaler": {
+        "strategy": "cutOnThreshold",
+        "threshold": 3
+    }
+}

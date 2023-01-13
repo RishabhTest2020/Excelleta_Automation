@@ -1,0 +1,145 @@
+{
+  "animation": {"v":"5.5.8","fr":25,"ip":0,"op":101,"w":660,"h":550,"nm":"Animation43_L","ddd":0,"assets":[],"fonts":{"list":[{"origin":1,"fPath":"","fClass":"","fFamily":"Varela Round","fWeight":"400","fStyle":"Regular","fName":"VarelaRound-Regular","ascent":73.9985351916403}]},"layers":[{"ddd":0,"ind":1,"ty":3,"nm":"SCALE 2","parent":3,"sr":1,"ks":{"o":{"a":0,"k":0,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[0,-115,0],"ix":2,"x":"var $bm_rt;\nvar a;\n$bm_rt = a = effect('Slider Control')('Slider');\nif (thisComp.layer('text01').text.sourceText == 0)\n    $bm_rt = [\n        value[0],\n        value[1]\n    ];\nelse\n    $bm_rt = [\n        value[0],\n        value[1] + a * 25\n    ];"},"a":{"a":0,"k":[0,15,0],"ix":1,"x":"var $bm_rt;\nvar a;\n$bm_rt = a = effect('Slider Control')('Slider');\nif (thisComp.layer('text01').text.sourceText == 0)\n    $bm_rt = [\n        value[0],\n        value[1]\n    ];\nelse\n    $bm_rt = [\n        value[0],\n        value[1] + a * 25\n    ];"},"s":{"a":0,"k":[100,100,100],"ix":6,"x":"var $bm_rt;\nvar a, b, c, d, e, f, x, w, resize;\na = thisComp.layer('text01').sourceRectAtTime() ? thisComp.layer('text01').sourceRectAtTime().width : 0;\nb = thisComp.layer('text02').sourceRectAtTime() ? thisComp.layer('text02').sourceRectAtTime().width : 0;\nc = thisComp.layer('text03').sourceRectAtTime() ? thisComp.layer('text03').sourceRectAtTime().width : 0;\nd = thisComp.layer('text04').sourceRectAtTime() ? thisComp.layer('text04').sourceRectAtTime().width : 0;\ne = thisComp.layer('text05').sourceRectAtTime() ? thisComp.layer('text05').sourceRectAtTime().width : 0;\nf = thisComp.layer('text06').sourceRectAtTime() ? thisComp.layer('text06').sourceRectAtTime().width : 0;\nx = Math.max(a, b, c, d, e, f);\nw = 480;\n$bm_rt = resize = $bm_mul($bm_div(w, x), 100);\nif (x > w) {\n    $bm_rt = [\n        resize,\n        resize\n    ];\n} else {\n    $bm_rt = [\n        100,\n        100\n    ];\n}"}},"ao":0,"ef":[{"ty":5,"nm":"Slider Control","np":3,"mn":"ADBE Slider Control","ix":1,"en":1,"ef":[{"ty":0,"nm":"Slider","mn":"ADBE Slider Control-0001","ix":1,"v":{"a":0,"k":0,"ix":1,"x":"var $bm_rt;\nvar a, a, b, b, c, c, d, d, e, e, f, f;\na = 1;\nif (thisComp.layer('text01').text.sourceText == 0)\n    a = 0;\nb = 1;\nif (thisComp.layer('text02').text.sourceText == 0)\n    b = 0;\nc = 1;\nif (thisComp.layer('text03').text.sourceText == 0)\n    c = 0;\nd = 1;\nif (thisComp.layer('text04').text.sourceText == 0)\n    d = 0;\ne = 1;\nif (thisComp.layer('text05').text.sourceText == 0)\n    e = 0;\nf = 1;\nif (thisComp.layer('text06').text.sourceText == 0)\n    f = 0;\n$bm_rt = [a + b + c + d + e + f];"}}]}],"ip":0,"op":101,"st":0,"bm":0},{"ddd":0,"ind":2,"ty":3,"nm":"SCALE","parent":3,"sr":1,"ks":{"o":{"a":0,"k":0,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[7.999,-121.999,0],"ix":2,"x":"var $bm_rt;\nvar a;\n$bm_rt = a = effect('Slider Control')('Slider');\nif (thisComp.layer('text01').text.sourceText == 0)\n    $bm_rt = [\n        value[0],\n        value[1]\n    ];\nelse\n    $bm_rt = [\n        value[0],\n        value[1] + a * 25\n    ];"},"a":{"a":0,"k":[0,15,0],"ix":1,"x":"var $bm_rt;\nvar a;\n$bm_rt = a = effect('Slider Control')('Slider');\nif (thisComp.layer('text01').text.sourceText == 0)\n    $bm_rt = [\n        value[0],\n        value[1]\n    ];\nelse\n    $bm_rt = [\n        value[0],\n        value[1] + a * 25\n    ];"},"s":{"a":0,"k":[100,100,100],"ix":6,"x":"var $bm_rt;\nvar a, b, c, d, e, f, x, w, resize;\na = thisComp.layer('text01').sourceRectAtTime() ? thisComp.layer('text01').sourceRectAtTime().width : 0;\nb = thisComp.layer('text02').sourceRectAtTime() ? thisComp.layer('text02').sourceRectAtTime().width : 0;\nc = thisComp.layer('text03').sourceRectAtTime() ? thisComp.layer('text03').sourceRectAtTime().width : 0;\nd = thisComp.layer('text04').sourceRectAtTime() ? thisComp.layer('text04').sourceRectAtTime().width : 0;\ne = thisComp.layer('text05').sourceRectAtTime() ? thisComp.layer('text05').sourceRectAtTime().width : 0;\nf = thisComp.layer('text06').sourceRectAtTime() ? thisComp.layer('text06').sourceRectAtTime().width : 0;\nx = Math.max(a, b, c, d, e, f);\nw = 480;\n$bm_rt = resize = $bm_mul($bm_div(w, x), 100);\nif (x > w) {\n    $bm_rt = [\n        resize,\n        resize\n    ];\n} else {\n    $bm_rt = [\n        100,\n        100\n    ];\n}"}},"ao":0,"ef":[{"ty":5,"nm":"Slider Control","np":3,"mn":"ADBE Slider Control","ix":1,"en":1,"ef":[{"ty":0,"nm":"Slider","mn":"ADBE Slider Control-0001","ix":1,"v":{"a":0,"k":0,"ix":1,"x":"var $bm_rt;\nvar a, a, b, b, c, c, d, d, e, e, f, f;\na = 1;\nif (thisComp.layer('text01').text.sourceText == 0)\n    a = 0;\nb = 1;\nif (thisComp.layer('text02').text.sourceText == 0)\n    b = 0;\nc = 1;\nif (thisComp.layer('text03').text.sourceText == 0)\n    c = 0;\nd = 1;\nif (thisComp.layer('text04').text.sourceText == 0)\n    d = 0;\ne = 1;\nif (thisComp.layer('text05').text.sourceText == 0)\n    e = 0;\nf = 1;\nif (thisComp.layer('text06').text.sourceText == 0)\n    f = 0;\n$bm_rt = [a + b + c + d + e + f];"}}]}],"ip":0,"op":101,"st":0,"bm":0},{"ddd":0,"ind":3,"ty":3,"nm":"position","sr":1,"ks":{"o":{"a":0,"k":0,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[66,206,0],"ix":2},"a":{"a":0,"k":[0,0,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"ip":0,"op":101,"st":0,"bm":0},{"ddd":0,"ind":5,"ty":5,"nm":"text01","parent":2,"sr":1,"ks":{"o":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":5,"s":[0]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":6,"s":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":81,"s":[100]},{"t":82,"s":[0]}],"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[-5,50,0],"ix":2},"a":{"a":0,"k":[0,0,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"t":{"d":{"k":[{"s":{"s":35,"f":"VarelaRound-Regular","t":"{#DYNAMICINPUT_01#}","j":0,"tr":0,"lh":42,"ls":0,"fc":[1,1,1]},"t":0}]},"p":{},"m":{"g":1,"a":{"a":0,"k":[0,0],"ix":2}},"a":[]},"ip":0,"op":101,"st":0,"bm":0},{"ddd":0,"ind":6,"ty":5,"nm":"text02","parent":2,"sr":1,"ks":{"o":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":10,"s":[0]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":11,"s":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":81,"s":[100]},{"t":82,"s":[0]}],"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[-5,100,0],"ix":2},"a":{"a":0,"k":[0,0,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"t":{"d":{"k":[{"s":{"s":35,"f":"VarelaRound-Regular","t":"{#DYNAMICINPUT_02#}","j":0,"tr":0,"lh":42,"ls":0,"fc":[1,1,1]},"t":0}]},"p":{},"m":{"g":1,"a":{"a":0,"k":[0,0],"ix":2}},"a":[]},"ip":0,"op":101,"st":0,"bm":0},{"ddd":0,"ind":7,"ty":5,"nm":"text03","parent":2,"sr":1,"ks":{"o":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":15,"s":[0]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":16,"s":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":81,"s":[100]},{"t":82,"s":[0]}],"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[-5,150,0],"ix":2},"a":{"a":0,"k":[0,0,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"t":{"d":{"k":[{"s":{"s":35,"f":"VarelaRound-Regular","t":"{#DYNAMICINPUT_03#}","j":0,"tr":0,"lh":42,"ls":0,"fc":[1,1,1]},"t":0}]},"p":{},"m":{"g":1,"a":{"a":0,"k":[0,0],"ix":2}},"a":[]},"ip":0,"op":101,"st":0,"bm":0},{"ddd":0,"ind":8,"ty":5,"nm":"text04","parent":2,"sr":1,"ks":{"o":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":20,"s":[0]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":21,"s":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":81,"s":[100]},{"t":82,"s":[0]}],"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[-5,200,0],"ix":2},"a":{"a":0,"k":[0,0,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"t":{"d":{"k":[{"s":{"s":35,"f":"VarelaRound-Regular","t":"{#DYNAMICINPUT_04#}","j":0,"tr":0,"lh":42,"ls":0,"fc":[1,1,1]},"t":0}]},"p":{},"m":{"g":1,"a":{"a":0,"k":[0,0],"ix":2}},"a":[]},"ip":0,"op":101,"st":0,"bm":0},{"ddd":0,"ind":9,"ty":5,"nm":"text05","parent":2,"sr":1,"ks":{"o":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":25,"s":[0]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":26,"s":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":81,"s":[100]},{"t":82,"s":[0]}],"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[-5,250,0],"ix":2},"a":{"a":0,"k":[0,0,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"t":{"d":{"k":[{"s":{"s":35,"f":"VarelaRound-Regular","t":"{#DYNAMICINPUT_05#}","j":0,"tr":0,"lh":42,"ls":0,"fc":[1,1,1]},"t":0}]},"p":{},"m":{"g":1,"a":{"a":0,"k":[0,0],"ix":2}},"a":[]},"ip":0,"op":101,"st":0,"bm":0},{"ddd":0,"ind":10,"ty":5,"nm":"text06","parent":2,"sr":1,"ks":{"o":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":30,"s":[0]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":31,"s":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":81,"s":[100]},{"t":82,"s":[0]}],"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[-5,300,0],"ix":2},"a":{"a":0,"k":[0,0,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"t":{"d":{"k":[{"s":{"s":35,"f":"VarelaRound-Regular","t":"{#DYNAMICINPUT_06#}","j":0,"tr":0,"lh":42,"ls":0,"fc":[1,1,1]},"t":0}]},"p":{},"m":{"g":1,"a":{"a":0,"k":[0,0],"ix":2}},"a":[]},"ip":0,"op":101,"st":0,"bm":0},{"ddd":0,"ind":11,"ty":4,"nm":"Box01","parent":2,"sr":1,"ks":{"o":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":-3,"s":[0]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":-2,"s":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":0,"s":[0]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":1,"s":[100]},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":81,"s":[100]},{"t":82,"s":[0]}],"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"s":true,"x":{"a":0,"k":-330.29,"ix":3,"x":"var $bm_rt;\n$bm_rt = $bm_sub($bm_sum(value, $bm_div(content('Rectangle 1').content('Rectangle Path 1').size[0], 2)), 25);"},"y":{"a":0,"k":39.209,"ix":4,"x":"var $bm_rt;\nvar y;\ny = thisComp.layer('SCALE').effect('Slider Control')('Slider');\n$bm_rt = $bm_sum(value, $bm_mul(25, $bm_sub(y, 1)));"}},"a":{"a":0,"k":[-314.52,2.209,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ty":"rc","d":1,"s":{"a":0,"k":[728,551.515],"ix":2,"x":"var $bm_rt;\nvar y, a, b, c, d, e, f, x;\ny = thisComp.layer('SCALE').effect('Slider Control')('Slider');\na = thisComp.layer('text01').sourceRectAtTime() ? thisComp.layer('text01').sourceRectAtTime().width : 0;\nb = thisComp.layer('text02').sourceRectAtTime() ? thisComp.layer('text02').sourceRectAtTime().width : 0;\nc = thisComp.layer('text03').sourceRectAtTime() ? thisComp.layer('text03').sourceRectAtTime().width : 0;\nd = thisComp.layer('text04').sourceRectAtTime() ? thisComp.layer('text04').sourceRectAtTime().width : 0;\ne = thisComp.layer('text05').sourceRectAtTime() ? thisComp.layer('text05').sourceRectAtTime().width : 0;\nf = thisComp.layer('text06').sourceRectAtTime() ? thisComp.layer('text06').sourceRectAtTime().width : 0;\nx = Math.max(a, b, c, d, e, f);\n$bm_rt = [\n    x + 80,\n    50 * y + 66\n];"},"p":{"a":0,"k":[0,0],"ix":3},"r":{"a":0,"k":0,"ix":4},"nm":"Rectangle Path 1","mn":"ADBE Vector Shape - Rect","hd":false},{"ty":"st","c":{"a":0,"k":[1,1,1,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":0,"ix":5},"lc":1,"lj":1,"ml":4,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"fl","c":{"a":0,"k":[0,0,0,1],"ix":4},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":"Fill 1","mn":"ADBE Vector Graphic - Fill","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Rectangle 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false}],"ip":0,"op":101,"st":0,"bm":0}],"markers":[]},
+  "inDuration": 1.32,
+  "outDuration": 0.1,
+  "intermissionDuration": 3,
+  "inputs": [
+    {
+      "type": "textList",
+      "name": "text",
+      "timestamp": 0,
+      "constraints": [],
+      "defaultValue": {
+        "type": "textList",
+        "textList": [
+          "YOUR TEXT",
+          "GOES HERE"
+        ]
+      }
+    },
+    {
+      "type": "color",
+      "name": "color1",
+      "timestamp": 0,
+      "defaultValue": {
+        "type": "color",
+        "color": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1
+        }
+      }
+    },
+    {
+      "type": "color",
+      "name": "color2",
+      "timestamp": 0,
+      "defaultValue": {
+        "type": "color",
+        "color": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        }
+      }
+    },
+    {
+      "type": "font",
+      "name": "font1",
+      "timestamp": 0,
+      "defaultValue": {
+        "type": "font",
+        "font": {
+          "family": "Varela Round",
+          "weight": 400,
+          "source": "google"
+        }
+      }
+    }
+  ],
+  "modifiers": [
+    {
+      "type": "setDefaultFonts"
+    },
+    {
+      "type": "setTextList",
+      "inputName": "text",
+      "textLayerPaths": [
+        ["layer", 3],
+        ["layer", 4],
+        ["layer", 5],
+        ["layer", 6],
+        ["layer", 7],
+        ["layer", 8]
+      ]
+    },
+    {
+      "type": "setFillColor",
+      "inputName": "color1",
+      "paths": [
+        [
+          "layer",
+          3
+        ],
+        [
+          "layer",
+          4
+        ],
+        [
+          "layer",
+          5
+        ],
+        [
+          "layer",
+          6
+        ],
+        [
+          "layer",
+          7
+        ],
+        [
+          "layer",
+          8
+        ]
+      ]
+    },
+    {
+      "type": "setFillColor",
+      "inputName": "color2",
+      "paths": [
+        [
+          "layer",
+          9,
+          "shape",
+          0,
+          "shape",
+          2
+        ]
+      ]
+    },
+    {
+      "type": "setFont",
+      "inputName": "font1",
+      "fontIndex": 0
+    },
+    {
+      "type": "setHeightByTextList",
+      "inputName": "text",
+      "heights": [
+        0,
+        200,
+        250,
+        300,
+        350,
+        400,
+        450
+      ]
+    }
+  ],
+  "timeScaler": {
+    "strategy": "cutOnThreshold",
+    "threshold": 3
+  }
+}
