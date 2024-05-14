@@ -1,36 +1,7 @@
 import os
 
 # Basics
-gmail_email = 'promotestautomation246@gmail.com'
-email = 'promo.test.automation@gmail.com'
-ig_email = 'katarzynaj+10@promo.com'
-li_email = 'katarzynaj+10@promo.com'
-twit_email = 'katarzynaj+10@promo.com'
-twit_username = 'PromoKasia'
-email_pass_change = 'promo.test.automation+password@gmail.com'
-email_delete = 'promo.test.automation+delete19@gmail.com'
-email_calendar = 'promo.test.automation+calendar@gmail.com'
-email_socials = 'promo.test.automation+socials@gmail.com'
-email_mobile = 'promo.test.automation+mobile@gmail.com'
-password = '/assets/promopass.txt'
-fullname = "Automate Promo"
-fullname_calendar = 'Social Calendar Automate'
-fullname_pricing = "Pricing User"
-wrong_password = 'tftus123'
-card_details_path = '/assets/card_details.txt'
-random_password = '123456789'
-drop_box_email = 'sampletestuser08@gmail.com'
-hubspot_email = 'sampletestuser08@gmail.com'
-shopify_username = 'Promo Automation'
-shopify_fb_username = 'Victoria Promoautom'
 
-# Urls
-wistia_login_url = 'https://auth.wistia.com/session/new?app=wistia'
-prod_url = 'https://promo.com'
-code_pen_url = 'https://codepen.io/pen'
-chrome_downloads = 'chrome://downloads/'
-shopify_admin_url = 'https://qa-poland01.myshopify.com/admin'
-JSfiddle = 'https://jsfiddle.net/'
 try:
     try:
         tid = os.environ['TID']

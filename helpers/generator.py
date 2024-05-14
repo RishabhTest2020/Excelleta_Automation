@@ -1,7 +1,6 @@
 import random
 import string
 import uuid
-from web_driver.config import short_date
 
 
 def random_correct_name(length1: int, length2: int) -> str:
@@ -18,23 +17,14 @@ def random_correct_name(length1: int, length2: int) -> str:
     return correct_name
 
 
-def random_promo_email_generator() -> str:
+def random_email_generator() -> str:
     """
     Generates proper Promo e-mail with alias for testing purposes
     Returns (str): e-mail
     """
-    ram_email = 'promo.test.automation+new' + uuid.uuid4().hex[:5] + '@gmail.com'
+    ram_email = 'testautom' + uuid.uuid4().hex[:5] + '@gmail.com'
     return ram_email
 
-
-def random_pricing_email_generator() -> str:
-    """
-    Generates proper Promo e-mail with alias for pricing purposes
-    Returns (str): e-mail
-    """
-    date = short_date()
-    ram_email = 'pricing+' + uuid.uuid4().hex[:4] + date + '@promo.com'
-    return ram_email
 
 
 def random_password_string(length: int) -> str:

@@ -8,7 +8,7 @@ import requests
 from requests.exceptions import MissingSchema
 
 from helpers.common_helpers import slack_message
-from pages.links_page import assert_links_title_with_slack
+from global_libs.config import *
 
 
 class TestResult:
@@ -22,7 +22,7 @@ def pytest_terminal_summary(terminalreporter, exitstatus):
     """
     This function takes information from BrowserStack or from GotLab worker and returns execution results on Slack
     Returns:
-        Report sent to Slack (Promo test_automation channel)
+        Report sent to Slack (test_automation channel)
     """
     yield
     try:
@@ -83,30 +83,20 @@ def pytest_terminal_summary(terminalreporter, exitstatus):
                 total_no_of_tests = int(test_result.passed) + int(test_result.failed)
                 passed_report = []
                 failed_report = []
-                links_title_not_appeared = assert_links_title_with_slack()
-                len_links_title_not_appeared = len(links_title_not_appeared)
                 time.sleep(1)
-                if (len_links_title_not_appeared == (None or 0)) is True and (int(exitstatus) == 0) is True:
-                    color_bar = "#00FF00"
-                    passed_report.append(f'Test Scenarios Passed:  {test_result.passed}' + f' Out of {total_no_of_tests}'
-                                         + ' :tada:')
-                    passed_report.append('Duration of all Scenarios: ' + str(test_duration) + ' mins')
-                    passed_report.append('Go to BS Build Dashboard: ' + f'<{bs_url}|BS Build Link>')
-                    passed_report_str = ('\n'.join(passed_report))
-                    slack_message(username=f'Promo Links Test Report', text=passed_report_str, color=color_bar,
-                                  environment=url)
-                else:
+                if True:
                     color_bar = "#FF0000"
-                    failed_report.append(f'Test Scenarios Passed:  {test_result.passed}' + f' Out of {total_no_of_tests}'
-                                         + ' :tada:')
+                    failed_report.append(
+                        f'Test Scenarios Passed:  {test_result.passed}' + f' Out of {total_no_of_tests}'
+                        + ' :tada:')
                     failed_report.append('Duration of all Scenarios: ' + str(test_duration) + ' mins')
                     failed_report.append('Go to BS Build Dashboard: ' + f'<{bs_url}|BS Build Link>')
                     for failed in terminalreporter.stats.get('failed', []):
                         failed_report.append('Failed!')
                         failed_report.append(str(failed.nodeid.split(':')[-1].split(' ')[0]))
                         failed_report.append('Duration: ' + str(failed.duration / 60) + 'mins')
-                    if len_links_title_not_appeared != 0:
-                        links_no_titles = '\n'.join(links_title_not_appeared)
+                    if 1 != 0:
+                        links_no_titles = 'jnjn'
                     else:
                         links_no_titles = 'All links are asserted successfully'
                     failed_report_str = str('\n'.join(failed_report))
@@ -142,8 +132,8 @@ def pytest_terminal_summary(terminalreporter, exitstatus):
                 failed_report = []
                 if int(exitstatus) == 0:
                     color_bar = "#00FF00"
-                    passed_report.append(f'Test Scenarios Passed:  {test_result.passed}' + '  ' +f'skipped: '
-                                                                                           f'{test_result.skipped}' +
+                    passed_report.append(f'Test Scenarios Passed:  {test_result.passed}' + '  ' + f'skipped: '
+                                                                                                  f'{test_result.skipped}' +
                                          f' Out of {total_no_of_tests}' + ' :tada:')
                     passed_report.append('Duration of all Scenarios: ' + str(test_duration) + ' mins')
                     passed_report.append('Go to BS Build Dashboard: ' + f'<{bs_url}|BS Build Link>')
@@ -153,8 +143,9 @@ def pytest_terminal_summary(terminalreporter, exitstatus):
                     color_bar = "#FF0000"
                     failed_report.append('Go to BS Build Dashboard: ' + f'<{bs_url}|BS Build Link>')
                     failed_report.append('Duration of all Scenarios: ' + str(test_duration) + ' mins')
-                    failed_report.append(f'Test Scenarios Passed:  {test_result.passed}' + f' Out of {total_no_of_tests}'
-                                         + ' :tada:')
+                    failed_report.append(
+                        f'Test Scenarios Passed:  {test_result.passed}' + f' Out of {total_no_of_tests}'
+                        + ' :tada:')
                     for failed in terminalreporter.stats.get('failed', []):
                         failed_report.append('Failed!')
                         failed_report.append(str(failed.nodeid.split(':')[-1].split(' ')[0]))
@@ -171,6 +162,7 @@ def pytest_terminal_summary(terminalreporter, exitstatus):
 
         pass
 
+
 # pytest plugin hook
 # def pytest_sessionfinish(session, exitstatus):
 #     """executes after whole test run finishes."""
@@ -179,3 +171,14 @@ def pytest_terminal_summary(terminalreporter, exitstatus):
 #         session.config.pluginmanager.get_plugin('terminalreporter')
 #     else:
 #         pass
+
+
+def pytest_sessionstart(session):
+    get_env()
+
+
+def pytest_configure(config):
+    var1 = os.getenv('main_url')
+    pytest.main_url = var1
+    # vars_dict = {'main_url': var1}
+    # return vars_dict
