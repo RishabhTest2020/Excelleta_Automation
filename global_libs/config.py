@@ -13,7 +13,7 @@ def get_env(env='stage'):
         env = os.environ['ENV']
     except KeyError:
         env = env
-    env_file_path = os.getcwd() + '/env/' + env + '.env'
+    env_file_path = os.getcwd() + '/envFiles/' + env + '.env'
     load_dotenv(env_file_path)
 
 
