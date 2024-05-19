@@ -18,7 +18,6 @@ from selenium.common.exceptions import StaleElementReferenceException, NoSuchEle
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from global_libs.driver import *
 
 
 def wait_for_ajax(browser):
@@ -61,13 +60,6 @@ def do_click(browser, by_locator: object, sec=10):
             raise NoSuchElementException
         else:
             raise e
-    # except (ElementClickInterceptedException, TimeoutException) as dcc:
-    #     print(str(dcc))
-    #     switch_to_iframe(browser, SKIP_OFFER_MODAL_FRAME, sec)
-    #     do_click(browser, SKIP_OFFER_MODAL_BTN)
-    #     browser.switch_to.default_content()
-    #     WebDriverWait(browser, sec).until(
-    #         EC.element_to_be_clickable(by_locator)).click()
 
 
 def do_double_click(browser, by_locator, sec=5):
@@ -270,7 +262,7 @@ def is_invisible(browser, by_locator, sec=5) -> bool:
     wait_for_ajax(browser)
     elem = False
     try:
-        elem = WebDriverWait(browser, sec, poll_frequency=0.4, ignored_exceptions=WebDriverException).until(EC.invisibility_of_element_located(by_locator))
+        elem = WebDriverWait(browser, sec, poll_frequency=0.4, ignored_exceptions=[WebDriverException]).until(EC.invisibility_of_element_located(by_locator))
     except (WebDriverException, Exception):
         return bool(elem)
     return bool(elem)
@@ -303,13 +295,7 @@ def switch_to_iframe(browser, by_locator, sec=10):
         by_locator (tuple): chosen locator from locators/locators_file.py
         sec (int): default time to wait
     """
-    try:
-        WebDriverWait(browser, sec, poll_frequency=0.4).until(EC.frame_to_be_available_and_switch_to_it(by_locator))
-    except InvalidArgumentException as e:
-        if ("Message: invalid argument: missing 'ELEMENT'" in str(e)) is True:
-            raise NoSuchElementException
-        else:
-            raise e
+    WebDriverWait(browser, sec, poll_frequency=0.4).until(EC.frame_to_be_available_and_switch_to_it(by_locator))
 
 
 def do_clear(browser, by_locator, sec=5):
@@ -321,13 +307,7 @@ def do_clear(browser, by_locator, sec=5):
         sec (int): default time to wait
     """
     wait_for_ajax(browser)
-    try:
-        WebDriverWait(browser, sec, poll_frequency=0.4).until(EC.visibility_of_element_located(by_locator)).clear()
-    except AttributeError as e:
-        if str(e) == "'dict' object has no attribute 'is_displayed'":
-            raise NoSuchElementException
-        else:
-            raise e
+    WebDriverWait(browser, sec, poll_frequency=0.4).until(EC.visibility_of_element_located(by_locator)).clear()
 
 
 def is_alert_present(browser, sec=5) -> bool:

@@ -8,7 +8,6 @@ import requests
 from requests.exceptions import MissingSchema
 
 from helpers.common_helpers import slack_message
-from global_libs.config import *
 
 
 class TestResult:
@@ -172,13 +171,3 @@ def pytest_terminal_summary(terminalreporter, exitstatus):
 #     else:
 #         pass
 
-
-def pytest_sessionstart(session):
-    get_env()
-
-
-def pytest_configure(config):
-    var1 = os.getenv('main_url')
-    pytest.main_url = var1
-    # vars_dict = {'main_url': var1}
-    # return vars_dict

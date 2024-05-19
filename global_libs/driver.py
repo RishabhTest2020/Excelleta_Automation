@@ -11,7 +11,6 @@ from selenium.webdriver.chrome.options import Options
 from urllib3.exceptions import LocationValueError
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
-from global_libs.global_imports import *
 
 
 def get_browser_value():
@@ -33,7 +32,7 @@ def browser():
     Browser = get_browser_value()
     if Browser == 'chrome':
         options = webdriver.ChromeOptions()
-        options.add_extension(os.getcwd() + '/files/modheader.crx')
+        # options.add_extension(os.getcwd() + '/files/modheader.crx')
         prefs = {"profile.default_content_setting_values.notifications": 2, "credentials_enable_service": False,
                  "profile.password_manager_enabled": False}
         options.add_experimental_option("prefs", prefs)

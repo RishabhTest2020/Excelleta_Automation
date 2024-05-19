@@ -1,13 +1,16 @@
 from global_libs.global_imports import *
-import pytest
 
 
-def home_page_url_new(browser):
+def user_login(browser):
     """
     Opens main page = environ url
     """
-    window_after = browser.window_handles[0]
-    browser.switch_to.window(window_after)
-    browser.get(pytest.main_url)
+    browser.get(globalEnvs.main_url)
+    wait_for_ajax(browser)
+    is_visible(browser, excelleta_logo)
+    do_send_keys(browser, email_text_box, globalEnvs.user_email)
+    do_send_keys(browser, password_text_box, globalEnvs.user_password)
+    do_click(browser, login_btn)
+    is_visible(browser, dashboard_txt, 10)
     
 

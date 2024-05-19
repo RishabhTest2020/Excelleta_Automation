@@ -2,25 +2,27 @@ import os
 from dotenv import load_dotenv
 
 
-global global_env_vars
+class global_env_vars:
+    def __init__(self):
+        # self.var2=None
+        # self.var1= None
+        self.get_env()
+        self.env_vars()
 
-def set_global_variable(name, value):
-    globals()[name] = value
+    def get_env(self, env='stage'):
+        try:
+            env = os.environ['ENV']
+        except KeyError:
+            env = env
+        except Exception as e:
+            print(e)
+        env_file_path = os.getcwd() + '/envFiles/' + env + '.env'
+        # import pdb; p+db.set_trace()
+        load_dotenv(env_file_path)
 
+    def env_vars(self):
 
-def get_env(env='stage'):
-    try:
-        env = os.environ['ENV']
-    except KeyError:
-        env = env
-    env_file_path = os.getcwd() + '/envFiles/' + env + '.env'
-    load_dotenv(env_file_path)
+        self.main_url = os.getenv('main_url')
+        self.user_email = os.getenv('user_email')
+        self.user_password = os.getenv('user_password')
 
-
-def global_env_variables():
-    get_env()
-    var1 = os.getenv('main_url')
-    vars_dict = {'main_url': var1}
-    return vars_dict
-    
-global_env_vars = global_env_variables()

@@ -1,4 +1,5 @@
 from global_libs.config import *
+globalEnvs = global_env_vars()
 from global_libs.driver import *
 from helpers.common_helpers import *
 from helpers.generator import *
@@ -11,3 +12,4 @@ from pytest_bdd import given, when, then, parsers
 from selenium.common.exceptions import *
 from selenium.webdriver.common.keys import Keys
 from conftest import *
+
