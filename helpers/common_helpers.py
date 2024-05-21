@@ -1,23 +1,18 @@
-import binascii
 import json
 import os
-import pdb
 import sys
 import time
-import traceback
 from datetime import date, datetime
-import pytest
+
 import requests
 from pytz import reference
-import allure
-from allure_commons.types import AttachmentType
-from requests import ReadTimeout
-from selenium.common.exceptions import StaleElementReferenceException, NoSuchElementException, TimeoutException, \
-    NoSuchWindowException, ElementClickInterceptedException, WebDriverException, InvalidArgumentException, \
-    NoSuchFrameException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException, \
+    WebDriverException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+
+from locators.locators_file import *
 
 
 def wait_for_ajax(browser):
@@ -52,14 +47,8 @@ def do_click(browser, by_locator: object, sec=10):
         sec (int): default time to wait
     """
     wait_for_ajax(browser)
-    try:
-        WebDriverWait(browser, sec, poll_frequency=0.4).until(
-            EC.element_to_be_clickable(by_locator)).click()
-    except AttributeError as e:
-        if str(e) == "'dict' object has no attribute 'is_displayed'":
-            raise NoSuchElementException
-        else:
-            raise e
+    WebDriverWait(browser, sec, poll_frequency=0.4).until(
+        EC.element_to_be_clickable(by_locator)).click()
 
 
 def do_double_click(browser, by_locator, sec=5):
@@ -70,17 +59,12 @@ def do_double_click(browser, by_locator, sec=5):
         sec (int): default time to wait
     """
     wait_for_ajax(browser)
-    try:
-        elem = WebDriverWait(browser, sec, poll_frequency=0.4).until(
-            EC.presence_of_element_located(by_locator))
-        browser.execute_script("var evt = document.createEvent('MouseEvents');" +
-        "evt.initMouseEvent('dblclick',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" +
-        "arguments[0].dispatchEvent(evt);", elem)
-    except AttributeError as e:
-        if str(e) == "'dict' object has no attribute 'is_displayed'":
-            raise NoSuchElementException
-        else:
-            raise e
+    elem = WebDriverWait(browser, sec, poll_frequency=0.4).until(
+        EC.presence_of_element_located(by_locator))
+    browser.execute_script("var evt = document.createEvent('MouseEvents');" +
+    "evt.initMouseEvent('dblclick',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" +
+    "arguments[0].dispatchEvent(evt);", elem)
+
 
 
 def do_hover(browser, by_locator, sec=5):
@@ -92,16 +76,9 @@ def do_hover(browser, by_locator, sec=5):
         sec (int): default time to wait
     """
     wait_for_ajax(browser)
-    try:
-        elem = WebDriverWait(browser, sec, poll_frequency=0.4).until(
-            EC.presence_of_element_located(by_locator))
-        ActionChains(browser).move_to_element(elem).perform()
-    except AttributeError as e:
-        if str(e) == "move_to requires a WebElement":
-            raise NoSuchElementException
-        else:
-            raise e
-    # take_screenshot(browser)
+    elem = WebDriverWait(browser, sec, poll_frequency=0.4).until(
+        EC.presence_of_element_located(by_locator))
+    ActionChains(browser).move_to_element(elem).perform()
 
 
 def do_hover_offset(browser, by_locator, x, y, sec=5):
@@ -115,15 +92,9 @@ def do_hover_offset(browser, by_locator, x, y, sec=5):
         y: second offset parameter
     """
     wait_for_ajax(browser)
-    try:
-        elem = WebDriverWait(browser, sec, poll_frequency=0.4).until(
-            EC.presence_of_element_located(by_locator))
-        ActionChains(browser).move_to_element_with_offset(elem, x, y).perform()
-    except AttributeError as e:
-        if str(e) == "move_to requires a WebElement":
-            raise NoSuchElementException
-        else:
-            raise e
+    elem = WebDriverWait(browser, sec, poll_frequency=0.4).until(
+        EC.presence_of_element_located(by_locator))
+    ActionChains(browser).move_to_element_with_offset(elem, x, y).perform()
 
 
 def do_click_offset(browser, by_locator, x, y, sec=5):
@@ -137,15 +108,9 @@ def do_click_offset(browser, by_locator, x, y, sec=5):
         y: second offset parameter
     """
     wait_for_ajax(browser)
-    try:
-        elem = WebDriverWait(browser, sec, poll_frequency=0.4).until(
-            EC.presence_of_element_located(by_locator))
-        ActionChains(browser).move_to_element_with_offset(elem, x, y).click().perform()
-    except AttributeError as e:
-        if str(e) == "move_to requires a WebElement":
-            raise NoSuchElementException
-        else:
-            raise e
+    elem = WebDriverWait(browser, sec, poll_frequency=0.4).until(
+        EC.presence_of_element_located(by_locator))
+    ActionChains(browser).move_to_element_with_offset(elem, x, y).click().perform()
 
 
 def drag_and_drop(browser, by_locator_source, by_locator_target, sec=5):
@@ -176,14 +141,8 @@ def do_send_keys(browser, by_locator, text, sec=5):
         sec (int): default time to wait
     """
     wait_for_ajax(browser)
-    try:
-        WebDriverWait(browser, sec, poll_frequency=0.4).until(
-            EC.visibility_of_element_located(by_locator)).send_keys(text)
-    except AttributeError as e:
-        if str(e) == "'dict' object has no attribute 'is_displayed'":
-            raise NoSuchElementException
-        else:
-            raise e
+    WebDriverWait(browser, sec, poll_frequency=0.4).until(
+        EC.visibility_of_element_located(by_locator)).send_keys(text)
 
 
 def get_element_text(browser, by_locator: object):
@@ -194,17 +153,9 @@ def get_element_text(browser, by_locator: object):
         by_locator (tuple): chosen locator from locators/locators_file.py
     """
     wait_for_ajax(browser)
-    try:
-        elem_text = WebDriverWait(browser, 30, poll_frequency=0.4).until(
-            EC.presence_of_element_located(by_locator)).text
-        return elem_text
-    except AttributeError as e:
-        if str(e) == "'dict' object has no attribute 'is_displayed'":
-            raise NoSuchElementException
-        elif str(e) == "'dict' object has no attribute 'is_displayed'":
-            raise NoSuchElementException
-        else:
-            raise e
+    elem_text = WebDriverWait(browser, 30, poll_frequency=0.4).until(
+        EC.presence_of_element_located(by_locator)).text
+    return elem_text
 
 
 def get_css_value(browser, by_locator, property_name):
@@ -216,18 +167,10 @@ def get_css_value(browser, by_locator, property_name):
         by_locator (tuple): chosen locator from locators/locators_file.py
     """
     wait_for_ajax(browser)
-    try:
-        elem = WebDriverWait(browser, 30, poll_frequency=0.4).until(
-            EC.presence_of_element_located(by_locator))
-        elem_value = elem.value_of_css_property(property_name)
-        return elem_value
-    except AttributeError as e:
-        if str(e) == "'dict' object has no attribute 'is_displayed'":
-            raise NoSuchElementException
-        elif str(e) == "'dict' object has no attribute 'is_displayed'":
-            raise NoSuchElementException
-        else:
-            raise e
+    elem = WebDriverWait(browser, 30, poll_frequency=0.4).until(
+        EC.presence_of_element_located(by_locator))
+    elem_value = elem.value_of_css_property(property_name)
+    return elem_value
 
 
 def is_visible(browser, by_locator, sec=5) -> bool:
@@ -336,21 +279,6 @@ def is_title_true(browser, title, sec=5) -> bool:
     return bool(elem)
 
 
-# def allure_screenshot(browser):
-#     """
-#     Args:
-#         browser: webdriver
-#
-#     Returns: Takes a screenshot and saves it in png file and represent in allure reports
-#
-#     """
-#     try:
-#         allure.attach(browser.get_screenshot_as_png(), name='ss' + time.strftime("%Y%m%d-%H%M%S") + '.png',
-#                       attachment_type=AttachmentType.PNG)
-#     except binascii.Error:
-#         pass
-
-
 def read_creds(file_dir: str, line_num: int) -> str:
     """
     Reads credential information from the file
@@ -456,3 +384,7 @@ def slack_message(username, text, color, environment="Promo Production"):
     response = requests.post(url, data=json.dumps(slack_data), headers=headers)
     if response.status_code != 200:
         raise Exception(response.status_code, response.text)
+
+
+def loader_should_be_invisile(browser):
+    is_invisible(browser, loader_loc, 10)
