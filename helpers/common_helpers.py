@@ -12,7 +12,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from locators.locators_file import *
+from locators.common_locators_file import *
 
 
 def wait_for_ajax(browser):
@@ -43,7 +43,7 @@ def do_click(browser, by_locator: object, sec=10):
     Waits and clicks on the chosen element
     Args:
         browser: webdriver
-        by_locator (tuple): chosen locator from locators/locators_file.py
+        by_locator (tuple): chosen locator from locators/common_locators_file.py
         sec (int): default time to wait
     """
     wait_for_ajax(browser)
@@ -55,7 +55,7 @@ def do_double_click(browser, by_locator, sec=5):
     """
     Args:
         browser: webdriver
-        by_locator (tuple): chosen locator from locators/locators_file.py
+        by_locator (tuple): chosen locator from locators/common_locators_file.py
         sec (int): default time to wait
     """
     wait_for_ajax(browser)
@@ -72,7 +72,7 @@ def do_hover(browser, by_locator, sec=5):
     Hovers over element
     Args:
         browser: webdriver
-        by_locator (tuple): chosen locator from locators/locators_file.py
+        by_locator (tuple): chosen locator from locators/common_locators_file.py
         sec (int): default time to wait
     """
     wait_for_ajax(browser)
@@ -86,7 +86,7 @@ def do_hover_offset(browser, by_locator, x, y, sec=5):
     Hovers over an element with a specific offset
     Args:
         browser: webdriver
-        by_locator (str): chosen locator from locators/locators_file.py
+        by_locator (str): chosen locator from locators/common_locators_file.py
         sec (int): default time to wait
         x: first offset parameter
         y: second offset parameter
@@ -102,7 +102,7 @@ def do_click_offset(browser, by_locator, x, y, sec=5):
     Click an element with a specific offset
     Args:
         browser: webdriver
-        by_locator (str): chosen locator from locators/locators_file.py
+        by_locator (str): chosen locator from locators/common_locators_file.py
         sec (int): default time to wait
         x: first offset parameter
         y: second offset parameter
@@ -118,8 +118,8 @@ def drag_and_drop(browser, by_locator_source, by_locator_target, sec=5):
     Drag and drop from source to targeted element
     Args:
         browser: webdriver
-        by_locator_source (str): chosen source locator from locators/locators_file.py
-        by_locator_target (str): chosen target locator from locators/locators_file.py
+        by_locator_source (str): chosen source locator from locators/common_locators_file.py
+        by_locator_target (str): chosen target locator from locators/common_locators_file.py
         sec (int): default time to wait
     """
     wait_for_ajax(browser)
@@ -136,7 +136,7 @@ def do_send_keys(browser, by_locator, text, sec=5):
     Sends keys to the chosen element
     Args:
         browser: webdriver
-        by_locator (tuple): chosen locator from locators/locators_file.py
+        by_locator (tuple): chosen locator from locators/common_locators_file.py
         text (str): text to be send
         sec (int): default time to wait
     """
@@ -150,7 +150,7 @@ def get_element_text(browser, by_locator: object):
     Gets text of the chosen element
     Args:
         browser: webdriver
-        by_locator (tuple): chosen locator from locators/locators_file.py
+        by_locator (tuple): chosen locator from locators/common_locators_file.py
     """
     wait_for_ajax(browser)
     elem_text = WebDriverWait(browser, 30, poll_frequency=0.4).until(
@@ -164,7 +164,7 @@ def get_css_value(browser, by_locator, property_name):
     Args:
         property_name: add css property name
         browser: webdriver
-        by_locator (tuple): chosen locator from locators/locators_file.py
+        by_locator (tuple): chosen locator from locators/common_locators_file.py
     """
     wait_for_ajax(browser)
     elem = WebDriverWait(browser, 30, poll_frequency=0.4).until(
@@ -178,7 +178,7 @@ def is_visible(browser, by_locator, sec=5) -> bool:
     Waits and checks if element is visible
     Args:
         browser: webdriver
-        by_locator(tuple): chosen locator from locators/locators_file.py
+        by_locator(tuple): chosen locator from locators/common_locators_file.py
         sec (int): default time to wait
     Returns:
         True or False
@@ -197,7 +197,7 @@ def is_invisible(browser, by_locator, sec=5) -> bool:
     Waits and checks if element is invisible
     Args:
         browser: webdriver
-        by_locator (tuple): chosen locator from locators/locators_file.py
+        by_locator (tuple): chosen locator from locators/common_locators_file.py
         sec (int): default time to wait
     Returns:
         True or False
@@ -216,7 +216,7 @@ def is_clickable(browser, by_locator, sec=5) -> bool:
     Waits and checks if element is clickable
     Args:
         browser: webdriver
-        by_locator (tuple): chosen locator from locators/locators_file.py
+        by_locator (tuple): chosen locator from locators/common_locators_file.py
         sec (int): default time to wait
     Returns:
         True or False
@@ -235,7 +235,7 @@ def switch_to_iframe(browser, by_locator, sec=10):
     Switches to the chosen iframe
     Args:
         browser: webdriver
-        by_locator (tuple): chosen locator from locators/locators_file.py
+        by_locator (tuple): chosen locator from locators/common_locators_file.py
         sec (int): default time to wait
     """
     WebDriverWait(browser, sec, poll_frequency=0.4).until(EC.frame_to_be_available_and_switch_to_it(by_locator))
@@ -246,7 +246,7 @@ def do_clear(browser, by_locator, sec=5):
     Clears textfield or input
     Args:
         browser: webdriver
-        by_locator (tuple): chosen locator from locators/locators_file.py
+        by_locator (tuple): chosen locator from locators/common_locators_file.py
         sec (int): default time to wait
     """
     wait_for_ajax(browser)
@@ -388,3 +388,56 @@ def slack_message(username, text, color, environment="Promo Production"):
 
 def loader_should_be_invisile(browser):
     is_invisible(browser, loader_loc, 10)
+
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
+
+
+# Function to get XPath of an element
+def get_element_xpath(driver, element: WebElement) -> str:
+    if element.get_attribute("id"):
+        return f'id("{element.get_attribute("id")}")'
+
+    components = []
+    child = element if element.tag_name != 'html' else None
+    while child:
+        parent = child.find_element(By.XPATH, "..")
+        siblings = parent.find_elements(By.XPATH, f"./{child.tag_name}")
+        if len(siblings) == 1:
+            components.append(child.tag_name)
+        else:
+            index = 1
+            for i in range(len(siblings)):
+                if siblings[i] == child:
+                    components.append(f'{child.tag_name}[{index}]')
+                    break
+                index += 1
+        child = parent if parent.tag_name != 'html' else None
+
+    components.reverse()
+    return f"/{'/'.join(components)}"
+
+
+# Function to switch to an iframe and collect XPaths within it
+def collect_iframe_xpaths(driver, iframe_element):
+    driver.switch_to.frame(iframe_element)
+    iframe_xpaths = get_all_xpaths(driver)
+    driver.switch_to.default_content()
+    return iframe_xpaths
+
+
+# Function to get all XPaths of elements in the page
+def get_all_xpaths(driver):
+    all_elements = driver.find_elements(By.XPATH, "//*")
+    xpaths = [get_element_xpath(driver, elem) for elem in all_elements]
+
+    # Check for iframes and collect XPaths within them
+    iframes = driver.find_elements(By.TAG_NAME, 'iframe')
+    for iframe in iframes:
+        iframe_xpaths = collect_iframe_xpaths(driver, iframe)
+        xpaths.extend(iframe_xpaths)
+
+    return xpaths
+

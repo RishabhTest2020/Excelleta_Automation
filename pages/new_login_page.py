@@ -15,5 +15,7 @@ def user_login(browser, email=globalEnvs.user_email, password=globalEnvs.user_pa
         is_visible(browser, invalid_creds_message)
     else:
         is_visible(browser, dashboard_txt, 10)
+    import pdb; pdb.set_trace()
+    all_element_xpaths = get_all_xpaths(browser)
     
 
