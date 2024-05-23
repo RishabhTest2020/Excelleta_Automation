@@ -7,7 +7,7 @@ from datetime import date, datetime
 import requests
 from pytz import reference
 from selenium.common.exceptions import NoSuchElementException, TimeoutException, \
-    WebDriverException
+    WebDriverException, JavascriptException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -38,6 +38,33 @@ def take_screenshot(browser):
         pass
 
 
+def js_click_by_xpath(browser, xpath):
+    """
+    Clicks an element using JavaScript by its XPath without using Selenium's find_element method.
+
+    Parameters:
+    driver (webdriver): The Selenium WebDriver instance.
+    xpath (str): The XPath of the element to click.
+    """
+    try:
+        # JavaScript code to find an element by XPath and click it
+        script = """
+        var xpath = arguments[0];
+        var element = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+        if (element) {
+            element.click();
+            return 'Element clicked successfully';
+        } else {
+            return 'Element not found';
+        }
+        """
+        # Execute the script with the provided XPath
+        result = browser.execute_script(script, xpath)
+        print(result)
+    except Exception as e:
+        print(f"Error clicking element: {e}")
+
+
 def do_click(browser, by_locator: object, sec=10):
     """
     Waits and clicks on the chosen element
@@ -62,9 +89,8 @@ def do_double_click(browser, by_locator, sec=5):
     elem = WebDriverWait(browser, sec, poll_frequency=0.4).until(
         EC.presence_of_element_located(by_locator))
     browser.execute_script("var evt = document.createEvent('MouseEvents');" +
-    "evt.initMouseEvent('dblclick',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" +
-    "arguments[0].dispatchEvent(evt);", elem)
-
+                           "evt.initMouseEvent('dblclick',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" +
+                           "arguments[0].dispatchEvent(evt);", elem)
 
 
 def do_hover(browser, by_locator, sec=5):
@@ -77,7 +103,7 @@ def do_hover(browser, by_locator, sec=5):
     """
     wait_for_ajax(browser)
     elem = WebDriverWait(browser, sec, poll_frequency=0.4).until(
-        EC.presence_of_element_located(by_locator))
+        EC.visibility_of_element_located(by_locator))
     ActionChains(browser).move_to_element(elem).perform()
 
 
@@ -185,11 +211,21 @@ def is_visible(browser, by_locator, sec=5) -> bool:
     """
     elem = False
     try:
-        elem = WebDriverWait(browser, sec, poll_frequency=0.4, ignored_exceptions=WebDriverException).until(EC.visibility_of_element_located(by_locator))
+        elem = WebDriverWait(browser, sec, poll_frequency=1, ignored_exceptions=WebDriverException).until(
+            EC.visibility_of_element_located(by_locator))
     except (WebDriverException, Exception, TimeoutException):
         take_screenshot(browser)
         return bool(elem)
     return bool(elem)
+
+
+def should_be_visible(browser, by_locator, msg, sec=5):
+    visi = is_visible(browser, by_locator, sec)
+    if visi is True:
+        print(msg + ' is visible')
+    else:
+        print(msg + ' is not visible')
+        sys.exit(1)
 
 
 def is_invisible(browser, by_locator, sec=5) -> bool:
@@ -205,7 +241,8 @@ def is_invisible(browser, by_locator, sec=5) -> bool:
     wait_for_ajax(browser)
     elem = False
     try:
-        elem = WebDriverWait(browser, sec, poll_frequency=0.4, ignored_exceptions=[WebDriverException]).until(EC.invisibility_of_element_located(by_locator))
+        elem = WebDriverWait(browser, sec, poll_frequency=0.4, ignored_exceptions=[WebDriverException]).until(
+            EC.invisibility_of_element_located(by_locator))
     except (WebDriverException, Exception):
         return bool(elem)
     return bool(elem)
@@ -342,7 +379,8 @@ def get_error_console_logs(browser):
     error_logs = []
     browser_logs = browser.get_log('browser')
     for entry in browser_logs:
-        if entry['level'] == 'SEVERE' or entry['level'] == 'ERROR' or entry['level'] == 'CRITICAL' or entry['level'] == 'INFO':
+        if entry['level'] == 'SEVERE' or entry['level'] == 'ERROR' or entry['level'] == 'CRITICAL' or entry[
+            'level'] == 'INFO':
             if entry['source'] == 'javascript':
                 error_logs.append(entry['message'])
             else:
@@ -440,4 +478,50 @@ def get_all_xpaths(driver):
         xpaths.extend(iframe_xpaths)
 
     return xpaths
+
+
+def replace_in_tuple(tpl, index, value):
+    """
+    Replace an element in a tuple at a specific index with a new value.
+
+    Parameters:
+    tpl (tuple): The original tuple.
+    index (int): The index of the element to replace.
+    value (any): The new value to insert at the specified index.
+
+    Returns:
+    tuple: A new tuple with the replaced value.
+    """
+    if index < 0 or index >= len(tpl):
+        raise IndexError("Index out of range")
+
+    # Create a new tuple with the replaced value
+    new_tuple = tpl[:index] + (value,) + tpl[index + 1:]
+    return new_tuple
+
+
+def get_text_by_js_xpath(browser, xpath):
+    """
+    Gets the text content of an element using JavaScript by its XPath.
+
+    Parameters:
+    driver (webdriver): The Selenium WebDriver instance.
+    xpath (str): The XPath of the element.
+
+    Returns:
+    str: The text content of the element.
+    """
+    try:
+        # JavaScript code to find an element by XPath and get its text content
+        script = """
+        var xpath = arguments[0];
+        var element = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+        return element ? element.textContent : null;
+        """
+        # Execute the script with the provided XPath
+        text_content = browser.execute_script(script, xpath)
+        return text_content
+    except Exception as e:
+        print(f"Error getting text content: {e}")
+        return None
 

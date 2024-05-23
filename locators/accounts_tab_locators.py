@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 
 
 accounts_headers_cta = (By.XPATH, '//*[contains(@class, "addAccountCTA")]/button[contains(@class, "settingBtn")][index]')
+accounts_head_col = (By.XPATH, '(//span[contains(@class, "ag-header-cell-text")])')
 add_accounts_btn = (By.XPATH, '//*[contains(@class, "addAccountCTA")]/button[contains(text(), "Add New Account")]')
 acc_basic_info_txt = (By.XPATH, '//h3[contains(text(), "Account Basic Information")]')
 cancel_btn = (By.XPATH, '//button[contains(text(), "Cancel")]')
