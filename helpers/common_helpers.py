@@ -525,3 +525,32 @@ def get_text_by_js_xpath(browser, xpath):
         print(f"Error getting text content: {e}")
         return None
 
+
+def pdb_apply():
+    import pdb;
+    pdb.set_trace()
+
+
+def get_list_of_elems_attributes_value(browser, locatortype, locator, attribute):
+    names_value = []
+    elems = browser.find_elements(locatortype, locator)
+    for elem in elems:
+        name_attr = elem.get_attribute(attribute)
+        if name_attr != '':
+            names_value.append(name_attr)
+
+    print(names_value)
+    return names_value
+
+
+def get_list_of_elems_text(browser, locatortype, locator):
+    text_values = []
+    elems = browser.find_elements(locatortype, locator)
+    for elem in elems:
+        name_attr = elem.text
+        name_attr = name_attr.rstrip(' ')
+        name_attr = name_attr.lstrip(' ')
+        if name_attr != '':
+            text_values.append(name_attr)
+    print(text_values)
+    return text_values

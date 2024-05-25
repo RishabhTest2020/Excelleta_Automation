@@ -8,13 +8,14 @@ acc_basic_info_txt = (By.XPATH, '//h3[contains(text(), "Account Basic Informatio
 cancel_btn = (By.XPATH, '//button[contains(text(), "Cancel")]')
 save_btn = (By.XPATH, '//button[contains(text(), "Save")]')
 paste_image_loc = (By.XPATH, '//div[contains(@class, "paste-img")]')
-acc_name_txtbox = (By.XPATH, '//input[@name="accountName"]')
-acc_email_txtbox = (By.XPATH, '//input[@name="accountEmail"]')
-acc_website = (By.XPATH, '//input[@name="website"]')
-acc_mob_num = (By.XPATH, '//input[@name="mobileNumber"]')
+acc_field_txtbox = (By.XPATH, '//input[@name="field_name"]')       #accountName
 country_dd_loc = (By.XPATH, '//div[contains(@class, "countryFlagCode")]')
 country_search_txtbox = (By.XPATH, '//input[contains(@placeholder, "Search Country")]')
-acc_landline_txtbox = (By.XPATH, '//input[contains(@name, "mobileNumber")]')
+start_month = (By.XPATH, '//select[@id= "startMonth"]')
+start_month_list = (By.XPATH, '(//select[@id= "startMonth"]/option)')
+rm_norms = (By.XPATH, '//select[@id="rmNormsRateTypeId"]')
+rm_norms_options = (By.XPATH, '(//select[@id="rmNormsRateTypeId"]/option)')
+tnc_loc = (By.XPATH, '//*[@id="terms"]')
 # pan = panNo, start month is * startMonth, RM norms = rmNormsRateTypeId, customer code = customerCode,
 # working days = noOfWorkingDays, t&c = terms, business nature = businessNatureIds, domain id = businessDomainIds,
 # segment = segmentIds, paymnt = paymentMethodId, payment term = paymentTermId,
