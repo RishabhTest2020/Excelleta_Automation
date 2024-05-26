@@ -8,9 +8,7 @@ from selenium import webdriver
 import pytest
 from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
-from urllib3.exceptions import LocationValueError
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
 
 
 def get_browser_value():

@@ -6,7 +6,7 @@ accounts_head_col = (By.XPATH, '(//span[contains(@class, "ag-header-cell-text")]
 add_accounts_btn = (By.XPATH, '//*[contains(@class, "addAccountCTA")]/button[contains(text(), "Add New Account")]')
 acc_basic_info_txt = (By.XPATH, '//h3[contains(text(), "Account Basic Information")]')
 cancel_btn = (By.XPATH, '//button[contains(text(), "Cancel")]')
-save_btn = (By.XPATH, '//button[contains(text(), "Save")]')
+account_save_btn = (By.XPATH, '//button[contains(text(), "Save")]')
 paste_image_loc = (By.XPATH, '//div[contains(@class, "paste-img")]')
 acc_field_txtbox = (By.XPATH, '//input[@name="field_name"]')       #accountName
 country_dd_loc = (By.XPATH, '//div[contains(@class, "countryFlagCode")]')
@@ -20,10 +20,39 @@ tnc_loc = (By.XPATH, '//*[@id="terms"]')
 # working days = noOfWorkingDays, t&c = terms, business nature = businessNatureIds, domain id = businessDomainIds,
 # segment = segmentIds, paymnt = paymentMethodId, payment term = paymentTermId,
 
+business_info_h3 = (By.XPATH, '//h3[contains(text(), "Business Information")]')
+business_nature = (By.XPATH, '//*[contains(text(), "Select Business Nature")]')
+business_nature_option = (By.XPATH, '(//*[contains(@name, "businessNatureIds")]//input/..)')
+business_nature_option_txt = (By.XPATH, '(//*[contains(@name, "businessNatureIds")]//div)')
+business_nature_selected = (By.XPATH, '(//*[text()= "Business Nature"]/parent::*//span[@class="selected-item"])')
+business_domain = (By.XPATH, '//*[contains(text(), "Select Business Domain")]')
+business_domain_option = (By.XPATH, '(//*[contains(@name, "businessDomainIds")]//input/..)')
+business_domain_option_txt = (By.XPATH, '(//*[contains(@name, "businessDomainIds")]//div)')
+business_domain_selected = (By.XPATH, '(//*[text()= "Business Domain"]/parent::*//span[@class="selected-item"])')
+business_segment = (By.XPATH, '//*[contains(text(), "Select Business Segment")]')
+business_segment_option = (By.XPATH, '(//*[contains(@name, "segmentIds")]//input/..)')
+business_segment_option_txt = (By.XPATH, '(//*[contains(@name, "segmentIds")]//div)')
+business_segment_selected = (By.XPATH, '(//*[text()= "Business Segment"]/parent::*//span[@class="selected-item"])')
 
-payment_details_h3 = (By.XPATH, '//h3[contains(text(), "Payment Details")')
-Billing_Address1_h3 = (By.XPATH, '//h3[contains(text(), "Billing Address 1")')
+
+payment_details_h3 = (By.XPATH, '//h3[contains(text(), "Payment Details")]')
+payment_method = (By.XPATH, '//select[@id="paymentMethodId"]')
+payment_method_options = (By.XPATH, '(//select[@id="paymentMethodId"]/option)')
+payment_term = (By.XPATH, '//select[@id="paymentTermId"]')
+payment_term_options = (By.XPATH, '(//select[@id="paymentTermId"]/option)')
+
+Billing_Address1_h3 = (By.XPATH, '//h3[contains(text(), "Billing Address 1")]')
 billing_country = (By.XPATH, '(//*[contains(@id, "billingCountry")])')
+billing_country_options = (By.XPATH, '(//*[contains(@id, "billingCountry")]/option)')
+billing_country_select = (By.XPATH, '//*[contains(@id, "billingCountry")]/option[contains(text(),"country_name")]')
+billing_state = (By.XPATH, '(//*[contains(@id, "billingState")])')
+billing_state_options = (By.XPATH, '(//*[contains(@id, "billingState")]/option)')
+billing_state_select = (By.XPATH, '//*[contains(@id, "billingState")]/option[contains(text(),"state_name")]')
+billing_city = (By.XPATH, '(//*[contains(@id, "billingCity0")])')
+billing_city_options = (By.XPATH, '(//*[contains(@id, "billingCity0")]/option)')
+billing_city_select = (By.XPATH, '//*[contains(@id, "billingCity0")]/option[contains(text(),"city_name")]')
+billing_txt_box = (By.XPATH, '(//*[contains(@id, "billingTxtBox")])')
+
 #  state //*[contains(@id, "billingState")], city = billingCity, address = billingAddress, postal = billingPostalCode
 # gst = gstin
 

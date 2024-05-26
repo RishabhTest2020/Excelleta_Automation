@@ -1,7 +1,7 @@
 from global_libs.config import *
 globalEnvs = global_env_vars()
 from global_libs.driver import *
-from helpers.common_helpers import *
+# from helpers.common_helpers import *
 from helpers.generator import *
 from test_data.testdata import *
 from test_data import *

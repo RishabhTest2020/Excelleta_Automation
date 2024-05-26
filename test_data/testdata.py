@@ -11,7 +11,138 @@ accounts_create_fields_gen = ['accountName', 'accountEmail', 'website', 'mobileN
 accounts_general_details = [random_correct_name(1, 6), f'{random_email_generator()}', 'www.testwesite.com',
                             '9090909090', '12345678', 'QWERT1234Y', f'{generate_random_five_digit_number()}', 7]
 
-
-start_months_data = ['Select Month', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+start_months_data = ['Select Month', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+                     'September', 'October', 'November', 'December']
 
 rm_type_list = ['Select Norms Rate Type', 'Base Rate', 'Landed Rate']
+
+business_nature_list = ['Select All', 'Fabrication', 'Heavy Fabrication']
+
+business_domain_list = ['Select All', 'Domestic', 'Export']
+
+business_segment_list = ['Select All', '2 WHEELER', '3 WHEELER', '4 WHEELER', 'AGRICULTURAL EQUIPMENT',
+                         'CONSTRUCTION EQUIPMENT', 'GENSETS/ENGINES', 'RAILWAY', 'TRACTOR', 'WHITE GOODS']
+
+payment_method_list = ['Select Payment Method', 'Cheque', 'NEFT', 'RTGS']
+
+payment_term_list = ['Select Payment Term', 'Advance', '07 days', '15 days', '30 days', '40 days', '45 days',
+                     '60 days', '75 days', '90 days', '100 Days']
+
+billing_add_gst_pc_list = ['Test Address, Gurgaon', 210009, '28ABCDE1234F1ZW']
+
+billing_countries_list = ['Select Country', 'Austria', 'Brazil', 'Canada', 'Chile', 'Czech Republic', 'Finland',
+                          'France', 'Germany', 'India', 'Italy', 'Netherlands', 'Poland', 'Romania', 'Spain',
+                          'Sri Lanka', 'Thailand', 'United Kingdom', 'United States']
+
+billing_india_states_list = ['Select State', 'Andaman and Nicobar Islands', 'Andhra Pradesh', 'Arunachal Pradesh',
+                             'Assam',
+                             'Bihar', 'Chandigarh', 'Chhattisgarh', 'Dadra and Nagar Haveli and Daman and Diu', 'Delhi',
+                             'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jammu and Kashmir', 'Jharkhand',
+                             'Karnataka',
+                             'Kerala', 'Ladakh', 'Lakshadweep', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya',
+                             'Mizoram', 'Nagaland', 'Odisha', 'Puducherry', 'Punjab', 'Rajasthan', 'Sikkim',
+                             'Tamil Nadu',
+                             'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal']
+
+billing_uttar_pradesh_cities_list = ['Select City', 'Achhnera', 'Afzalgarh', 'Agra', 'Ahraura', 'Aidalpur', 'Airwa',
+                                     'Akbarpur', 'Akola', 'Aliganj', 'Aligarh', 'Allahabad', 'Allahganj'
+    , 'Amanpur', 'Amauli', 'Ambahta', 'Ambedkar Nagar', 'Amethi', 'Amroha', 'Anandnagar', 'Antu', 'Anupshahr', 'Aonla',
+                                     'Araul', 'Asalatganj', 'Atarra',
+                                     'Atrauli', 'Atraulia', 'Auraiya', 'Auras', 'Ayodhya', 'Azamgarh', 'Azizpur',
+                                     'Baberu', 'Babina', 'Babrala', 'Babugarh', 'Bachhraon', 'Bachhrawan',
+                                     'Baghpat', 'Baghra', 'Bah', 'Baheri', 'Bahjoi', 'Bahraich', 'Bahraigh', 'Bahsuma',
+                                     'Bahua', 'Bajna', 'Bakewar', 'Baksar', 'Balamau', 'Baldeo', 'Baldev', 'Ballia',
+                                     'Balrampur', 'Banat', 'Banbasa', 'Banda', 'Bangarmau', 'Bansdih', 'Bansgaon',
+                                     'Bansi', 'Banthra', 'Bara Banki', 'Baragaon', 'Baraut',
+                                     'Bareilly', 'Barhalganj', 'Barkhera', 'Barkhera Kalan', 'Barokhar', 'Barsana',
+                                     'Barwar (Lakhimpur Kheri)', 'Basti', 'Behat', 'Bela', 'Belthara', 'Beniganj',
+                                     'Beswan', 'Bewar', 'Bhadarsa', 'Bhadohi', 'Bhagwantnagar', 'Bharatpura',
+                                     'Bhargain', 'Bharthana', 'Bharwari', 'Bhaupur', 'Bhimtal', 'Bhinga', 'Bhognipur',
+                                     'Bhongaon', 'Bidhnu', 'Bidhuna', 'Bighapur', 'Bighapur Khurd', 'Bijnor', 'Bikapur',
+                                     'Bilari', 'Bilariaganj', 'Bilaspur', 'Bilgram',
+                                     'Bilhaur', 'Bilsanda', 'Bilsi', 'Bilthra', 'Binauli', 'Binaur', 'Bindki',
+                                     'Birdpur', 'Birpur', 'Bisalpur', 'Bisanda Buzurg', 'Bisauli', 'Bisenda Buzurg',
+                                     'Bishunpur Urf Maharajganj', 'Biswan', 'Bithur', 'Budaun', 'Budhana',
+                                     'Bulandshahr', 'Captainganj', 'Chail', 'Chakia', 'Chandauli', 'Chandauli District',
+                                     'Chandausi', 'Chandpur', 'Chanduasi', 'Charkhari', 'Charthawal', 'Chhaprauli',
+                                     'Chharra', 'Chhata', 'Chhibramau', 'Chhitauni', 'Chhutmalpur', 'Chillupar',
+                                     'Chirgaon', 'Chitrakoot', 'Chitrakoot Dham', 'Chopan', 'Chunar', 'Churk',
+                                     'Colonelganj', 'Dadri', 'Dalmau', 'Dankaur', 'Daraganj', 'Daranagar', 'Dasna',
+                                     'Dataganj', 'Daurala', 'Dayal Bagh', 'Deoband', 'Deogarh', 'Deoranian', 'Deoria',
+                                     'Derapur', 'Dewa', 'Dhampur', 'Dhanaura',
+                                     'Dhanghata', 'Dharau', 'Dhaurahra', 'Dibai', 'Divrasai', 'Dohrighat',
+                                     'Domariaganj', 'Dostpur', 'Dudhi', 'Etah', 'Etawah', 'Etmadpur', 'Faizabad',
+                                     'Farah', 'Faridnagar', 'Faridpur', 'Farrukhabad', 'Fatehabad', 'Fatehganj West',
+                                     'Fatehgarh', 'Fatehpur', 'Fatehpur (Barabanki)', 'Fatehpur Chaurasi',
+                                     'Fatehpur Sikri', 'Firozabad', 'Fyzabad', 'Gahlon', 'Gahmar', 'Gaini', 'Gajraula',
+                                     'Gangoh', 'Ganj Dundawara', 'Ganj Dundwara', 'Ganj Muradabad',
+                                     'Garautha', 'Garhi Pukhta', 'Garhmuktesar', 'Garhwa', 'Gauriganj',
+                                     'Gautam Buddha Nagar', 'Gawan', 'Ghatampur', 'Ghaziabad', 'Ghazipur', 'Ghiror',
+                                     'Ghorawal', 'Ghosi', 'Gohand', 'Gokul', 'Gola Bazar', 'Gola Gokarannath', 'Gonda',
+                                     'Gopamau', 'Gorakhpur', 'Gosainganj', 'Goshainganj', 'Govardhan',
+                                     'Greater Noida', 'Gulaothi', 'Gunnaur', 'Gursahaiganj', 'Gursarai', 'Gyanpur',
+                                     'Haldaur', 'Hamirpur', 'Handia', 'Hapur', 'Haraipur', 'Haraiya', 'Harchandpur',
+                                     'Hardoi', 'Harduaganj', 'Hasanpur', 'Hastinapur', 'Hata', 'Hata (India)',
+                                     'Hathras', 'Hulas', 'Ibrahimpur', 'Iglas', 'Ikauna', 'Indergarh', 'Indragarh',
+                                     'Islamnagar', 'Islamnagar (Badaun)', 'Itaunja', 'Itimadpur', 'Jagdishpur',
+                                     'Jagnair', 'Jahanabad', 'Jahanabad (Pilibhit)', 'Jahangirabad', 'Jahangirpur',
+                                     'Jainpur', 'Jais', 'Jalalabad', 'Jalali', 'Jalalpur', 'Jalaun', 'Jalesar',
+                                     'Janghai', 'Jansath', 'Jarwa', 'Jarwal', 'Jasrana'
+    , 'Jaswantnagar', 'Jaunpur', 'Jewar', 'Jhajhar', 'Jhalu', 'Jhansi', 'Jhinjhak', 'Jhinjhana', 'Jhusi', 'Jiyanpur',
+                                     'Jyotiba Phule Nagar', 'Kabrai', 'Kachhwa', 'Kadaura', 'Kadipur', 'Kagarol',
+                                     'Kaimganj', 'Kairana', 'Kakori', 'Kakrala', 'Kalinagar', 'Kalpi', 'Kalyanpur',
+                                     'Kamalganj', 'Kampil', 'Kandhla', 'Kannauj', 'Kanpur', 'Kanpur Dehat', 'Kant',
+                                     'Kanth', 'Kaptanganj', 'Kara', 'Karari', 'Karbigwan', 'Karchana', 'Karhal',
+                                     'Kasganj', 'Katra',
+                                     'Kausani', 'Kaushambi District', 'Kemri', 'Khada', 'Khaga', 'Khailar', 'Khair',
+                                     'Khairabad', 'Khalilabad', 'Khanpur', 'Kharela', 'Khargupur', 'Kharkhauda',
+                                     'Khatauli', 'Khekra', 'Kheri', 'Khudaganj', 'Khurja', 'Khutar', 'Kirakat',
+                                     'Kiraoli', 'Kiratpur', 'Kishanpur', 'Kishanpur baral', 'Kishni',
+                                     'Kithor', 'Konch', 'Kopaganj', 'Kosi', 'Kota', 'Kotra', 'Kuchesar', 'Kudarkot',
+                                     'Kulpahar', 'Kunda', 'Kundarkhi', 'Kundarki', 'Kurara', 'Kurebharsaidkhanpur',
+                                     'Kushinagar', 'Kusmara', 'Kuthaund', 'Laharpur', 'Lakhimpur', 'Lakhna', 'Lalganj',
+                                     'Lalitpur', 'Lambhua', 'Lar', 'Lawar', 'Lawar Khas',
+                                     'Loni', 'Lucknow', 'Lucknow District', 'Machhali Shahar', 'Machhlishahr',
+                                     'Madhoganj', 'Madhogarh', 'Maghar', 'Mahaban', 'Maharajganj', 'Mahmudabad'
+    , 'Mahoba', 'Maholi', 'Mahrajganj', 'Mahrajganj (Raebareli)', 'Mahroni', 'Mahul', 'Mailani', 'Mainpuri', 'Majhupur',
+                                     'Makanpur', 'Malasa', 'Malihabad', 'Mandawar', 'Maniar', 'Manikpur', 'Manjhanpur',
+                                     'Mankapur', 'Marahra', 'Mariahu', 'Mataundh', 'Mathura', 'Mau', 'Mau Aima',
+                                     'Mau Aimma', 'Maudaha', 'Maurawan', 'Mawana', 'Mawar', 'Meerut', 'Mehdawal',
+                                     'Mehnagar', 'Mehndawal', 'Milak', 'Milkipur', 'Miranpur', 'Miranpur Katra',
+                                     'Mirganj', 'Mirzapur', 'Misrikh', 'Mohan', 'Mohanpur', 'Moradabad', 'Moth',
+                                     'Mubarakpur', 'Mughal Sarai', 'Muhammadabad', 'Mukteshwar', 'Mungra Badshahpur',
+                                     'Munsyari', 'Muradabad', 'Muradnagar', 'Mursan', 'Musafir-Khana', 'Musafirkhana',
+                                     'Muzaffarnagar', 'Nadigaon', 'Nagina', 'Nagla', 'Nagram', 'Najibabad', 'Nakur',
+                                     'Nanauta', 'Nandgaon', 'Nanpara', 'Narauli', 'Naraura', 'Narora', 'Naugama',
+                                     'Naurangpur', 'Nautanwa', 'Nawabganj', 'Nawabganj (Barabanki)',
+                                     'Nawabganj (Bareilly)', 'Newara', 'Nichlaul', 'Nigoh', 'Nihtaur', 'Niwari',
+                                     'Nizamabad', 'Noida', 'Nurpur', 'Obra', 'Orai', 'Oran', 'Pachperwa', 'Padrauna',
+                                     'Pahasu', 'Paigaon', 'Pali', 'Palia Kalan', 'Paras Rampur', 'Parichha',
+                                     'Parichhatgarh', 'Parshadepur', 'Pathakpura', 'Patiali', 'Patti',
+                                     'Pawayan', 'Payagpur', 'Phalauda', 'Phaphamau', 'Phaphund', 'Phariha', 'Pheona',
+                                     'Phulpur', 'Pichhaura', 'Pihani', 'Pilibhit', 'Pilkhua', 'Pilkhuwa', 'Pinahat',
+                                     'Pipraich', 'Pipri', 'Pratapgarh', 'Prayagraj (Allahabad)', 'Pukhrayan',
+                                     'Puranpur', 'Purmafi',
+                                     'Purwa', 'Qadirganj', 'Rabupura', 'Radha Kund', 'Radhakund', 'Raebareli',
+                                     'Rajapur', 'Ramkola', 'Ramnagar', 'Rampur', 'Rampura', 'Ranipur', 'Ranipur Barsi',
+                                     'Rasra', 'Rasulabad', 'Rath',
+                                     'Raya', 'Rehar', 'Renukoot', 'Renukut', 'Reoti', 'Reotipur', 'Richha',
+                                     'Robertsganj', 'Rudarpur', 'Rudauli', 'Rura', 'Sabalpur', 'Sachendi', 'Sadabad',
+                                     'Sadat', 'Safipur', 'Saharanpur', 'Sahaspur', 'Sahaswan', 'Sahawar', 'Sahibabad',
+                                     'Sahpau', 'Saidpur', 'Sakhanu', 'Sakit', 'Salempur', 'Salon',
+                                     'Sambhal', 'Samthar', 'Sandi', 'Sandila', 'Sant Kabir Nagar',
+                                     'Sant Ravi Das Nagar', 'Sarai Akil', 'Sarai Ekdil', 'Sarai Mir', 'Sarauli',
+                                     'Sardhana', 'Sarila', 'Sarurpur', 'Sasni', 'Satrikh', 'Saurikh', 'Sector',
+                                     'Seohara', 'Shahabad', 'Shahganj', 'Shahi',
+                                     'Shahjahanpur', 'Shahpur', 'Shamli', 'Shamsabad', 'Shankargarh', 'Shergarh',
+                                     'Sherkot', 'Shibnagar', 'Shikarpur', 'Shikarpur (Bulandshahr)', 'Shikohabad',
+                                     'Shishgarh', 'Shivrajpur', 'Shrawasti', 'Siddharthnagar', 'Siddhaur', 'Sidhauli',
+                                     'Sidhpura', 'Sikandarabad', 'Sikandarpur', 'Sikandra', 'Sikandra Rao',
+                                     'Sikandrabad', 'Sirathu', 'Sirsa', 'Sirsaganj', 'Sirsi', 'Sisauli', 'Siswa Bazar',
+                                     'Sitapur', 'Sonbhadra', 'Soron', 'Suar', 'Sultanpur', 'Surianwan', 'Tajpur',
+                                     'Talbahat', 'Talgram', 'Tanda', 'Terha', 'Thakurdwara', 'Thana Bhawan', 'Tigri',
+                                     'Tikaitnagar', 'Tikri', 'Tilhar', 'Tilsahri', 'Tindwari', 'Titron',
+                                     'Tori Fatehpur', 'Tori-Fatehpur', 'Tulsipur', 'Tundla', 'Ugu', 'Ujhani', 'Umri',
+                                     'Un', 'Unnao', 'Usawan', 'Usehat', 'Uska', 'Utraula', 'Varanasi', 'Vindhyachal',
+                                     'Vrindavan', 'Walterganj', 'Wazirganj', 'Yusufpur', 'Zafarabad', 'Zaidpur',
+                                     'Zamania']

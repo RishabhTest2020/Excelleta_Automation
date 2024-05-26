@@ -554,3 +554,9 @@ def get_list_of_elems_text(browser, locatortype, locator):
             text_values.append(name_attr)
     print(text_values)
     return text_values
+
+
+def scroll_into_the_view(browser, locator_type, locator):
+    element = browser.find_element(locator_type, locator)
+    # Scroll the element into view using JavaScript
+    browser.execute_script("arguments[0].scrollIntoView(true);", element)
