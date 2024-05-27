@@ -6,7 +6,7 @@ accounts_head_col = (By.XPATH, '(//span[contains(@class, "ag-header-cell-text")]
 add_accounts_btn = (By.XPATH, '//*[contains(@class, "addAccountCTA")]/button[contains(text(), "Add New Account")]')
 acc_basic_info_txt = (By.XPATH, '//h3[contains(text(), "Account Basic Information")]')
 cancel_btn = (By.XPATH, '//button[contains(text(), "Cancel")]')
-account_save_btn = (By.XPATH, '//button[contains(text(), "Save")]')
+save_btn = (By.XPATH, '//button[contains(text(), "Save")]')
 paste_image_loc = (By.XPATH, '//div[contains(@class, "paste-img")]')
 acc_field_txtbox = (By.XPATH, '//input[@name="field_name"]')       #accountName
 country_dd_loc = (By.XPATH, '//div[contains(@class, "countryFlagCode")]')

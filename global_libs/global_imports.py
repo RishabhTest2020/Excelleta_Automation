@@ -14,13 +14,18 @@ from conftest import *
 # Locators
 from locators.common_locators_file import *
 from locators.accounts_tab_locators import *
+from locators.contact_tab_locators import *
 
 #pages
 from pages.new_login_page import *
 from pages.accounts_tab import *
+from pages.contacts_tab import *
 
 #tests
 from tests.test_login import *
 from tests.test_accounts_tab import *
+from tests.test_contacts_tab import *
+
+
 
 

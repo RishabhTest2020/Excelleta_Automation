@@ -8,7 +8,7 @@ accounts_table_header_col = ['Action', 'Account No', 'Account Name', 'Website', 
 accounts_create_fields_gen = ['accountName', 'accountEmail', 'website', 'mobileNumber',
                               'landlineNumber', 'panNo', 'customerCode', 'noOfWorkingDays']
 
-accounts_general_details = [random_correct_name(1, 6), f'{random_email_generator()}', 'www.testwesite.com',
+accounts_general_details = [random_correct_name(5, 4), f'{random_email_generator()}', 'www.testwesite.com',
                             '9090909090', '12345678', 'QWERT1234Y', f'{generate_random_five_digit_number()}', 7]
 
 start_months_data = ['Select Month', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
@@ -146,3 +146,8 @@ billing_uttar_pradesh_cities_list = ['Select City', 'Achhnera', 'Afzalgarh', 'Ag
                                      'Un', 'Unnao', 'Usawan', 'Usehat', 'Uska', 'Utraula', 'Varanasi', 'Vindhyachal',
                                      'Vrindavan', 'Walterganj', 'Wazirganj', 'Yusufpur', 'Zafarabad', 'Zaidpur',
                                      'Zamania']
+
+#  Contacts Tab --------------------------------------------------------------------------------------
+contacts_create_fields_gen = ['firstName', 'lastName', 'email', 'mobileNumber', 'phoneNumber']
+contacts_general_details = [random_correct_name(5, 4, 'first_name'), random_correct_name(5, 4, 'last_name'), f'{random_email_generator()}',
+                            '9090909090', '9090909090']

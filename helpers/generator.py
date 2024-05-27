@@ -3,17 +3,23 @@ import string
 import uuid
 
 
-def random_correct_name(length1: int, length2: int) -> str:
+def random_correct_name(length1: int, length2: int, name_type=None) -> str:
     """
     Generates correct name and surname
     Args:
         length1 (int): name length
         length2  (int): surname length
+        name_type : Select only first and last name
     """
     letters = string.ascii_lowercase
-    name = ''.join(random.choice(letters) for i in range(length1))
-    surname = ''.join(random.choice(letters) for i in range(length2))
-    correct_name = name + ' ' + surname
+    if name_type == 'first_name':
+        correct_name = ''.join(random.choice(letters) for i in range(length1))
+    elif name_type == 'last_name':
+        correct_name = ''.join(random.choice(letters) for i in range(length2))
+    else:
+        name = ''.join(random.choice(letters) for i in range(length1))
+        surname = ''.join(random.choice(letters) for i in range(length2))
+        correct_name = name + ' ' + surname
     return correct_name
 
 

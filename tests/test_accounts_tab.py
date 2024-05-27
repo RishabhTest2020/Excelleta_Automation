@@ -24,7 +24,7 @@ def account_creation(browser):
     select_country_field(browser)
     select_state_field(browser)
     select_city_field(browser)
-    do_click(browser, account_save_btn)
+    do_click(browser, save_btn)
     pdb_apply()
 
 
