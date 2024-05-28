@@ -34,6 +34,7 @@ def browser():
         prefs = {"profile.default_content_setting_values.notifications": 2, "credentials_enable_service": False,
                  "profile.password_manager_enabled": False}
         options.add_experimental_option("prefs", prefs)
+        options.page_load_strategy = 'normal'
         # options.add_argument('--disable-notifications')
         # ext_path = os.getcwd() + "/files/APE.crx"
         # options.add_extension(ext_path)
