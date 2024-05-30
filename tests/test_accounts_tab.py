@@ -32,4 +32,5 @@ def account_creation(browser):
 
 @then('Verify created account data')
 def verify_account(browser):
-    accounts_steps.verify_created_account(browser, accounts_steps.account_details)
+    acc_class_data = get_class_global_variables_dict(accounts_steps)
+    accounts_steps.verify_created_account(browser, acc_class_data)

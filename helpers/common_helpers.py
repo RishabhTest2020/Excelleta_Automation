@@ -560,3 +560,29 @@ def scroll_into_the_view(browser, locator_type, locator):
     element = browser.find_element(locator_type, locator)
     # Scroll the element into view using JavaScript
     browser.execute_script("arguments[0].scrollIntoView(true);", element)
+
+
+def get_class_global_variables_dict(MyClass):
+    class_dict = MyClass.__dict__
+
+    # Filter out only the class variables
+    class_vars = {}
+    for k, v in class_dict.items():
+        # Exclude methods and special attributes
+        if not callable(v) and not k.startswith('__'):
+            class_vars[k] = v
+
+    return class_vars
+
+
+def list_val_type_to_str(lst: list):
+    for i in lst:
+        if (type(i) is int) or (type(i) is float):
+            index = lst.index(i)
+            lst[index] = str(i)
+        elif type(i) is list:
+            for j in i:
+                if (type(j) is int) or (type(j) is float):
+                    index = i.index(j)
+                    i[index] = str(j)
+    return lst

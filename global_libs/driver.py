@@ -19,7 +19,6 @@ def get_browser_value():
     return browser_type
 
 
-
 @pytest.fixture()
 def browser():
     """
@@ -32,14 +31,20 @@ def browser():
         options = webdriver.ChromeOptions()
         # options.add_extension(os.getcwd() + '/files/modheader.crx')
         prefs = {"profile.default_content_setting_values.notifications": 2, "credentials_enable_service": False,
-                 "profile.password_manager_enabled": False}
+                 "profile.password_manager_enabled": False, "profile.default_content_setting_values.geolocation": 2,
+                 "profile.default_content_setting_values.autofill": 2, "autofill.profile_enabled": False,
+                 "autofill.address_enabled": False,
+                 "autofill.credit_card_enabled": False}
         options.add_experimental_option("prefs", prefs)
         options.page_load_strategy = 'normal'
-        # options.add_argument('--disable-notifications')
+        options.add_argument("--disable-extensions")
+        options.add_argument("--disable-infobars")
+        options.add_argument('--disable-notifications')
         # ext_path = os.getcwd() + "/files/APE.crx"
         # options.add_extension(ext_path)
         options.add_argument('--ignore-certificate-errors')
         options.add_argument("--disable-popup-blocking")
+        options.add_argument("--disable-autofill-keyboard-accessory-view")
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option("useAutomationExtension", False)
         service = webdriver.chrome.service.Service(ChromeDriverManager().install())
@@ -62,13 +67,15 @@ def browser():
         options.add_argument("--allow-running-insecure-content")
         service = webdriver.chrome.service.Service(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service, options=options)
-            # else:
-            #     driver = wire_webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
+
+        # else:
+        #     driver = wire_webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
 
         def interceptor(request):
             request.headers['CF-Access-Client-Id'] = '352a2f064e280d15bf045a6c9740638c.access'
             request.headers[
                 'CF-Access-Client-Secret'] = '6cd0992b7b60282508def9d038f51f2371c4cf2b1a2ed6d6392868b5e4bfbd4c'
+
         driver.request_interceptor = interceptor
     else:
         driver = None
@@ -79,4 +86,3 @@ def browser():
     driver.set_page_load_timeout(3000)
     yield driver
     driver.quit()
-

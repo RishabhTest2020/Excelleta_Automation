@@ -61,4 +61,5 @@ shipping_add_yes = (By.XPATH, '//*[contains(text(), "Shipping Address")]/followi
 primary_add_yes = (By.XPATH, '//*[contains(text(), "Primary Billing")]/following-sibling::div[contains(@class, "question")]//span[text()= "Yes"]')
 add_new_billing_btn = (By.XPATH, '//*[contains(text(), " Add New Billing Address ")]')
 
-accounts_table_row_loc = (By.XPATH, '(//div[@row-index="row_index"]//*[contains(@class, "ag-cell-value")]/a)[col_index]')
+accounts_table_row_loc_a = (By.XPATH, '(//div[@row-index="0"]//*[contains(@class, "ag-cell-value")]//a)')
+accounts_table_row_loc = (By.XPATH, '(//div[@row-index="0"]//*[contains(@class, "ag-cell-value")]/span)')

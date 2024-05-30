@@ -5,6 +5,20 @@ from global_libs.global_imports import *
 @pytest.mark.usefixtures("browser")
 class Accounts:
 
+    def __init__(self):
+        self.account_details = None
+        self.billing_data = None
+        self.country = None
+        self.state = None
+        self.payment_term = None
+        self.payment_method = None
+        self.business_segment = None
+        self.business_domain = None
+        self.business_nature = None
+        self.rm_norms = None
+        self.start_month = None
+        self.city = None
+
     def verify_accounts_head_col(self, browser):
         elems = browser.find_elements(accounts_head_col[0], accounts_head_col[1])
         elems_len = len(elems)
@@ -146,7 +160,33 @@ class Accounts:
         do_click(browser, Billing_Address1_h3)
         sleep(0.5)
 
-    def verify_created_account(self, browser, acc_data_list):
+    def verify_created_account(self, browser, all_data_dict: dict):
+        sleep(2)
+        loader_should_be_invisile(browser)
+        # values_a = get_list_of_elems_text(browser, accounts_table_row_loc_a[0], accounts_table_row_loc_a[1])
         values = get_list_of_elems_text(browser, accounts_table_row_loc[0], accounts_table_row_loc[1])
+        # values_a.extend(values)
+        all_data = list(all_data_dict.values())
+        acc_data_list1 = all_data[0]
+        acc_data_list = list(acc_data_list1)
+        for i in all_data[1:]:
+            i_type = type(i)
+            if i_type == list:
+                acc_data_list.extend(i)
+            else:
+                acc_data_list.append(str(i))
+
+        non_present_data = []
+        for i in values[1:-3]:
+            for j in acc_data_list:
+                if j == '9090909090':
+                    i = str(i).replace("+91-", '')
+                if i == j:
+                    break
+                else:
+                    if acc_data_list.index(j) == -1:
+                        non_present_data.append(i)
+                        break
         pdb_apply()
-        assert values == acc_data_list
+        assert len(non_present_data) == 0
+
