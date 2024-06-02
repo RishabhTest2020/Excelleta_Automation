@@ -32,7 +32,6 @@ def random_email_generator() -> str:
     return ram_email
 
 
-
 def random_password_string(length: int) -> str:
     """
     Generates random password with chosen length
@@ -44,5 +43,5 @@ def random_password_string(length: int) -> str:
     return password
 
 
-def generate_random_five_digit_number():
-    return random.randint(10000, 99999)
+def generate_random_five_digit_number(add_digits: int = 1):
+    return random.randint(10000 * add_digits, 99999 * add_digits)

@@ -4,7 +4,7 @@ accounts_table_header_col = ['Action', 'Account No', 'Account Name', 'Website', 
                              'Landline Number', 'Customer Code', 'Business Nature',
                              'Business Domain', 'Payment Method', 'Payment Term', 'Business Segment', 'Address',
                              'Postal Code', 'GSTIN', 'Country', 'State', 'City', 'Created On', 'Last Modified On',
-                             'Status', None]
+                             'Status']
 
 accounts_create_fields_gen = ['accountName', 'accountEmail', 'website', 'mobileNumber',
                               'landlineNumber', 'panNo', 'customerCode', 'noOfWorkingDays']
@@ -149,6 +149,31 @@ billing_uttar_pradesh_cities_list = ['Select City', 'Achhnera', 'Afzalgarh', 'Ag
                                      'Zamania']
 
 #  Contacts Tab --------------------------------------------------------------------------------------
-contacts_create_fields_gen = ['firstName', 'lastName', 'email', 'mobileNumber', 'phoneNumber']
+contacts_create_fields_gen = ['firstName', 'lastName', 'email', 'phoneNumber']
+
 contacts_general_details = [random_correct_name(5, 4, 'first_name'), random_correct_name(5, 4, 'last_name'), f'{random_email_generator()}',
-                            '9090909090', '9090909090']
+                            '9090909090']
+
+titles_data = ['Select Title', 'Mr', 'Mrs']
+
+department_data = ['Select Department', 'Analysing', 'Costing', 'Design', 'Development', 'Marketing', 'Operations',
+                   'Purchase', 'R&D', 'Sales']
+
+designation_data = ['Select Designation', 'Analysing Lead', 'Asst. General Manager', 'Asst. Manager', 'CEO', 'CFO',
+                    'COO', 'Director', 'Dpty. General Manager', 'Dpty. Manager', 'Executive', 'General Manager',
+                    'Manager', 'Officer', 'Plant Head', 'President', 'Purchase Head', 'Sales Manager', 'Sr. Engineer',
+                    'Sr. Executive', 'Sr. General Manager', 'Sr. Manager', 'Sr. Officer', 'Vice President']
+
+report_to_data = ['Select Contact Person']
+
+gender_data = ['Select Gender', 'Male', 'Female', 'Rather not to say']
+
+marital_data = ['Select Status', 'Married', 'Single', 'Rather not to say']
+
+billing_contact_list = [f'{random_correct_name(5, 4, 'first_name')}, Gurgaon', generate_random_five_digit_number(10),
+                        f'{random_correct_name(5, 4, 'first_name')}, Gurgaon', generate_random_five_digit_number(10)]
+
+contact_table_header_col = ['Action', 'Profile', 'First Name', 'Account Name', 'Phone Number', 'Email ID', 'Department',
+                            'Designation', 'Report To', 'Birth Date', 'Country', 'State', 'City', 'Address',
+                            'Residential Country', 'Residential State', 'Residential City', 'Residential Address',
+                            'Created On', 'Last Modified On', 'Status']

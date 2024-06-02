@@ -26,3 +26,5 @@ class global_env_vars:
         self.user_email = os.getenv('user_email')
         self.user_password = os.getenv('user_password')
 
+
+globalEnvs = global_env_vars()

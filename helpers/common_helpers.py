@@ -3,7 +3,6 @@ import os
 import sys
 import time
 from datetime import date, datetime
-
 import requests
 from pytz import reference
 from selenium.common.exceptions import NoSuchElementException, TimeoutException, \
@@ -11,7 +10,7 @@ from selenium.common.exceptions import NoSuchElementException, TimeoutException,
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-
+from selenium.webdriver.remote.webelement import WebElement
 from locators.common_locators_file import *
 
 
@@ -424,13 +423,11 @@ def slack_message(username, text, color, environment="Promo Production"):
         raise Exception(response.status_code, response.text)
 
 
-def loader_should_be_invisile(browser):
-    is_invisible(browser, loader_loc, 10)
-
-
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webelement import WebElement
+def loader_should_be_invisile(browser, sec):
+    val = is_invisible(browser, loader_loc, sec)
+    if val is False:
+        print(f'Loader is taking more than {str(sec)} secs to be disappear')
+        raise NoSuchElementException
 
 
 # Function to get XPath of an element
@@ -586,3 +583,13 @@ def list_val_type_to_str(lst: list):
                     index = i.index(j)
                     i[index] = str(j)
     return lst
+
+
+def comprehension_range(start_num, max_num):
+    # Initialize an empty list to hold the sequence
+    sequence = []
+
+    # Use a loop to append each number twice
+    for i in range(start_num, max_num + 1):
+        sequence.extend([i, i])
+    return sequence

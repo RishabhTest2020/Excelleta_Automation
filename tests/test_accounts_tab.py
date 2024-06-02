@@ -1,5 +1,7 @@
-from global_libs.global_imports import *
 from helpers.common_helpers import *
+from pages.accounts_tab import *
+from pytest_bdd import given, when, then
+
 
 accounts_steps = Accounts()
 

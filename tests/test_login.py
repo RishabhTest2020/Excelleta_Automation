@@ -1,5 +1,6 @@
-from global_libs.global_imports import *
 from helpers.common_helpers import *
+from pages.new_login_page import *
+from pytest_bdd import given, when, then, parsers
 
 
 @given('Login into Excelleta UI')

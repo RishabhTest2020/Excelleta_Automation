@@ -1,5 +1,8 @@
 from helpers.common_helpers import *
-from global_libs.global_imports import *
+import pytest
+from locators.accounts_tab_locators import *
+from test_data.testdata import *
+from time import sleep
 
 
 @pytest.mark.usefixtures("browser")
@@ -23,9 +26,12 @@ class Accounts:
         elems = browser.find_elements(accounts_head_col[0], accounts_head_col[1])
         elems_len = len(elems)
         col_names_lst = []
-        for i in range(1, elems_len):
-            col_name = get_text_by_js_xpath(browser, accounts_head_col[1] + f'[{i}]')
+        for i in range(1, elems_len-1):
+            col_loc = accounts_head_col[1] + f'[{i}]'
+            scroll_into_the_view(browser, accounts_head_col[0], col_loc)
+            col_name = get_text_by_js_xpath(browser, col_loc)
             col_names_lst.append(col_name)
+        pdb_apply()
         print(col_names_lst)
         assert accounts_table_header_col == col_names_lst
 
@@ -162,10 +168,8 @@ class Accounts:
 
     def verify_created_account(self, browser, all_data_dict: dict):
         sleep(2)
-        loader_should_be_invisile(browser)
-        # values_a = get_list_of_elems_text(browser, accounts_table_row_loc_a[0], accounts_table_row_loc_a[1])
+        loader_should_be_invisile(browser, 10)
         values = get_list_of_elems_text(browser, accounts_table_row_loc[0], accounts_table_row_loc[1])
-        # values_a.extend(values)
         all_data = list(all_data_dict.values())
         acc_data_list1 = all_data[0]
         acc_data_list = list(acc_data_list1)
@@ -187,6 +191,6 @@ class Accounts:
                     if acc_data_list.index(j) == -1:
                         non_present_data.append(i)
                         break
-        pdb_apply()
+        print(non_present_data)
         assert len(non_present_data) == 0
 
