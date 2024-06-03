@@ -28,13 +28,15 @@ def take_screenshot(browser):
     Args:
         browser: webdriver
     """
-    if sys.platform == 'linux':
-        try:
-            browser.save_screenshot(os.getcwd() + '/files/' + 'ss' + time.strftime("%Y%m%d-%H%M%S") + '.png')
-        except (WebDriverException, Exception):
-            pass
-    else:
+    # if sys.platform == 'linux':
+    try:
+        path = os.getcwd() + '/screenshots/' + 'ss' + time.strftime("%Y%m%d-%H%M%S") + '.png'
+        browser.save_screenshot(path)
+        print(path)
+    except (WebDriverException, Exception):
         pass
+    # else:
+    #     pass
 
 
 def js_click_by_xpath(browser, xpath):

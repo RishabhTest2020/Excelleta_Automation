@@ -6,7 +6,7 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Given Login into Excelleta UI
 
 
-  @Smoke
+  @Smoke1
   Scenario: Verify login with invalid creds
     Given Login with invalid creds test@yopmail.com 123test into Excelleta UI
 
@@ -21,8 +21,8 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
   @New
   Scenario: Verify Contacts Tab and New Contact creation
     Given Login into Excelleta UI
-#    When Navigate to Accounts tab
-#    Then Create an account
+    When Navigate to Accounts tab
+    Then Create an account
     When Navigate to Contact tab
     When Create an Contact
     Then Verify created contact data

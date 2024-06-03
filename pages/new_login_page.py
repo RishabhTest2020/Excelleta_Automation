@@ -17,9 +17,9 @@ def user_login(browser, email=globalEnvs.user_email, password=globalEnvs.user_pa
     if type == 'fail':
         should_be_visible(browser, invalid_creds_message, 'invalid_creds_message')
     else:
-        pass
-    loader_should_be_invisile(browser, 15)
-    should_be_visible(browser, dashboard_txt, 'dashboard heading', 10)
+        loader_should_be_invisile(browser, 15)
+        should_be_visible(browser, dashboard_txt, 'dashboard heading', 10)
+
 
 
 def goto_tab(browser, tab_name):

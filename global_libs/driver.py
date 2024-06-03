@@ -10,6 +10,8 @@ from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
+from helpers.common_helpers import take_screenshot
+
 
 def get_browser_value():
     try:
@@ -20,7 +22,7 @@ def get_browser_value():
 
 
 @pytest.fixture()
-def browser():
+def browser(request):
     """
     Configures driver parameters - local device or remote
     Use when calling pytest
@@ -84,5 +86,9 @@ def browser():
     driver.maximize_window()
     driver.set_script_timeout(1000)
     driver.set_page_load_timeout(3000)
+    print(request.node.name)
     yield driver
+    failed = request.node.session.testsfailed
+    if failed > 0:
+        take_screenshot(driver)
     driver.quit()
