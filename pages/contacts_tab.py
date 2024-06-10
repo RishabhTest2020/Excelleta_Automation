@@ -135,7 +135,6 @@ class Contacts:
         for b_id, data, index in zip(ids_list, self.contact_billing_data, comprehension_range(1, len(ids_list))):
             bill_loc_str = billing_txt_box[1].replace("billingTxtBox", b_id) + f'[{index}]'
             bill_loc = replace_in_tuple(billing_txt_box, 1, bill_loc_str)
-            pdb_apply()
             do_send_keys(browser, bill_loc, data)
 
     def select_contact_country_fields(self, browser, country='India'):

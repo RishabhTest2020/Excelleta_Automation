@@ -177,3 +177,47 @@ contact_table_header_col = ['Action', 'Profile', 'First Name', 'Account Name', '
                             'Designation', 'Report To', 'Birth Date', 'Country', 'State', 'City', 'Address',
                             'Residential Country', 'Residential State', 'Residential City', 'Residential Address',
                             'Created On', 'Last Modified On', 'Status']
+
+
+# rfq test data............................................................................
+
+rfq_txtboxes_data = [10000, 'Test Automation', 'Bajaj pulsar 220F', 'Carburetor', 123, 820, 1200, 'Port delivery text' ]
+
+rfq_business_evaluation_data = ['Select Business Evaluation', 'Existing Product Existing Customer',
+                                'Existing Product New Customer', 'New Product Existing Customer',
+                                'New Product New Customer']
+
+rfq_business_values_data = ['Select Business value', 'High', 'Low', 'Medium']
+
+rfq_confidentiality_dropdown = ['Select Confidentiality', 'No', 'Yes']
+
+
+rfq_dev_lead_location_data = ['Select Development Lead Location', 'Delhi Corp', 'MAPL B-03 Waluj', 'MAPL B-12 Waluj',
+                         'MAPL B-17 Waluj', 'MAPL B-31 Waluj', 'MAPL Hosur', 'MAPL Pithampur', 'MMT Dharuhera',
+                         'MMT Pantnagar -I', 'MMT Pantnagar -III']
+
+rfq_manufacturing_location_data = ['Select Manufacturing Location', 'MAPL B-03 Waluj', 'MAPL B-12 Waluj',
+                                   'MAPL B-17 Waluj', 'MAPL B-31 Waluj', 'MAPL Hosur', 'MAPL Pithampur',
+                                   'MMT Dharuhera', 'MMT Pantnagar -I', 'MMT Pantnagar -III']
+
+
+rfq_company_priority_dropdown = ['Select Company Priority', 'High', 'Low', 'Medium']
+
+rfq_units_dropdown = ['Select Unit', 'Sets', 'Units']
+
+rfq_project_life_data = ['Select Life', 'DAYS', 'MONTHS', 'WEEKS', 'YEARS']
+
+rfq_offer_validity_data = ['Select Offer Validity', '7 Days', '15 Days', '30 Days', '45 Days', '60 Days', '75 Days',
+                           '90 Days']
+
+rfq_costing_format_data = ['Select Costing Format', 'Both', 'Company', 'Customer']
+
+rfq_currency_data = ['Select a currency', 'BRL', 'CAD', 'CLP', 'EUR', 'INR', 'LKR', 'RON', 'THB', 'USD']
+
+rfq_cost_packaging_dropdown = ['Select Packaging Cost', 'Not to be Quoted', 'Others', 'To be Quoted in Part Cost']
+
+rfq_incoterms_data = ['Select Incoterms', 'Carriage and Insurance Paid To (CIP)', 'Cost and Freight (CFR)',
+                      'Cost, insurance & freight (CIF)', 'Delivered at Place (DAP)', 'Delivered at Place Unloaded (DPU)',
+                      'Delivered at Terminal (DAT)', 'Delivered duty paid (DDP)', 'Ex-Works (EXW)',
+                      'Free alongside ship (FAS)', 'Free Carrier (FCA)', 'Free on board (FOB)']
+

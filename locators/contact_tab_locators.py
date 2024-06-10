@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 add_contact_btn = (By.XPATH, '//button[contains(text(), "Add New Contacts")]')
 contact_info_txt = (By.XPATH, '//h3[contains(text(), "Contact Information")]')
 contact_acc_name = (By.XPATH, '//*[@for="accountName"]/..//input')
-contact_acc_name_highlight = (By.XPATH, '//span[@class="highlight-text"]')
+contact_acc_name_highlight = (By.XPATH, '(//span[@class="highlight-text"])')
 name_title = (By.XPATH, '//*[@name="title" ]')
 contact_field_txtbox = (By.XPATH, '//*[@id="field_name"]')
 mobile_field_txtbox = (By.XPATH, '//*[@name="mobileNumber"]')

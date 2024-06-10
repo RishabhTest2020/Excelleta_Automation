@@ -1,15 +1,13 @@
 import logging
 import os
-import platform
+import shutil
 import selenium
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium import webdriver
-# from seleniumwire import webdriver as wire_webdriver
 import pytest
 from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-
 from helpers.common_helpers import take_screenshot
 
 
@@ -21,6 +19,21 @@ def get_browser_value():
     return browser_type
 
 
+def clear_screenshots():
+    folder_path = os.getcwd() + '/screenshots/'
+    for filename in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, filename)
+        try:
+            # Check if it is a file and not a directory
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                # Optionally, delete directories as well
+                shutil.rmtree(file_path)
+        except Exception as e:
+            print(f'Failed to delete {file_path}. Reason: {e}')
+
+
 @pytest.fixture()
 def browser(request):
     """
@@ -29,6 +42,7 @@ def browser(request):
     Example: browser=chrome url=https:your_url pytest
     """
     Browser = get_browser_value()
+    clear_screenshots()
     if Browser == 'chrome':
         options = webdriver.ChromeOptions()
         # options.add_extension(os.getcwd() + '/files/modheader.crx')
@@ -69,16 +83,6 @@ def browser(request):
         options.add_argument("--allow-running-insecure-content")
         service = webdriver.chrome.service.Service(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service, options=options)
-
-        # else:
-        #     driver = wire_webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
-
-        def interceptor(request):
-            request.headers['CF-Access-Client-Id'] = '352a2f064e280d15bf045a6c9740638c.access'
-            request.headers[
-                'CF-Access-Client-Secret'] = '6cd0992b7b60282508def9d038f51f2371c4cf2b1a2ed6d6392868b5e4bfbd4c'
-
-        driver.request_interceptor = interceptor
     else:
         driver = None
     logging.basicConfig(level=logging.INFO)
@@ -88,7 +92,10 @@ def browser(request):
     driver.set_page_load_timeout(3000)
     print(request.node.name)
     yield driver
-    failed = request.node.session.testsfailed
-    if failed > 0:
-        take_screenshot(driver)
+    try:
+        failed = request.node.session.testsfailed
+        if failed > 0:
+            take_screenshot(driver)
+    except:
+        pass
     driver.quit()

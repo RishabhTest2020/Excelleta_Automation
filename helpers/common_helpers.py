@@ -1,3 +1,4 @@
+import inspect
 import json
 import os
 import sys
@@ -218,6 +219,15 @@ def is_visible(browser, by_locator, sec=5) -> bool:
         take_screenshot(browser)
         return bool(elem)
     return bool(elem)
+
+
+def should_be_invisible(browser, by_locator, msg, sec=5):
+    invisi = is_invisible(browser, by_locator, sec)
+    if invisi is True:
+        print(msg + ' is invisible')
+    else:
+        print(msg + ' is not invisible')
+        sys.exit(1)
 
 
 def should_be_visible(browser, by_locator, msg, sec=5):
@@ -526,7 +536,7 @@ def get_text_by_js_xpath(browser, xpath):
 
 
 def pdb_apply():
-    import pdb;
+    import pdb
     pdb.set_trace()
 
 
@@ -563,11 +573,8 @@ def scroll_into_the_view(browser, locator_type, locator):
 
 def get_class_global_variables_dict(MyClass):
     class_dict = MyClass.__dict__
-
-    # Filter out only the class variables
     class_vars = {}
     for k, v in class_dict.items():
-        # Exclude methods and special attributes
         if not callable(v) and not k.startswith('__'):
             class_vars[k] = v
 
@@ -595,3 +602,13 @@ def comprehension_range(start_num, max_num):
     for i in range(start_num, max_num + 1):
         sequence.extend([i, i])
     return sequence
+
+
+def get_methods(cls):
+    methods = []
+    for name, obj in inspect.getmembers(cls):
+        if inspect.isfunction(obj) or inspect.ismethod(obj):
+            methods.append(str(cls.__name__) + '.' + name + '()')
+
+    methods_str = "\n".join(methods)
+    return methods_str

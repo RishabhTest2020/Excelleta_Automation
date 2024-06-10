@@ -86,7 +86,7 @@ class Accounts:
         self.business_domain = get_element_text(browser, business_domain_selected).rstrip(" x ")
         assert self.business_domain == business_domain_list[bd_type - 1]
 
-    def select_business_segment_field(self, browser, bs_type=3):
+    def select_business_segment_field(self, browser, bs_type=2):
         do_click(browser, business_segment)
         values = get_list_of_elems_text(browser, business_segment_option_txt[0], business_segment_option_txt[1])
         assert values[3:] == business_segment_list
