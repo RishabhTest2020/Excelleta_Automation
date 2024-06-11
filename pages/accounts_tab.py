@@ -31,7 +31,6 @@ class Accounts:
             scroll_into_the_view(browser, accounts_head_col[0], col_loc)
             col_name = get_text_by_js_xpath(browser, col_loc)
             col_names_lst.append(col_name)
-        pdb_apply()
         print(col_names_lst)
         assert accounts_table_header_col == col_names_lst
 

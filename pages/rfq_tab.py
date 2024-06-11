@@ -1,5 +1,5 @@
 from helpers.common_helpers import *
-from locators.accounts_tab_locators import accounts_table_row_loc
+from locators.accounts_tab_locators import accounts_table_row_loc, accounts_head_col
 from locators.contact_tab_locators import *
 from locators.rfq_tab_locators import *
 from test_data.testdata import *
@@ -44,6 +44,20 @@ class Rfq:
         self.business_nature = None
         self.business_evaluation = None
         self.contact_person = None
+
+
+    def verify_rfq_head_col(self, browser):
+        elems = browser.find_elements(accounts_head_col[0], accounts_head_col[1])
+        elems_len = len(elems)
+        col_names_lst = []
+        for i in range(1, elems_len-1):
+            col_loc = accounts_head_col[1] + f'[{i}]'
+            scroll_into_the_view(browser, accounts_head_col[0], col_loc)
+            col_name = get_text_by_js_xpath(browser, col_loc)
+            col_names_lst.append(col_name)
+        print(col_names_lst)
+        assert sorted(rfq_header_table_col) == sorted(col_names_lst)
+
 
     def select_account_and_key_person(self, browser, acc_name: str):
         # should_be_invisible(browser, business_info_txt, 'business_info_txt', 2)

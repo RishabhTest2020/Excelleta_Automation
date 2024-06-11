@@ -221,3 +221,9 @@ rfq_incoterms_data = ['Select Incoterms', 'Carriage and Insurance Paid To (CIP)'
                       'Delivered at Terminal (DAT)', 'Delivered duty paid (DDP)', 'Ex-Works (EXW)',
                       'Free alongside ship (FAS)', 'Free Carrier (FCA)', 'Free on board (FOB)']
 
+rfq_header_table_col = ['Action', 'RFQ No', 'Account Name', 'Key Contact Person', 'Shipping Address', 'Current Stage',
+                        'Business Domain', 'Manufacturing Location', 'Annual Business In Lakh', 'RFQ Received Date',
+                        'Customer Target Date', 'Model Name', 'Part/Assembly Name', 'Part/Assembly No.',
+                        'Surface Treatment Required', 'Per Annum Volumn Required', 'Status', 'Currency',
+                        'Business Segment', 'Business Nature', 'Assembly Type', 'Project Details', 'Company Priority',
+                        'Business Evaluation', 'Development Lead Location']

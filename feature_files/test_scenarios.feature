@@ -15,6 +15,7 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Given Login into Excelleta UI
     When Navigate to Accounts tab
     Then Create an account
+    When Navigate to Accounts tab
     Then Verify created account data
     Then Verify accounts table head column
 
@@ -25,11 +26,19 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Then Create an account
     When Navigate to Contact tab
     When Create an Contact
+    When Navigate to Contact tab
     Then Verify created contact data
     Then Verify contact table head column
 
   @New
   Scenario: Verify Rfq Tab and New Rfq creation
     Given Login into Excelleta UI
+#    When Navigate to Accounts tab
+#    Then Create an account
+#    When Navigate to Contact tab
+#    When Create an Contact
+#    When Navigate to RFQ tab
+#    Then Create a RFQ
     When Navigate to RFQ tab
-    Then Create a RFQ
+#    Then Verify created Rfq data
+    Then Verify Rfq table head column

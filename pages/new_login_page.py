@@ -26,6 +26,7 @@ def goto_tab(browser, tab_name):
     sleep(1)
     do_hover(browser, sidebar_hov)
     do_click(browser, sidebar_button)
+    sleep(0.5)
     tab_loc = menu_tab_loc.replace("tab_name", tab_name)
     do_click(browser, (By.XPATH, tab_loc))
     page_name = pages_name_loc.replace("tab_name", tab_name)
