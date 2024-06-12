@@ -70,9 +70,20 @@ def browser(request):
         options = webdriver.ChromeOptions()
         # caps = DesiredCapabilities.CHROME
         # caps['loggingPrefs'] = {'performance': 'ALL'}
-        prefs = {"profile.default_content_setting_values.notifications": 2}
+        prefs = {"profile.default_content_setting_values.notifications": 2, "credentials_enable_service": False,
+                 "profile.password_manager_enabled": False, "profile.default_content_setting_values.geolocation": 2,
+                 "profile.default_content_setting_values.autofill": 2, "autofill.profile_enabled": False,
+                 "autofill.address_enabled": False,
+                 "autofill.credit_card_enabled": False}
         options.add_experimental_option("prefs", prefs)
-        # options.add_argument('--disable-notifications')
+        options.page_load_strategy = 'normal'
+        options.add_argument("--disable-extensions")
+        options.add_argument("--disable-infobars")
+        options.add_argument('--disable-notifications')
+        options.add_argument('--ignore-certificate-errors')
+        options.add_argument("--disable-popup-blocking")
+        options.add_argument("--disable-autofill-keyboard-accessory-view")
+        options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_argument('ignore-certificate-errors')
         options.add_argument('--headless')
         options.add_argument('--no-sandbox')
