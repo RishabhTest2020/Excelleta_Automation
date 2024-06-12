@@ -33,9 +33,6 @@ jobs:
         sudo chown -R root /usr/local/bin/chromedriver
         sudo chmod 0755 /usr/local/bin/chromedriver
         USER_NAME=${GITLAB_USER_LOGIN//.}
-        pip install virtualenv
-        virtualenv venv
-        source venv/bin/activate
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Excelleta Sanity Test
