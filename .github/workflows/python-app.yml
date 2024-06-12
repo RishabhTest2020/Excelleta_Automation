@@ -30,7 +30,8 @@ jobs:
         unzip ~/chromedriver_linux64.zip -d ~/
         rm ~/chromedriver_linux64.zip
         mv -f ~/chromedriver /usr/local/bin/chromedriver
-        chown root:root /usr/local/bin/chromedriver
+        mount / -n -w -o remount
+        chown -R root /usr/local/bin/chromedriver
         chmod 0755 /usr/local/bin/chromedriver
         USER_NAME=${GITLAB_USER_LOGIN//.}
         pip install virtualenv
