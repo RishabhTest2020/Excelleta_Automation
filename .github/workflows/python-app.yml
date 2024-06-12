@@ -37,8 +37,6 @@ jobs:
         chown root:root /usr/local/bin/chromedriver
         chmod 0755 /usr/local/bin/chromedriver
         USER_NAME=${GITLAB_USER_LOGIN//.}
-        BS_KEY=K8S_SECRET_${USER_NAME}
-        BS_ACCESS_KEY=BS_KEY_${USER_NAME}
         pip install virtualenv
         virtualenv venv
         source venv/bin/activate
