@@ -38,3 +38,9 @@ jobs:
     - name: Excelleta Sanity Test
       run: |
         browser=headless_chrome pytest -s -m Sanity
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: automation-report
+        path: report/
+        retention-days: 0.5

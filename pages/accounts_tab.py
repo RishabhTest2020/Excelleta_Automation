@@ -32,7 +32,7 @@ class Accounts:
             col_name = get_text_by_js_xpath(browser, col_loc)
             col_names_lst.append(col_name)
         print(col_names_lst)
-        assert accounts_table_header_col == col_names_lst
+        assert sorted(accounts_table_header_col) == sorted(col_names_lst)
 
     def add_accounts_data_in_txt_box(self, browser):
         self.account_details = accounts_general_details

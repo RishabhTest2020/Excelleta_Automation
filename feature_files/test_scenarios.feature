@@ -30,7 +30,7 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Then Verify created contact data
     Then Verify contact table head column
 
-  @New
+  @Sanity
   Scenario: Verify Rfq Tab and New Rfq creation
     Given Login into Excelleta UI
     When Navigate to Accounts tab
