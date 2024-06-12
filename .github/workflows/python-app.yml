@@ -19,12 +19,12 @@ jobs:
           python-version: "3.12.3"
     - name: Install dependencies
       run: |
-        sudo apt-get install -y bind9 dnsutils
+        sudo apt update
+        sudo apt install -y bind9 dnsutils
         CHROME_DRIVER_VERSION=`curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE`
         curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
         echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
-        sudo apt-get -y update
-        sudo apt-get -y install google-chrome-stable
+        sudo apt -y install google-chrome-stable
         wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip -P ~/
         unzip ~/chromedriver_linux64.zip -d ~/
         rm ~/chromedriver_linux64.zip
