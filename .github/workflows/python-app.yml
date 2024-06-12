@@ -23,7 +23,8 @@ jobs:
         sudo apt install -y bind9 dnsutils
         sudo apt install curl
         CHROME_DRIVER_VERSION=`curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE`
-        curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
+        sudo mkdir -m 0755 -p /etc/apt/keyrings/
+        curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/excelleta.gpg
         echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
         sudo apt -y install google-chrome-stable
         wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip -P ~/
