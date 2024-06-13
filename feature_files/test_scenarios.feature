@@ -1,7 +1,7 @@
 Feature: Automation Smoke Test Plan Prod BrowserStack
 
 
-  @Sanity
+  @Sanity @TestCI
   Scenario: Verify Successful login
     Given Login into Excelleta UI
 
