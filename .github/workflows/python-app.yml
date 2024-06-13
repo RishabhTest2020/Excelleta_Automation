@@ -35,13 +35,27 @@ jobs:
         USER_NAME=${GITLAB_USER_LOGIN//.}
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+
     - name: Excelleta Sanity Test
       run: |
         browser=headless_chrome pytest -s -m Sanity
       continue-on-error: true
+
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: automation-report
         path: report/
         retention-days: 0.5
+
+    - name: Download build artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: automation-report
+        path: ./automation-report
+
+    - name: Deploy Report to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./automation-report
