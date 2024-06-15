@@ -623,8 +623,19 @@ def get_classes_in_module(module):
     return [name for name, obj in inspect.getmembers(module, inspect.isclass) if obj.__module__ == module.__name__]
 
 
-def get_all_classes_in_project(project_directory):
-    class_names = []
+def delete_class_vars(cls):
+    for var in list(cls.__dict__.keys()):
+        if not var.startswith('__'):  # Skip built-in attributes
+            delattr(cls, var)
+
+
+def process_module(module):
+    for name, obj in inspect.getmembers(module, inspect.isclass):
+        if obj.__module__ == module.__name__:  # Ensure the class is defined in this module
+            delete_class_vars(obj)
+
+
+def delete_all_class_vars_in_project(project_directory):
     for root, dirs, files in os.walk(project_directory):
         for file in files:
             if file.endswith(".py") and file != "__init__.py":
@@ -632,15 +643,7 @@ def get_all_classes_in_project(project_directory):
                 module_name = module_path.replace(os.sep, '.')[:-3]  # Convert file path to module name
                 try:
                     module = importlib.import_module(module_name)
-                    class_names.extend(get_classes_in_module(module))
+                    process_module(module)
                 except Exception as e:
-                    print(f"Error importing {module_name}: {e}")
-    return class_names
+                    pass
 
-
-def delete_all_class_vars(directory):
-    cls = get_all_classes_in_project(directory)
-    for clas in cls:
-        for var in clas(cls.__dict__.keys()):
-            if not var.startswith('__'):  # Skip built-in attributes
-                delattr(clas, var)
