@@ -14,6 +14,8 @@ from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
+from helpers.common_helpers import delete_all_class_vars
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -93,6 +95,7 @@ def browser(request):
     driver.set_page_load_timeout(3000)
     print(request.node.name)
     yield driver
+    delete_all_class_vars(os.getcwd())
     driver.quit()
 
 

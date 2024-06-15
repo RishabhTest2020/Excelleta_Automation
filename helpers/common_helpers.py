@@ -14,6 +14,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
 from locators.common_locators_file import *
+import inspect
+import importlib
 
 
 def wait_for_ajax(browser):
@@ -614,3 +616,31 @@ def get_methods(cls):
 
     methods_str = "\n".join(methods)
     return methods_str
+
+
+def get_classes_in_module(module):
+    # Get all class members in the module
+    return [name for name, obj in inspect.getmembers(module, inspect.isclass) if obj.__module__ == module.__name__]
+
+
+def get_all_classes_in_project(project_directory):
+    class_names = []
+    for root, dirs, files in os.walk(project_directory):
+        for file in files:
+            if file.endswith(".py") and file != "__init__.py":
+                module_path = os.path.relpath(os.path.join(root, file), project_directory)
+                module_name = module_path.replace(os.sep, '.')[:-3]  # Convert file path to module name
+                try:
+                    module = importlib.import_module(module_name)
+                    class_names.extend(get_classes_in_module(module))
+                except Exception as e:
+                    print(f"Error importing {module_name}: {e}")
+    return class_names
+
+
+def delete_all_class_vars(directory):
+    cls = get_all_classes_in_project(directory)
+    for clas in cls:
+        for var in clas(cls.__dict__.keys()):
+            if not var.startswith('__'):  # Skip built-in attributes
+                delattr(clas, var)
