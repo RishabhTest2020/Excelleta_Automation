@@ -43,7 +43,7 @@ jobs:
 
     - name: Excelleta Sanity Test
       run: |
-        echo $ TAG
+        echo $TAG
         browser=headless_chrome pytest -s -m Sanity
       continue-on-error: true
 
