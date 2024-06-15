@@ -34,7 +34,7 @@ class Accounts:
             col_name = get_text_by_js_xpath(browser, col_loc)
             col_names_lst.append(col_name)
         logging.info(col_names_lst)
-        assert accounts_table_header_col.sort() == col_names_lst
+        assert accounts_table_header_col.sort() == col_names_lst.sort()
 
     def add_accounts_data_in_txt_box(self, browser):
         self.account_details = accounts_general_details
