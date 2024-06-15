@@ -14,6 +14,9 @@ from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 
 def get_browser_value():
     try:
@@ -84,7 +87,6 @@ def browser(request):
         driver = webdriver.Chrome(service=service, options=options)
     else:
         driver = None
-    logging.basicConfig(level=logging.INFO)
     driver.implicitly_wait(40)
     driver.maximize_window()
     driver.set_script_timeout(1000)
@@ -107,6 +109,9 @@ def pytest_runtest_makereport(item, call):
     # only add screenshot to the report if test failed
     if rep.when == 'call' and rep.failed:
         if 'browser' in item.fixturenames:
+            caplog = item._request.getfixturevalue('caplog')
+            log_text = '\n'.join([record.getMessage() for record in caplog.records])
+            extras.append(pytest_html.extras.text(log_text, 'log'))
             web_driver = item.funcargs['browser']
             # make the screenshot file name
             screenshot_dir = os.path.join('report', 'screenshots')

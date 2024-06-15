@@ -1,3 +1,5 @@
+import logging
+
 from helpers.common_helpers import *
 from locators.accounts_tab_locators import save_btn
 from pages.rfq_tab import *
@@ -59,4 +61,5 @@ def create_rfq(browser):
 @then('Verify created Rfq data')
 def verify_account(browser):
     rfq_class_data = get_class_global_variables_dict(rfq_steps)
+    logging.info(rfq_class_data.values())
     rfq_steps.verify_created_dict(browser, rfq_class_data)

@@ -1,3 +1,5 @@
+import logging
+
 from helpers.common_helpers import *
 from pages.contacts_tab import *
 from pytest_bdd import given, when, then
@@ -32,5 +34,6 @@ def create_an_contact(browser):
 
 @then('Verify created contact data')
 def verify_account(browser):
-    acc_class_data = get_class_global_variables_dict(contacts_steps)
-    contacts_steps.verify_created_contact(browser, acc_class_data)
+    contact_class_data = get_class_global_variables_dict(contacts_steps)
+    logging.info(contact_class_data.values())
+    contacts_steps.verify_created_contact(browser, contact_class_data)

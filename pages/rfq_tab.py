@@ -1,3 +1,5 @@
+import logging
+
 from helpers.common_helpers import *
 from locators.accounts_tab_locators import accounts_table_row_loc, accounts_head_col
 from locators.contact_tab_locators import *
@@ -55,7 +57,7 @@ class Rfq:
             scroll_into_the_view(browser, accounts_head_col[0], col_loc)
             col_name = get_text_by_js_xpath(browser, col_loc)
             col_names_lst.append(col_name)
-        print(col_names_lst)
+        logging.info(col_names_lst)
         assert rfq_header_table_col.sort() == col_names_lst.sort()
 
 
@@ -331,8 +333,6 @@ class Rfq:
             js_click_by_xpath(browser, path[1])
 
     def verify_created_dict(self, browser, all_data_dict: dict):
-        pdb_apply()
-
         sleep(2)
         loader_should_be_invisile(browser, 10)
         values = get_list_of_elems_text(browser, accounts_table_row_loc[0], accounts_table_row_loc[1])
@@ -356,7 +356,7 @@ class Rfq:
                     if acc_data_list.index(j) == -1:
                         non_present_data.append(i)
                         break
-        print(non_present_data)
+        logging.info(non_present_data)
         assert len(non_present_data) == 0
 
 

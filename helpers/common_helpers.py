@@ -1,5 +1,6 @@
 import inspect
 import json
+import logging
 import os
 import sys
 import time
@@ -225,18 +226,18 @@ def is_visible(browser, by_locator, sec=5) -> bool:
 def should_be_invisible(browser, by_locator, msg, sec=5):
     invisi = is_invisible(browser, by_locator, sec)
     if invisi is True:
-        print(msg + ' is invisible')
+        logging.info(msg + ' is invisible')
     else:
-        print(msg + ' is not invisible')
+        logging.info(msg + ' is not invisible')
         sys.exit(1)
 
 
 def should_be_visible(browser, by_locator, msg, sec=5):
     visi = is_visible(browser, by_locator, sec)
     if visi is True:
-        print(msg + ' is visible')
+        logging.info(msg + ' is visible')
     else:
-        print(msg + ' is not visible')
+        logging.info(msg + ' is not visible')
         sys.exit(1)
 
 
@@ -562,7 +563,7 @@ def get_list_of_elems_text(browser, locatortype, locator):
         name_attr = name_attr.lstrip(' ')
         if name_attr != '':
             text_values.append(name_attr)
-    print(text_values)
+    logging.info(text_values)
     return text_values
 
 

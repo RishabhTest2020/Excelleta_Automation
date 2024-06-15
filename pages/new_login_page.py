@@ -14,7 +14,7 @@ def user_login(browser, email=globalEnvs.user_email, password=globalEnvs.user_pa
     do_send_keys(browser, email_text_box, email)
     do_send_keys(browser, password_text_box, password)
     do_click(browser, login_btn)
-    if type == 'fail':
+    if type == 'pass':
         should_be_visible(browser, invalid_creds_message, 'invalid_creds_message')
     else:
         loader_should_be_invisile(browser, 15)
