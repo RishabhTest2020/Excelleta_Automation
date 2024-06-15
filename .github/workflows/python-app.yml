@@ -6,6 +6,11 @@ name: Execelleta Automation
 on:
   workflow_dispatch:
 
+env:
+  # Setting an environment variable with the value of a configuration variable
+  env_var: ${{ vars.ENV_CONTEXT_VAR }}
+
+
 jobs:
   build:
 
@@ -38,7 +43,7 @@ jobs:
 
     - name: Excelleta Sanity Test
       run: |
-        browser=headless_chrome pytest -s -m ${{ env.TAG }}
+        browser=headless_chrome pytest -s -m ${{ vars.TAG }}
       continue-on-error: true
 
     - name: Upload artifact
