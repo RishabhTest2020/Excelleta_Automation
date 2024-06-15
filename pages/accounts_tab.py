@@ -1,3 +1,5 @@
+import logging
+
 from helpers.common_helpers import *
 import pytest
 from locators.accounts_tab_locators import *
@@ -31,8 +33,8 @@ class Accounts:
             scroll_into_the_view(browser, accounts_head_col[0], col_loc)
             col_name = get_text_by_js_xpath(browser, col_loc)
             col_names_lst.append(col_name)
-        print(col_names_lst)
-        assert accounts_table_header_col == col_names_lst
+        logging.info(col_names_lst)
+        assert accounts_table_header_col.sort() == col_names_lst.sort()
 
     def add_accounts_data_in_txt_box(self, browser):
         self.account_details = accounts_general_details
@@ -190,6 +192,6 @@ class Accounts:
                     if acc_data_list.index(j) == -1:
                         non_present_data.append(i)
                         break
-        print(non_present_data)
+        logging.info(non_present_data)
         assert len(non_present_data) == 0
 

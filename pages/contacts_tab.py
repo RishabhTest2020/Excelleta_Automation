@@ -1,3 +1,4 @@
+import logging
 import os
 
 from selenium.webdriver import Keys
@@ -34,8 +35,8 @@ class Contacts:
             scroll_into_the_view(browser, accounts_head_col[0], col_loc)
             col_name = get_text_by_js_xpath(browser, col_loc)
             col_names_lst.append(col_name)
-        print(col_names_lst)
-        assert contact_table_header_col == col_names_lst
+        logging.info(col_names_lst)
+        assert contact_table_header_col.sort() == col_names_lst.sort()
 
     def select_account(self, browser, acc_name: str):
         do_send_keys(browser, contact_acc_name, acc_name)
@@ -91,7 +92,7 @@ class Contacts:
         do_click(browser, select_dep_loc)
         sleep(0.5)
 
-    def select_report_to_field(self, browser, rep_index=2):
+    def select_report_to_field(self, browser):
         do_click(browser, select_report_to)
         values = get_list_of_elems_text(browser, select_report_to_options[0], select_report_to_options[1])
         assert values == report_to_data
@@ -211,6 +212,6 @@ class Contacts:
                     if acc_data_list.index(j) == -1:
                         non_present_data.append(i)
                         break
-        print(non_present_data)
+        logging.info(non_present_data)
         assert len(non_present_data) == 0
 

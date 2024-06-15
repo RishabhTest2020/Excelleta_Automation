@@ -1,3 +1,5 @@
+import logging
+
 from helpers.common_helpers import *
 from pages.accounts_tab import *
 from pytest_bdd import given, when, then
@@ -35,4 +37,5 @@ def account_creation(browser):
 @then('Verify created account data')
 def verify_account(browser):
     acc_class_data = get_class_global_variables_dict(accounts_steps)
+    logging.info(acc_class_data.values())
     accounts_steps.verify_created_account(browser, acc_class_data)

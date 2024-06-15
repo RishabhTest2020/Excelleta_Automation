@@ -1,5 +1,6 @@
 import inspect
 import json
+import logging
 import os
 import sys
 import time
@@ -13,6 +14,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
 from locators.common_locators_file import *
+import inspect
+import importlib
 
 
 def wait_for_ajax(browser):
@@ -23,15 +26,16 @@ def wait_for_ajax(browser):
         pass
 
 
-def take_screenshot(browser):
+def take_screenshot(browser, name='ss' + time.strftime("%Y%m%d-%H%M%S")):
     """
     Takes a screenshot and saves it in png file
     Args:
         browser: webdriver
+        name: screenshot name
     """
     # if sys.platform == 'linux':
     try:
-        path = os.getcwd() + '/screenshots/' + 'ss' + time.strftime("%Y%m%d-%H%M%S") + '.png'
+        path = os.getcwd() + '/screenshots/' + name + '.png'
         browser.save_screenshot(path)
         print(path)
     except (WebDriverException, Exception):
@@ -216,7 +220,7 @@ def is_visible(browser, by_locator, sec=5) -> bool:
         elem = WebDriverWait(browser, sec, poll_frequency=1, ignored_exceptions=WebDriverException).until(
             EC.visibility_of_element_located(by_locator))
     except (WebDriverException, Exception, TimeoutException):
-        take_screenshot(browser)
+        # take_screenshot(browser)
         return bool(elem)
     return bool(elem)
 
@@ -224,18 +228,18 @@ def is_visible(browser, by_locator, sec=5) -> bool:
 def should_be_invisible(browser, by_locator, msg, sec=5):
     invisi = is_invisible(browser, by_locator, sec)
     if invisi is True:
-        print(msg + ' is invisible')
+        logging.info(msg + ' is invisible')
     else:
-        print(msg + ' is not invisible')
+        logging.info(msg + ' is not invisible')
         sys.exit(1)
 
 
 def should_be_visible(browser, by_locator, msg, sec=5):
     visi = is_visible(browser, by_locator, sec)
     if visi is True:
-        print(msg + ' is visible')
+        logging.info(msg + ' is visible')
     else:
-        print(msg + ' is not visible')
+        logging.info(msg + ' is not visible')
         sys.exit(1)
 
 
@@ -561,7 +565,7 @@ def get_list_of_elems_text(browser, locatortype, locator):
         name_attr = name_attr.lstrip(' ')
         if name_attr != '':
             text_values.append(name_attr)
-    print(text_values)
+    logging.info(text_values)
     return text_values
 
 
@@ -612,3 +616,34 @@ def get_methods(cls):
 
     methods_str = "\n".join(methods)
     return methods_str
+
+
+def get_classes_in_module(module):
+    # Get all class members in the module
+    return [name for name, obj in inspect.getmembers(module, inspect.isclass) if obj.__module__ == module.__name__]
+
+
+def delete_class_vars(cls):
+    for var in list(cls.__dict__.keys()):
+        if not var.startswith('__'):  # Skip built-in attributes
+            delattr(cls, var)
+
+
+def process_module(module):
+    for name, obj in inspect.getmembers(module, inspect.isclass):
+        if obj.__module__ == module.__name__:  # Ensure the class is defined in this module
+            delete_class_vars(obj)
+
+
+def delete_all_class_vars_in_project(project_directory):
+    for root, dirs, files in os.walk(project_directory):
+        for file in files:
+            if file.endswith(".py") and file != "__init__.py":
+                module_path = os.path.relpath(os.path.join(root, file), project_directory)
+                module_name = module_path.replace(os.sep, '.')[:-3]  # Convert file path to module name
+                try:
+                    module = importlib.import_module(module_name)
+                    process_module(module)
+                except Exception as e:
+                    pass
+

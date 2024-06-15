@@ -1,7 +1,7 @@
 Feature: Automation Smoke Test Plan Prod BrowserStack
 
 
-  @Sanity
+  @Sanity @TestCI
   Scenario: Verify Successful login
     Given Login into Excelleta UI
 
@@ -30,15 +30,15 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Then Verify created contact data
     Then Verify contact table head column
 
-  @New
+  @Sanity
   Scenario: Verify Rfq Tab and New Rfq creation
     Given Login into Excelleta UI
-#    When Navigate to Accounts tab
-#    Then Create an account
-#    When Navigate to Contact tab
-#    When Create an Contact
-#    When Navigate to RFQ tab
-#    Then Create a RFQ
+    When Navigate to Accounts tab
+    Then Create an account
+    When Navigate to Contact tab
+    When Create an Contact
     When Navigate to RFQ tab
-#    Then Verify created Rfq data
+    Then Create a RFQ
+    When Navigate to RFQ tab
+    Then Verify created Rfq data
     Then Verify Rfq table head column
