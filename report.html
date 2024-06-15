@@ -3,11 +3,332 @@
   <head>
     <meta charset="utf-8"/>
     <title id="head-title"> Excelleta Automation Report</title>
-      <link href="assets/style.css" rel="stylesheet" type="text/css"/>
+      <style type="text/css">body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  /* do not increase min-width as some may use split screens */
+  min-width: 800px;
+  color: #999;
+}
+
+h1 {
+  font-size: 24px;
+  color: black;
+}
+
+h2 {
+  font-size: 16px;
+  color: black;
+}
+
+p {
+  color: black;
+}
+
+a {
+  color: #999;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/******************************
+ * SUMMARY INFORMATION
+ ******************************/
+#environment td {
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  vertical-align: top;
+}
+#environment tr:nth-child(odd) {
+  background-color: #f6f6f6;
+}
+#environment ul {
+  margin: 0;
+  padding: 0 20px;
+}
+
+/******************************
+ * TEST RESULT COLORS
+ ******************************/
+span.passed,
+.passed .col-result {
+  color: green;
+}
+
+span.skipped,
+span.xfailed,
+span.rerun,
+.skipped .col-result,
+.xfailed .col-result,
+.rerun .col-result {
+  color: orange;
+}
+
+span.error,
+span.failed,
+span.xpassed,
+.error .col-result,
+.failed .col-result,
+.xpassed .col-result {
+  color: red;
+}
+
+.col-links__extra {
+  margin-right: 3px;
+}
+
+/******************************
+ * RESULTS TABLE
+ *
+ * 1. Table Layout
+ * 2. Extra
+ * 3. Sorting items
+ *
+ ******************************/
+/*------------------
+ * 1. Table Layout
+ *------------------*/
+#results-table {
+  border: 1px solid #e6e6e6;
+  color: #999;
+  font-size: 12px;
+  width: 100%;
+}
+#results-table th,
+#results-table td {
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  text-align: left;
+}
+#results-table th {
+  font-weight: bold;
+}
+
+/*------------------
+ * 2. Extra
+ *------------------*/
+.logwrapper {
+  max-height: 230px;
+  overflow-y: scroll;
+  background-color: #e6e6e6;
+}
+.logwrapper.expanded {
+  max-height: none;
+}
+.logwrapper.expanded .logexpander:after {
+  content: "collapse [-]";
+}
+.logwrapper .logexpander {
+  z-index: 1;
+  position: sticky;
+  top: 10px;
+  width: max-content;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 5px 7px;
+  margin: 10px 0 10px calc(100% - 80px);
+  cursor: pointer;
+  background-color: #e6e6e6;
+}
+.logwrapper .logexpander:after {
+  content: "expand [+]";
+}
+.logwrapper .logexpander:hover {
+  color: #000;
+  border-color: #000;
+}
+.logwrapper .log {
+  min-height: 40px;
+  position: relative;
+  top: -50px;
+  height: calc(100% + 50px);
+  border: 1px solid #e6e6e6;
+  color: black;
+  display: block;
+  font-family: "Courier New", Courier, monospace;
+  padding: 5px;
+  padding-right: 80px;
+  white-space: pre-wrap;
+}
+
+div.media {
+  border: 1px solid #e6e6e6;
+  float: right;
+  height: 240px;
+  margin: 0 5px;
+  overflow: hidden;
+  width: 320px;
+}
+
+.media-container {
+  display: grid;
+  grid-template-columns: 25px auto 25px;
+  align-items: center;
+  flex: 1 1;
+  overflow: hidden;
+  height: 200px;
+}
+
+.media-container--fullscreen {
+  grid-template-columns: 0px auto 0px;
+}
+
+.media-container__nav--right,
+.media-container__nav--left {
+  text-align: center;
+  cursor: pointer;
+}
+
+.media-container__viewport {
+  cursor: pointer;
+  text-align: center;
+  height: inherit;
+}
+.media-container__viewport img,
+.media-container__viewport video {
+  object-fit: cover;
+  width: 100%;
+  max-height: 100%;
+}
+
+.media__name,
+.media__counter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex: 0 0 25px;
+  align-items: center;
+}
+
+.collapsible td:not(.col-links) {
+  cursor: pointer;
+}
+.collapsible td:not(.col-links):hover::after {
+  color: #bbb;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.col-result {
+  width: 130px;
+}
+.col-result:hover::after {
+  content: " (hide details)";
+}
+
+.col-result.collapsed:hover::after {
+  content: " (show details)";
+}
+
+#environment-header h2:hover::after {
+  content: " (hide details)";
+  color: #bbb;
+  font-style: italic;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#environment-header.collapsed h2:hover::after {
+  content: " (show details)";
+  color: #bbb;
+  font-style: italic;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/*------------------
+ * 3. Sorting items
+ *------------------*/
+.sortable {
+  cursor: pointer;
+}
+.sortable.desc:after {
+  content: " ";
+  position: relative;
+  left: 5px;
+  bottom: -12.5px;
+  border: 10px solid #4caf50;
+  border-bottom: 0;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.sortable.asc:after {
+  content: " ";
+  position: relative;
+  left: 5px;
+  bottom: 12.5px;
+  border: 10px solid #4caf50;
+  border-top: 0;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+.hidden, .summary__reload__button.hidden {
+  display: none;
+}
+
+.summary__data {
+  flex: 0 0 550px;
+}
+.summary__reload {
+  flex: 1 1;
+  display: flex;
+  justify-content: center;
+}
+.summary__reload__button {
+  flex: 0 0 300px;
+  display: flex;
+  color: white;
+  font-weight: bold;
+  background-color: #4caf50;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.summary__reload__button:hover {
+  background-color: #46a049;
+}
+.summary__spacer {
+  flex: 0 0 550px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filters,
+.collapse {
+  display: flex;
+  align-items: center;
+}
+.filters button,
+.collapse button {
+  color: #999;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.filters button:hover,
+.collapse button:hover {
+  color: #ccc;
+}
+
+.filter__label {
+  margin-right: 10px;
+}
+
+      </style>
+    
   </head>
   <body>
     <h1 id="title"> Excelleta Automation Report</h1>
-    <p>Report generated on 15-Jun-2024 at 14:47:11 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a>
+    <p>Report generated on 15-Jun-2024 at 16:35:09 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a>
         v4.1.1</p>
     <div id="environment-header">
       <h2>Environment</h2>
@@ -61,7 +382,7 @@
         <h2>Summary</h2>
         <div class="additional-summary prefix">
         </div>
-        <p class="run-count">5 tests took 00:03:37.</p>
+        <p class="run-count">5 tests took 00:04:01.</p>
         <p class="filter">(Un)check the boxes to filter the results.</p>
         <div class="summary__reload">
           <div class="summary__reload__button hidden" onclick="location.reload()">
@@ -72,9 +393,9 @@
         <div class="controls">
           <div class="filters">
             <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="failed" />
-            <span class="failed">2 Failed,</span>
-            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="passed" />
-            <span class="passed">3 Passed,</span>
+            <span class="failed">5 Failed,</span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="passed" disabled/>
+            <span class="passed">0 Passed,</span>
             <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="skipped" disabled/>
             <span class="skipped">0 Skipped,</span>
             <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="xfailed" disabled/>
@@ -108,7 +429,7 @@
     </table>
   </body>
   <footer>
-    <div id="data-container" data-jsonblob="{&#34;environment&#34;: {&#34;Python&#34;: &#34;3.12.3&#34;, &#34;Platform&#34;: &#34;Linux-6.5.0-1021-azure-x86_64-with-glibc2.35&#34;, &#34;Packages&#34;: {&#34;pytest&#34;: &#34;8.2.2&#34;, &#34;pluggy&#34;: &#34;1.5.0&#34;}, &#34;Plugins&#34;: {&#34;allure-pytest&#34;: &#34;2.13.5&#34;, &#34;bdd&#34;: &#34;7.2.0&#34;, &#34;html&#34;: &#34;4.1.1&#34;, &#34;metadata&#34;: &#34;3.1.1&#34;, &#34;xdist&#34;: &#34;3.6.1&#34;, &#34;forked&#34;: &#34;1.6.0&#34;, &#34;repeat&#34;: &#34;0.9.3&#34;}, &#34;CI&#34;: &#34;true&#34;, &#34;JAVA_HOME&#34;: &#34;/usr/lib/jvm/temurin-11-jdk-amd64&#34;}, &#34;tests&#34;: {&#34;test_run.py::test_verify_successful_login&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;test_run.py::test_verify_successful_login&#34;, &#34;duration&#34;: &#34;00:00:08&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;test_run.py::test_verify_successful_login&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:08&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;No log output captured.&#34;}], &#34;test_run.py::test_verify_login_with_invalid_creds&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;test_run.py::test_verify_login_with_invalid_creds&#34;, &#34;duration&#34;: &#34;00:00:06&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;test_run.py::test_verify_login_with_invalid_creds&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:06&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;No log output captured.&#34;}], &#34;test_run.py::test_verify_accounts_tab_and_new_account_creation&#34;: [{&#34;extras&#34;: [{&#34;name&#34;: &#34;URL&#34;, &#34;format_type&#34;: &#34;url&#34;, &#34;content&#34;: &#34;https://metalmanstage.excelleta.tech/accounts&#34;, &#34;mime_type&#34;: null, &#34;extension&#34;: null}, {&#34;name&#34;: null, &#34;format_type&#34;: &#34;html&#34;, &#34;content&#34;: &#34;&lt;div&gt;&lt;img src=\&#34;screenshots/test_run.py_test_verify_accounts_tab_and_new_account_creation.png\&#34; alt=\&#34;screenshot\&#34; style=\&#34;width:304px;height:228px;\&#34; onclick=\&#34;window.open(this.src)\&#34; align=\&#34;right\&#34;/&gt;&lt;/div&gt;&#34;, &#34;mime_type&#34;: null, &#34;extension&#34;: null}], &#34;result&#34;: &#34;Failed&#34;, &#34;testId&#34;: &#34;test_run.py::test_verify_accounts_tab_and_new_account_creation&#34;, &#34;duration&#34;: &#34;00:01:10&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Failed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;test_run.py::test_verify_accounts_tab_and_new_account_creation&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:01:10&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;a target=\&#34;_blank\&#34; href=\&#34;https://metalmanstage.excelleta.tech/accounts\&#34; class=\&#34;col-links__extra url\&#34;&gt;URL&lt;/a&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;fixturefunc = &amp;lt;function acc_head_colm at 0x7fccbb378d60&amp;gt;\nrequest = &amp;lt;FixtureRequest for &amp;lt;Function test_verify_accounts_tab_and_new_account_creation&amp;gt;&amp;gt;\nkwargs = {&amp;#x27;browser&amp;#x27;: &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;db9df67881a355a2d90b5f1d6f05d84c&amp;quot;)&amp;gt;}\n\n    def call_fixture_func(\n        fixturefunc: &amp;quot;_FixtureFunc[FixtureValue]&amp;quot;, request: FixtureRequest, kwargs\n    ) -&amp;gt; FixtureValue:\n        if is_generator(fixturefunc):\n            fixturefunc = cast(\n                Callable[..., Generator[FixtureValue, None, None]], fixturefunc\n            )\n            generator = fixturefunc(**kwargs)\n            try:\n                fixture_result = next(generator)\n            except StopIteration:\n                raise ValueError(f&amp;quot;{request.fixturename} did not yield a value&amp;quot;) from None\n            finalizer = functools.partial(_teardown_yield_fixture, fixturefunc, generator)\n            request.addfinalizer(finalizer)\n        else:\n            fixturefunc = cast(Callable[..., FixtureValue], fixturefunc)\n&amp;gt;           fixture_result = fixturefunc(**kwargs)\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/_pytest/fixtures.py:887: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntests/test_accounts_tab.py:12: in acc_head_colm\n    accounts_steps.verify_accounts_head_col(browser)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = &amp;lt;pages.accounts_tab.Accounts object at 0x7fccbb502f60&amp;gt;\nbrowser = &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;db9df67881a355a2d90b5f1d6f05d84c&amp;quot;)&amp;gt;\n\n    def verify_accounts_head_col(self, browser):\n        elems = browser.find_elements(accounts_head_col[0], accounts_head_col[1])\n        elems_len = len(elems)\n        col_names_lst = []\n        for i in range(1, elems_len-1):\n            col_loc = accounts_head_col[1] + f&amp;#x27;[{i}]&amp;#x27;\n            scroll_into_the_view(browser, accounts_head_col[0], col_loc)\n            col_name = get_text_by_js_xpath(browser, col_loc)\n            col_names_lst.append(col_name)\n        print(col_names_lst)\n&amp;gt;       assert accounts_table_header_col.sort() == col_names_lst\nE       AssertionError\n\npages/accounts_tab.py:35: AssertionError\n&#34;}], &#34;test_run.py::test_verify_contacts_tab_and_new_contact_creation&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;test_run.py::test_verify_contacts_tab_and_new_contact_creation&#34;, &#34;duration&#34;: &#34;00:01:37&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;test_run.py::test_verify_contacts_tab_and_new_contact_creation&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:01:37&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;No log output captured.&#34;}], &#34;test_run.py::test_verify_rfq_tab_and_new_rfq_creation&#34;: [{&#34;extras&#34;: [{&#34;name&#34;: &#34;URL&#34;, &#34;format_type&#34;: &#34;url&#34;, &#34;content&#34;: &#34;https://metalmanstage.excelleta.tech/contacts&#34;, &#34;mime_type&#34;: null, &#34;extension&#34;: null}, {&#34;name&#34;: null, &#34;format_type&#34;: &#34;html&#34;, &#34;content&#34;: &#34;&lt;div&gt;&lt;img src=\&#34;screenshots/test_run.py_test_verify_rfq_tab_and_new_rfq_creation.png\&#34; alt=\&#34;screenshot\&#34; style=\&#34;width:304px;height:228px;\&#34; onclick=\&#34;window.open(this.src)\&#34; align=\&#34;right\&#34;/&gt;&lt;/div&gt;&#34;, &#34;mime_type&#34;: null, &#34;extension&#34;: null}], &#34;result&#34;: &#34;Failed&#34;, &#34;testId&#34;: &#34;test_run.py::test_verify_rfq_tab_and_new_rfq_creation&#34;, &#34;duration&#34;: &#34;00:00:36&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Failed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;test_run.py::test_verify_rfq_tab_and_new_rfq_creation&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:36&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;a target=\&#34;_blank\&#34; href=\&#34;https://metalmanstage.excelleta.tech/contacts\&#34; class=\&#34;col-links__extra url\&#34;&gt;URL&lt;/a&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;fixturefunc = &amp;lt;function create_an_contact at 0x7fccbb37b6a0&amp;gt;\nrequest = &amp;lt;FixtureRequest for &amp;lt;Function test_verify_rfq_tab_and_new_rfq_creation&amp;gt;&amp;gt;\nkwargs = {&amp;#x27;browser&amp;#x27;: &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;737a03a42c510f248396e3126ad36932&amp;quot;)&amp;gt;}\n\n    def call_fixture_func(\n        fixturefunc: &amp;quot;_FixtureFunc[FixtureValue]&amp;quot;, request: FixtureRequest, kwargs\n    ) -&amp;gt; FixtureValue:\n        if is_generator(fixturefunc):\n            fixturefunc = cast(\n                Callable[..., Generator[FixtureValue, None, None]], fixturefunc\n            )\n            generator = fixturefunc(**kwargs)\n            try:\n                fixture_result = next(generator)\n            except StopIteration:\n                raise ValueError(f&amp;quot;{request.fixturename} did not yield a value&amp;quot;) from None\n            finalizer = functools.partial(_teardown_yield_fixture, fixturefunc, generator)\n            request.addfinalizer(finalizer)\n        else:\n            fixturefunc = cast(Callable[..., FixtureValue], fixturefunc)\n&amp;gt;           fixture_result = fixturefunc(**kwargs)\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/_pytest/fixtures.py:887: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntests/test_contacts_tab.py:23: in create_an_contact\n    contacts_steps.select_report_to_field(browser)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = &amp;lt;pages.contacts_tab.Contacts object at 0x7fccbc6c0bf0&amp;gt;\nbrowser = &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;737a03a42c510f248396e3126ad36932&amp;quot;)&amp;gt;\nrep_index = 2\n\n    def select_report_to_field(self, browser, rep_index=2):\n        do_click(browser, select_report_to)\n        values = get_list_of_elems_text(browser, select_report_to_options[0], select_report_to_options[1])\n&amp;gt;       assert values == report_to_data\nE       AssertionError\n\npages/contacts_tab.py:97: AssertionError\n&#34;}]}, &#34;renderCollapsed&#34;: [&#34;passed&#34;], &#34;initialSort&#34;: &#34;result&#34;, &#34;title&#34;: &#34; Excelleta Automation Report&#34;}"></div>
+    <div id="data-container" data-jsonblob="{&#34;environment&#34;: {&#34;Python&#34;: &#34;3.12.3&#34;, &#34;Platform&#34;: &#34;Linux-6.5.0-1021-azure-x86_64-with-glibc2.35&#34;, &#34;Packages&#34;: {&#34;pytest&#34;: &#34;8.2.2&#34;, &#34;pluggy&#34;: &#34;1.5.0&#34;}, &#34;Plugins&#34;: {&#34;allure-pytest&#34;: &#34;2.13.5&#34;, &#34;bdd&#34;: &#34;7.2.0&#34;, &#34;html&#34;: &#34;4.1.1&#34;, &#34;metadata&#34;: &#34;3.1.1&#34;, &#34;xdist&#34;: &#34;3.6.1&#34;, &#34;forked&#34;: &#34;1.6.0&#34;, &#34;repeat&#34;: &#34;0.9.3&#34;}, &#34;CI&#34;: &#34;true&#34;, &#34;JAVA_HOME&#34;: &#34;/usr/lib/jvm/temurin-11-jdk-amd64&#34;}, &#34;tests&#34;: {&#34;test_run.py::test_verify_successful_login&#34;: [{&#34;extras&#34;: [{&#34;name&#34;: &#34;log&#34;, &#34;format_type&#34;: &#34;text&#34;, &#34;content&#34;: &#34;data:text/plain;charset=utf-8;base64,ZXhjZWxsZXRhX2xvZ28gaXMgdmlzaWJsZQppbnZhbGlkX2NyZWRzX21lc3NhZ2UgaXMgbm90IHZpc2libGU=&#34;, &#34;mime_type&#34;: &#34;text/plain&#34;, &#34;extension&#34;: &#34;txt&#34;}, {&#34;name&#34;: &#34;URL&#34;, &#34;format_type&#34;: &#34;url&#34;, &#34;content&#34;: &#34;https://metalmanstage.excelleta.tech/dashboard&#34;, &#34;mime_type&#34;: null, &#34;extension&#34;: null}, {&#34;name&#34;: null, &#34;format_type&#34;: &#34;html&#34;, &#34;content&#34;: &#34;&lt;div&gt;&lt;img src=\&#34;screenshots/test_run.py_test_verify_successful_login.png\&#34; alt=\&#34;screenshot\&#34; style=\&#34;width:304px;height:228px;\&#34; onclick=\&#34;window.open(this.src)\&#34; align=\&#34;right\&#34;/&gt;&lt;/div&gt;&#34;, &#34;mime_type&#34;: null, &#34;extension&#34;: null}], &#34;result&#34;: &#34;Failed&#34;, &#34;testId&#34;: &#34;test_run.py::test_verify_successful_login&#34;, &#34;duration&#34;: &#34;00:00:59&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Failed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;test_run.py::test_verify_successful_login&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:59&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;a target=\&#34;_blank\&#34; href=\&#34;data:text/plain;charset=utf-8;base64,ZXhjZWxsZXRhX2xvZ28gaXMgdmlzaWJsZQppbnZhbGlkX2NyZWRzX21lc3NhZ2UgaXMgbm90IHZpc2libGU=\&#34; class=\&#34;col-links__extra text\&#34;&gt;log&lt;/a&gt;&lt;a target=\&#34;_blank\&#34; href=\&#34;https://metalmanstage.excelleta.tech/dashboard\&#34; class=\&#34;col-links__extra url\&#34;&gt;URL&lt;/a&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;fixturefunc = &amp;lt;function logged_in at 0x7fcf3e37c2c0&amp;gt;\nrequest = &amp;lt;FixtureRequest for &amp;lt;Function test_verify_successful_login&amp;gt;&amp;gt;\nkwargs = {&amp;#x27;browser&amp;#x27;: &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;58309087a5b514c7b97853a13ba297d6&amp;quot;)&amp;gt;}\n\n    def call_fixture_func(\n        fixturefunc: &amp;quot;_FixtureFunc[FixtureValue]&amp;quot;, request: FixtureRequest, kwargs\n    ) -&amp;gt; FixtureValue:\n        if is_generator(fixturefunc):\n            fixturefunc = cast(\n                Callable[..., Generator[FixtureValue, None, None]], fixturefunc\n            )\n            generator = fixturefunc(**kwargs)\n            try:\n                fixture_result = next(generator)\n            except StopIteration:\n                raise ValueError(f&amp;quot;{request.fixturename} did not yield a value&amp;quot;) from None\n            finalizer = functools.partial(_teardown_yield_fixture, fixturefunc, generator)\n            request.addfinalizer(finalizer)\n        else:\n            fixturefunc = cast(Callable[..., FixtureValue], fixturefunc)\n&amp;gt;           fixture_result = fixturefunc(**kwargs)\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/_pytest/fixtures.py:887: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntests/test_login.py:8: in logged_in\n    user_login(browser)\npages/new_login_page.py:18: in user_login\n    should_be_visible(browser, invalid_creds_message, &amp;#x27;invalid_creds_message&amp;#x27;)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nbrowser = &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;58309087a5b514c7b97853a13ba297d6&amp;quot;)&amp;gt;\nby_locator = (&amp;#x27;xpath&amp;#x27;, &amp;#x27;//*[contains(text(), &amp;quot;Invalid username or password. Please try again.&amp;quot;)]&amp;#x27;)\nmsg = &amp;#x27;invalid_creds_message&amp;#x27;, sec = 5\n\n    def should_be_visible(browser, by_locator, msg, sec=5):\n        visi = is_visible(browser, by_locator, sec)\n        if visi is True:\n            logging.info(msg + &amp;#x27; is visible&amp;#x27;)\n        else:\n            logging.info(msg + &amp;#x27; is not visible&amp;#x27;)\n&amp;gt;           sys.exit(1)\nE           SystemExit: 1\n\nhelpers/common_helpers.py:241: SystemExit\n\n------------------------------ Captured log setup ------------------------------\nINFO     WDM:logger.py:11 ====== WebDriver manager ======\nINFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome\nINFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome\nINFO     WDM:logger.py:11 There is no [linux64] chromedriver &amp;quot;125.0.6422.141&amp;quot; for browser google-chrome &amp;quot;125.0.6422&amp;quot; in cache\nINFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome\nINFO     WDM:logger.py:11 WebDriver version 125.0.6422.141 selected\nINFO     WDM:logger.py:11 Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/125.0.6422.141/linux64/chromedriver-linux64.zip\nINFO     WDM:logger.py:11 About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/125.0.6422.141/linux64/chromedriver-linux64.zip\nINFO     WDM:logger.py:11 Driver downloading response is 200\nINFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome\nINFO     WDM:logger.py:11 Driver has been saved in cache [/home/runner/.wdm/drivers/chromedriver/linux64/125.0.6422.141]\n\n------------------------------ Captured log call -------------------------------\nINFO     root:common_helpers.py:238 excelleta_logo is visible\nINFO     root:common_helpers.py:240 invalid_creds_message is not visible\n\n&#34;}], &#34;test_run.py::test_verify_login_with_invalid_creds&#34;: [{&#34;extras&#34;: [{&#34;name&#34;: &#34;log&#34;, &#34;format_type&#34;: &#34;text&#34;, &#34;content&#34;: &#34;data:text/plain;charset=utf-8;base64,ZXhjZWxsZXRhX2xvZ28gaXMgdmlzaWJsZQpkYXNoYm9hcmQgaGVhZGluZyBpcyBub3QgdmlzaWJsZQ==&#34;, &#34;mime_type&#34;: &#34;text/plain&#34;, &#34;extension&#34;: &#34;txt&#34;}, {&#34;name&#34;: &#34;URL&#34;, &#34;format_type&#34;: &#34;url&#34;, &#34;content&#34;: &#34;https://metalmanstage.excelleta.tech/login&#34;, &#34;mime_type&#34;: null, &#34;extension&#34;: null}, {&#34;name&#34;: null, &#34;format_type&#34;: &#34;html&#34;, &#34;content&#34;: &#34;&lt;div&gt;&lt;img src=\&#34;screenshots/test_run.py_test_verify_login_with_invalid_creds.png\&#34; alt=\&#34;screenshot\&#34; style=\&#34;width:304px;height:228px;\&#34; onclick=\&#34;window.open(this.src)\&#34; align=\&#34;right\&#34;/&gt;&lt;/div&gt;&#34;, &#34;mime_type&#34;: null, &#34;extension&#34;: null}], &#34;result&#34;: &#34;Failed&#34;, &#34;testId&#34;: &#34;test_run.py::test_verify_login_with_invalid_creds&#34;, &#34;duration&#34;: &#34;00:00:46&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Failed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;test_run.py::test_verify_login_with_invalid_creds&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:46&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;a target=\&#34;_blank\&#34; href=\&#34;data:text/plain;charset=utf-8;base64,ZXhjZWxsZXRhX2xvZ28gaXMgdmlzaWJsZQpkYXNoYm9hcmQgaGVhZGluZyBpcyBub3QgdmlzaWJsZQ==\&#34; class=\&#34;col-links__extra text\&#34;&gt;log&lt;/a&gt;&lt;a target=\&#34;_blank\&#34; href=\&#34;https://metalmanstage.excelleta.tech/login\&#34; class=\&#34;col-links__extra url\&#34;&gt;URL&lt;/a&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;fixturefunc = &amp;lt;function logged_in at 0x7fcf3e37c900&amp;gt;\nrequest = &amp;lt;FixtureRequest for &amp;lt;Function test_verify_login_with_invalid_creds&amp;gt;&amp;gt;\nkwargs = {&amp;#x27;browser&amp;#x27;: &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;25bc5e6b730cf33da3c7101a1c97dedf&amp;quot;)&amp;gt;, &amp;#x27;email&amp;#x27;: &amp;#x27;test@yopmail.com&amp;#x27;, &amp;#x27;password&amp;#x27;: &amp;#x27;123test&amp;#x27;}\n\n    def call_fixture_func(\n        fixturefunc: &amp;quot;_FixtureFunc[FixtureValue]&amp;quot;, request: FixtureRequest, kwargs\n    ) -&amp;gt; FixtureValue:\n        if is_generator(fixturefunc):\n            fixturefunc = cast(\n                Callable[..., Generator[FixtureValue, None, None]], fixturefunc\n            )\n            generator = fixturefunc(**kwargs)\n            try:\n                fixture_result = next(generator)\n            except StopIteration:\n                raise ValueError(f&amp;quot;{request.fixturename} did not yield a value&amp;quot;) from None\n            finalizer = functools.partial(_teardown_yield_fixture, fixturefunc, generator)\n            request.addfinalizer(finalizer)\n        else:\n            fixturefunc = cast(Callable[..., FixtureValue], fixturefunc)\n&amp;gt;           fixture_result = fixturefunc(**kwargs)\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/_pytest/fixtures.py:887: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntests/test_login.py:13: in logged_in\n    user_login(browser, email=email, password=password, type=&amp;#x27;fail&amp;#x27;)\npages/new_login_page.py:21: in user_login\n    should_be_visible(browser, dashboard_txt, &amp;#x27;dashboard heading&amp;#x27;, 10)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nbrowser = &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;25bc5e6b730cf33da3c7101a1c97dedf&amp;quot;)&amp;gt;\nby_locator = (&amp;#x27;xpath&amp;#x27;, &amp;#x27;//h2[contains(text(), &amp;quot;Dashboard&amp;quot;)]&amp;#x27;)\nmsg = &amp;#x27;dashboard heading&amp;#x27;, sec = 10\n\n    def should_be_visible(browser, by_locator, msg, sec=5):\n        visi = is_visible(browser, by_locator, sec)\n        if visi is True:\n            logging.info(msg + &amp;#x27; is visible&amp;#x27;)\n        else:\n            logging.info(msg + &amp;#x27; is not visible&amp;#x27;)\n&amp;gt;           sys.exit(1)\nE           SystemExit: 1\n\nhelpers/common_helpers.py:241: SystemExit\n\n------------------------------ Captured log setup ------------------------------\nINFO     WDM:logger.py:11 ====== WebDriver manager ======\nINFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome\nINFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome\nINFO     WDM:logger.py:11 Driver [/home/runner/.wdm/drivers/chromedriver/linux64/125.0.6422.141/chromedriver-linux64/chromedriver] found in cache\n\n------------------------------ Captured log call -------------------------------\nINFO     root:common_helpers.py:238 excelleta_logo is visible\nINFO     root:common_helpers.py:240 dashboard heading is not visible\n\n&#34;}], &#34;test_run.py::test_verify_accounts_tab_and_new_account_creation&#34;: [{&#34;extras&#34;: [{&#34;name&#34;: &#34;log&#34;, &#34;format_type&#34;: &#34;text&#34;, &#34;content&#34;: &#34;data:text/plain;charset=utf-8;base64,ZXhjZWxsZXRhX2xvZ28gaXMgdmlzaWJsZQppbnZhbGlkX2NyZWRzX21lc3NhZ2UgaXMgbm90IHZpc2libGU=&#34;, &#34;mime_type&#34;: &#34;text/plain&#34;, &#34;extension&#34;: &#34;txt&#34;}, {&#34;name&#34;: &#34;URL&#34;, &#34;format_type&#34;: &#34;url&#34;, &#34;content&#34;: &#34;https://metalmanstage.excelleta.tech/dashboard&#34;, &#34;mime_type&#34;: null, &#34;extension&#34;: null}, {&#34;name&#34;: null, &#34;format_type&#34;: &#34;html&#34;, &#34;content&#34;: &#34;&lt;div&gt;&lt;img src=\&#34;screenshots/test_run.py_test_verify_accounts_tab_and_new_account_creation.png\&#34; alt=\&#34;screenshot\&#34; style=\&#34;width:304px;height:228px;\&#34; onclick=\&#34;window.open(this.src)\&#34; align=\&#34;right\&#34;/&gt;&lt;/div&gt;&#34;, &#34;mime_type&#34;: null, &#34;extension&#34;: null}], &#34;result&#34;: &#34;Failed&#34;, &#34;testId&#34;: &#34;test_run.py::test_verify_accounts_tab_and_new_account_creation&#34;, &#34;duration&#34;: &#34;00:00:45&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Failed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;test_run.py::test_verify_accounts_tab_and_new_account_creation&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:45&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;a target=\&#34;_blank\&#34; href=\&#34;data:text/plain;charset=utf-8;base64,ZXhjZWxsZXRhX2xvZ28gaXMgdmlzaWJsZQppbnZhbGlkX2NyZWRzX21lc3NhZ2UgaXMgbm90IHZpc2libGU=\&#34; class=\&#34;col-links__extra text\&#34;&gt;log&lt;/a&gt;&lt;a target=\&#34;_blank\&#34; href=\&#34;https://metalmanstage.excelleta.tech/dashboard\&#34; class=\&#34;col-links__extra url\&#34;&gt;URL&lt;/a&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;fixturefunc = &amp;lt;function logged_in at 0x7fcf3e37c2c0&amp;gt;\nrequest = &amp;lt;FixtureRequest for &amp;lt;Function test_verify_accounts_tab_and_new_account_creation&amp;gt;&amp;gt;\nkwargs = {&amp;#x27;browser&amp;#x27;: &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;37954e1df352767dd520c793853a8c1e&amp;quot;)&amp;gt;}\n\n    def call_fixture_func(\n        fixturefunc: &amp;quot;_FixtureFunc[FixtureValue]&amp;quot;, request: FixtureRequest, kwargs\n    ) -&amp;gt; FixtureValue:\n        if is_generator(fixturefunc):\n            fixturefunc = cast(\n                Callable[..., Generator[FixtureValue, None, None]], fixturefunc\n            )\n            generator = fixturefunc(**kwargs)\n            try:\n                fixture_result = next(generator)\n            except StopIteration:\n                raise ValueError(f&amp;quot;{request.fixturename} did not yield a value&amp;quot;) from None\n            finalizer = functools.partial(_teardown_yield_fixture, fixturefunc, generator)\n            request.addfinalizer(finalizer)\n        else:\n            fixturefunc = cast(Callable[..., FixtureValue], fixturefunc)\n&amp;gt;           fixture_result = fixturefunc(**kwargs)\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/_pytest/fixtures.py:887: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntests/test_login.py:8: in logged_in\n    user_login(browser)\npages/new_login_page.py:18: in user_login\n    should_be_visible(browser, invalid_creds_message, &amp;#x27;invalid_creds_message&amp;#x27;)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nbrowser = &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;37954e1df352767dd520c793853a8c1e&amp;quot;)&amp;gt;\nby_locator = (&amp;#x27;xpath&amp;#x27;, &amp;#x27;//*[contains(text(), &amp;quot;Invalid username or password. Please try again.&amp;quot;)]&amp;#x27;)\nmsg = &amp;#x27;invalid_creds_message&amp;#x27;, sec = 5\n\n    def should_be_visible(browser, by_locator, msg, sec=5):\n        visi = is_visible(browser, by_locator, sec)\n        if visi is True:\n            logging.info(msg + &amp;#x27; is visible&amp;#x27;)\n        else:\n            logging.info(msg + &amp;#x27; is not visible&amp;#x27;)\n&amp;gt;           sys.exit(1)\nE           SystemExit: 1\n\nhelpers/common_helpers.py:241: SystemExit\n\n------------------------------ Captured log setup ------------------------------\nINFO     WDM:logger.py:11 ====== WebDriver manager ======\nINFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome\nINFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome\nINFO     WDM:logger.py:11 Driver [/home/runner/.wdm/drivers/chromedriver/linux64/125.0.6422.141/chromedriver-linux64/chromedriver] found in cache\n\n------------------------------ Captured log call -------------------------------\nINFO     root:common_helpers.py:238 excelleta_logo is visible\nINFO     root:common_helpers.py:240 invalid_creds_message is not visible\n\n&#34;}], &#34;test_run.py::test_verify_contacts_tab_and_new_contact_creation&#34;: [{&#34;extras&#34;: [{&#34;name&#34;: &#34;log&#34;, &#34;format_type&#34;: &#34;text&#34;, &#34;content&#34;: &#34;data:text/plain;charset=utf-8;base64,ZXhjZWxsZXRhX2xvZ28gaXMgdmlzaWJsZQppbnZhbGlkX2NyZWRzX21lc3NhZ2UgaXMgbm90IHZpc2libGU=&#34;, &#34;mime_type&#34;: &#34;text/plain&#34;, &#34;extension&#34;: &#34;txt&#34;}, {&#34;name&#34;: &#34;URL&#34;, &#34;format_type&#34;: &#34;url&#34;, &#34;content&#34;: &#34;https://metalmanstage.excelleta.tech/dashboard&#34;, &#34;mime_type&#34;: null, &#34;extension&#34;: null}, {&#34;name&#34;: null, &#34;format_type&#34;: &#34;html&#34;, &#34;content&#34;: &#34;&lt;div&gt;&lt;img src=\&#34;screenshots/test_run.py_test_verify_contacts_tab_and_new_contact_creation.png\&#34; alt=\&#34;screenshot\&#34; style=\&#34;width:304px;height:228px;\&#34; onclick=\&#34;window.open(this.src)\&#34; align=\&#34;right\&#34;/&gt;&lt;/div&gt;&#34;, &#34;mime_type&#34;: null, &#34;extension&#34;: null}], &#34;result&#34;: &#34;Failed&#34;, &#34;testId&#34;: &#34;test_run.py::test_verify_contacts_tab_and_new_contact_creation&#34;, &#34;duration&#34;: &#34;00:00:45&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Failed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;test_run.py::test_verify_contacts_tab_and_new_contact_creation&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:45&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;a target=\&#34;_blank\&#34; href=\&#34;data:text/plain;charset=utf-8;base64,ZXhjZWxsZXRhX2xvZ28gaXMgdmlzaWJsZQppbnZhbGlkX2NyZWRzX21lc3NhZ2UgaXMgbm90IHZpc2libGU=\&#34; class=\&#34;col-links__extra text\&#34;&gt;log&lt;/a&gt;&lt;a target=\&#34;_blank\&#34; href=\&#34;https://metalmanstage.excelleta.tech/dashboard\&#34; class=\&#34;col-links__extra url\&#34;&gt;URL&lt;/a&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;fixturefunc = &amp;lt;function logged_in at 0x7fcf3e37c2c0&amp;gt;\nrequest = &amp;lt;FixtureRequest for &amp;lt;Function test_verify_contacts_tab_and_new_contact_creation&amp;gt;&amp;gt;\nkwargs = {&amp;#x27;browser&amp;#x27;: &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;2ba35ca4ca8391a96f1913c049561e3e&amp;quot;)&amp;gt;}\n\n    def call_fixture_func(\n        fixturefunc: &amp;quot;_FixtureFunc[FixtureValue]&amp;quot;, request: FixtureRequest, kwargs\n    ) -&amp;gt; FixtureValue:\n        if is_generator(fixturefunc):\n            fixturefunc = cast(\n                Callable[..., Generator[FixtureValue, None, None]], fixturefunc\n            )\n            generator = fixturefunc(**kwargs)\n            try:\n                fixture_result = next(generator)\n            except StopIteration:\n                raise ValueError(f&amp;quot;{request.fixturename} did not yield a value&amp;quot;) from None\n            finalizer = functools.partial(_teardown_yield_fixture, fixturefunc, generator)\n            request.addfinalizer(finalizer)\n        else:\n            fixturefunc = cast(Callable[..., FixtureValue], fixturefunc)\n&amp;gt;           fixture_result = fixturefunc(**kwargs)\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/_pytest/fixtures.py:887: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntests/test_login.py:8: in logged_in\n    user_login(browser)\npages/new_login_page.py:18: in user_login\n    should_be_visible(browser, invalid_creds_message, &amp;#x27;invalid_creds_message&amp;#x27;)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nbrowser = &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;2ba35ca4ca8391a96f1913c049561e3e&amp;quot;)&amp;gt;\nby_locator = (&amp;#x27;xpath&amp;#x27;, &amp;#x27;//*[contains(text(), &amp;quot;Invalid username or password. Please try again.&amp;quot;)]&amp;#x27;)\nmsg = &amp;#x27;invalid_creds_message&amp;#x27;, sec = 5\n\n    def should_be_visible(browser, by_locator, msg, sec=5):\n        visi = is_visible(browser, by_locator, sec)\n        if visi is True:\n            logging.info(msg + &amp;#x27; is visible&amp;#x27;)\n        else:\n            logging.info(msg + &amp;#x27; is not visible&amp;#x27;)\n&amp;gt;           sys.exit(1)\nE           SystemExit: 1\n\nhelpers/common_helpers.py:241: SystemExit\n\n------------------------------ Captured log setup ------------------------------\nINFO     WDM:logger.py:11 ====== WebDriver manager ======\nINFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome\nINFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome\nINFO     WDM:logger.py:11 Driver [/home/runner/.wdm/drivers/chromedriver/linux64/125.0.6422.141/chromedriver-linux64/chromedriver] found in cache\n\n------------------------------ Captured log call -------------------------------\nINFO     root:common_helpers.py:238 excelleta_logo is visible\nINFO     root:common_helpers.py:240 invalid_creds_message is not visible\n\n&#34;}], &#34;test_run.py::test_verify_rfq_tab_and_new_rfq_creation&#34;: [{&#34;extras&#34;: [{&#34;name&#34;: &#34;log&#34;, &#34;format_type&#34;: &#34;text&#34;, &#34;content&#34;: &#34;data:text/plain;charset=utf-8;base64,ZXhjZWxsZXRhX2xvZ28gaXMgdmlzaWJsZQppbnZhbGlkX2NyZWRzX21lc3NhZ2UgaXMgbm90IHZpc2libGU=&#34;, &#34;mime_type&#34;: &#34;text/plain&#34;, &#34;extension&#34;: &#34;txt&#34;}, {&#34;name&#34;: &#34;URL&#34;, &#34;format_type&#34;: &#34;url&#34;, &#34;content&#34;: &#34;https://metalmanstage.excelleta.tech/dashboard&#34;, &#34;mime_type&#34;: null, &#34;extension&#34;: null}, {&#34;name&#34;: null, &#34;format_type&#34;: &#34;html&#34;, &#34;content&#34;: &#34;&lt;div&gt;&lt;img src=\&#34;screenshots/test_run.py_test_verify_rfq_tab_and_new_rfq_creation.png\&#34; alt=\&#34;screenshot\&#34; style=\&#34;width:304px;height:228px;\&#34; onclick=\&#34;window.open(this.src)\&#34; align=\&#34;right\&#34;/&gt;&lt;/div&gt;&#34;, &#34;mime_type&#34;: null, &#34;extension&#34;: null}], &#34;result&#34;: &#34;Failed&#34;, &#34;testId&#34;: &#34;test_run.py::test_verify_rfq_tab_and_new_rfq_creation&#34;, &#34;duration&#34;: &#34;00:00:45&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Failed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;test_run.py::test_verify_rfq_tab_and_new_rfq_creation&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:45&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;a target=\&#34;_blank\&#34; href=\&#34;data:text/plain;charset=utf-8;base64,ZXhjZWxsZXRhX2xvZ28gaXMgdmlzaWJsZQppbnZhbGlkX2NyZWRzX21lc3NhZ2UgaXMgbm90IHZpc2libGU=\&#34; class=\&#34;col-links__extra text\&#34;&gt;log&lt;/a&gt;&lt;a target=\&#34;_blank\&#34; href=\&#34;https://metalmanstage.excelleta.tech/dashboard\&#34; class=\&#34;col-links__extra url\&#34;&gt;URL&lt;/a&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;fixturefunc = &amp;lt;function logged_in at 0x7fcf3e37c2c0&amp;gt;\nrequest = &amp;lt;FixtureRequest for &amp;lt;Function test_verify_rfq_tab_and_new_rfq_creation&amp;gt;&amp;gt;\nkwargs = {&amp;#x27;browser&amp;#x27;: &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;0b63f4752f924b7d7493a1d16ff5ad50&amp;quot;)&amp;gt;}\n\n    def call_fixture_func(\n        fixturefunc: &amp;quot;_FixtureFunc[FixtureValue]&amp;quot;, request: FixtureRequest, kwargs\n    ) -&amp;gt; FixtureValue:\n        if is_generator(fixturefunc):\n            fixturefunc = cast(\n                Callable[..., Generator[FixtureValue, None, None]], fixturefunc\n            )\n            generator = fixturefunc(**kwargs)\n            try:\n                fixture_result = next(generator)\n            except StopIteration:\n                raise ValueError(f&amp;quot;{request.fixturename} did not yield a value&amp;quot;) from None\n            finalizer = functools.partial(_teardown_yield_fixture, fixturefunc, generator)\n            request.addfinalizer(finalizer)\n        else:\n            fixturefunc = cast(Callable[..., FixtureValue], fixturefunc)\n&amp;gt;           fixture_result = fixturefunc(**kwargs)\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/_pytest/fixtures.py:887: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntests/test_login.py:8: in logged_in\n    user_login(browser)\npages/new_login_page.py:18: in user_login\n    should_be_visible(browser, invalid_creds_message, &amp;#x27;invalid_creds_message&amp;#x27;)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nbrowser = &amp;lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&amp;quot;0b63f4752f924b7d7493a1d16ff5ad50&amp;quot;)&amp;gt;\nby_locator = (&amp;#x27;xpath&amp;#x27;, &amp;#x27;//*[contains(text(), &amp;quot;Invalid username or password. Please try again.&amp;quot;)]&amp;#x27;)\nmsg = &amp;#x27;invalid_creds_message&amp;#x27;, sec = 5\n\n    def should_be_visible(browser, by_locator, msg, sec=5):\n        visi = is_visible(browser, by_locator, sec)\n        if visi is True:\n            logging.info(msg + &amp;#x27; is visible&amp;#x27;)\n        else:\n            logging.info(msg + &amp;#x27; is not visible&amp;#x27;)\n&amp;gt;           sys.exit(1)\nE           SystemExit: 1\n\nhelpers/common_helpers.py:241: SystemExit\n\n------------------------------ Captured log setup ------------------------------\nINFO     WDM:logger.py:11 ====== WebDriver manager ======\nINFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome\nINFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome\nINFO     WDM:logger.py:11 Driver [/home/runner/.wdm/drivers/chromedriver/linux64/125.0.6422.141/chromedriver-linux64/chromedriver] found in cache\n\n------------------------------ Captured log call -------------------------------\nINFO     root:common_helpers.py:238 excelleta_logo is visible\nINFO     root:common_helpers.py:240 invalid_creds_message is not visible\n\n&#34;}]}, &#34;renderCollapsed&#34;: [&#34;passed&#34;], &#34;initialSort&#34;: &#34;result&#34;, &#34;title&#34;: &#34; Excelleta Automation Report&#34;}"></div>
     <script>
       (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 const { getCollapsedCategory, setCollapsedIds } = require('./storage.js')
