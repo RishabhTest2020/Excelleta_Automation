@@ -8,7 +8,7 @@ on:
 
 env:
   # Setting an environment variable with the value of a configuration variable
-  env_var: ${{ vars.Excelleta Envs }}
+  env_var: ${{ vars.Excelleta }}
 
 
 jobs:
