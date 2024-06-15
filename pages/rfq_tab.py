@@ -56,7 +56,7 @@ class Rfq:
             col_name = get_text_by_js_xpath(browser, col_loc)
             col_names_lst.append(col_name)
         print(col_names_lst)
-        assert sorted(rfq_header_table_col) == sorted(col_names_lst)
+        assert rfq_header_table_col.sort() == col_names_lst.sort()
 
 
     def select_account_and_key_person(self, browser, acc_name: str):

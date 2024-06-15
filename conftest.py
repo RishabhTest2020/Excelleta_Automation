@@ -1,14 +1,18 @@
+import base64
+import pdb
+import pytest
+import pytest_html
+from pytest_metadata.plugin import metadata_key
+from _pytest.fixtures import FixtureRequest
 import logging
 import os
 import shutil
 import selenium
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium import webdriver
-import pytest
 from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from helpers.common_helpers import take_screenshot
 
 
 def get_browser_value():
@@ -19,22 +23,7 @@ def get_browser_value():
     return browser_type
 
 
-def clear_screenshots():
-    folder_path = os.getcwd() + '/screenshots/'
-    for filename in os.listdir(folder_path):
-        file_path = os.path.join(folder_path, filename)
-        try:
-            # Check if it is a file and not a directory
-            if os.path.isfile(file_path) or os.path.islink(file_path):
-                os.unlink(file_path)
-            elif os.path.isdir(file_path):
-                # Optionally, delete directories as well
-                shutil.rmtree(file_path)
-        except Exception as e:
-            print(f'Failed to delete {file_path}. Reason: {e}')
-
-
-@pytest.fixture()
+@pytest.fixture(scope="class", autouse=True)
 def browser(request):
     """
     Configures driver parameters - local device or remote
@@ -42,7 +31,6 @@ def browser(request):
     Example: browser=chrome url=https:your_url pytest
     """
     Browser = get_browser_value()
-    clear_screenshots()
     if Browser == 'chrome':
         options = webdriver.ChromeOptions()
         # options.add_extension(os.getcwd() + '/files/modheader.crx')
@@ -103,10 +91,35 @@ def browser(request):
     driver.set_page_load_timeout(3000)
     print(request.node.name)
     yield driver
-    try:
-        failed = request.node.session.testsfailed
-        if failed > 0:
-            take_screenshot(driver)
-    except:
-        pass
     driver.quit()
+
+
+def pytest_html_report_title(report):
+    report.title = " Excelleta Automation Report"
+
+
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    # execute all other hooks to obtain the report object
+    outcome = yield
+    rep = outcome.get_result()
+    extras = getattr(rep, 'extra', [])
+    # only add screenshot to the report if test failed
+    if rep.when == 'call' and rep.failed:
+        if 'browser' in item.fixturenames:
+            web_driver = item.funcargs['browser']
+            # make the screenshot file name
+            screenshot_dir = os.path.join('report', 'screenshots')
+            os.makedirs(screenshot_dir, exist_ok=True)
+            screenshot_file = os.path.join(screenshot_dir, f"{item.nodeid.replace('::', '_')}.png")
+            web_driver.save_screenshot(screenshot_file)
+            currentUrl = web_driver.current_url
+            # attach the screenshot to the html report
+            screenshot = screenshot_file.lstrip("/report").lstrip("\\report")
+            if screenshot_file:
+                html = '<div><img src="%s" alt="screenshot" style="width:304px;height:228px;" ' \
+                       'onclick="window.open(this.src)" align="right"/></div>' % screenshot
+                extras.append(pytest_html.extras.url(f'{currentUrl}'))
+                extras.append(pytest_html.extras.html(html))
+        rep.extras = extras
+

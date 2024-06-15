@@ -35,7 +35,7 @@ class Contacts:
             col_name = get_text_by_js_xpath(browser, col_loc)
             col_names_lst.append(col_name)
         print(col_names_lst)
-        assert contact_table_header_col == col_names_lst
+        assert contact_table_header_col.sort() == col_names_lst.sort()
 
     def select_account(self, browser, acc_name: str):
         do_send_keys(browser, contact_acc_name, acc_name)

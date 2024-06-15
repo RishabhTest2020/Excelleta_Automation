@@ -23,15 +23,16 @@ def wait_for_ajax(browser):
         pass
 
 
-def take_screenshot(browser):
+def take_screenshot(browser, name='ss' + time.strftime("%Y%m%d-%H%M%S")):
     """
     Takes a screenshot and saves it in png file
     Args:
         browser: webdriver
+        name: screenshot name
     """
     # if sys.platform == 'linux':
     try:
-        path = os.getcwd() + '/screenshots/' + 'ss' + time.strftime("%Y%m%d-%H%M%S") + '.png'
+        path = os.getcwd() + '/screenshots/' + name + '.png'
         browser.save_screenshot(path)
         print(path)
     except (WebDriverException, Exception):
@@ -216,7 +217,7 @@ def is_visible(browser, by_locator, sec=5) -> bool:
         elem = WebDriverWait(browser, sec, poll_frequency=1, ignored_exceptions=WebDriverException).until(
             EC.visibility_of_element_located(by_locator))
     except (WebDriverException, Exception, TimeoutException):
-        take_screenshot(browser)
+        # take_screenshot(browser)
         return bool(elem)
     return bool(elem)
 
