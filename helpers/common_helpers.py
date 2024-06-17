@@ -439,11 +439,15 @@ def slack_message(username, text, color, environment="Promo Production"):
         raise Exception(response.status_code, response.text)
 
 
+class ElementStillVisibleException(Exception):
+    pass
+
+
 def loader_should_be_invisile(browser, sec):
     val = is_invisible(browser, loader_loc, sec)
     if val is False:
-        print(f'Loader is taking more than {str(sec)} secs to be disappear')
-        raise NoSuchElementException
+        logging.info(f'Loader is taking more than {str(sec)} secs to be disappear')
+        raise ElementStillVisibleException(f'Loader is taking more than {str(sec)} secs to be disappear')
 
 
 # Function to get XPath of an element

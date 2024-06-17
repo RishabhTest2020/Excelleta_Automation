@@ -102,3 +102,5 @@ rfq_toggles_loc = {
     'tooling_cost': (By.XPATH, '(//*[contains(text(), "Tooling Cost")]/..//input)[2]'),
     'assembly_type': (By.XPATH, '(//*[contains(text(), "Assembly Type")]/..//input)[1]')
 }
+
+diagram_highlight_blink = (By.XPATH, '//h4[contains(text(), "Draft")]/..//div[@class = "act-border"]')

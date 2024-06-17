@@ -46,6 +46,7 @@ class Accounts:
             do_send_keys(browser, acc_field_loc, data)
 
     def select_start_month_field(self, browser):
+        loader_should_be_invisile(browser, 4)
         do_click(browser, start_month)
         values = get_list_of_elems_text(browser, start_month_list[0], start_month_list[1])
         assert values == start_months_data
