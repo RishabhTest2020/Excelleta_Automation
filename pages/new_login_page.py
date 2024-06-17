@@ -31,5 +31,6 @@ def goto_tab(browser, tab_name):
     do_click(browser, (By.XPATH, tab_loc))
     page_name = pages_name_loc.replace("tab_name", tab_name)
     should_be_visible(browser, (By.XPATH, page_name), tab_name, 10)
+    loader_should_be_invisile(browser, 5)
     
 
