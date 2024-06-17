@@ -45,7 +45,8 @@ class Contacts:
         do_click(browser, contact_acc_name_highlight)
 
     def add_contacts_data_in_txt_box(self, browser):
-        self.contact_details = contacts_general_details
+        self.contact_details = [random_correct_name(5, 4, 'first_name'), random_correct_name(5, 4, 'last_name'),
+                                f'{random_email_generator()}', '9090909090']
         for field_name, data in zip(contacts_create_fields_gen, self.contact_details):
             acco_field = contact_field_txtbox[1].replace('field_name', field_name)
             acc_field_loc = replace_in_tuple(contact_field_txtbox, 1, acco_field)
@@ -132,7 +133,10 @@ class Contacts:
         should_be_visible(browser, residential_address_txt, 'residential_address_txt')
 
         ids_list = ['address', 'postalCode', 'address', 'postalCode']
-        self.contact_billing_data = billing_contact_list
+        self.contact_billing_data = [f'{random_correct_name(5, 4, 'first_name')}, Gurgaon',
+                                     generate_random_five_digit_number(10),
+                                     f'{random_correct_name(5, 4, 'first_name')}, Gurgaon',
+                                     generate_random_five_digit_number(10)]
         for b_id, data, index in zip(ids_list, self.contact_billing_data, comprehension_range(1, len(ids_list))):
             bill_loc_str = billing_txt_box[1].replace("billingTxtBox", b_id) + f'[{index}]'
             bill_loc = replace_in_tuple(billing_txt_box, 1, bill_loc_str)

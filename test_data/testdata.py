@@ -9,8 +9,6 @@ accounts_table_header_col = ['Action', 'Account No', 'Account Name', 'Website', 
 accounts_create_fields_gen = ['accountName', 'accountEmail', 'website', 'mobileNumber',
                               'landlineNumber', 'panNo', 'customerCode', 'noOfWorkingDays']
 
-accounts_general_details = [random_correct_name(5, 4), f'{random_email_generator()}', 'www.testwesite.com',
-                            '9090909090', '12345678', 'QWERT1234Y', f'{generate_random_five_digit_number()}', 7]
 
 start_months_data = ['Select Month', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
                      'September', 'October', 'November', 'December']
@@ -151,9 +149,6 @@ billing_uttar_pradesh_cities_list = ['Select City', 'Achhnera', 'Afzalgarh', 'Ag
 #  Contacts Tab --------------------------------------------------------------------------------------
 contacts_create_fields_gen = ['firstName', 'lastName', 'email', 'phoneNumber']
 
-contacts_general_details = [random_correct_name(5, 4, 'first_name'), random_correct_name(5, 4, 'last_name'), f'{random_email_generator()}',
-                            '9090909090']
-
 titles_data = ['Select Title', 'Mr', 'Mrs']
 
 department_data = ['Select Department', 'Analysing', 'Costing', 'Design', 'Development', 'Marketing', 'Operations',
@@ -169,9 +164,6 @@ report_to_data = ['Select Contact Person']
 gender_data = ['Select Gender', 'Male', 'Female', 'Rather not to say']
 
 marital_data = ['Select Status', 'Married', 'Single', 'Rather not to say']
-
-billing_contact_list = [f'{random_correct_name(5, 4, 'first_name')}, Gurgaon', generate_random_five_digit_number(10),
-                        f'{random_correct_name(5, 4, 'first_name')}, Gurgaon', generate_random_five_digit_number(10)]
 
 contact_table_header_col = ['Action', 'Profile', 'First Name', 'Account Name', 'Phone Number', 'Email ID', 'Department',
                             'Designation', 'Report To', 'Birth Date', 'Country', 'State', 'City', 'Address',

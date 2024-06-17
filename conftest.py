@@ -95,7 +95,6 @@ def browser(request):
     driver.set_page_load_timeout(3000)
     print(request.node.name)
     yield driver
-    delete_all_class_vars_in_project(os.getcwd())
     driver.quit()
 
 
