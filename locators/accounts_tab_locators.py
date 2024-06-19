@@ -63,3 +63,6 @@ add_new_billing_btn = (By.XPATH, '//*[contains(text(), " Add New Billing Address
 
 accounts_table_row_loc_a = (By.XPATH, '(//div[@row-index="0"]//*[contains(@class, "ag-cell-value")]//a)')
 accounts_table_row_loc = (By.XPATH, '(//div[@row-index="0"]//*[contains(@class, "ag-cell-value")]/span)')
+
+accounts_details_sidebar_rfq = (By.XPATH, '//*[@class="main-content"]//li[contains(text(), "RFQ")]')
+accounts_details_rfq_cta = (By.XPATH, '//a[contains(text(), "RFQ")]')

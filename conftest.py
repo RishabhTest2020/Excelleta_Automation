@@ -1,5 +1,7 @@
 import base64
 import pdb
+import sys
+
 import pytest
 import pytest_html
 from pytest_metadata.plugin import metadata_key
@@ -14,7 +16,7 @@ from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
-from helpers.common_helpers import delete_all_class_vars_in_project
+from helpers.common_helpers import delete_all_class_vars_in_project, send_report_to_teams
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -129,4 +131,53 @@ def pytest_runtest_makereport(item, call):
                 extras.append(pytest_html.extras.url(f'{currentUrl}'))
                 extras.append(pytest_html.extras.html(html))
         rep.extras = extras
+
+
+class TestResult:
+    failed: int
+    passed: int
+    skipped: int
+
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_terminal_summary(terminalreporter, exitstatus):
+    """
+    This function takes information from BrowserStack or from GotLab worker and returns execution results on Slack
+    Returns:
+        Report sent to Slack (Promo test_automation channel)
+    """
+    yield
+    if hasattr(terminalreporter.config, 'workerinput'):
+        return
+    if sys.platform == 'Windowss':
+        pass
+    else:
+        test_result = TestResult()
+        test_result.failed = len(terminalreporter.stats.get('failed', []))
+        test_result.passed = len(terminalreporter.stats.get('passed', []))
+        test_result.skipped = len(terminalreporter.stats.get('skipped', []))
+        total_no_of_tests = int(test_result.passed) + int(test_result.failed) + int(test_result.skipped)
+        passed_report = []
+        failed_report = []
+        if int(exitstatus) == 0:
+            color_bar = "good"
+            passed_report.append(f'Test Scenarios Passed:  {test_result.passed}' + '  ' + f'skipped: '
+                                                                                          f'{test_result.skipped}' +
+                                 f' Out of {total_no_of_tests}' + ' 🚀')
+            passed_report_str = ('\n'.join(passed_report))
+            send_report_to_teams(passed_report_str, color_bar, 'Tests Passed Please check report')
+        else:
+            color_bar = "attention"
+            failed_report.append(f'Test Scenarios Passed:  {test_result.passed}' + f' Out of {total_no_of_tests}'
+                                 + ' :tada:')
+            for failed in terminalreporter.stats.get('failed', []):
+                failed_report.append('Failed!')
+                failed_report.append(str(failed.nodeid.split(':')[-1].split(' ')[0]))
+                failed_report.append('Duration: ' + str(failed.duration / 60) + ' mins')
+            for skipped in terminalreporter.stats.get('skipped', []):
+                failed_report.append('Skipped!')
+                failed_report.append(str(skipped.nodeid.split(':')[-1].split(' ')[0]))
+                failed_report.append('Duration: ' + str(skipped.duration / 60) + ' mins')
+            failed_report_str = ('\n'.join(failed_report))
+            send_report_to_teams(failed_report_str, color_bar, 'Tests Failed Please check report')
 

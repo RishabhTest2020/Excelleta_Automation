@@ -103,4 +103,21 @@ rfq_toggles_loc = {
     'assembly_type': (By.XPATH, '(//*[contains(text(), "Assembly Type")]/..//input)[1]')
 }
 
-diagram_highlight_blink = (By.XPATH, '//h4[contains(text(), "Draft")]/..//div[@class = "act-border"]')
+diagram_highlight_blink = (By.XPATH, '//h4[contains(text(), "Stage")]/..//div[@class = "act-border"]')
+add_drawing_diagram = (By.XPATH, '//button[contains(text(), "Add Drawing Data")]')
+drawing_fields_locs = [(By.XPATH, '//input[@formcontrolname="drawingName"]'),
+                       (By.XPATH, '//input[@formcontrolname="customerDrwOrDocNO"]'),
+                       (By.XPATH, '//input[@formcontrolname="remarks"]')]
+twod_soft_copy = (By.XPATH, '//select[@formcontrolname="twoDCopy"]')
+twod_soft_copy_select = (By.XPATH, '(//select[@formcontrolname="twoDCopy"]/option)[2]')
+threed_soft_copy = (By.XPATH, '//select[@formcontrolname="threeDCopy"]')
+threed_soft_copy_select = (By.XPATH, '(//select[@formcontrolname="threeDCopy"]/option)[2]')
+
+add_roi = (By.XPATH, '//button[contains(text(), "Add ROI")]')
+roi_field_loc = (By.XPATH, '//input[@id="ROI-year"]')
+roi_file_loc = (By.XPATH, '//input[@id="roiFile"]')
+save_btn = (By.XPATH, '//button[contains(@type, "submit")]')
+
+add_technical_feasibility = (By.XPATH, '//button[contains(text(), "Add Technical Feasibility")]')
+tf_file_loc = (By.XPATH, '//input[@id="feasibilitySheet"]')
+
