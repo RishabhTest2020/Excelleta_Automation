@@ -439,11 +439,15 @@ def slack_message(username, text, color, environment="Promo Production"):
         raise Exception(response.status_code, response.text)
 
 
+class ElementStillVisibleException(Exception):
+    pass
+
+
 def loader_should_be_invisile(browser, sec):
     val = is_invisible(browser, loader_loc, sec)
     if val is False:
-        print(f'Loader is taking more than {str(sec)} secs to be disappear')
-        raise NoSuchElementException
+        logging.info(f'Loader is taking more than {str(sec)} secs to be disappear')
+        raise ElementStillVisibleException(f'Loader is taking more than {str(sec)} secs to be disappear')
 
 
 # Function to get XPath of an element
@@ -647,3 +651,62 @@ def delete_all_class_vars_in_project(project_directory):
                 except Exception as e:
                     pass
 
+
+def send_report_to_teams(text, color, status):
+    webhook_url = "https://excelleta.webhook.office.com/webhookb2/88990897-a6cd-4721-8d00-b2d80a6382e0@8e8f16fe-82f5-4b4a-ac6a-69533b9f7f7a/IncomingWebhook/3a8629371f8147039d3415ff22c0e8dd/ffc76b7c-34a7-4e5c-a187-e312da7118d8"
+    message = {
+        "title": "Execelleta Automation Report " + os.getenv('env'),
+        "type": "message",
+        "attachments": [
+            {
+                "contentType": "application/vnd.microsoft.card.adaptive",
+                "contentUrl": None,
+                "content": {
+                    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                    "type": "AdaptiveCard",
+                    "version": "1.2",
+                    "body": [
+                        {
+                            "type": "Container",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": f"🔔 **{status}**",
+                                    "weight": "bolder",
+                                    "size": "large",
+                                    "color": color
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "text": text,
+                                    "wrap": True
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "text": "[Click here to check report](https://rishabhtest2020.github.io/Excelleta_Automation/report.html?sort=result)",
+                                    "wrap": True
+                                },
+                                {
+                                    "type": "Container",
+                                    "items": [],
+                                    "style": "emphasis",
+                                    "bleed": True
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+
+    response = requests.post(
+        webhook_url,
+        headers={'Content-Type': 'application/json'},
+        data=json.dumps(message)
+    )
+
+    if response.status_code == 200:
+        print("Message sent successfully!")
+    else:
+        print(f"Failed to send message. Status code: {response.status_code}, Response: {response.text}")

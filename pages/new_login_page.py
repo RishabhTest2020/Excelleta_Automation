@@ -21,15 +21,15 @@ def user_login(browser, email=globalEnvs.user_email, password=globalEnvs.user_pa
         should_be_visible(browser, dashboard_txt, 'dashboard heading', 10)
 
 
-
 def goto_tab(browser, tab_name):
     sleep(1)
     do_hover(browser, sidebar_hov)
     do_click(browser, sidebar_button)
-    sleep(0.5)
+    sleep(1.5)
     tab_loc = menu_tab_loc.replace("tab_name", tab_name)
     do_click(browser, (By.XPATH, tab_loc))
     page_name = pages_name_loc.replace("tab_name", tab_name)
     should_be_visible(browser, (By.XPATH, page_name), tab_name, 10)
+    loader_should_be_invisile(browser, 5)
     
 

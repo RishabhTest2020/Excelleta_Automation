@@ -1,5 +1,7 @@
 import logging
 
+from selenium.webdriver import Keys
+
 from helpers.common_helpers import *
 from locators.accounts_tab_locators import accounts_table_row_loc, accounts_head_col
 from locators.contact_tab_locators import *
@@ -12,6 +14,7 @@ from datetime import datetime, timedelta
 class Rfq:
 
     def __init__(self):
+        self.rfq_id = None
         self.rfq_text_boxes_data = None
         self.cft_member = None
         self.surface_treatment_head = None
@@ -47,12 +50,11 @@ class Rfq:
         self.business_evaluation = None
         self.contact_person = None
 
-
     def verify_rfq_head_col(self, browser):
         elems = browser.find_elements(accounts_head_col[0], accounts_head_col[1])
         elems_len = len(elems)
         col_names_lst = []
-        for i in range(1, elems_len-1):
+        for i in range(1, elems_len - 1):
             col_loc = accounts_head_col[1] + f'[{i}]'
             scroll_into_the_view(browser, accounts_head_col[0], col_loc)
             col_name = get_text_by_js_xpath(browser, col_loc)
@@ -60,10 +62,10 @@ class Rfq:
         logging.info(col_names_lst)
         assert rfq_header_table_col.sort() == col_names_lst.sort()
 
-
     def select_account_and_key_person(self, browser, acc_name: str):
         # should_be_invisible(browser, business_info_txt, 'business_info_txt', 2)
         do_send_keys(browser, rfq_acc_name, acc_name)
+        do_send_keys(browser, rfq_acc_name, Keys.ENTER)
         highlighted_name = get_element_text(browser, contact_acc_name_highlight)
         assert highlighted_name.lower() == acc_name.lower()
         do_click(browser, contact_acc_name_highlight)
@@ -163,7 +165,7 @@ class Rfq:
         do_click(browser, rfq_generate_quote_loc)
         self.quotation_type = get_element_text(browser, rfq_generate_quote_loc_select)
         do_click(browser, rfq_generate_quote_loc_select)
-        
+
     def select_estimates_sop(self, browser):
         todayDate = datetime.today()
         yesterday = todayDate + timedelta(days=4)
@@ -336,7 +338,7 @@ class Rfq:
         sleep(2)
         loader_should_be_invisile(browser, 10)
         values = get_list_of_elems_text(browser, accounts_table_row_loc[0], accounts_table_row_loc[1])
-
+        logging.info(values)
         all_data = list(all_data_dict.values())
         acc_data_list1 = all_data[0]
         acc_data_list = list(acc_data_list1)
@@ -358,6 +360,4 @@ class Rfq:
                         break
         logging.info(non_present_data)
         assert len(non_present_data) == 0
-
-
-
+        self.rfq_id = values[1]

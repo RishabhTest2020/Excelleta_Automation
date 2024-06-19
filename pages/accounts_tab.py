@@ -37,13 +37,16 @@ class Accounts:
         assert accounts_table_header_col.sort() == col_names_lst.sort()
 
     def add_accounts_data_in_txt_box(self, browser):
-        self.account_details = accounts_general_details
+        self.account_details = [random_correct_name(5, 4), f'{random_email_generator()}',
+                                'www.testwesite.com', '9090909090', '12345678', 'QWERT1234Y',
+                                f'{generate_random_five_digit_number()}', 7]
         for field_name, data in zip(accounts_create_fields_gen, self.account_details):
             acco_field = acc_field_txtbox[1].replace('field_name', field_name)
             acc_field_loc = replace_in_tuple(acc_field_txtbox, 1, acco_field)
             do_send_keys(browser, acc_field_loc, data)
 
     def select_start_month_field(self, browser):
+        loader_should_be_invisile(browser, 4)
         do_click(browser, start_month)
         values = get_list_of_elems_text(browser, start_month_list[0], start_month_list[1])
         assert values == start_months_data
@@ -140,6 +143,7 @@ class Accounts:
         scroll_into_the_view(browser, select_cou_loc[0], select_cou_loc[1])
         self.country = get_element_text(browser, select_cou_loc)
         do_click(browser, select_cou_loc)
+        loader_should_be_invisile(browser, 2)
         do_click(browser, Billing_Address1_h3)
         sleep(0.5)
 
