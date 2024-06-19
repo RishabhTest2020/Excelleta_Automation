@@ -44,7 +44,7 @@ jobs:
     - name: Excelleta Sanity Test
       run: |
         echo $TAG
-        browser=headless_chrome pytest -s -m Sanity
+        browser=headless_chrome pytest -s -m Sanity -n 2
       continue-on-error: true
 
     - name: Upload artifact
