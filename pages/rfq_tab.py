@@ -64,8 +64,9 @@ class Rfq:
 
     def select_account_and_key_person(self, browser, acc_name: str):
         # should_be_invisible(browser, business_info_txt, 'business_info_txt', 2)
-        do_send_keys(browser, rfq_acc_name, acc_name)
+        do_clear(browser, rfq_acc_name)
         do_send_keys(browser, rfq_acc_name, Keys.ENTER)
+        do_send_keys(browser, rfq_acc_name, acc_name)
         highlighted_name = get_element_text(browser, contact_acc_name_highlight)
         assert highlighted_name.lower() == acc_name.lower()
         do_click(browser, contact_acc_name_highlight)

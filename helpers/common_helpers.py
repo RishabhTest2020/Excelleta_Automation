@@ -13,6 +13,8 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
+
+from global_libs.config import globalEnvs
 from locators.common_locators_file import *
 import inspect
 import importlib
@@ -655,7 +657,6 @@ def delete_all_class_vars_in_project(project_directory):
 def send_report_to_teams(text, color, status):
     webhook_url = "https://excelleta.webhook.office.com/webhookb2/88990897-a6cd-4721-8d00-b2d80a6382e0@8e8f16fe-82f5-4b4a-ac6a-69533b9f7f7a/IncomingWebhook/3a8629371f8147039d3415ff22c0e8dd/ffc76b7c-34a7-4e5c-a187-e312da7118d8"
     message = {
-        "title": "Execelleta Automation Report " + os.getenv('env'),
         "type": "message",
         "attachments": [
             {
@@ -671,7 +672,7 @@ def send_report_to_teams(text, color, status):
                             "items": [
                                 {
                                     "type": "TextBlock",
-                                    "text": f"🔔 **{status}**",
+                                    "text": f"🔔 **{globalEnvs.env} {status}**",
                                     "weight": "bolder",
                                     "size": "large",
                                     "color": color
