@@ -15,4 +15,4 @@ def logged_in(browser, email, password):
 
 @when(parsers.parse('Navigate to {tab_name} tab {wait}'))
 def navigate_to_tab(browser, tab_name, wait):
-    goto_tab(browser, tab_name, wait)
+    goto_tab(browser, tab_name, int(wait))

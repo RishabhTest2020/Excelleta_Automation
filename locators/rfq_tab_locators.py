@@ -112,12 +112,20 @@ twod_soft_copy = (By.XPATH, '//select[@formcontrolname="twoDCopy"]')
 twod_soft_copy_select = (By.XPATH, '(//select[@formcontrolname="twoDCopy"]/option)[2]')
 threed_soft_copy = (By.XPATH, '//select[@formcontrolname="threeDCopy"]')
 threed_soft_copy_select = (By.XPATH, '(//select[@formcontrolname="threeDCopy"]/option)[2]')
+upload_soft_copy = (By.XPATH, '(//span[@class="upload-soft-copy"]/input)')
+copy_received_date = (By.XPATH, '(//input[@placeholder="select Date"])')
 
-add_roi = (By.XPATH, '//button[contains(text(), "Add ROI")]')
+add_roi_btn = (By.XPATH, '//button[contains(text(), "Add ROI")]')
 roi_field_loc = (By.XPATH, '//input[@id="ROI-year"]')
 roi_file_loc = (By.XPATH, '//input[@id="roiFile"]')
 save_btn = (By.XPATH, '//button[contains(@type, "submit")]')
+roi_menu_btn = (By.XPATH, '//div[@id="rfq-data3"]//button')
+approve_roi_te = (By.XPATH, '//*[contains(@class, "menuAction")]//*[contains(text(), "Approve")]')
+add_comment = (By.XPATH, '//input[@id="comment"]')
 
 add_technical_feasibility = (By.XPATH, '//button[contains(text(), "Add Technical Feasibility")]')
 tf_file_loc = (By.XPATH, '//input[@id="feasibilitySheet"]')
+te_menu_btn = (By.XPATH, '//div[@id="rfq-data4"]//button')
+
+te_name_link = (By.XPATH, '//div[@class="rfqSection"]//td[@class="link"]')
 

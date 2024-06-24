@@ -7,6 +7,7 @@ from pytest_bdd import given, when, then
 from tests.test_accounts_tab import accounts_steps
 
 rfq_steps = Rfq()
+drawing_data_steps = Drawing_data()
 
 
 @then('Verify Rfq table head column')
@@ -60,6 +61,17 @@ def create_rfq(browser):
 
 @then('Verify created Rfq data')
 def verify_account(browser):
+    pdb_apply()
     rfq_class_data = get_class_global_variables_dict(rfq_steps)
     logging.info(rfq_class_data.values())
     rfq_steps.verify_created_dict(browser, rfq_class_data)
+
+
+@then('Add Drawing Data')
+def create_drawing_data(browser):
+    drawing_data_steps.goto_rfq_verify_chart_blink(browser, rfq_steps.rfq_id)
+    drawing_data_steps.add_drawing_data(browser)
+    drawing_data_steps.select_2d_soft_copy(browser)
+    drawing_data_steps.select_3d_soft_copy(browser)
+    drawing_data_steps.add_roi_and_approve(browser)
+    drawing_data_steps.add_technical_feasibility(browser)
