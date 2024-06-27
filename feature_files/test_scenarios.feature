@@ -43,8 +43,6 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Then Verify created Rfq data
     Then Verify Rfq table head column
 
-
-  @New
   Scenario: Create Drawing data
     Given Login into Excelleta UI
     When Navigate to RFQ tab 5
@@ -52,3 +50,8 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     When Navigate to RFQ tab 25
     Then Verify created Rfq data
     Then Add Drawing Data
+
+  Scenario: Create Technical Evaluation data
+    Given Login into Excelleta UI
+    When Navigate to Technical Evaluation tab 10
+    When Create TE data

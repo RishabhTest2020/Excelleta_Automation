@@ -377,7 +377,6 @@ class Drawing_data:
         self.drawing_txt_data = None
 
     def goto_rfq_verify_chart_blink(self, browser, rfq_name):
-        pdb_apply()
         rfq_loc = (By.XPATH, f'//a[contains(text(), "{rfq_name}")]')
         do_click(browser, rfq_loc)
         loader_should_be_invisile(browser, 3)
@@ -386,18 +385,16 @@ class Drawing_data:
         should_be_visible(browser, diagram_highlight_blink_loc1, 'diagram_highlight_blink_loc')
 
     def add_drawing_data(self, browser):
-        pdb_apply()
         do_click(browser, add_drawing_diagram)
-        self.drawing_txt_data = [random_correct_name(6, 'first_name'), generate_random_five_digit_number(),
+        self.drawing_txt_data = [random_correct_name(6, 6,'first_name'), generate_random_five_digit_number(),
                                  generate_random_five_digit_number(), "Automation Testing"]
         for loc, entry in zip(drawing_fields_locs, self.drawing_txt_data):
             do_send_keys(browser, loc, entry)
 
     def select_2d_soft_copy(self, browser, index=2):
-        pdb_apply()
         do_click(browser, twod_soft_copy)
         values = get_list_of_elems_text(browser, twod_soft_copy_select[0], twod_soft_copy_select[1])
-        assert values == rfq_incoterms_data
+        assert values == twod_options
         select_name = twod_soft_copy_select[1] + f'[{index}]'
         select_dep_loc = replace_in_tuple(twod_soft_copy_select, 1, select_name)
         self.twod_copy = get_element_text(browser, select_dep_loc)
@@ -405,7 +402,8 @@ class Drawing_data:
         sleep(0.5)
         upload_file = upload_soft_copy[1] + '[1]'
         upload_file_loc = replace_in_tuple(upload_soft_copy, 1, upload_file)
-        do_send_keys(browser, upload_file_loc, os.getcwd() + '/files/automation-report.zip')
+        elem = browser.find_element(By.XPATH, upload_file_loc[1])
+        elem.send_keys(os.getcwd() + '/files/automation-report.zip')
         copy_received = copy_received_date[1] + '[1]'
         copy_received_loc = replace_in_tuple(copy_received_date, 1, copy_received)
         todayDate = datetime.today()
@@ -414,10 +412,9 @@ class Drawing_data:
         do_send_keys(browser, copy_received_loc, self.twod_received_date)
 
     def select_3d_soft_copy(self, browser, index=2):
-        pdb_apply()
         do_click(browser, threed_soft_copy)
         values = get_list_of_elems_text(browser, threed_soft_copy_select[0], threed_soft_copy_select[1])
-        assert values == rfq_incoterms_data
+        assert values == threed_options
         select_name = threed_soft_copy_select[1] + f'[{index}]'
         select_dep_loc = replace_in_tuple(twod_soft_copy_select, 1, select_name)
         self.threed_copy = get_element_text(browser, select_dep_loc)
@@ -425,7 +422,8 @@ class Drawing_data:
         sleep(0.5)
         upload_file = upload_soft_copy[1] + '[2]'
         upload_file_loc = replace_in_tuple(upload_soft_copy, 1, upload_file)
-        do_send_keys(browser, upload_file_loc, os.getcwd() + '/files/automation-report.zip')
+        elem = browser.find_element(By.XPATH, upload_file_loc[1])
+        elem.send_keys(os.getcwd() + '/files/automation-report.zip')
         copy_received = copy_received_date[1] + '[2]'
         copy_received_loc = replace_in_tuple(copy_received_date, 1, copy_received)
         todayDate = datetime.today()
@@ -436,12 +434,12 @@ class Drawing_data:
         sleep(2)
 
     def add_roi_and_approve(self, browser):
-        pdb_apply()
         do_click(browser, add_roi_btn)
         self.roi_years = '5'
         do_send_keys(browser, roi_field_loc, self.roi_years)
-        do_send_keys(browser, roi_file_loc, os.getcwd() + '/files/Account_List.xlsx')
-        sleep(1)
+        elem = browser.find_element(By.XPATH, roi_file_loc[1])
+        elem.send_keys(os.getcwd() + '/files/Account_List.xlsx')
+        sleep(0.4)
         do_click(browser, save_btn)
         sleep(1)
         do_click(browser, roi_menu_btn)
@@ -451,14 +449,19 @@ class Drawing_data:
         loader_should_be_invisile(browser, 5)
 
     def add_technical_feasibility(self, browser):
-        pdb_apply()
         do_click(browser, add_technical_feasibility)
-        do_send_keys(browser, tf_file_loc, os.getcwd() + '/files/Account_List.xlsx')
-        sleep(1)
+        elem = browser.find_element(By.XPATH, tf_file_loc[1])
+        elem.send_keys(os.getcwd() + '/files/Account_List.xlsx')
+        sleep(0.4)
+        do_click(browser, save_btn)
         do_click(browser, te_menu_btn)
         do_click(browser, approve_roi_te)
         do_send_keys(browser, add_comment, 'Test')
         do_click(browser, save_btn)
         loader_should_be_invisile(browser, 5)
         self.te_link = get_element_text(browser, te_name_link)
+        diagram_highlight_blink_loc = diagram_highlight_blink[1].replace("Stage", "Technical Evaluation")
+        scroll_into_the_view(browser, diagram_highlight_blink[0], diagram_highlight_blink_loc)
+        diagram_highlight_blink_loc1 = replace_in_tuple(diagram_highlight_blink, 1, diagram_highlight_blink_loc)
+        should_be_visible(browser, diagram_highlight_blink_loc1, 'diagram_highlight_blink_loc')
 

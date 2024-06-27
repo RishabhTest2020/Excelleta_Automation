@@ -107,11 +107,11 @@ diagram_highlight_blink = (By.XPATH, '//h4[contains(text(), "Stage")]/..//div[@c
 add_drawing_diagram = (By.XPATH, '//button[contains(text(), "Add Drawing Data")]')
 drawing_fields_locs = [(By.XPATH, '//input[@formcontrolname="drawingName"]'),
                        (By.XPATH, '//input[@formcontrolname="customerDrwOrDocNO"]'),
-                       (By.XPATH, '//input[@formcontrolname="remarks"]')]
+                       (By.XPATH, '//textarea[@formcontrolname="remarks"]')]
 twod_soft_copy = (By.XPATH, '//select[@formcontrolname="twoDCopy"]')
-twod_soft_copy_select = (By.XPATH, '(//select[@formcontrolname="twoDCopy"]/option)[2]')
+twod_soft_copy_select = (By.XPATH, '(//select[@formcontrolname="twoDCopy"]/option)')
 threed_soft_copy = (By.XPATH, '//select[@formcontrolname="threeDCopy"]')
-threed_soft_copy_select = (By.XPATH, '(//select[@formcontrolname="threeDCopy"]/option)[2]')
+threed_soft_copy_select = (By.XPATH, '(//select[@formcontrolname="threeDCopy"]/option)')
 upload_soft_copy = (By.XPATH, '(//span[@class="upload-soft-copy"]/input)')
 copy_received_date = (By.XPATH, '(//input[@placeholder="select Date"])')
 

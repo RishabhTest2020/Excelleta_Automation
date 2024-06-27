@@ -13,4 +13,4 @@ pages_name_loc = '//*[contains(@class, "pageName") and contains(text(), "tab_nam
 default_view_loc = (By.XPATH, '//*[contains(text(), "Default View")]')
 rectangle_icon = (By.XPATH, '//*[@class="searchIco icon-rectangleIco"]')
 sidebar_button = (By.XPATH, '//nav[@class="sidebar"]//button')
-sidebar_hov = (By.XPATH, '//div[@class="left_navination"]')
+sidebar_hov = (By.XPATH, '//img[@alt="dashboard"]')

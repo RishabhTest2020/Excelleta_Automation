@@ -23,11 +23,13 @@ def user_login(browser, email=globalEnvs.user_email, password=globalEnvs.user_pa
 
 def goto_tab(browser, tab_name, wait):
     sleep(1)
-    do_hover(browser, sidebar_hov)
+    do_hover(browser, sidebar_hov, 10)
     do_click(browser, sidebar_button)
     sleep(1.5)
     tab_loc = menu_tab_loc.replace("tab_name", tab_name)
     do_click(browser, (By.XPATH, tab_loc))
+    if tab_name == 'Technical Evaluation':
+        tab_name = 'TE List View'
     page_name = pages_name_loc.replace("tab_name", tab_name)
     should_be_visible(browser, (By.XPATH, page_name), tab_name, 10)
     loader_should_be_invisile(browser, wait)

@@ -219,3 +219,32 @@ rfq_header_table_col = ['Action', 'RFQ No', 'Account Name', 'Key Contact Person'
                         'Surface Treatment Required', 'Per Annum Volumn Required', 'Status', 'Currency',
                         'Business Segment', 'Business Nature', 'Assembly Type', 'Project Details', 'Company Priority',
                         'Business Evaluation', 'Development Lead Location']
+
+twod_options = ['Select 2D Soft Copy', 'Completed', 'Incompleted', 'Awaiting for Customer', 'Not Available']
+
+threed_options = ['Select 3D Soft Copy', 'Completed', 'Incompleted', 'Awaiting for Customer', 'Not Available']
+
+# Technical evaluation --------------------------------------------------------------------------------------
+
+te_machine_dd_data = ['Please select', 'Buffing/Polishing', 'CNC Machine', 'CNC Pipe Bending', 'CNC Press Brake',
+                      'CNC wire bending', 'Cutting', 'Forging', 'Furnace', 'Gas Cutting', 'Inspection', 'Laser Cutting',
+                      'Machine', 'Machining', 'Manual', 'Manual Welding', 'Plasma Cutting', 'Press',
+                      'Projection Welding', 'Robotic Welding', 'Rolling', 'SPM', 'Shearing', 'Straightening',
+                      'Surface Finishing', 'Traub', 'Turret', 'Welding', 'Welding Machine']
+
+te_process_dd_data = ['Please select', 'Milling & Drilling']
+
+te_process_unit_dd_data = ['Please select', 'Nos']
+
+te_ops_source_dd_data = ['Please select', 'In House', 'Outsource']
+
+te_inspection_instrument_dd_data = ['Please select', 'Abbressive Cutter', 'Angle Plate', 'Belt Polishing Machine',
+                                    'Bore Gauge ( Dial Gauge)', 'Cabinet For Document File Storage', 'Cmm (Arm)',
+                                    'Cmm (Stationary)', 'Dial Indicator With Stand', 'Digital Height Gauge',
+                                    'Digital Vernier Caliper', 'Filler Gauge Set', 'Flat Micrometer', 'Lux Meter',
+                                    'Magnetic V Block', 'Measuring Tape', 'Microscope', 'Point Micrometer',
+                                    'Profile Projector', 'Rockwell Hardness Tester', 'Roughness Tester', 'Saw Cutter',
+                                    'Sine Bar', 'Slip Gauge Set', 'Small Vice', 'Steel Rule', 'Surface Plate (Granite)',
+                                    'Taper Scale', 'Torque Wrench +Socket M5,M6,M8,M10)',
+                                    'Tpg Gauge ( 1Nos Each)(For Nut Id)', 'Utm Machine',
+                                    'Wring Thread Gauge Set. (For Bolt Od)']

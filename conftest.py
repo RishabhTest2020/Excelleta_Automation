@@ -149,8 +149,7 @@ def pytest_terminal_summary(terminalreporter, exitstatus):
     yield
     if hasattr(terminalreporter.config, 'workerinput'):
         return
-    import pdb; pdb.set_trace()
-    if sys.platform == 'Windows':
+    if sys.platform == 'win32':
         pass
     else:
         test_result = TestResult()

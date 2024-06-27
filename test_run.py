@@ -3,6 +3,7 @@ from tests.test_login import *
 from tests.test_accounts_tab import *
 from tests.test_contacts_tab import *
 from tests.test_rfq_tab import *
+from tests.test_te_tab import *
 
 import pytest
 
