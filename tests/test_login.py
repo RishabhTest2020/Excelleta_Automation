@@ -13,6 +13,6 @@ def logged_in(browser, email, password):
     user_login(browser, email=email, password=password, type='fail')
 
 
-@when(parsers.parse('Navigate to {tab_name} tab'))
-def navigate_to_tab(browser, tab_name):
-    goto_tab(browser, tab_name)
+@when(parsers.parse('Navigate to {tab_name} tab {wait}'))
+def navigate_to_tab(browser, tab_name, wait):
+    goto_tab(browser, tab_name, int(wait))

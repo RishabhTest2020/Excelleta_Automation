@@ -4,15 +4,18 @@ import logging
 import os
 import sys
 import time
+from contextlib import suppress
 from datetime import date, datetime
 import requests
 from pytz import reference
 from selenium.common.exceptions import NoSuchElementException, TimeoutException, \
-    WebDriverException, JavascriptException
+    WebDriverException, JavascriptException, StaleElementReferenceException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
+
+from global_libs.config import globalEnvs
 from locators.common_locators_file import *
 import inspect
 import importlib
@@ -80,8 +83,9 @@ def do_click(browser, by_locator: object, sec=10):
         sec (int): default time to wait
     """
     wait_for_ajax(browser)
-    WebDriverWait(browser, sec, poll_frequency=0.4).until(
-        EC.element_to_be_clickable(by_locator)).click()
+    with suppress(StaleElementReferenceException):
+        WebDriverWait(browser, sec, poll_frequency=0.4).until(
+            EC.element_to_be_clickable(by_locator)).click()
 
 
 def do_double_click(browser, by_locator, sec=5):
@@ -253,10 +257,9 @@ def is_invisible(browser, by_locator, sec=5) -> bool:
     Returns:
         True or False
     """
-    wait_for_ajax(browser)
     elem = False
     try:
-        elem = WebDriverWait(browser, sec, poll_frequency=0.4, ignored_exceptions=[WebDriverException]).until(
+        elem = WebDriverWait(browser, timeout=sec, ignored_exceptions=[WebDriverException]).until(
             EC.invisibility_of_element_located(by_locator))
     except (WebDriverException, Exception):
         return bool(elem)
@@ -655,7 +658,6 @@ def delete_all_class_vars_in_project(project_directory):
 def send_report_to_teams(text, color, status):
     webhook_url = "https://excelleta.webhook.office.com/webhookb2/88990897-a6cd-4721-8d00-b2d80a6382e0@8e8f16fe-82f5-4b4a-ac6a-69533b9f7f7a/IncomingWebhook/3a8629371f8147039d3415ff22c0e8dd/ffc76b7c-34a7-4e5c-a187-e312da7118d8"
     message = {
-        "title": "Execelleta Automation Report " + os.getenv('env'),
         "type": "message",
         "attachments": [
             {
@@ -671,7 +673,7 @@ def send_report_to_teams(text, color, status):
                             "items": [
                                 {
                                     "type": "TextBlock",
-                                    "text": f"🔔 **{status}**",
+                                    "text": f"🔔 **{globalEnvs.env} {status}**",
                                     "weight": "bolder",
                                     "size": "large",
                                     "color": color

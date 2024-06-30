@@ -1,4 +1,5 @@
 import logging
+import time
 
 from helpers.common_helpers import *
 import pytest
@@ -156,6 +157,7 @@ class Accounts:
         scroll_into_the_view(browser, select_cou_loc[0], select_cou_loc[1])
         self.state = get_element_text(browser, select_cou_loc)
         do_click(browser, select_cou_loc)
+        time.sleep(1)
         do_click(browser, Billing_Address1_h3)
         sleep(0.5)
 

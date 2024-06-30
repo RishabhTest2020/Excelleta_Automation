@@ -21,10 +21,10 @@ class global_env_vars:
         load_dotenv(env_file_path)
 
     def env_vars(self):
-
         self.main_url = os.getenv('main_url')
         self.user_email = os.getenv('user_email')
         self.user_password = os.getenv('user_password')
+        self.env = os.getenv('env')
 
 
 globalEnvs = global_env_vars()

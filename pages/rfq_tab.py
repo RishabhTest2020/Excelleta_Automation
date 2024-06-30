@@ -1,4 +1,5 @@
 import logging
+import os
 
 from selenium.webdriver import Keys
 
@@ -14,7 +15,6 @@ from datetime import datetime, timedelta
 class Rfq:
 
     def __init__(self):
-        self.rfq_id = None
         self.rfq_text_boxes_data = None
         self.cft_member = None
         self.surface_treatment_head = None
@@ -49,6 +49,7 @@ class Rfq:
         self.business_nature = None
         self.business_evaluation = None
         self.contact_person = None
+        self.rfq_id = None
 
     def verify_rfq_head_col(self, browser):
         elems = browser.find_elements(accounts_head_col[0], accounts_head_col[1])
@@ -63,15 +64,25 @@ class Rfq:
         assert rfq_header_table_col.sort() == col_names_lst.sort()
 
     def select_account_and_key_person(self, browser, acc_name: str):
-        # should_be_invisible(browser, business_info_txt, 'business_info_txt', 2)
+        do_clear(browser, rfq_acc_name)
+        do_send_keys(browser, rfq_acc_name, Keys.ENTER)
         do_send_keys(browser, rfq_acc_name, acc_name)
         do_send_keys(browser, rfq_acc_name, Keys.ENTER)
-        highlighted_name = get_element_text(browser, contact_acc_name_highlight)
+        try:
+            highlighted_name = get_element_text(browser, contact_acc_name_highlight)
+        except TimeoutException:
+            do_clear(browser, rfq_acc_name)
+            do_send_keys(browser, rfq_acc_name, Keys.ENTER)
+            do_send_keys(browser, rfq_acc_name, acc_name)
+            do_send_keys(browser, rfq_acc_name, Keys.ENTER)
+            highlighted_name = get_element_text(browser, contact_acc_name_highlight)
         assert highlighted_name.lower() == acc_name.lower()
         do_click(browser, contact_acc_name_highlight)
+        loader_should_be_invisile(browser, 4)
         do_click(browser, rfq_key_contact_person)
         self.contact_person = get_element_text(browser, select_key_contact_peroson)
         do_click(browser, select_key_contact_peroson)
+        loader_should_be_invisile(browser, 4)
 
     def select_business_evaluation(self, browser, dep_index=2):
         do_click(browser, rfq_business_evaluation)
@@ -131,7 +142,7 @@ class Rfq:
         self.customer_target_date = yesterday_formatted_date
         do_send_keys(browser, rfq_target_date_loc, yesterday_formatted_date)
 
-    def select_dev_lead_location(self, browser, index=2):
+    def select_dev_lead_location(self, browser, index=3):
         do_click(browser, rfq_dev_lead_loc)
         values = get_list_of_elems_text(browser, rfq_dev_lead_loc_select[0], rfq_dev_lead_loc_select[1])
         assert values == rfq_dev_lead_location_data
@@ -335,10 +346,10 @@ class Rfq:
             js_click_by_xpath(browser, path[1])
 
     def verify_created_dict(self, browser, all_data_dict: dict):
-        sleep(2)
         loader_should_be_invisile(browser, 10)
         values = get_list_of_elems_text(browser, accounts_table_row_loc[0], accounts_table_row_loc[1])
         logging.info(values)
+        assert len(values) > 0
         all_data = list(all_data_dict.values())
         acc_data_list1 = all_data[0]
         acc_data_list = list(acc_data_list1)
@@ -360,4 +371,120 @@ class Rfq:
                         break
         logging.info(non_present_data)
         assert len(non_present_data) == 0
-        self.rfq_id = values[1]
+        self.rfq_id = values[0]
+
+
+class Drawing_data:
+
+    def __init__(self):
+        self.te_link = None
+        self.roi_years = None
+        self.threed_received_date = None
+        self.threed_copy = None
+        self.twod_received_date = None
+        self.twod_copy = None
+        self.drawing_txt_data = None
+
+    def goto_rfq_verify_chart_blink(self, browser, rfq_name):
+        rfq_loc = (By.XPATH, f'//a[contains(text(), "{rfq_name}")]')
+        do_click(browser, rfq_loc)
+        loader_should_be_invisile(browser, 3)
+        diagram_highlight_blink_loc = diagram_highlight_blink[1].replace("Stage", "Drawing")
+        diagram_highlight_blink_loc1 = replace_in_tuple(diagram_highlight_blink, 1, diagram_highlight_blink_loc)
+        should_be_visible(browser, diagram_highlight_blink_loc1, 'diagram_highlight_blink_loc')
+
+    def add_drawing_data(self, browser):
+        do_click(browser, add_drawing_diagram)
+        self.drawing_txt_data = [random_correct_name(6, 6,'first_name'), generate_random_five_digit_number(),
+                                 generate_random_five_digit_number(), "Automation Testing"]
+        for loc, entry in zip(drawing_fields_locs, self.drawing_txt_data):
+            do_send_keys(browser, loc, entry)
+
+    def select_2d_soft_copy(self, browser, index=2):
+        do_click(browser, twod_soft_copy)
+        values = get_list_of_elems_text(browser, twod_soft_copy_select[0], twod_soft_copy_select[1])
+        assert values == twod_options
+        select_name = twod_soft_copy_select[1] + f'[{index}]'
+        select_dep_loc = replace_in_tuple(twod_soft_copy_select, 1, select_name)
+        self.twod_copy = get_element_text(browser, select_dep_loc)
+        do_click(browser, select_dep_loc)
+        sleep(0.5)
+        upload_file = upload_soft_copy[1] + '[1]'
+        upload_file_loc = replace_in_tuple(upload_soft_copy, 1, upload_file)
+        elem = browser.find_element(By.XPATH, upload_file_loc[1])
+        elem.send_keys(os.getcwd() + '/files/automation-report.zip')
+        copy_received = copy_received_date[1] + '[1]'
+        copy_received_loc = replace_in_tuple(copy_received_date, 1, copy_received)
+        todayDate = datetime.today()
+        yesterday = todayDate - timedelta(days=1)
+        self.twod_received_date = yesterday.strftime('%m/%d/%Y')
+        do_send_keys(browser, copy_received_loc, self.twod_received_date)
+
+    def select_3d_soft_copy(self, browser, index=2):
+        do_click(browser, threed_soft_copy)
+        values = get_list_of_elems_text(browser, threed_soft_copy_select[0], threed_soft_copy_select[1])
+        assert values == threed_options
+        select_name = threed_soft_copy_select[1] + f'[{index}]'
+        select_dep_loc = replace_in_tuple(twod_soft_copy_select, 1, select_name)
+        self.threed_copy = get_element_text(browser, select_dep_loc)
+        do_click(browser, select_dep_loc)
+        sleep(0.5)
+        upload_file = upload_soft_copy[1] + '[2]'
+        upload_file_loc = replace_in_tuple(upload_soft_copy, 1, upload_file)
+        elem = browser.find_element(By.XPATH, upload_file_loc[1])
+        elem.send_keys(os.getcwd() + '/files/automation-report.zip')
+        copy_received = copy_received_date[1] + '[2]'
+        copy_received_loc = replace_in_tuple(copy_received_date, 1, copy_received)
+        todayDate = datetime.today()
+        yesterday = todayDate - timedelta(days=1)
+        self.threed_received_date = yesterday.strftime('%m/%d/%Y')
+        do_send_keys(browser, copy_received_loc, self.threed_received_date)
+        do_click(browser, save_btn)
+        sleep(2)
+
+    def add_roi_and_approve(self, browser):
+        do_click(browser, add_roi_btn)
+        self.roi_years = '5'
+        do_send_keys(browser, roi_field_loc, self.roi_years)
+        elem = browser.find_element(By.XPATH, roi_file_loc[1])
+        elem.send_keys(os.getcwd() + '/files/Account_List.xlsx')
+        sleep(0.4)
+        do_click(browser, save_btn)
+        sleep(1)
+        scroll_into_the_view(browser, roi_menu_btn[0], roi_menu_btn[1])
+        sleep(0.5)
+        try:
+            do_click(browser, roi_menu_btn)
+            do_click(browser, approve_roi_te)
+        except (TimeoutException, StaleElementReferenceException):
+            do_click(browser, roi_menu_btn)
+            do_click(browser, approve_roi_te)
+        do_send_keys(browser, add_comment, 'Test')
+        do_click(browser, save_btn)
+        sleep(2)
+
+    def add_technical_feasibility(self, browser):
+        do_click(browser, add_technical_feasibility)
+        elem = browser.find_element(By.XPATH, tf_file_loc[1])
+        elem.send_keys(os.getcwd() + '/files/Account_List.xlsx')
+        sleep(0.4)
+        do_click(browser, save_btn)
+        sleep(1)
+        scroll_into_the_view(browser, te_menu_btn[0], te_menu_btn[1])
+        sleep(1)
+        do_click(browser, te_menu_btn)
+        try:
+            do_click(browser, approve_roi_te)
+        except TimeoutException:
+            do_click(browser, te_menu_btn)
+            do_click(browser, approve_roi_te)
+        do_send_keys(browser, add_comment, 'Test')
+        do_click(browser, save_btn)
+        loader_should_be_invisile(browser, 5)
+        self.te_link = get_element_text(browser, te_name_link)
+        logging.info(self.te_link)
+        diagram_highlight_blink_loc = diagram_highlight_blink[1].replace("Stage", "Technical Evaluation")
+        scroll_into_the_view(browser, diagram_highlight_blink[0], diagram_highlight_blink_loc)
+        diagram_highlight_blink_loc1 = replace_in_tuple(diagram_highlight_blink, 1, diagram_highlight_blink_loc)
+        should_be_visible(browser, diagram_highlight_blink_loc1, 'diagram_highlight_blink_loc')
+
