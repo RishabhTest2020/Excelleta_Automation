@@ -155,12 +155,14 @@ class Approve_TE:
             self.formatted_time.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
             sleep(1)
             if i > 0:
-                sleep(2)
+                sleep(4)
                 do_click(browser, te_approval_history)
                 ah_headers = get_list_of_elems_text(browser, approval_pop_header[0], approval_pop_header[1])
                 assert ah_headers == approval_history_headers
                 ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
                 actual_vals = [f'TE Approval Level - {i}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
                                self.formatted_time[2:][i - 1], self.formatted_time[2:][i], self.comments[i]]
+                logging.info(ah_row_vals)
+                logging.info(actual_vals)
                 assert ah_row_vals == actual_vals
                 do_click(browser, slide_back_btn)
