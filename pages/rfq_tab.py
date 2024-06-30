@@ -453,8 +453,12 @@ class Drawing_data:
         sleep(1)
         scroll_into_the_view(browser, roi_menu_btn[0], roi_menu_btn[1])
         sleep(0.5)
-        do_click(browser, roi_menu_btn)
-        do_click(browser, approve_roi_te)
+        try:
+            do_click(browser, roi_menu_btn)
+            do_click(browser, approve_roi_te)
+        except (TimeoutException, StaleElementReferenceException):
+            do_click(browser, roi_menu_btn)
+            do_click(browser, approve_roi_te)
         do_send_keys(browser, add_comment, 'Test')
         do_click(browser, save_btn)
         sleep(2)
