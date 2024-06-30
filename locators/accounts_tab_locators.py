@@ -66,3 +66,17 @@ accounts_table_row_loc = (By.XPATH, '(//div[@row-index="0"]//*[contains(@class, 
 
 accounts_details_sidebar_rfq = (By.XPATH, '//*[@class="main-content"]//li[contains(text(), "RFQ")]')
 accounts_details_rfq_cta = (By.XPATH, '//a[contains(text(), "RFQ")]')
+
+accounts_norms = (By.XPATH, '//button[contains(text(), "Norms")]')
+norms_type = (By.XPATH, '(//*[contains(@name, "normsType")])')
+norms_type_options = (By.XPATH, '(//*[contains(@name, "normsType"")]/option)')
+fiscal_year = (By.XPATH, '(//*[contains(@name, "fiscalYear")])')
+fiscal_year_options = (By.XPATH, '(//*[contains(@name, "fiscalYear"")]/option)')
+norms_filter = (By.XPATH, '(//*[contains(@name, "normsFilter")])')
+norms_filter_options = (By.XPATH, '(//*[contains(@name, "normsFilter"")]/option)')
+effective_from = (By.XPATH, '(//*[contains(@for, "effectiveFrom")]/..//input)')
+effective_till = (By.XPATH, '(//*[contains(@for, "effectiveTill")]/..//input)')
+manuf_location = (By.XPATH, '(//*[contains(@name, "mfgLocation")])')
+manuf_location_options = (By.XPATH, '(//*[contains(@name, "mfgLocation"")]/option)')
+acc_business_nature = (By.XPATH, '(//*[contains(@name, "accountBusinessNature")])')
+acc_business_nature_options = (By.XPATH, '(//*[contains(@name, "accountBusinessNature")]/option)')

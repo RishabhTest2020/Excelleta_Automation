@@ -155,7 +155,6 @@ class Approve_TE:
             self.formatted_time.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
             sleep(1)
             if i > 0:
-                pdb_apply()
                 sleep(2)
                 do_click(browser, te_approval_history)
                 ah_headers = get_list_of_elems_text(browser, approval_pop_header[0], approval_pop_header[1])
