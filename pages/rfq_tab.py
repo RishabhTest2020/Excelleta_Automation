@@ -78,9 +78,11 @@ class Rfq:
             highlighted_name = get_element_text(browser, contact_acc_name_highlight)
         assert highlighted_name.lower() == acc_name.lower()
         do_click(browser, contact_acc_name_highlight)
+        loader_should_be_invisile(browser, 4)
         do_click(browser, rfq_key_contact_person)
         self.contact_person = get_element_text(browser, select_key_contact_peroson)
         do_click(browser, select_key_contact_peroson)
+        loader_should_be_invisile(browser, 4)
 
     def select_business_evaluation(self, browser, dep_index=2):
         do_click(browser, rfq_business_evaluation)
