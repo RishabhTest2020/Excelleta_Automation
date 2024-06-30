@@ -248,3 +248,5 @@ te_inspection_instrument_dd_data = ['Please select', 'Abbressive Cutter', 'Angle
                                     'Taper Scale', 'Torque Wrench +Socket M5,M6,M8,M10)',
                                     'Tpg Gauge ( 1Nos Each)(For Nut Id)', 'Utm Machine',
                                     'Wring Thread Gauge Set. (For Bolt Od)']
+
+approval_history_headers = ['Step Name', 'Assigned to', 'Submitted By', 'Status', 'Assigned Date', 'Activity Date', 'Comment']

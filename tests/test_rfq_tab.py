@@ -61,7 +61,6 @@ def create_rfq(browser):
 
 @then('Verify created Rfq data')
 def verify_account(browser):
-    pdb_apply()
     rfq_class_data = get_class_global_variables_dict(rfq_steps)
     logging.info(rfq_class_data.values())
     rfq_steps.verify_created_dict(browser, rfq_class_data)
@@ -69,7 +68,8 @@ def verify_account(browser):
 
 @then('Add Drawing Data')
 def create_drawing_data(browser):
-    drawing_data_steps.goto_rfq_verify_chart_blink(browser, rfq_steps.rfq_id)
+    values = get_list_of_elems_text(browser, accounts_table_row_loc[0], accounts_table_row_loc[1])
+    drawing_data_steps.goto_rfq_verify_chart_blink(browser, values[0])
     drawing_data_steps.add_drawing_data(browser)
     drawing_data_steps.select_2d_soft_copy(browser)
     drawing_data_steps.select_3d_soft_copy(browser)

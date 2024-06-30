@@ -4,11 +4,12 @@ import logging
 import os
 import sys
 import time
+from contextlib import suppress
 from datetime import date, datetime
 import requests
 from pytz import reference
 from selenium.common.exceptions import NoSuchElementException, TimeoutException, \
-    WebDriverException, JavascriptException
+    WebDriverException, JavascriptException, StaleElementReferenceException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -82,8 +83,9 @@ def do_click(browser, by_locator: object, sec=10):
         sec (int): default time to wait
     """
     wait_for_ajax(browser)
-    WebDriverWait(browser, sec, poll_frequency=0.4).until(
-        EC.element_to_be_clickable(by_locator)).click()
+    with suppress(StaleElementReferenceException):
+        WebDriverWait(browser, sec, poll_frequency=0.4).until(
+            EC.element_to_be_clickable(by_locator)).click()
 
 
 def do_double_click(browser, by_locator, sec=5):
@@ -255,10 +257,9 @@ def is_invisible(browser, by_locator, sec=5) -> bool:
     Returns:
         True or False
     """
-    wait_for_ajax(browser)
     elem = False
     try:
-        elem = WebDriverWait(browser, sec, poll_frequency=0.4, ignored_exceptions=[WebDriverException]).until(
+        elem = WebDriverWait(browser, timeout=sec, ignored_exceptions=[WebDriverException]).until(
             EC.invisibility_of_element_located(by_locator))
     except (WebDriverException, Exception):
         return bool(elem)

@@ -1,4 +1,7 @@
+import logging
+
 from helpers.common_helpers import *
+from locators.rfq_tab_locators import *
 from locators.technical_evaluation_tab_locators import *
 from test_data.testdata import *
 from time import sleep
@@ -83,12 +86,82 @@ class Create_TE:
         sleep(0.5)
 
     def fill_te_txtbox_data(self, browser):
-        ids_list = ['Cycle Time', 'Unit Value', 'Name of Tool/Fixture', 'Length', 'Width', 'Height', 'Density', 'Factor',
+        ids_list = ['Cycle Time', 'Unit Value', 'Name of Tool/Fixture', 'Length', 'Width', 'Height', 'Density',
+                    'Factor',
                     'Criticality Value', 'Judgment Based Tooling Cost', 'Skilled Man Power', 'Unskilled Man Power',
-                    'Material Handling', 'Machine Investment Details', 'Remarks', 'Total Investment Cost']
-        self.te_txt_data = [100, 18, 'Driller', 10, 11, 12, 14, 15, 50, 1000, 16, 17, 'Test Material Handling',
-                            'Test Machine Investment', 'This is for automation testing', 100000]
-        for b_id, data in zip(ids_list, self.te_txt_data):
+                    'Material Handling', 'Total Investment Cost', 'Machine Investment Details', 'Remarks']
+        self.te_txt_data = [100, 18, 'Driller', 10, 11, 12, 14, 15, 50, 1000, 16, 17, 'Test Material Handling', 100000,
+                            'Test Machine Investment', 'This is for automation testing']
+        for b_id, data in zip(ids_list[:-2], self.te_txt_data[:-2]):
             bill_loc_str = assembly_txt_boxes[1].replace("field_name", b_id)
             bill_loc = replace_in_tuple(assembly_txt_boxes, 1, bill_loc_str)
+            logging.info(bill_loc)
             do_send_keys(browser, bill_loc, data)
+
+        bill_loc_str_txt = assembly_txt_boxes_txt[1].replace("field_name", ids_list[-2])
+        bill_loc_txt = replace_in_tuple(assembly_txt_boxes_txt, 1, bill_loc_str_txt)
+        do_send_keys(browser, bill_loc_txt, self.te_txt_data[-2])
+        bill_loc_str_txt = assembly_txt_boxes_txt[1].replace("field_name", ids_list[-1])
+        bill_loc_txt = replace_in_tuple(assembly_txt_boxes_txt, 1, bill_loc_str_txt)
+        do_send_keys(browser, bill_loc_txt, self.te_txt_data[-1])
+
+    def verify_data_te(self, browser, all_data_dict):
+        loader_should_be_invisile(browser, 5)
+        do_click(browser, te_operations_section)
+        sleep(2)
+        values = get_list_of_elems_text(browser, operations_row_value[0], operations_row_value[1])
+        logging.info(values)
+        assert len(values) > 0
+        all_data = list(all_data_dict.values())
+        acc_data_list1 = all_data[0]
+        acc_data_list = list(acc_data_list1)
+        for i in all_data[1:]:
+            i_type = type(i)
+            if i_type == list:
+                acc_data_list.extend(i)
+            else:
+                acc_data_list.append(str(i))
+
+        non_present_data = []
+        for i in values[1:-3]:
+            for j in acc_data_list:
+                if i == j:
+                    break
+                else:
+                    if acc_data_list.index(j) == -1:
+                        non_present_data.append(i)
+                        break
+        logging.info(non_present_data)
+        assert len(non_present_data) == 0
+
+
+class Approve_TE:
+
+    def __init__(self):
+        self.formatted_time = []
+        self.comments = []
+        self.formatted_time_app = None
+
+    def approve_te(self, browser, *args):
+        for i in range(0, 4):
+            text = random_correct_name(5, 5, 'first_name')
+            self.comments.append(text)
+            do_click(browser, approve_request)
+            do_send_keys(browser, add_comment, text)
+            current_date_time = datetime.now()
+            self.formatted_time.append(current_date_time.strftime("%d-%b-%Y, %I:%M %p"))
+            do_click(browser, save_btn)
+            current_date_time2 = datetime.now()
+            self.formatted_time.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
+            sleep(1)
+            if i > 0:
+                pdb_apply()
+                sleep(2)
+                do_click(browser, te_approval_history)
+                ah_headers = get_list_of_elems_text(browser, approval_pop_header[0], approval_pop_header[1])
+                assert ah_headers == approval_history_headers
+                ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
+                actual_vals = [f'TE Approval Level - {i}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
+                               self.formatted_time[2:][i - 1], self.formatted_time[2:][i], self.comments[i]]
+                assert ah_row_vals == actual_vals
+                do_click(browser, slide_back_btn)

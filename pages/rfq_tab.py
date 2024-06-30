@@ -64,11 +64,18 @@ class Rfq:
         assert rfq_header_table_col.sort() == col_names_lst.sort()
 
     def select_account_and_key_person(self, browser, acc_name: str):
-        # should_be_invisible(browser, business_info_txt, 'business_info_txt', 2)
         do_clear(browser, rfq_acc_name)
         do_send_keys(browser, rfq_acc_name, Keys.ENTER)
         do_send_keys(browser, rfq_acc_name, acc_name)
-        highlighted_name = get_element_text(browser, contact_acc_name_highlight)
+        do_send_keys(browser, rfq_acc_name, Keys.ENTER)
+        try:
+            highlighted_name = get_element_text(browser, contact_acc_name_highlight)
+        except TimeoutException:
+            do_clear(browser, rfq_acc_name)
+            do_send_keys(browser, rfq_acc_name, Keys.ENTER)
+            do_send_keys(browser, rfq_acc_name, acc_name)
+            do_send_keys(browser, rfq_acc_name, Keys.ENTER)
+            highlighted_name = get_element_text(browser, contact_acc_name_highlight)
         assert highlighted_name.lower() == acc_name.lower()
         do_click(browser, contact_acc_name_highlight)
         do_click(browser, rfq_key_contact_person)
@@ -133,7 +140,7 @@ class Rfq:
         self.customer_target_date = yesterday_formatted_date
         do_send_keys(browser, rfq_target_date_loc, yesterday_formatted_date)
 
-    def select_dev_lead_location(self, browser, index=2):
+    def select_dev_lead_location(self, browser, index=3):
         do_click(browser, rfq_dev_lead_loc)
         values = get_list_of_elems_text(browser, rfq_dev_lead_loc_select[0], rfq_dev_lead_loc_select[1])
         assert values == rfq_dev_lead_location_data
@@ -442,11 +449,13 @@ class Drawing_data:
         sleep(0.4)
         do_click(browser, save_btn)
         sleep(1)
+        scroll_into_the_view(browser, roi_menu_btn[0], roi_menu_btn[1])
+        sleep(0.5)
         do_click(browser, roi_menu_btn)
         do_click(browser, approve_roi_te)
         do_send_keys(browser, add_comment, 'Test')
         do_click(browser, save_btn)
-        loader_should_be_invisile(browser, 5)
+        sleep(2)
 
     def add_technical_feasibility(self, browser):
         do_click(browser, add_technical_feasibility)
@@ -454,12 +463,20 @@ class Drawing_data:
         elem.send_keys(os.getcwd() + '/files/Account_List.xlsx')
         sleep(0.4)
         do_click(browser, save_btn)
+        sleep(1)
+        scroll_into_the_view(browser, te_menu_btn[0], te_menu_btn[1])
+        sleep(1)
         do_click(browser, te_menu_btn)
-        do_click(browser, approve_roi_te)
+        try:
+            do_click(browser, approve_roi_te)
+        except TimeoutException:
+            do_click(browser, te_menu_btn)
+            do_click(browser, approve_roi_te)
         do_send_keys(browser, add_comment, 'Test')
         do_click(browser, save_btn)
         loader_should_be_invisile(browser, 5)
         self.te_link = get_element_text(browser, te_name_link)
+        logging.info(self.te_link)
         diagram_highlight_blink_loc = diagram_highlight_blink[1].replace("Stage", "Technical Evaluation")
         scroll_into_the_view(browser, diagram_highlight_blink[0], diagram_highlight_blink_loc)
         diagram_highlight_blink_loc1 = replace_in_tuple(diagram_highlight_blink, 1, diagram_highlight_blink_loc)

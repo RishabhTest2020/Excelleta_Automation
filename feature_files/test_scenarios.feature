@@ -43,15 +43,18 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Then Verify created Rfq data
     Then Verify Rfq table head column
 
-  Scenario: Create Drawing data
+  @Sanity @New
+  Scenario: Create and verify Drawing data and TE data
     Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
     When Navigate to RFQ tab 5
     Then Create a RFQ
     When Navigate to RFQ tab 25
-    Then Verify created Rfq data
     Then Add Drawing Data
-
-  Scenario: Create Technical Evaluation data
-    Given Login into Excelleta UI
     When Navigate to Technical Evaluation tab 10
     When Create TE data
+    Then Verify TE data
+    Then Approve TE all levels
