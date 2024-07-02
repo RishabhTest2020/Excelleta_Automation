@@ -143,7 +143,8 @@ class Approve_TE:
         self.formatted_time_app = None
 
     def approve_te(self, browser, *args):
-        for i in range(0, 4):
+        range_mod = range(0, 4)
+        for i in range_mod:
             text = random_correct_name(5, 5, 'first_name')
             self.comments.append(text)
             do_click(browser, approve_request)
@@ -159,7 +160,11 @@ class Approve_TE:
                 do_click(browser, te_approval_history)
                 ah_headers = get_list_of_elems_text(browser, approval_pop_header[0], approval_pop_header[1])
                 assert ah_headers == approval_history_headers
-                ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
+                if i == range_mod[-1]:
+                    approval_pop_values1 = approval_pop_values[1].replace("[2]",  "[1]")
+                    ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1[1])
+                else:
+                    ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
                 actual_vals = [f'TE Approval Level - {i}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
                                self.formatted_time[2:][i - 1], self.formatted_time[2:][i], self.comments[i]]
                 logging.info(ah_row_vals)
