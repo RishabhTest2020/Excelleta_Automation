@@ -41,6 +41,7 @@ class Accounts:
         self.account_details = [random_correct_name(5, 4), f'{random_email_generator()}',
                                 'www.testwesite.com', '9090909090', '12345678', 'QWERT1234Y',
                                 f'{generate_random_five_digit_number()}', 7]
+        logging.info(self.account_details)
         for field_name, data in zip(accounts_create_fields_gen, self.account_details):
             acco_field = acc_field_txtbox[1].replace('field_name', field_name)
             acc_field_loc = replace_in_tuple(acc_field_txtbox, 1, acco_field)
