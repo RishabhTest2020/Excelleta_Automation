@@ -10,7 +10,7 @@ def user_login(browser, email=globalEnvs.user_email, password=globalEnvs.user_pa
     """
     browser.get(globalEnvs.main_url)
     wait_for_ajax(browser)
-    # should_be_visible(browser, excelleta_logo, 'excelleta_logo')
+    should_be_visible(browser, excelleta_logo, 'excelleta_logo')
     do_send_keys(browser, email_text_box, email)
     do_send_keys(browser, password_text_box, password)
     do_click(browser, login_btn)

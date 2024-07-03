@@ -162,7 +162,7 @@ class Approve_TE:
                 assert ah_headers == approval_history_headers
                 if i == range_mod[-1]:
                     approval_pop_values1 = approval_pop_values[1].replace("[2]",  "[1]")
-                    ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1[1])
+                    ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
                 else:
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
                 actual_vals = [f'TE Approval Level - {i}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
