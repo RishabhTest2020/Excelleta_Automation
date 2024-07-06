@@ -249,4 +249,12 @@ te_inspection_instrument_dd_data = ['Please select', 'Abbressive Cutter', 'Angle
                                     'Tpg Gauge ( 1Nos Each)(For Nut Id)', 'Utm Machine',
                                     'Wring Thread Gauge Set. (For Bolt Od)']
 
-approval_history_headers = ['Step Name', 'Assigned to', 'Submitted By', 'Status', 'Assigned Date', 'Activity Date', 'Comment']
+approval_history_headers = ['Step Name', 'Assigned to', 'Submitted By', 'Status', 'Assigned Date', 'Activity Date',
+                            'Comment']
+
+norms_dd_data = ['Please select', 'BOP Norms', 'Currency Norms', 'MHR Norms', 'Process Norms', 'Over Head Norms',
+                   'Raw Material Norms']
+
+fiscal_year_dd_data = ['Please select', '2020', '2021', '2022', '2023', '2024']
+
+norms_filter_dd_data = ['Please select', 'Custom Date Range', 'Month Wise', 'Period Wise']

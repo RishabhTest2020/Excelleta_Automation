@@ -3,9 +3,12 @@ import logging
 from helpers.common_helpers import *
 from pages.accounts_tab import *
 from pytest_bdd import given, when, then
+from pages.rfq_tab import Rfq
 
 
 accounts_steps = Accounts()
+norms_steps = Norms()
+rfq_steps = Rfq()
 
 
 @then('Verify accounts table head column')
@@ -39,3 +42,17 @@ def verify_account(browser):
     acc_class_data = get_class_global_variables_dict(accounts_steps)
     logging.info(acc_class_data.values())
     accounts_steps.verify_created_account(browser, acc_class_data)
+
+
+@then('Create norms data')
+def create_norms(browser):
+    pdb_apply()
+    do_click(browser, accounts_norms)
+    sleep(2)
+    # norms_steps.select_bop_norms(browser)
+    # norms_steps.select_currency_norms(browser)
+    norms_steps.select_mhr_norms(browser, 'MAPL B-12 Waluj') #rfq_steps.manufacturing_location)
+    norms_steps.select_process_norms(browser, 'MAPL B-12 Waluj') #rfq_steps.manufacturing_location)
+    norms_steps.select_over_head_norms(browser, 'MAPL B-12 Waluj') #rfq_steps.manufacturing_location)
+    norms_steps.select_raw_material_norm(browser)
+    pdb_apply()

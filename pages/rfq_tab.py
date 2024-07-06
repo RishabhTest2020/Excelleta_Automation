@@ -142,20 +142,20 @@ class Rfq:
         self.customer_target_date = yesterday_formatted_date
         do_send_keys(browser, rfq_target_date_loc, yesterday_formatted_date)
 
-    def select_dev_lead_location(self, browser, index=3):
+    def select_dev_lead_location(self, browser, index=2):
         do_click(browser, rfq_dev_lead_loc)
         values = get_list_of_elems_text(browser, rfq_dev_lead_loc_select[0], rfq_dev_lead_loc_select[1])
-        # assert values == rfq_dev_lead_location_data
+        assert values == rfq_dev_lead_location_data
         select_name = rfq_dev_lead_loc_select[1] + f'[{index}]'
         select_dep_loc = replace_in_tuple(rfq_dev_lead_loc_select, 1, select_name)
         self.dev_lead_location = get_element_text(browser, select_dep_loc)
         do_click(browser, select_dep_loc)
         sleep(0.5)
 
-    def select_manufacturing_location(self, browser, index=3):
+    def select_manufacturing_location(self, browser, index=2):
         do_click(browser, rfq_manufacturing_loc)
         values = get_list_of_elems_text(browser, rfq_manufacturing_loc_select[0], rfq_manufacturing_loc_select[1])
-        # assert values == rfq_manufacturing_location_data
+        assert values == rfq_manufacturing_location_data
         select_name = rfq_manufacturing_loc_select[1] + f'[{index}]'
         select_dep_loc = replace_in_tuple(rfq_manufacturing_loc_select, 1, select_name)
         self.manufacturing_location = get_element_text(browser, select_dep_loc)
