@@ -15,7 +15,7 @@ start_months_data = ['Select Month', 'January', 'February', 'March', 'April', 'M
 
 rm_type_list = ['Select Norms Rate Type', 'Base Rate', 'Landed Rate']
 
-business_nature_list = ['Select All', 'Fabrication', 'Heavy Fabrication', 'Polymer']
+business_nature_list = ['Select All', 'Fabrication', 'Heavy Fabrication']
 
 business_domain_list = ['Select All', 'Domestic', 'Export']
 
