@@ -55,6 +55,7 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     When Navigate to RFQ tab 30
     Then Add Drawing Data
     When Navigate to Technical Evaluation tab 10
+    When Edit TE Assembly and fill raw material data
     When Create TE data
     Then Verify TE data
     Then Approve TE all levels

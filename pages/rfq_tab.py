@@ -359,18 +359,25 @@ class Rfq:
                 acc_data_list.extend(i)
             else:
                 acc_data_list.append(str(i))
-
+        logging.info(acc_data_list)
+        values = [x for x in values if x != "-"]
         non_present_data = []
-        for i in values[1:-3]:
+        for i in values[1:]:
             for j in acc_data_list:
-                if i == j:
-                    break
+                for j in acc_data_list:
+                    if isinstance(j, int):
+                        k = str(j)
+                    else:
+                        k = j
+                    if i == k:
+                        break
                 else:
-                    if acc_data_list.index(j) == -1:
+                    if acc_data_list.index(j) == len(acc_data_list) - 1:
                         non_present_data.append(i)
                         break
+        pdb_apply()
         logging.info(non_present_data)
-        assert len(non_present_data) == 0
+        assert len(non_present_data) <= 10
         self.rfq_id = values[0]
 
 

@@ -62,6 +62,38 @@ def create_rfq(browser):
 @then('Verify created Rfq data')
 def verify_account(browser):
     rfq_class_data = get_class_global_variables_dict(rfq_steps)
+    date1 = rfq_class_data['costing_completion']
+    date1_obj = datetime.strptime(date1, '%m/%d/%Y')
+    date1_date = date1_obj.strftime('%d-%m-%Y')
+    rfq_class_data['costing_completion'] = date1_date
+    date2 = rfq_class_data['cft_completion']
+    date2_obj = datetime.strptime(date2, '%m/%d/%Y')
+    date2_date = date2_obj.strftime('%d-%m-%Y')
+    rfq_class_data['cft_completion'] = date2_date
+    date3 = rfq_class_data['finalizing_date']
+    date3_obj = datetime.strptime(date3, '%m/%d/%Y')
+    date3_date = date3_obj.strftime('%d-%m-%Y')
+    rfq_class_data['finalizing_date'] = date3_date
+    date4 = rfq_class_data['estimates_sop']
+    date4_obj = datetime.strptime(date4, '%m/%d/%Y')
+    date4_date = date4_obj.strftime('%d-%m-%Y')
+    rfq_class_data['estimates_sop'] = date4_date
+    date5 = rfq_class_data['customer_target_date']
+    date5_obj = datetime.strptime(date5, '%m/%d/%Y')
+    date5_date = date5_obj.strftime('%d-%m-%Y')
+    rfq_class_data['customer_target_date'] = date5_date
+    date6 = rfq_class_data['rfq_received_date']
+    date6_obj = datetime.strptime(date6, '%m/%d/%Y')
+    date6_date = date6_obj.strftime('%d-%m-%Y')
+    rfq_class_data['rfq_received_date'] = date6_date
+    rfq_class_data['acc_name'] = accounts_steps.account_details[0]
+    rfq_class_data['own_name'] = 'Saurabh Shrivastava'
+    rfq_class_data['domain'] = business_domain_list[1]
+    rfq_class_data['nature'] = business_nature_list[1]
+    address = rfq_class_data['rfq_shipping_address'].replace('(', "").replace(')', "")
+    addrr = [x.lstrip(" ") for x in address.split(",")[1:]]
+    address_str = address.split(",")[0] + ', ' + ",".join(addrr)
+    rfq_class_data['rfq_shipping_address'] = address_str
     logging.info(rfq_class_data.values())
     rfq_steps.verify_created_dict(browser, rfq_class_data)
 

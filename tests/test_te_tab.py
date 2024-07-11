@@ -10,11 +10,12 @@ from tests.test_rfq_tab import drawing_data_steps, rfq_steps
 
 create_testeps = Create_TE()
 approve_te_steps = Approve_TE()
+edit_te_steps = Edit_TE()
 
 
 @when('Create TE data')
 def create_te_data(browser):
-    create_testeps.goto_te_verify_part_add_assembly(browser, drawing_data_steps.te_link, rfq_txtboxes_data[3])
+    create_testeps.add_operation(browser)
     create_testeps.select_machine(browser)
     create_testeps.select_te_process(browser)
     create_testeps.select_te_process_unit(browser)
@@ -23,6 +24,24 @@ def create_te_data(browser):
     create_testeps.select_inspection_instrument(browser)
     create_testeps.verify_te_heading(browser)
     do_click(browser, save_btn)
+
+
+@when('Edit TE Assembly and fill raw material data')
+def edit_te_raw_material(browser):
+    create_testeps.goto_te_verify_part_add_assembly(browser, drawing_data_steps.te_link, rfq_txtboxes_data[3])
+    edit_te_steps.edit_assembly(browser)
+    edit_te_steps.select_drawing_name(browser)
+    edit_te_steps.select_surface_area_unit(browser)
+    edit_te_steps.select_manufacturing_source(browser)
+    edit_te_steps.select_rm_type(browser)
+    edit_te_steps.select_raw_material(browser)
+    edit_te_steps.select_add_rod_size(browser)
+    do_click(browser, update_btn)
+    sleep(2)
+    try:
+        do_click(browser, update_btn)
+    except TimeoutException:
+        pass
 
 
 @then('Verify TE data')

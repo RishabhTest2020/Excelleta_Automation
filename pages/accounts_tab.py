@@ -40,7 +40,7 @@ class Accounts:
 
     def add_accounts_data_in_txt_box(self, browser):
         self.account_details = [random_correct_name(5, 4), f'{random_email_generator()}',
-                                'www.testwesite.com', '9090909090', '12345678', 'QWERT1234Y',
+                                'www.testwesite.com', '9090909090', '12345678', generate_random_pan(),
                                 f'{generate_random_five_digit_number()}', 7]
         logging.info(self.account_details)
         for field_name, data in zip(accounts_create_fields_gen, self.account_details):
@@ -188,7 +188,8 @@ class Accounts:
                 acc_data_list.extend(i)
             else:
                 acc_data_list.append(str(i))
-
+        logging.info(acc_data_list)
+        values = [x for x in values if x != "-"]
         non_present_data = []
         for i in values[1:-3]:
             for j in acc_data_list:
@@ -197,7 +198,7 @@ class Accounts:
                 if i == j:
                     break
                 else:
-                    if acc_data_list.index(j) == -1:
+                    if acc_data_list.index(j) == len(acc_data_list) - 1:
                         non_present_data.append(i)
                         break
         logging.info(non_present_data)
