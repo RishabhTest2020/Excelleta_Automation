@@ -107,3 +107,4 @@ def create_drawing_data(browser):
     drawing_data_steps.select_3d_soft_copy(browser)
     drawing_data_steps.add_roi_and_approve(browser)
     drawing_data_steps.add_technical_feasibility(browser)
+    loader_should_be_invisile(browser, 10)

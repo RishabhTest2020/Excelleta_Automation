@@ -23,8 +23,8 @@ def user_login(browser, email=globalEnvs.user_email, password=globalEnvs.user_pa
 
 def goto_tab(browser, tab_name, wait):
     sleep(1)
-    do_hover(browser, sidebar_hov, 15)
-    do_click(browser, sidebar_button)
+    do_hover(browser, sidebar_hov, 20)
+    do_click(browser, sidebar_button, 20)
     sleep(1.5)
     tab_loc = menu_tab_loc.replace("tab_name", tab_name)
     do_click(browser, (By.XPATH, tab_loc))

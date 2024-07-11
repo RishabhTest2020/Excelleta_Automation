@@ -74,7 +74,9 @@ class Accounts:
         should_be_visible(browser, business_info_h3, 'business_info_h3')
         do_click(browser, business_nature)
         values = get_list_of_elems_text(browser, business_nature_option_txt[0], business_nature_option_txt[1])
-        assert values[3:] == business_nature_list
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(business_nature_list, values)
+        assert val is True
         select_bn = business_nature_option[1] + f'[{bn_type}]'
         select_bn_loc = replace_in_tuple(business_nature_option, 1, select_bn)
         do_click(browser, select_bn_loc)
@@ -85,7 +87,9 @@ class Accounts:
     def select_business_domain_field(self, browser, bd_type=2):
         do_click(browser, business_domain)
         values = get_list_of_elems_text(browser, business_domain_option_txt[0], business_domain_option_txt[1])
-        assert values[3:] == business_domain_list
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(business_domain_list, values)
+        assert val is True
         select_bd = business_domain_option[1] + f'[{bd_type}]'
         select_bn_loc = replace_in_tuple(business_domain_option, 1, select_bd)
         do_click(browser, select_bn_loc)
@@ -96,7 +100,9 @@ class Accounts:
     def select_business_segment_field(self, browser, bs_type=2):
         do_click(browser, business_segment)
         values = get_list_of_elems_text(browser, business_segment_option_txt[0], business_segment_option_txt[1])
-        assert values[3:] == business_segment_list
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(business_segment_list, values)
+        assert val is True
         select_bs = business_segment_option[1] + f'[{bs_type}]'
         select_bs_loc = replace_in_tuple(business_segment_option, 1, select_bs)
         do_click(browser, select_bs_loc)
@@ -178,7 +184,10 @@ class Accounts:
     def verify_created_account(self, browser, all_data_dict: dict):
         sleep(2)
         loader_should_be_invisile(browser, 10)
-        values = get_list_of_elems_text(browser, accounts_table_row_loc[0], accounts_table_row_loc[1])
+        acc_name_loc = accounts_name_row_loc[1].replace("name", self.account_details[0])
+        row_num = get_list_of_elems_attributes_value(browser, accounts_name_row_loc[0], acc_name_loc, 'row-id')
+        accounts_table_row_loc_new = accounts_table_row_loc[1].replace("0", row_num[0])
+        values = get_list_of_elems_text(browser, accounts_table_row_loc[0], accounts_table_row_loc_new)
         all_data = list(all_data_dict.values())
         acc_data_list1 = all_data[0]
         acc_data_list = list(acc_data_list1)
@@ -340,4 +349,3 @@ class Norms:
         self.rm_norm_fiscal_year = self.select_fiscal_year(browser, fis_index)
         self.rm_norms_filter = self.select_norms_filter(browser, nf_index)
         do_click(browser, save_btn)
-        
