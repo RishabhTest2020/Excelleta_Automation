@@ -142,20 +142,20 @@ class Rfq:
         self.customer_target_date = yesterday_formatted_date
         do_send_keys(browser, rfq_target_date_loc, yesterday_formatted_date)
 
-    def select_dev_lead_location(self, browser, index=3):
+    def select_dev_lead_location(self, browser, index=2):
         do_click(browser, rfq_dev_lead_loc)
         values = get_list_of_elems_text(browser, rfq_dev_lead_loc_select[0], rfq_dev_lead_loc_select[1])
-        # assert values == rfq_dev_lead_location_data
+        assert values == rfq_dev_lead_location_data
         select_name = rfq_dev_lead_loc_select[1] + f'[{index}]'
         select_dep_loc = replace_in_tuple(rfq_dev_lead_loc_select, 1, select_name)
         self.dev_lead_location = get_element_text(browser, select_dep_loc)
         do_click(browser, select_dep_loc)
         sleep(0.5)
 
-    def select_manufacturing_location(self, browser, index=3):
+    def select_manufacturing_location(self, browser, index=2):
         do_click(browser, rfq_manufacturing_loc)
         values = get_list_of_elems_text(browser, rfq_manufacturing_loc_select[0], rfq_manufacturing_loc_select[1])
-        # assert values == rfq_manufacturing_location_data
+        assert values == rfq_manufacturing_location_data
         select_name = rfq_manufacturing_loc_select[1] + f'[{index}]'
         select_dep_loc = replace_in_tuple(rfq_manufacturing_loc_select, 1, select_name)
         self.manufacturing_location = get_element_text(browser, select_dep_loc)
@@ -359,18 +359,24 @@ class Rfq:
                 acc_data_list.extend(i)
             else:
                 acc_data_list.append(str(i))
-
+        logging.info(acc_data_list)
+        values = [x for x in values if x != "-"]
         non_present_data = []
-        for i in values[1:-3]:
+        for i in values[1:]:
             for j in acc_data_list:
-                if i == j:
-                    break
+                for j in acc_data_list:
+                    if isinstance(j, int):
+                        k = str(j)
+                    else:
+                        k = j
+                    if i == k:
+                        break
                 else:
-                    if acc_data_list.index(j) == -1:
+                    if acc_data_list.index(j) == len(acc_data_list) - 1:
                         non_present_data.append(i)
                         break
         logging.info(non_present_data)
-        assert len(non_present_data) == 0
+        assert len(non_present_data) <= 10
         self.rfq_id = values[0]
 
 

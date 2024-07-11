@@ -153,7 +153,7 @@ class Contacts:
             select_cou = contact_billing_country_select[1].replace('country_name', country).replace('index', str(index))
             select_cou_loc = replace_in_tuple(contact_billing_country_select, 1, select_cou)
             scroll_into_the_view(browser, select_cou_loc[0], select_cou_loc[1])
-            self.contact_state = get_element_text(browser, select_cou_loc)
+            self.contact_country = get_element_text(browser, select_cou_loc)
             do_click(browser, select_cou_loc)
             do_click(browser, official_address_txt)
             sleep(0.5)
@@ -196,15 +196,15 @@ class Contacts:
         values = get_list_of_elems_text(browser, accounts_table_row_loc[0], accounts_table_row_loc[1])
 
         all_data = list(all_data_dict.values())
-        acc_data_list1 = all_data[0]
-        acc_data_list = list(acc_data_list1)
-        for i in all_data[1:]:
+        acc_data_list = []
+        for i in all_data:
             i_type = type(i)
             if i_type == list:
                 acc_data_list.extend(i)
             else:
                 acc_data_list.append(str(i))
-
+        logging.info(acc_data_list)
+        values = [x for x in values if x != "-"]
         non_present_data = []
         for i in values[1:-3]:
             for j in acc_data_list:
@@ -213,7 +213,7 @@ class Contacts:
                 if i == j:
                     break
                 else:
-                    if acc_data_list.index(j) == -1:
+                    if acc_data_list.index(j) == len(acc_data_list) - 1:
                         non_present_data.append(i)
                         break
         logging.info(non_present_data)

@@ -35,5 +35,14 @@ def create_an_contact(browser):
 @then('Verify created contact data')
 def verify_account(browser):
     contact_class_data = get_class_global_variables_dict(contacts_steps)
+    anni_date = contact_class_data['anniversary_date']
+    dob = contact_class_data['dob_data']
+    anni_date_obj = datetime.strptime(anni_date, '%d/%m/%Y')
+    anni_date = anni_date_obj.strftime('%m-%d-%Y')
+    dob_obj = datetime.strptime(dob, '%d/%m/%Y')
+    dob = dob_obj.strftime('%m-%d-%Y')
+    contact_class_data['anniversary_date'] = anni_date
+    contact_class_data['dob_data'] = dob
+    contact_class_data['acc_name'] = accounts_steps.account_details[0]
     logging.info(contact_class_data.values())
     contacts_steps.verify_created_contact(browser, contact_class_data)

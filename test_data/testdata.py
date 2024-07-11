@@ -27,7 +27,7 @@ payment_method_list = ['Select Payment Method', 'Cheque', 'NEFT', 'RTGS']
 payment_term_list = ['Select Payment Term', 'Advance', '07 days', '15 days', '30 days', '40 days', '45 days',
                      '60 days', '75 days', '90 days', '100 Days']
 
-billing_add_gst_pc_list = ['Test Address, Gurgaon', 210009, '28ABCDE1234F1ZW']
+billing_add_gst_pc_list = ['Test Address, Gurgaon', generate_random_number(6), generate_random_gst()]
 
 billing_countries_list = ['Select Country', 'Austria', 'Brazil', 'Canada', 'Chile', 'Czech Republic', 'Finland',
                           'France', 'Germany', 'India', 'Italy', 'Netherlands', 'Poland', 'Romania', 'Spain',
@@ -249,4 +249,26 @@ te_inspection_instrument_dd_data = ['Please select', 'Abbressive Cutter', 'Angle
                                     'Tpg Gauge ( 1Nos Each)(For Nut Id)', 'Utm Machine',
                                     'Wring Thread Gauge Set. (For Bolt Od)']
 
-approval_history_headers = ['Step Name', 'Assigned to', 'Submitted By', 'Status', 'Assigned Date', 'Activity Date', 'Comment']
+approval_history_headers = ['Step Name', 'Assigned to', 'Submitted By', 'Status', 'Assigned Date', 'Activity Date',
+                            'Comment']
+
+norms_dd_data = ['Please select', 'BOP Norms', 'Currency Norms', 'MHR Norms', 'Process Norms', 'Over Head Norms',
+                   'Raw Material Norms']
+
+fiscal_year_dd_data = ['Please select', '2020', '2021', '2022', '2023', '2024']
+
+norms_filter_dd_data = ['Please select', 'Custom Date Range', 'Month Wise', 'Period Wise']
+
+surface_area_unit_dd_data = ['Please select', 'Sq. Feet', 'Sq. Inch']
+
+manufacturing_source_dd_data = ['Please select', 'In House', 'Outsource']
+
+rm_type_dd_data = ['Please select', 'Rod/Bar', 'Sheet Metal', 'Tube']
+
+rod_bar_dd_data = ['Please select', 'AISI 304 (Ø 9.53) Round', 'ASTM A510 TYPE 1 GRADE 1018 (Ø 5.2) Round',
+                   'C20 AS PER IS:1570 (Ø 8) Round', 'C25 (Ø 8) Round', 'C35 (IS:1570) (Ø 16) Round',
+                   'EN-8 (Ø 16) Round', 'EN-8 (Ø 18) Round', 'MS (Ø 3.2) Round', 'MS (Ø 4) Round', 'MS (Ø 5) Round',
+                   'MS (Ø 6) Round', 'MS (Ø 7) Round', 'MS -Round Bar (Ø 65) Round', 'MS(ST 42) (Ø 6) Round',
+                   'S45C (Ø 5) Round', 'SAE 1010 (Ø 24) Round', 'SAE 1010 (Ø 3.2) Round', 'SAE 1010 (Ø 8) Round',
+                   'SAE 1020 (Ø 13) Round', 'SAE 1020 (Ø 14) Round', 'SAE1018 (Ø 22.4) Round', 'SAE1018 (Ø 28) Round',
+                   'SS316 (Ø 3) Round', 'SS316 (Ø 4) Round', 'SS316 (Ø 5) Round', 'SS316 (Ø 6) Round']

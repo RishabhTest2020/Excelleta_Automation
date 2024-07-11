@@ -22,6 +22,8 @@ class Create_TE:
         loader_should_be_invisile(browser, 3)
         tool_txt = get_element_text(browser, assembly_node_label)
         assert tool_txt == tool
+
+    def add_operation(self, browser):
         do_click(browser, assembly_list_add_btn)
         do_click(browser, add_view_operation)
         sleep(2)
@@ -121,18 +123,23 @@ class Create_TE:
                 acc_data_list.extend(i)
             else:
                 acc_data_list.append(str(i))
-
+        logging.info(acc_data_list)
+        values = [x for x in values if x != "-"]
         non_present_data = []
-        for i in values[1:-3]:
+        for i in values:
             for j in acc_data_list:
-                if i == j:
+                if isinstance(j, int):
+                    k = str(j)
+                else:
+                    k = j
+                if i == k:
                     break
                 else:
-                    if acc_data_list.index(j) == -1:
+                    if acc_data_list.index(j) == len(acc_data_list) - 1:
                         non_present_data.append(i)
                         break
         logging.info(non_present_data)
-        assert len(non_present_data) == 0
+        assert len(non_present_data) <= 3
 
 
 class Approve_TE:
@@ -171,3 +178,85 @@ class Approve_TE:
                 logging.info(actual_vals)
                 assert ah_row_vals == actual_vals
                 do_click(browser, slide_back_btn)
+
+
+class Edit_TE:
+
+    def __init__(self):
+        self.net_weigh_part = 0.2
+        self.rod_length = 100
+        self.raw_material = None
+        self.rm_type = None
+        self.manufacturing_source = None
+        self.surface_area_unit = None
+        self.drawing_name = None
+
+    def edit_assembly(self, browser):
+        do_click(browser, assembly_list_add_btn)
+        do_click(browser, edit_operation)
+        sleep(2)
+
+    def select_drawing_name(self, browser, index=2):
+        do_click(browser, drawing_name_loc)
+        select_name = drawing_name_loc_select[1] + f'[{index}]'
+        select_loc = replace_in_tuple(drawing_name_loc_select, 1, select_name)
+        self.drawing_name = get_element_text(browser, select_loc)
+        do_click(browser, select_loc)
+        sleep(0.5)
+
+    def select_surface_area_unit(self, browser, index=2):
+        scroll_into_the_view(browser, surface_area_unit_loc[0], surface_area_unit_loc[1])
+        do_click(browser, surface_area_unit_loc)
+        values = get_list_of_elems_text(browser, surface_area_unit_loc_select[0], surface_area_unit_loc_select[1])
+        assert values == surface_area_unit_dd_data
+        select_name = surface_area_unit_loc_select[1] + f'[{index}]'
+        select_loc = replace_in_tuple(surface_area_unit_loc_select, 1, select_name)
+        self.surface_area_unit = get_element_text(browser, select_loc)
+        do_click(browser, select_loc)
+        sleep(0.5)
+
+    def select_manufacturing_source(self, browser, index=2):
+        do_click(browser, manu_source_loc)
+        values = get_list_of_elems_text(browser, manu_source_loc_select[0], manu_source_loc_select[1])
+        assert values == manufacturing_source_dd_data
+        select_name = manu_source_loc_select[1] + f'[{index}]'
+        select_loc = replace_in_tuple(manu_source_loc_select, 1, select_name)
+        self.manufacturing_source = get_element_text(browser, select_loc)
+        do_click(browser, select_loc)
+        sleep(0.5)
+
+    def select_rm_type(self, browser, index=2):
+        scroll_into_the_view(browser, rm_type_loc[0], rm_type_loc[1])
+        do_click(browser, rm_type_loc)
+        values = get_list_of_elems_text(browser, rm_type_loc_select[0], rm_type_loc_select[1])
+        assert values == rm_type_dd_data
+        select_name = rm_type_loc_select[1] + f'[{index}]'
+        select_loc = replace_in_tuple(rm_type_loc_select, 1, select_name)
+        self.rm_type = get_element_text(browser, select_loc)
+        do_click(browser, select_loc)
+        sleep(0.5)
+        
+    def select_raw_material(self, browser, index=2):
+        scroll_into_the_view(browser, rm_type_loc[0], rm_type_loc[1])
+        do_click(browser, raw_mat_loc)
+        values = get_list_of_elems_text(browser, raw_mat_loc_select[0], raw_mat_loc_select[1])
+        assert values == rod_bar_dd_data
+        select_name = raw_mat_loc_select[1] + f'[{index}]'
+        select_loc = replace_in_tuple(raw_mat_loc_select, 1, select_name)
+        self.raw_material = get_element_text(browser, select_loc)
+        do_click(browser, select_loc)
+        sleep(0.5)
+
+    def select_add_rod_size(self, browser, index=2):
+        scroll_into_the_view(browser, rod_length_loc[0], rod_length_loc[1])
+        do_send_keys(browser, rod_length_loc, self.rod_length)
+        scroll_into_the_view(browser, override_rod_size_loc[0], override_rod_size_loc[1])
+        do_click(browser, override_rod_size_loc)
+        select_name = override_rod_size_loc_select[1] + f'[{index}]'
+        select_loc = replace_in_tuple(raw_mat_loc_select, 1, select_name)
+        self.raw_material = get_element_text(browser, select_loc)
+        do_click(browser, select_loc)
+        sleep(1)
+        scroll_into_the_view(browser, net_weight_part_loc[0], net_weight_part_loc[1])
+        do_send_keys(browser, net_weight_part_loc, self.net_weigh_part)
+

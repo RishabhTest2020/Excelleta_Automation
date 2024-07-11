@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 assembly_node_label = (By.XPATH, '(//li[@class="treeParentList"]//span[@class="node-label"])')
 assembly_list_add_btn = (By.XPATH, '(//div[@id="listContainer"])')
 add_view_operation = (By.XPATH, '//button[text()="Add/View Operation"]')
+edit_operation = (By.XPATH, '//button[text()="Edit"]')
 
 machine_loc = (By.XPATH, '//select[@name="machineId"]')
 machine_loc_select = (By.XPATH, '(//select[@name="machineId"]/option)')
@@ -29,3 +30,21 @@ te_approval_history = (By.XPATH, '(//li[contains(text(), "Approval History")])[1
 slide_back_btn = (By.XPATH, '//div[@class="slide-in-right"]//a[contains(@class, "backArrow")]')
 operations_tab_back_btn = (By.XPATH, '(//a[contains(@class, "backArrow")])[2]')
 te_accounts_loc = (By.XPATH, '//p[contains(@title, "accountName")]')
+
+
+drawing_name_loc = (By.XPATH, '//select[@name="drawingNameId"]')
+drawing_name_loc_select = (By.XPATH, '(//select[@name="drawingNameId"]/option)')
+surface_area_unit_loc = (By.XPATH, '//select[@name="surfaceAreaLengthType"]')
+surface_area_unit_loc_select = (By.XPATH, '(//select[@name="surfaceAreaLengthType"]/option)')
+manu_source_loc = (By.XPATH, '//select[@name="ComponentManufacturingSource"]')
+manu_source_loc_select = (By.XPATH, '(//select[@name="ComponentManufacturingSource"]/option)')
+rm_type_loc = (By.XPATH, '//select[@name="rmType"]')
+rm_type_loc_select = (By.XPATH, '(//select[@name="rmType"]/option)')
+raw_mat_loc = (By.XPATH, '//select[@name="rmMaterialId"]')
+raw_mat_loc_select = (By.XPATH, '(//select[@name="rmMaterialId"]/option)')
+
+override_rod_size_loc = (By.XPATH, '//select[@name="overrideStdRodSize"]')
+override_rod_size_loc_select = (By.XPATH, '(//select[@name="overrideStdRodSize"]/option)')
+rod_length_loc = (By.XPATH, '(//*[contains(text(), "Length")]/..//input)')
+net_weight_part_loc = (By.XPATH, '(//*[contains(text(), "Net Wt./Part(Kg)")]/..//input)')
+update_btn = (By.XPATH, '//button[contains(text(), "Update")]')
