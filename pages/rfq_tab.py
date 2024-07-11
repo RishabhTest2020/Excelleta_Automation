@@ -375,7 +375,6 @@ class Rfq:
                     if acc_data_list.index(j) == len(acc_data_list) - 1:
                         non_present_data.append(i)
                         break
-        pdb_apply()
         logging.info(non_present_data)
         assert len(non_present_data) <= 10
         self.rfq_id = values[0]

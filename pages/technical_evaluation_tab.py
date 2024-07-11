@@ -117,7 +117,6 @@ class Create_TE:
         all_data = list(all_data_dict.values())
         acc_data_list1 = all_data[0]
         acc_data_list = list(acc_data_list1)
-        pdb_apply()
         for i in all_data[1:]:
             i_type = type(i)
             if i_type == list:
