@@ -131,7 +131,7 @@ class Accounts:
     def fill_billing_txtbox_data(self, browser):
         should_be_visible(browser, Billing_Address1_h3, 'Billing_Address1_h3')
         ids_list = ['billingAddress', 'billingPostalCode', 'gstin']
-        self.billing_data = billing_add_gst_pc_list
+        self.billing_data = ['Test Address, Gurgaon', generate_random_number(6), generate_random_gst()]
         for b_id, data in zip(ids_list, self.billing_data):
             bill_loc_str = billing_txt_box[1].replace("billingTxtBox", b_id)
             bill_loc = replace_in_tuple(billing_txt_box, 1, bill_loc_str)
