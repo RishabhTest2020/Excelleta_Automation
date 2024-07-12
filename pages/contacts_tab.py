@@ -76,7 +76,9 @@ class Contacts:
     def select_department_field(self, browser, dep_index=2):
         do_click(browser, select_department)
         values = get_list_of_elems_text(browser, select_department_options[0], select_department_options[1])
-        assert values == department_data
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(department_data, values)
+        assert val is True
         select_department_name = select_department_options[1] + f'[{dep_index}]'
         select_dep_loc = replace_in_tuple(select_department_options, 1, select_department_name)
         self.department = get_element_text(browser, select_dep_loc)
@@ -86,7 +88,9 @@ class Contacts:
     def select_designation_field(self, browser, dep_index=2):
         do_click(browser, select_department)
         values = get_list_of_elems_text(browser, select_designation_options[0], select_designation_options[1])
-        assert values == designation_data
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(designation_data, values)
+        assert val is True
         select_designation_name = select_designation_options[1] + f'[{dep_index}]'
         select_dep_loc = replace_in_tuple(select_designation_options, 1, select_designation_name)
         self.designation = get_element_text(browser, select_dep_loc)

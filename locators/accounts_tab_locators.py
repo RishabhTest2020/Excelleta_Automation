@@ -96,6 +96,7 @@ other_norms_descriptions_col_loc = (By.XPATH, '//div[@role="gridcell" and positi
 norms_flat_rate_loc = (By.XPATH, '(//div[@col-id = "flatRate"])[index]')
 norms_percentage_rate_loc = (By.XPATH, '(//div[@col-id = "overHeadsapplicableOn"])[index]')
 norms_applicable_on_loc = (By.XPATH, '(//div[@col-id = "overHeadsapplicableOn"])[index]//div[@class="multiselect-dropdown"]')
+norms_applicable_options_loc = (By.XPATH, '(//div[@class="dropdown-list"])[index]//input[@type="checkbox"]')
 
 process_norms_table_headers = (By.XPATH, '(//div[contains(@class, "d-flex")])')
 process_norms_table_details = (By.XPATH, '//table[contains(@class, "generic-table")]//tbody//span')

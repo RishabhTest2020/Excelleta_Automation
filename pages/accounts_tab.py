@@ -39,7 +39,7 @@ class Accounts:
         assert accounts_table_header_col.sort() == col_names_lst.sort()
 
     def add_accounts_data_in_txt_box(self, browser):
-        self.account_details = [random_correct_name(5, 4), f'{random_email_generator()}',
+        self.account_details = [random_correct_name(8, 4, 'first_name'), f'{random_email_generator()}',
                                 'www.testwesite.com', '9090909090', '12345678', generate_random_pan(),
                                 f'{generate_random_five_digit_number()}', 7]
         logging.info(self.account_details)
