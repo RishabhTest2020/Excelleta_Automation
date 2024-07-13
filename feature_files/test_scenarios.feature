@@ -51,7 +51,7 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 5
-    Then Create a RFQ
+    Then Create a RFQ single
     When Navigate to RFQ tab 30
     Then Add Drawing Data
     When Navigate to Technical Evaluation tab 10
