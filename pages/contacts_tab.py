@@ -137,9 +137,9 @@ class Contacts:
         should_be_visible(browser, residential_address_txt, 'residential_address_txt')
 
         ids_list = ['address', 'postalCode', 'address', 'postalCode']
-        self.contact_billing_data = [f'{random_correct_name(5, 4, 'first_name')}, Gurgaon',
+        self.contact_billing_data = [f'{random_correct_name(5, 4, "first_name")}, Gurgaon',
                                      generate_random_five_digit_number(10),
-                                     f'{random_correct_name(5, 4, 'first_name')}, Gurgaon',
+                                     f'{random_correct_name(5, 4, "first_name")}, Gurgaon',
                                      generate_random_five_digit_number(10)]
         for b_id, data, index in zip(ids_list, self.contact_billing_data, comprehension_range(1, len(ids_list))):
             bill_loc_str = billing_txt_box[1].replace("billingTxtBox", b_id) + f'[{index}]'

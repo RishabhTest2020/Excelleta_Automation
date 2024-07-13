@@ -5,6 +5,7 @@ assembly_node_label = (By.XPATH, '(//li[@class="treeParentList"]//span[@class="n
 assembly_list_add_btn = (By.XPATH, '(//div[@id="listContainer"])')
 add_view_operation = (By.XPATH, '//button[text()="Add/View Operation"]')
 edit_operation = (By.XPATH, '//button[text()="Edit"]')
+add_sub_assembly = (By.XPATH,'//button[text()="Add Sub-Assembly"]')
 
 machine_loc = (By.XPATH, '//select[@name="machineId"]')
 machine_loc_select = (By.XPATH, '(//select[@name="machineId"]/option)')
@@ -48,3 +49,6 @@ override_rod_size_loc_select = (By.XPATH, '(//select[@name="overrideStdRodSize"]
 rod_length_loc = (By.XPATH, '(//*[contains(text(), "Length")]/..//input)')
 net_weight_part_loc = (By.XPATH, '(//*[contains(text(), "Net Wt./Part(Kg)")]/..//input)')
 update_btn = (By.XPATH, '//button[contains(text(), "Update")]')
+
+sub_assembly_compo_num_loc = (By.XPATH,'//*[contains(text(),"Component Number")]/parent::div//input[contains(@placeholder,"Enter Component Number")]')
+sub_assem_name_input_loc = (By.XPATH,'//*[contains(text(),"Sub Assembly Name")]/parent::div//input[contains(@placeholder,"Enter Sub Assembly Name")]')
