@@ -3,7 +3,7 @@ import logging
 from helpers.common_helpers import *
 from locators.accounts_tab_locators import save_btn
 from pages.rfq_tab import *
-from pytest_bdd import given, when, then
+from pytest_bdd import given, when, then, parsers
 from tests.test_accounts_tab import accounts_steps
 
 rfq_steps = Rfq()
@@ -16,8 +16,8 @@ def acc_head_colm(browser):
     rfq_steps.verify_rfq_head_col(browser)
 
 
-@then('Create a RFQ')
-def create_rfq(browser):
+@then(parsers.parse('Create a RFQ {type}'))
+def create_rfq(browser, type):
     do_click(browser, add_rfq_btn)
     rfq_steps.select_account_and_key_person(browser, accounts_steps.account_details[0])
     rfq_steps.select_business_evaluation(browser)
@@ -47,7 +47,7 @@ def create_rfq(browser):
     rfq_steps.select_project_life(browser)
     rfq_steps.select_quotation_type(browser)
     rfq_steps.select_rfq_shipping_address(browser)
-    rfq_steps.select_rfq_toggles(browser)
+    rfq_steps.select_rfq_toggles(browser, type)
     rfq_steps.select_development_lead(browser)
     rfq_steps.select_marketing_lead(browser)
     rfq_steps.select_pm_lead(browser)
