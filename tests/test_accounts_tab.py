@@ -46,6 +46,7 @@ def account_creation(browser):
 @then('Verify created account data')
 def verify_account(browser):
     acc_class_data = get_class_global_variables_dict(accounts_steps)
+    acc_class_data['account_details'][3] = '9090909090'
     logging.info(acc_class_data.values())
     accounts_steps.verify_created_account(browser, acc_class_data)
 

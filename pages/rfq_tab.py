@@ -1,6 +1,7 @@
 import logging
 import os
 
+from selenium.common import ElementClickInterceptedException
 from selenium.webdriver import Keys
 
 from helpers.common_helpers import *
@@ -463,7 +464,7 @@ class Drawing_data:
         try:
             do_click(browser, roi_menu_btn)
             do_click(browser, approve_roi_te)
-        except (TimeoutException, StaleElementReferenceException):
+        except (TimeoutException, StaleElementReferenceException, ElementClickInterceptedException):
             sleep(0.5)
             do_click(browser, roi_menu_btn)
             do_click(browser, approve_roi_te)
@@ -484,7 +485,7 @@ class Drawing_data:
         do_click(browser, te_menu_btn)
         try:
             do_click(browser, approve_roi_te)
-        except TimeoutException:
+        except (TimeoutException, ElementClickInterceptedException):
             do_click(browser, te_menu_btn)
             do_click(browser, approve_roi_te)
         do_send_keys(browser, add_comment, 'Test')

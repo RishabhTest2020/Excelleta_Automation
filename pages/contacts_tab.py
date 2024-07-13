@@ -212,7 +212,7 @@ class Contacts:
         non_present_data = []
         for i in values[1:-3]:
             for j in acc_data_list:
-                if j == '9090909090':
+                if '9090909090' in i:
                     i = str(i).replace("+91-", '')
                 if i == j:
                     break

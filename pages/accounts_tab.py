@@ -40,7 +40,7 @@ class Accounts:
 
     def add_accounts_data_in_txt_box(self, browser):
         if sys.platform == 'win32':
-            number = '9090909090'
+            number = '99090909090'
         else:
             number = '99090909090'
         self.account_details = [random_correct_name(8, 4, 'first_name'), f'{random_email_generator()}',
@@ -207,7 +207,7 @@ class Accounts:
         non_present_data = []
         for i in values[1:-3]:
             for j in acc_data_list:
-                if j == '9090909090' or j == '99090909090':
+                if ('9090909090' in i or '99090909090' in i) is True:
                     i = str(i).replace("+91-", '')
                 if i == j:
                     break
