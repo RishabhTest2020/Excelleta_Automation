@@ -52,7 +52,6 @@ class Accounts:
             acc_field_loc = replace_in_tuple(acc_field_txtbox, 1, acco_field)
             do_clear(browser, acc_field_loc)
             do_send_keys(browser, acc_field_loc, data)
-        pdb_apply()
 
     def select_start_month_field(self, browser):
         loader_should_be_invisile(browser, 4)

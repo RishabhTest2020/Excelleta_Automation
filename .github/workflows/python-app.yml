@@ -44,7 +44,7 @@ jobs:
     - name: Excelleta Sanity Test
       run: |
         echo $TAG
-        browser=headless_chrome pytest -s -k test_tc_03_verify_accounts_tab_and_new_account_creation
+        browser=headless_chrome pytest -s -m Sanity -n 3 --reruns 1 --reruns-delay 2
       continue-on-error: true
 
     - name: Upload artifact
