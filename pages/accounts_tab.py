@@ -39,13 +39,18 @@ class Accounts:
         assert accounts_table_header_col.sort() == col_names_lst.sort()
 
     def add_accounts_data_in_txt_box(self, browser):
+        if sys.platform == 'win32':
+            number = '99090909090'
+        else:
+            number = '99090909090'
         self.account_details = [random_correct_name(8, 4, 'first_name'), f'{random_email_generator()}',
-                                'www.testwesite.com', '9090909090', '12345678', generate_random_pan(),
+                                'www.testwesite.com', number, '12345678', generate_random_pan(),
                                 f'{generate_random_five_digit_number()}', 7]
         logging.info(self.account_details)
         for field_name, data in zip(accounts_create_fields_gen, self.account_details):
             acco_field = acc_field_txtbox[1].replace('field_name', field_name)
             acc_field_loc = replace_in_tuple(acc_field_txtbox, 1, acco_field)
+            do_clear(browser, acc_field_loc)
             do_send_keys(browser, acc_field_loc, data)
 
     def select_start_month_field(self, browser):
@@ -202,7 +207,7 @@ class Accounts:
         non_present_data = []
         for i in values[1:-3]:
             for j in acc_data_list:
-                if j == '9090909090':
+                if ('9090909090' in i or '99090909090' in i) is True:
                     i = str(i).replace("+91-", '')
                 if i == j:
                     break

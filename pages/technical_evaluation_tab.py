@@ -23,8 +23,10 @@ class Create_TE:
         tool_txt = get_element_text(browser, assembly_node_label)
         assert tool_txt == tool
 
-    def add_operation(self, browser):
-        do_click(browser, assembly_list_add_btn)
+    def add_operation(self, browser, index=1):
+        assembly_list_add_btn_loc = assembly_list_add_btn[1] + f'[{index}]'
+        assembly_list_add_btn_loc_tup = replace_in_tuple(assembly_list_add_btn, 1, assembly_list_add_btn_loc)
+        do_click(browser, assembly_list_add_btn_loc_tup)
         do_click(browser, add_view_operation)
         sleep(2)
 
