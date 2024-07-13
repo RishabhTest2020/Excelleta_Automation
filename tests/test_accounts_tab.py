@@ -1,5 +1,7 @@
 import logging
 
+from selenium.webdriver import Keys
+
 from helpers.common_helpers import *
 from pages.accounts_tab import *
 from pytest_bdd import given, when, then
@@ -34,6 +36,7 @@ def account_creation(browser):
     accounts_steps.select_country_field(browser)
     accounts_steps.select_state_field(browser)
     accounts_steps.select_city_field(browser)
+    browser.find_element(By.TAG_NAME, 'body').send_keys(Keys.CONTROL + Keys.HOME)
     do_click(browser, save_btn)
     nav_path = accounts_nav_name_loc[1].replace('acc_name', accounts_steps.account_details[0])
     nav_loc = replace_in_tuple(accounts_nav_name_loc, 1, nav_path)
