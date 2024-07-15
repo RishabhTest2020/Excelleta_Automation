@@ -4,13 +4,15 @@ from helpers.common_helpers import *
 from locators.accounts_tab_locators import save_btn
 from pages.rfq_tab import Drawing_data
 from pages.technical_evaluation_tab import *
-from pytest_bdd import given, when, then
+from pytest_bdd import given, when, then, parsers
 from tests.test_rfq_tab import drawing_data_steps, rfq_steps
 
 
 create_testeps = Create_TE()
 approve_te_steps = Approve_TE()
 edit_te_steps = Edit_TE()
+edit_te_steps_sub_assembly = Edit_TE()
+edit_te_steps_parts = Edit_TE()
 
 
 @when('Create TE data')
@@ -26,22 +28,70 @@ def create_te_data(browser):
     do_click(browser, save_btn)
 
 
-@when('Edit TE Assembly and fill raw material data')
-def edit_te_raw_material(browser):
+@when(parsers.parse('Edit TE Assembly and fill raw material data {type}'))
+def edit_te_raw_material(browser, ass_type):
     create_testeps.goto_te_verify_part_add_assembly(browser, drawing_data_steps.te_link, rfq_txtboxes_data[3])
     edit_te_steps.edit_assembly(browser)
     edit_te_steps.select_drawing_name(browser)
     edit_te_steps.select_surface_area_unit(browser)
     edit_te_steps.select_manufacturing_source(browser)
-    edit_te_steps.select_rm_type(browser)
-    edit_te_steps.select_raw_material(browser)
-    edit_te_steps.select_add_rod_size(browser)
-    do_click(browser, update_btn)
-    sleep(2)
+    if ass_type == 'single':
+        edit_te_steps.select_rm_type(browser)
+        edit_te_steps.select_raw_material(browser)
+        edit_te_steps.select_add_rod_size(browser)
+    else:
+        surface_area_val = 100
+        do_send_keys(browser, net_weight_part_loc, edit_te_steps.net_weigh_part)
+        do_send_keys(browser, surface_area_val_loc, surface_area_val)
+        edit_te_steps.__dict__['surface_area_val'] = surface_area_val
     try:
         do_click(browser, update_btn)
+        sleep(2)
     except TimeoutException:
-        pass
+        sleep(1)
+        do_click(browser, update_btn)
+        sleep(2)
+
+
+@when('Add sub assembly and its data')
+def add_sub_assembly(browser):
+    create_testeps.add_operation(browser, index=2, ops=False)
+    do_click(browser, sub_assemply_btn)
+    sleep(1)
+    edit_te_steps_sub_assembly.select_drawing_name(browser)
+    edit_te_steps_sub_assembly.select_surface_area_unit(browser)
+    edit_te_steps_sub_assembly.select_manufacturing_source(browser)
+    surface_area_val = 100
+    do_send_keys(browser, net_weight_part_loc, edit_te_steps.net_weigh_part)
+    do_send_keys(browser, surface_area_val_loc, surface_area_val)
+    edit_te_steps_sub_assembly.__dict__['subA_surface_area_val'] = surface_area_val
+    try:
+        do_click(browser, update_btn)
+        sleep(2)
+    except TimeoutException:
+        sleep(1)
+        do_click(browser, update_btn)
+        sleep(2)
+
+
+@when('Add assembly part')
+def edit_te_raw_material(browser):
+    create_testeps.add_operation(browser, ops=False)
+    do_click(browser, sub_assemply_btn)
+    sleep(1)
+    edit_te_steps_parts.select_drawing_name(browser)
+    edit_te_steps_parts.select_surface_area_unit(browser)
+    edit_te_steps_parts.select_manufacturing_source(browser)
+    edit_te_steps_parts.select_rm_type(browser)
+    edit_te_steps_parts.select_raw_material(browser)
+    edit_te_steps_parts.select_add_rod_size(browser)
+    try:
+        do_click(browser, update_btn)
+        sleep(2)
+    except TimeoutException:
+        sleep(1)
+        do_click(browser, update_btn)
+        sleep(2)
 
 
 @then('Verify TE data')
