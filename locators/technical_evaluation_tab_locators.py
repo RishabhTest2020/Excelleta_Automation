@@ -52,3 +52,7 @@ update_btn = (By.XPATH, '//button[contains(text(), "Update")]')
 
 sub_assembly_compo_num_loc = (By.XPATH,'//*[contains(text(),"Component Number")]/parent::div//input[contains(@placeholder,"Enter Component Number")]')
 sub_assem_name_input_loc = (By.XPATH,'//*[contains(text(),"Sub Assembly Name")]/parent::div//input[contains(@placeholder,"Enter Sub Assembly Name")]')
+bop_basic_details_common_loc = (By.XPATH, '//*[contains(@class,"{field}")]//input')
+bop_name_values_loc = (By.XPATH, '(//*[contains(@class,"cdk-overlay-pane")]//mat-option)')
+bop_type_dropdown_loc = (By.XPATH, '//*[contains(@class,"bopType")]//select')
+bop_type_options_loc = (By.XPATH, '(//*[contains(@class,"bopType")]//option)')

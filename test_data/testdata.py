@@ -272,3 +272,15 @@ rod_bar_dd_data = ['Please select', 'AISI 304 (Ø 9.53) Round', 'ASTM A510 TYPE 
                    'S45C (Ø 5) Round', 'SAE 1010 (Ø 24) Round', 'SAE 1010 (Ø 3.2) Round', 'SAE 1010 (Ø 8) Round',
                    'SAE 1020 (Ø 13) Round', 'SAE 1020 (Ø 14) Round', 'SAE1018 (Ø 22.4) Round', 'SAE1018 (Ø 28) Round',
                    'SS316 (Ø 3) Round', 'SS316 (Ø 4) Round', 'SS316 (Ø 5) Round', 'SS316 (Ø 6) Round']
+
+
+account_details_data = ['Account Name', 'Email ID', 'Website', 'Phone Number', 'Landline Number', 'PAN Number', 'GSTIN',
+                        'FY Start Month', 'RM Norms Rate Type', 'Customer Code', 'Number of Working Days(In year)', 'Business Nature',
+                        'Business Domain ', 'Business Segment', 'Payment Method', 'Payment Term']
+
+contact_details_data = ['Contact Name', 'Email ID', 'Phone Number', ' Other Phone Number', 'Department', 'Designation',
+                        'Report To', 'Gender', 'Birth Date', 'Marital Status', 'Anniversary', 'Email Opt In',
+                        'Greetings', 'Acknowledgement', 'Official Address', 'Residential Address']
+bop_basic_details = ['componentNumber', 'revisionNumber', 'qtyPerAssembly' 'remarkPart']
+
+bop_raw_material_data = ['bopTypeOfMaterial', 'rmGradeAsPerDrawing', 'rmThicknessPerDrawing', 'rmNetWtPart']

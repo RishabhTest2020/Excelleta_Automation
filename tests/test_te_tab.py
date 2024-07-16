@@ -11,7 +11,7 @@ from tests.test_rfq_tab import drawing_data_steps, rfq_steps
 create_testeps = Create_TE()
 approve_te_steps = Approve_TE()
 edit_te_steps = Edit_TE()
-
+bop_data_steps = CreateBopDetails()
 
 @when('Create TE data')
 def create_te_data(browser):
@@ -60,3 +60,11 @@ def approve_te_levels(browser):
     do_click(browser, operations_tab_back_btn)
     approve_te_steps.approve_te(browser, rfq_steps.development_lead, rfq_steps.plant_head
                                 , 'Somvir Singh')
+
+@when('Create TE BOP data')
+def create_te_bop_info(browser):
+    bop_data_steps.enter_component_number(browser)
+    bop_data_steps.bop_raw_material_data(browser)
+    bop_data_steps.select_bop_name_field(browser)
+    bop_data_steps.select_bop_type_field(browser)
+    do_click(browser, save_btn)

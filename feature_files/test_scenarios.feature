@@ -10,16 +10,18 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
   Scenario: TC_02 Verify login with invalid creds
     Given Login with invalid creds test@yopmail.com 123test into Excelleta UI
 
-  @Sanity
+  @Test @Sanity
   Scenario: TC_03 Verify Accounts Tab and New Account creation
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
     Then Create an account
+    Then Verify account creation data
     When Navigate to Accounts tab 5
     Then Verify created account data
     Then Verify accounts table head column
 
-  @Sanity
+
+  @Test @Sanity
   Scenario: TC_04 Verify Contacts Tab and New Contact creation
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5

@@ -262,3 +262,43 @@ class Edit_TE:
         scroll_into_the_view(browser, net_weight_part_loc[0], net_weight_part_loc[1])
         do_send_keys(browser, net_weight_part_loc, self.net_weigh_part)
 
+
+class CreateBopDetails:
+    def __init__(self):
+        self.bop_basic_details_values = None
+        self.bop_raw_mate_data = None
+        self.bop_name_value = None
+        self.bop_type_value = None
+
+    def enter_component_number(self, browser):
+        self.bop_basic_details_values = [generate_random_number(9), generate_random_five_digit_number(), 2, 'NA']
+        for field_name, data in zip(bop_basic_details, self.bop_basic_details_values):
+            bop_field = bop_basic_details_common_loc[1].replace('field', field_name)
+            bop_field_loc = replace_in_tuple(bop_basic_details_common_loc, 1, bop_field)
+            do_clear(browser, bop_field_loc)
+            do_send_keys(browser, bop_field_loc, data)
+
+    def bop_raw_material_data(self, browser, mgr_mm=50, thk_mm=10, weight=1000):
+        self.bop_raw_mate_data = [random_correct_name(8, 4, 'first_name'), mgr_mm, thk_mm, weight]
+        for field_name, data in zip(bop_raw_material_data, self.bop_raw_mate_data):
+            bop_material_field = bop_basic_details_common_loc[1].replace('field', field_name)
+            bop_material_field_loc = replace_in_tuple(bop_basic_details_common_loc, 1, bop_material_field)
+            do_clear(browser, bop_material_field_loc)
+            do_send_keys(browser, bop_material_field_loc, data)
+
+    def select_bop_name_field(self, browser, index=3):
+        bop_name_dropdown = bop_basic_details_common_loc[1].replace('field', "componentName")
+        bop_material_field_loc = replace_in_tuple(bop_basic_details_common_loc, 1, bop_name_dropdown)
+        do_click(browser, bop_material_field_loc)
+        bop_name_value = bop_name_values_loc[1] + f'[{index}]'
+        bop_name_value_loc = replace_in_tuple(bop_name_values_loc, 1, bop_name_value)
+        self.bop_name_value = get_element_text(browser, bop_name_value_loc)
+        do_click(browser, bop_name_value_loc)
+
+    def select_bop_type_field(self, browser, index=2):
+        do_click(browser, bop_type_dropdown_loc)
+        bop_type_value = bop_type_options_loc[1] + f'[{index}]'
+        bop_type_value_loc = replace_in_tuple(bop_name_values_loc, 1, bop_type_value)
+        self.bop_type_value = get_element_text(browser, bop_type_value_loc)
+        do_click(browser, bop_type_value_loc)
+

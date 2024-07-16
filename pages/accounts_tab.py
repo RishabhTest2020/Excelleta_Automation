@@ -218,6 +218,65 @@ class Accounts:
         logging.info(non_present_data)
         assert len(non_present_data) == 0
 
+    def verify_created_account_details(self, browser):
+        should_be_visible(browser, accnt_details_header_loc, "accnt_details_header_loc")
+        for col_name in account_details_data:
+            acct_details_cols = account_details_cols_locs[1].replace("field", col_name)
+            r_acct_details_cols = replace_in_tuple(account_details_cols_locs, 1, acct_details_cols)
+            should_be_visible(browser, r_acct_details_cols, "r_acct_details_cols")
+        basic_acct_details_fields = ['Account Name', 'Email ID', 'Website', 'Phone Number', 'Landline Number',
+                                     'PAN Number', 'Customer Code', 'Number of Working Days(In year)']
+        actual_item_list = []
+        for field_name in basic_acct_details_fields:
+            basic_acct_details_loc = accnt_details_values_locs[1].replace("feild", field_name)
+            basic_acct_details_value_loc = replace_in_tuple(accnt_details_values_locs, 1, basic_acct_details_loc)
+            actual_values_txt = get_element_text(browser, basic_acct_details_value_loc)
+            if actual_values_txt == "+91-9090909090":
+                actual_values_txt = "99090909090"
+            if actual_values_txt == "7":
+                actual_values_txt = 7
+            actual_item_list.append(actual_values_txt)
+        logging.info(self.account_details)
+        logging.info(actual_item_list)
+        assert actual_item_list == self.account_details
+        logging.info("Initial values validated")
+        business_type_list = ["FY Start Month", "RM Norms Rate Type", "Business Nature", "Business Domain ",
+                              "Business Segment", "Payment Method", "Payment Term"]
+        actual_business_type_list = []
+        for field_name in business_type_list:
+            acct_details_loc = accnt_details_values_locs[1].replace("feild", field_name)
+            acct_business_type_val_loc = replace_in_tuple(accnt_details_values_locs, 1, acct_details_loc)
+            acct_business_type_val_txt = get_element_text(browser, acct_business_type_val_loc)
+            if acct_business_type_val_txt == "07 Days":
+                acct_business_type_val_txt = acct_business_type_val_txt.lower()
+            actual_business_type_list.append(acct_business_type_val_txt)
+        logging.info(actual_business_type_list)
+        exptd_business_type_list = [self.start_month, self.rm_norms, self.business_nature, self.business_domain,
+                                    self.business_segment, self.payment_method, self.payment_term]
+        logging.info(exptd_business_type_list)
+        assert actual_business_type_list == exptd_business_type_list
+
+    def verify_address_details(self, browser):
+        address_city_txt = self.billing_data[0].split(',')
+        sp_address_city_txt = [address.strip() for address in address_city_txt]
+        expected_address_list = [sp_address_city_txt[0], sp_address_city_txt[1], self.city, self.state, self.country,
+                                 self.billing_data[1]]
+        logging.info(expected_address_list)
+        should_be_visible(browser, address_details_header_loc, "address_details_header_loc")
+        should_be_visible(browser, primary_billing_address_loc, "primary_billing_address_loc")
+        actual_billing_address_txt = get_element_text(browser, billing_address_txt_loc)
+        split_billing_address_list = actual_billing_address_txt.split(',')
+        cleaned_billing_addresses = [address.strip() for address in split_billing_address_list]
+        cleaned_billing_addresses[-1] = cleaned_billing_addresses[-1].rstrip('.')
+        logging.info(cleaned_billing_addresses)
+        assert cleaned_billing_addresses == expected_address_list
+        actual_shipping_address_txt = get_element_text(browser, primary_shipping_address_txt_loc)
+        split_shipping_address_list = actual_shipping_address_txt.split(',')
+        cleaned_shipping_addresses = [address.strip() for address in split_shipping_address_list]
+        cleaned_shipping_addresses[-1] = cleaned_shipping_addresses[-1].rstrip('.')
+        logging.info(cleaned_shipping_addresses)
+        assert cleaned_shipping_addresses == expected_address_list
+
 
 class Norms:
 
