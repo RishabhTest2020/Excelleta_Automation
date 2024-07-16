@@ -186,6 +186,7 @@ class Approve_TE:
 class Edit_TE:
 
     def __init__(self):
+        self.surface_treatment = None
         self.net_weigh_part = 0.2
         self.rod_length = 100
         self.raw_material = None
@@ -262,4 +263,12 @@ class Edit_TE:
         sleep(1)
         scroll_into_the_view(browser, net_weight_part_loc[0], net_weight_part_loc[1])
         do_send_keys(browser, net_weight_part_loc, self.net_weigh_part)
+
+    def select_surface_treatment(self, browser, index=3):
+        do_click(browser, surface_treat_loc)
+        select_name = surface_treatment_loc_select[1] + f'[{index}]'
+        select_loc = replace_in_tuple(surface_treatment_loc_select, 1, select_name)
+        self.surface_treatment = get_element_text(browser, select_loc)
+        do_click(browser, select_loc)
+        sleep(0.5)
 

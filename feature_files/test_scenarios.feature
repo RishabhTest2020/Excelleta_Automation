@@ -60,8 +60,15 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Then Verify TE data
     Then Approve TE all levels
 
-  @Test
+#  @Test
   Scenario: Add Norms
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create norms data
+
+  @Test
+  Scenario: TC_06 Create and verify Drawing data and TE data
+    Given Login into Excelleta UI
+    When Navigate to Technical Evaluation tab 10
+#    When Edit TE Assembly and fill raw material data multi
+    When Add sub assembly and its data
+    When Add assembly part

@@ -28,7 +28,7 @@ def create_te_data(browser):
     do_click(browser, save_btn)
 
 
-@when(parsers.parse('Edit TE Assembly and fill raw material data {type}'))
+@when(parsers.parse('Edit TE Assembly and fill raw material data {ass_type}'))
 def edit_te_raw_material(browser, ass_type):
     create_testeps.goto_te_verify_part_add_assembly(browser, drawing_data_steps.te_link, rfq_txtboxes_data[3])
     edit_te_steps.edit_assembly(browser)
@@ -55,9 +55,14 @@ def edit_te_raw_material(browser, ass_type):
 
 @when('Add sub assembly and its data')
 def add_sub_assembly(browser):
-    create_testeps.add_operation(browser, index=2, ops=False)
+    pdb_apply()
+    create_testeps.add_operation(browser, ops=False)
     do_click(browser, sub_assemply_btn)
     sleep(1)
+    sub_assembly_name = "Autom Sub Assembly"
+    do_send_keys(browser, sub_assembly_name_loc, sub_assembly_name)
+    sub_assembly_component_number = generate_random_five_digit_number()
+    do_send_keys(browser, sub_assembly_component_number_loc, sub_assembly_component_number)
     edit_te_steps_sub_assembly.select_drawing_name(browser)
     edit_te_steps_sub_assembly.select_surface_area_unit(browser)
     edit_te_steps_sub_assembly.select_manufacturing_source(browser)
@@ -65,32 +70,45 @@ def add_sub_assembly(browser):
     do_send_keys(browser, net_weight_part_loc, edit_te_steps.net_weigh_part)
     do_send_keys(browser, surface_area_val_loc, surface_area_val)
     edit_te_steps_sub_assembly.__dict__['subA_surface_area_val'] = surface_area_val
+    edit_te_steps_sub_assembly.__dict__['sub_assembly_name'] = sub_assembly_name
+    edit_te_steps_sub_assembly.__dict__['sub_assembly_component_number'] = sub_assembly_component_number
     try:
-        do_click(browser, update_btn)
+        do_click(browser, save_btn)
         sleep(2)
     except TimeoutException:
         sleep(1)
-        do_click(browser, update_btn)
+        do_click(browser, save_btn)
         sleep(2)
 
 
 @when('Add assembly part')
 def edit_te_raw_material(browser):
+    pdb_apply()
     create_testeps.add_operation(browser, ops=False)
-    do_click(browser, sub_assemply_btn)
+    do_click(browser, add_part_btn)
     sleep(1)
+    part_name = "Automation Part"
+    do_send_keys(browser, add_part_name_loc, part_name)
+    part_component_number = generate_random_five_digit_number()
+    do_send_keys(browser, sub_assembly_component_number_loc, part_component_number)
     edit_te_steps_parts.select_drawing_name(browser)
+    surface_area_val = 100
+    do_send_keys(browser, surface_area_val_loc, surface_area_val)
+    edit_te_steps_sub_assembly.__dict__['part_surface_area_val'] = surface_area_val
     edit_te_steps_parts.select_surface_area_unit(browser)
     edit_te_steps_parts.select_manufacturing_source(browser)
+    edit_te_steps_parts.select_surface_treatment(browser)
     edit_te_steps_parts.select_rm_type(browser)
     edit_te_steps_parts.select_raw_material(browser)
     edit_te_steps_parts.select_add_rod_size(browser)
+    edit_te_steps_parts.__dict__['part_name'] = part_name
+    edit_te_steps_parts.__dict__['part_component_number'] = part_component_number
     try:
-        do_click(browser, update_btn)
+        do_click(browser, save_btn)
         sleep(2)
     except TimeoutException:
         sleep(1)
-        do_click(browser, update_btn)
+        do_click(browser, save_btn)
         sleep(2)
 
 
