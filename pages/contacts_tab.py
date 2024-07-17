@@ -137,9 +137,9 @@ class Contacts:
         should_be_visible(browser, residential_address_txt, 'residential_address_txt')
 
         ids_list = ['address', 'postalCode', 'address', 'postalCode']
-        self.contact_billing_data = [f'{random_correct_name(5, 4, 'first_name')}, Gurgaon',
+        self.contact_billing_data = [f'{random_correct_name(5, 4, "first_name")}, Gurgaon',
                                      generate_random_five_digit_number(10),
-                                     f'{random_correct_name(5, 4, 'first_name')}, Gurgaon',
+                                     f'{random_correct_name(5, 4, "first_name")}, Gurgaon',
                                      generate_random_five_digit_number(10)]
         for b_id, data, index in zip(ids_list, self.contact_billing_data, comprehension_range(1, len(ids_list))):
             bill_loc_str = billing_txt_box[1].replace("billingTxtBox", b_id) + f'[{index}]'
@@ -222,4 +222,51 @@ class Contacts:
                         break
         logging.info(non_present_data)
         assert len(non_present_data) == 0
+
+    def verify_created_contact_details(self, browser, email_opt_in="Yes", greetings_opt="Yes", acknowledgement="Yes"):
+        logging.info(self.contact_details)
+        logging.info(self.contact_billing_data)
+        contact_details_link = contact_details_loc[1].replace("fname", self.contact_details[0])
+        contact_details_link_loc = replace_in_tuple(contact_details_loc, 1, contact_details_link)
+        do_click(browser, contact_details_link_loc)
+        sleep(5)
+        loader_should_be_invisile(browser, 10)
+        expected_contact_details_list = [self.name_title, self.contact_details[0], self.contact_details[1],
+                                         self.contact_details[2], self.contact_details[3], "9090909090", self.department,
+                                         self.designation, self.gender, self.dob_data, self.marital, self.anniversary_date,
+                                         email_opt_in, greetings_opt, acknowledgement, self.contact_billing_data[0],
+                                         self.contact_city, self.contact_state, self.contact_country,
+                                         self.contact_billing_data[1], self.contact_billing_data[2],
+                                         self.contact_city, self.contact_state, self.contact_country, self.contact_billing_data[3]]
+        logging.info(expected_contact_details_list)
+        actual_contact_data_list = []
+        for field_name in contact_details_data:
+            contact_details_elems = contact_details_locs[1].replace("field", field_name)
+            contact_details_value_loc = replace_in_tuple(contact_details_locs, 1, contact_details_elems)
+            contact_details_value_txt = get_element_text(browser, contact_details_value_loc)
+            if contact_details_value_txt == "+91-9090909090":
+                contact_details_value_txt = "9090909090"
+                logging.info(contact_details_value_txt)
+            if field_name == "Contact Name":
+                contact_name_details = contact_details_value_txt.split()
+                contact_name_details[0] = contact_name_details[0].rstrip('.')
+                actual_contact_data_list = contact_name_details.copy()
+                logging.info(actual_contact_data_list)
+                continue
+            if field_name == "Official Address" or field_name == "Residential Address":
+                address_details = contact_details_value_txt.split(',')
+                cleaned_addresses_details = [address.strip() for address in address_details]
+                actual_contact_data_list.extend(cleaned_addresses_details)
+                logging.info(actual_contact_data_list)
+                continue
+            if contact_details_value_txt != "-":
+                actual_contact_data_list.append(contact_details_value_txt)
+                logging.info(actual_contact_data_list)
+        logging.info("Actual Values")
+        logging.info(actual_contact_data_list)
+        logging.info("Expected Values")
+        logging.info(expected_contact_details_list)
+        assert actual_contact_data_list == expected_contact_details_list
+
+
 

@@ -272,3 +272,63 @@ class Edit_TE:
         do_click(browser, select_loc)
         sleep(0.5)
 
+
+class CreateBopDetails:
+    def __init__(self):
+        self.bop_basic_details_values = None
+        self.bop_raw_mate_data = None
+        self.bop_name_value = None
+        self.bop_type_value = None
+        self.bop_remarks = "Nothing for Now"
+
+    def enter_component_number(self, browser):
+        self.bop_basic_details_values = [generate_random_number(9), generate_random_five_digit_number(), 2]
+        logging.info(self.bop_basic_details_values)
+        for field_name, data in zip(bop_basic_details, self.bop_basic_details_values):
+            bop_field = bop_basic_details_common_loc[1].replace('field', field_name)
+            bop_field_loc = replace_in_tuple(bop_basic_details_common_loc, 1, bop_field)
+            do_clear(browser, bop_field_loc)
+            scroll_into_the_view(browser, bop_field_loc[0], bop_field_loc[1])
+            do_send_keys(browser, bop_field_loc, data)
+        upload_elem = browser.find_element(te_bop_logo[0], te_bop_logo[1])
+        upload_elem.send_keys(os.getcwd() + '/files/watermark.png')
+        do_click(browser, upload_img_accept_btn_loc)
+        scroll_into_the_view(browser, te_bop_remarks_input_loc[0], te_bop_remarks_input_loc[1])
+        do_send_keys(browser, te_bop_remarks_input_loc, self.bop_remarks)
+
+
+
+
+    def bop_raw_material_data(self, browser, mgr_mm=50, thk_mm=10, weight=1000):
+        self.bop_raw_mate_data = [random_correct_name(8, 4, 'first_name'), mgr_mm, thk_mm, weight]
+        for field_name, data in zip(bop_raw_material_data, self.bop_raw_mate_data):
+            bop_material_field = bop_basic_details_common_loc[1].replace('field', field_name)
+            bop_material_field_loc = replace_in_tuple(bop_basic_details_common_loc, 1, bop_material_field)
+            do_clear(browser, bop_material_field_loc)
+            do_send_keys(browser, bop_material_field_loc, data)
+
+    def select_bop_name_field(self, browser, index=3):
+        bop_name_dropdown = bop_basic_details_common_loc[1].replace('field', "componentName")
+        bop_material_field_loc = replace_in_tuple(bop_basic_details_common_loc, 1, bop_name_dropdown)
+        scroll_into_the_view(browser, bop_material_field_loc[0], bop_material_field_loc[1])
+        do_click(browser, bop_material_field_loc)
+        bop_name_value = bop_name_values_loc[1] + f'[{index}]'
+        bop_name_value_loc = replace_in_tuple(bop_name_values_loc, 1, bop_name_value)
+        self.bop_name_value = get_element_text(browser, bop_name_value_loc)
+        scroll_into_the_view(browser, bop_name_value_loc[0], bop_name_value_loc[1])
+        do_click(browser, bop_name_value_loc)
+        sleep(5)
+
+    def select_bop_type_field(self, browser, index=2):
+        do_click(browser, bop_type_dropdown_loc)
+        bop_type_value = bop_type_options_loc[1] + f'[{index}]'
+        bop_type_value_loc = replace_in_tuple(bop_name_values_loc, 1, bop_type_value)
+        self.bop_type_value = get_element_text(browser, bop_type_value_loc)
+        do_click(browser, bop_type_value_loc)
+
+    def navigate_to_te_bop(self, browser):
+        scroll_into_the_view(browser, te_number_link[0], te_number_link[1])
+        do_click(browser, te_number_link)
+        do_click(browser, te_add_feat_plus_icon_loc)
+        do_click(browser, te_add_bop_btn_loc)
+        should_be_visible(browser, bop_details_header_loc, "bop_details_header_loc")

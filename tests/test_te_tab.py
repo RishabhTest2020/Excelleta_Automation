@@ -13,6 +13,7 @@ approve_te_steps = Approve_TE()
 edit_te_steps = Edit_TE()
 edit_te_steps_sub_assembly = Edit_TE()
 edit_te_steps_parts = Edit_TE()
+bop_data_steps = CreateBopDetails()
 
 
 @when('Create TE data')
@@ -128,3 +129,13 @@ def approve_te_levels(browser):
     do_click(browser, operations_tab_back_btn)
     approve_te_steps.approve_te(browser, rfq_steps.development_lead, rfq_steps.plant_head
                                 , 'Somvir Singh')
+
+@when('Create TE BOP data')
+def create_te_bop_info(browser):
+    bop_data_steps.navigate_to_te_bop(browser)
+    bop_data_steps.enter_component_number(browser)
+    bop_data_steps.bop_raw_material_data(browser)
+    bop_data_steps.select_bop_name_field(browser)
+    bop_data_steps.select_bop_type_field(browser)
+    sleep(2)
+    do_click(browser, save_btn)

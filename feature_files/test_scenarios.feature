@@ -15,6 +15,7 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
     Then Create an account
+    Then Verify account creation data
     When Navigate to Accounts tab 5
     Then Verify created account data
     Then Verify accounts table head column
@@ -26,6 +27,7 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
+    #Then Verify created contact FE Info
     When Navigate to Contact tab 5
     Then Verify created contact data
     Then Verify contact table head column

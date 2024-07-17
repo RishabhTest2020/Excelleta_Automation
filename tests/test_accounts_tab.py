@@ -43,6 +43,12 @@ def account_creation(browser):
     should_be_visible(browser, nav_loc, 'acc_nav_check')
 
 
+@then('Verify account creation data')
+def verify_account_details(browser):
+    accounts_steps.verify_created_account_details(browser)
+    accounts_steps.verify_address_details(browser)
+
+
 @then('Verify created account data')
 def verify_account(browser):
     acc_class_data = get_class_global_variables_dict(accounts_steps)

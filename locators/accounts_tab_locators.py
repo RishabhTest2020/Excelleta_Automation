@@ -110,3 +110,12 @@ over_head_table_col4 = (By.XPATH, '(//div[@col-id="percentRate"])')
 over_head_table_col5 = (By.XPATH, '(//div[@col-id="overHeadsapplicableOn"])')
 over_head_table_applicable_options = (By.XPATH, '(//ul[@class="item2"])[index]//li')
 accounts_nav_name_loc = (By.XPATH, '//div[@class="rfqSection"]//td[contains(text(), "acc_name")]')
+
+accnt_details_header_loc = (By.XPATH, '//*[contains(@class,"secTitle") and contains(text(),"Account Details")]')
+account_details_cols_locs = (By.XPATH, '(//*[contains(@id,"rfqdet2")]//*[contains(@class,"customTable")]//th[contains(text(),"field")])')
+accnt_details_values_locs = (By.XPATH, '//*[contains(@id,"rfqdet2")]//*[contains(@class,"customTable")]//th[contains(text(),"feild")]/following-sibling::td')
+
+address_details_header_loc = (By.XPATH, '//*[contains(@class,"rfqSection")]//*[contains(text(),"Address Details")]')
+primary_billing_address_loc = (By.XPATH, '//h4[contains(text(),"Primary Billing Address")]')
+billing_address_txt_loc = (By.XPATH, '//h4[contains(text(),"Primary Billing Address")]/following-sibling::p')
+primary_shipping_address_txt_loc = (By.XPATH, '//h4[contains(text(),"Primary Shipping Address")]/following-sibling::p')
