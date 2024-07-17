@@ -265,7 +265,7 @@ class Edit_TE:
         do_send_keys(browser, net_weight_part_loc, self.net_weigh_part)
 
     def select_surface_treatment(self, browser, index=3):
-        do_click(browser, surface_treat_loc)
+        do_click(browser, surface_treatment_loc)
         select_name = surface_treatment_loc_select[1] + f'[{index}]'
         select_loc = replace_in_tuple(surface_treatment_loc_select, 1, select_name)
         self.surface_treatment = get_element_text(browser, select_loc)
@@ -296,9 +296,6 @@ class CreateBopDetails:
         scroll_into_the_view(browser, te_bop_remarks_input_loc[0], te_bop_remarks_input_loc[1])
         do_send_keys(browser, te_bop_remarks_input_loc, self.bop_remarks)
 
-
-
-
     def bop_raw_material_data(self, browser, mgr_mm=50, thk_mm=10, weight=1000):
         self.bop_raw_mate_data = [random_correct_name(8, 4, 'first_name'), mgr_mm, thk_mm, weight]
         for field_name, data in zip(bop_raw_material_data, self.bop_raw_mate_data):
@@ -326,9 +323,3 @@ class CreateBopDetails:
         self.bop_type_value = get_element_text(browser, bop_type_value_loc)
         do_click(browser, bop_type_value_loc)
 
-    def navigate_to_te_bop(self, browser):
-        scroll_into_the_view(browser, te_number_link[0], te_number_link[1])
-        do_click(browser, te_number_link)
-        do_click(browser, te_add_feat_plus_icon_loc)
-        do_click(browser, te_add_bop_btn_loc)
-        should_be_visible(browser, bop_details_header_loc, "bop_details_header_loc")

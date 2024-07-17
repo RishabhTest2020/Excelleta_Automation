@@ -58,19 +58,33 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Then Add Drawing Data
     When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data single
-    When Create TE data
+    When Create TE data 1
     Then Verify TE data
     Then Approve TE all levels
 
-#  @Test
-  Scenario: Add Norms
-    Given Login into Excelleta UI
-    When Navigate to Accounts tab 5
 
   @Test
   Scenario: TC_06 Create and verify Drawing data and TE data
     Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 5
+    Then Create a RFQ single
+    When Navigate to RFQ tab 30
+    Then Add Drawing Data
     When Navigate to Technical Evaluation tab 10
-#    When Edit TE Assembly and fill raw material data multi
-    When Add sub assembly and its data
-    When Add assembly part
+    When Navigate to Technical Evaluation tab 10
+    When Edit TE Assembly and fill raw material data multi
+    When Create TE data 1
+    When Add sub assembly and its data 1
+    When Create TE data 2
+    When Add assembly part 1
+    When Create TE data 3
+    When Create TE BOP data 1
+    When Create TE data 4
+    When Add assembly part 2
+    When Create TE data 3
+    When Create TE BOP data 2
+    When Create TE data 4

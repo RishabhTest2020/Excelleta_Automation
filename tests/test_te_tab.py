@@ -13,12 +13,14 @@ approve_te_steps = Approve_TE()
 edit_te_steps = Edit_TE()
 edit_te_steps_sub_assembly = Edit_TE()
 edit_te_steps_parts = Edit_TE()
+edit_te_steps_bop = Edit_TE()
 bop_data_steps = CreateBopDetails()
 
 
-@when('Create TE data')
-def create_te_data(browser):
-    create_testeps.add_operation(browser)
+@when(parsers.parse('Create TE data {index:d}'))
+def create_te_data(browser, index):
+    pdb_apply()
+    create_testeps.add_operation(browser, index=index)
     create_testeps.select_machine(browser)
     create_testeps.select_te_process(browser)
     create_testeps.select_te_process_unit(browser)
@@ -27,6 +29,7 @@ def create_te_data(browser):
     create_testeps.select_inspection_instrument(browser)
     create_testeps.verify_te_heading(browser)
     do_click(browser, save_btn)
+    sleep(2)
 
 
 @when(parsers.parse('Edit TE Assembly and fill raw material data {ass_type}'))
@@ -56,7 +59,6 @@ def edit_te_raw_material(browser, ass_type):
 
 @when('Add sub assembly and its data')
 def add_sub_assembly(browser):
-    pdb_apply()
     create_testeps.add_operation(browser, ops=False)
     do_click(browser, sub_assemply_btn)
     sleep(1)
@@ -82,10 +84,10 @@ def add_sub_assembly(browser):
         sleep(2)
 
 
-@when('Add assembly part')
-def edit_te_raw_material(browser):
+@when(parsers.parse('Add assembly part {index:d}'))
+def edit_te_raw_material(browser, index):
     pdb_apply()
-    create_testeps.add_operation(browser, ops=False)
+    create_testeps.add_operation(browser, ops=False, index=index)
     do_click(browser, add_part_btn)
     sleep(1)
     part_name = "Automation Part"
@@ -130,12 +132,18 @@ def approve_te_levels(browser):
     approve_te_steps.approve_te(browser, rfq_steps.development_lead, rfq_steps.plant_head
                                 , 'Somvir Singh')
 
-@when('Create TE BOP data')
-def create_te_bop_info(browser):
-    bop_data_steps.navigate_to_te_bop(browser)
+
+@when(parsers.parse('Create TE BOP data {index:d}'))
+def create_te_bop_info(browser, index):
+    pdb_apply()
+    create_testeps.add_operation(browser, ops=False, index=index)
+    do_click(browser, te_add_bop_btn_loc)
+    should_be_visible(browser, bop_details_header_loc, "bop_details_header_loc")
     bop_data_steps.enter_component_number(browser)
+    edit_te_steps_bop.select_drawing_name(browser)
     bop_data_steps.bop_raw_material_data(browser)
     bop_data_steps.select_bop_name_field(browser)
     bop_data_steps.select_bop_type_field(browser)
-    sleep(2)
+    sleep(1)
     do_click(browser, save_btn)
+    sleep(2)
