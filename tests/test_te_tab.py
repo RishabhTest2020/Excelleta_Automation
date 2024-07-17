@@ -63,8 +63,10 @@ def approve_te_levels(browser):
 
 @when('Create TE BOP data')
 def create_te_bop_info(browser):
+    bop_data_steps.navigate_to_te_bop(browser)
     bop_data_steps.enter_component_number(browser)
     bop_data_steps.bop_raw_material_data(browser)
     bop_data_steps.select_bop_name_field(browser)
     bop_data_steps.select_bop_type_field(browser)
+    sleep(2)
     do_click(browser, save_btn)

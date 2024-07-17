@@ -223,17 +223,21 @@ class Contacts:
         logging.info(non_present_data)
         assert len(non_present_data) == 0
 
-    def verify_created_contact_details(self, browser, email_opt_in="Yes", greatings_opt="Yes", acknowledgement="Yes", select_town="Gurgaon"):
+    def verify_created_contact_details(self, browser, email_opt_in="Yes", greetings_opt="Yes", acknowledgement="Yes"):
+        logging.info(self.contact_details)
+        logging.info(self.contact_billing_data)
         contact_details_link = contact_details_loc[1].replace("fname", self.contact_details[0])
         contact_details_link_loc = replace_in_tuple(contact_details_loc, 1, contact_details_link)
         do_click(browser, contact_details_link_loc)
+        sleep(5)
+        loader_should_be_invisile(browser, 10)
         expected_contact_details_list = [self.name_title, self.contact_details[0], self.contact_details[1],
                                          self.contact_details[2], self.contact_details[3], "9090909090", self.department,
                                          self.designation, self.gender, self.dob_data, self.marital, self.anniversary_date,
-                                         email_opt_in, greatings_opt, acknowledgement, self.contact_billing_data[0],
-                                         select_town, self.contact_city, self.contact_state, self.contact_country,
-                                         self.contact_billing_data[2], self.contact_billing_data[3], select_town,
-                                         self.contact_city, self.contact_state, self.contact_country, self.contact_billing_data[5]]
+                                         email_opt_in, greetings_opt, acknowledgement, self.contact_billing_data[0],
+                                         self.contact_city, self.contact_state, self.contact_country,
+                                         self.contact_billing_data[1], self.contact_billing_data[2],
+                                         self.contact_city, self.contact_state, self.contact_country, self.contact_billing_data[3]]
         logging.info(expected_contact_details_list)
         actual_contact_data_list = []
         for field_name in contact_details_data:
@@ -258,6 +262,10 @@ class Contacts:
             if contact_details_value_txt != "-":
                 actual_contact_data_list.append(contact_details_value_txt)
                 logging.info(actual_contact_data_list)
+        logging.info("Actual Values")
+        logging.info(actual_contact_data_list)
+        logging.info("Expected Values")
+        logging.info(expected_contact_details_list)
         assert actual_contact_data_list == expected_contact_details_list
 
 

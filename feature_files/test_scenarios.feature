@@ -28,6 +28,7 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
+    #Then Verify created contact FE Info
     When Navigate to Contact tab 5
     Then Verify created contact data
     Then Verify contact table head column
@@ -67,3 +68,9 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
     Then Create norms data
+
+  @Test
+  Scenario: TC_07 Create TE Bop details
+    Given Login into Excelleta UI
+    When Navigate to Technical Evaluation tab 10
+    When Create TE BOP data

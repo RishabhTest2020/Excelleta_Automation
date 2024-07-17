@@ -281,6 +281,6 @@ account_details_data = ['Account Name', 'Email ID', 'Website', 'Phone Number', '
 contact_details_data = ['Contact Name', 'Email ID', 'Phone Number', ' Other Phone Number', 'Department', 'Designation',
                         'Report To', 'Gender', 'Birth Date', 'Marital Status', 'Anniversary', 'Email Opt In',
                         'Greetings', 'Acknowledgement', 'Official Address', 'Residential Address']
-bop_basic_details = ['componentNumber', 'revisionNumber', 'qtyPerAssembly' 'remarkPart']
+bop_basic_details = ['componentNumber', 'revisionNumber', 'qtyPerAssembly']
 
 bop_raw_material_data = ['bopTypeOfMaterial', 'rmGradeAsPerDrawing', 'rmThicknessPerDrawing', 'rmNetWtPart']
