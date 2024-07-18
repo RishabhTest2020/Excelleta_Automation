@@ -43,6 +43,12 @@ def account_creation(browser):
     should_be_visible(browser, nav_loc, 'acc_nav_check')
 
 
+@then('Verify account creation data')
+def verify_account_details(browser):
+    accounts_steps.verify_created_account_details(browser)
+    accounts_steps.verify_address_details(browser)
+
+
 @then('Verify created account data')
 def verify_account(browser):
     acc_class_data = get_class_global_variables_dict(accounts_steps)
@@ -56,11 +62,10 @@ def create_norms(browser):
     pdb_apply()
     do_click(browser, accounts_norms)
     sleep(2)
-    # norms_steps.select_bop_norms(browser)
     norms_steps.select_raw_material_norm(browser)
-    norms_steps.select_process_norms(browser, 'MAPL B-12 Waluj') #rfq_steps.manufacturing_location)
-    norms_steps.select_over_head_norms(browser, 'MAPL B-12 Waluj') #rfq_steps.manufacturing_location)
-
-    # norms_steps.select_currency_norms(browser)
-    # norms_steps.select_mhr_norms(browser, 'MAPL B-12 Waluj') #rfq_steps.manufacturing_location)
+    norms_steps.select_process_norms(browser, rfq_steps.manufacturing_location)
+    norms_steps.select_over_head_norms(browser, rfq_steps.manufacturing_location)
+    norms_steps.select_currency_norms(browser)
+    norms_steps.select_mhr_norms(browser, rfq_steps.manufacturing_location)
+    norms_steps.select_bop_norms(browser)
     pdb_apply()

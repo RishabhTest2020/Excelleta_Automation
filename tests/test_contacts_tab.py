@@ -30,6 +30,12 @@ def create_an_contact(browser):
     contacts_steps.select_contact_city_fields(browser)
     contacts_steps.fill_contact_billing_txtbox_data(browser)
     do_click(browser, save_btn)
+    logging.info("Contact Creation part done")
+
+
+@then('Verify created contact FE Info')
+def verify_contact_data(browser):
+    contacts_steps.verify_created_contact_details(browser)
 
 
 @then('Verify created contact data')

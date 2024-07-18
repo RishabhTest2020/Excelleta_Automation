@@ -1,4 +1,4 @@
-Feature: Automation Smoke Test Plan Prod BrowserStack
+Feature: Automation Sanity Test Plan Execelleta
 
 
   @Sanity @TestCI
@@ -15,6 +15,7 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
     Then Create an account
+    Then Verify account creation data
     When Navigate to Accounts tab 5
     Then Verify created account data
     Then Verify accounts table head column
@@ -26,6 +27,7 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
+    #Then Verify created contact FE Info
     When Navigate to Contact tab 5
     Then Verify created contact data
     Then Verify contact table head column
@@ -55,13 +57,34 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     When Navigate to RFQ tab 30
     Then Add Drawing Data
     When Navigate to Technical Evaluation tab 10
-    When Edit TE Assembly and fill raw material data
-    When Create TE data
+    When Edit TE Assembly and fill raw material data single
+    When Create TE data 1
     Then Verify TE data
     Then Approve TE all levels
 
-  @Test
-  Scenario: Add Norms
+
+  @Sanity
+  Scenario: TC_07 Create Multi level BOM
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create norms data
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 5
+    Then Create a RFQ multi
+    When Navigate to RFQ tab 30
+    Then Add Drawing Data
+    When Navigate to Technical Evaluation tab 10
+    When Edit TE Assembly and fill raw material data multi
+    When Create TE data 1
+    When Add sub assembly and its data
+    When Create TE data 2
+    When Add assembly part 1 1
+    When Create TE data 3
+    When Create TE BOP data 1
+    When Create TE data 4
+    When Add assembly part 2 2
+    When Create TE data 3
+    When Create TE BOP data 2
+    When Create TE data 4
+
