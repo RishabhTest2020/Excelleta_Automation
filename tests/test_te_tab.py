@@ -19,7 +19,6 @@ bop_data_steps = CreateBopDetails()
 
 @when(parsers.parse('Create TE data {index:d}'))
 def create_te_data(browser, index):
-    pdb_apply()
     create_testeps.add_operation(browser, index=index)
     create_testeps.select_machine(browser)
     create_testeps.select_te_process(browser)
@@ -84,9 +83,8 @@ def add_sub_assembly(browser):
         sleep(2)
 
 
-@when(parsers.parse('Add assembly part {index:d}'))
-def edit_te_raw_material(browser, index):
-    pdb_apply()
+@when(parsers.parse('Add assembly part {index:d} {rm_index:d}'))
+def edit_te_raw_material(browser, index, rm_index):
     create_testeps.add_operation(browser, ops=False, index=index)
     do_click(browser, add_part_btn)
     sleep(1)
@@ -102,7 +100,7 @@ def edit_te_raw_material(browser, index):
     edit_te_steps_parts.select_manufacturing_source(browser)
     edit_te_steps_parts.select_surface_treatment(browser)
     edit_te_steps_parts.select_rm_type(browser)
-    edit_te_steps_parts.select_raw_material(browser)
+    edit_te_steps_parts.select_raw_material(browser, index=rm_index)
     edit_te_steps_parts.select_add_rod_size(browser)
     edit_te_steps_parts.__dict__['part_name'] = part_name
     edit_te_steps_parts.__dict__['part_component_number'] = part_component_number
@@ -135,7 +133,6 @@ def approve_te_levels(browser):
 
 @when(parsers.parse('Create TE BOP data {index:d}'))
 def create_te_bop_info(browser, index):
-    pdb_apply()
     create_testeps.add_operation(browser, ops=False, index=index)
     do_click(browser, te_add_bop_btn_loc)
     should_be_visible(browser, bop_details_header_loc, "bop_details_header_loc")
