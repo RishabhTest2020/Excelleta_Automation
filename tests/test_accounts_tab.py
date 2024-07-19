@@ -59,13 +59,25 @@ def verify_account(browser):
 
 @then('Create norms data')
 def create_norms(browser):
-    pdb_apply()
     do_click(browser, accounts_norms)
     sleep(2)
     norms_steps.select_raw_material_norm(browser)
+    do_click(browser, accounts_norms)
+    sleep(1)
     norms_steps.select_process_norms(browser, rfq_steps.manufacturing_location)
-    norms_steps.select_over_head_norms(browser, rfq_steps.manufacturing_location)
+    do_click(browser, accounts_norms)
+    sleep(1)
+    rate_percent_index_list = [1, 2, 5, 8, 10]
+    applicable_options_index = [1, 1, 1, 2, 1]
+    norms_steps.select_over_head_norms(browser, rfq_steps.manufacturing_location, index_list=rate_percent_index_list,
+                                       opt_index_list=applicable_options_index, txt='10')
+    do_click(browser, accounts_norms)
+    sleep(1)
     norms_steps.select_currency_norms(browser)
+    do_click(browser, accounts_norms)
+    sleep(1)
     norms_steps.select_mhr_norms(browser, rfq_steps.manufacturing_location)
+    do_click(browser, accounts_norms)
+    sleep(1)
     norms_steps.select_bop_norms(browser)
-    pdb_apply()
+    sleep(1)

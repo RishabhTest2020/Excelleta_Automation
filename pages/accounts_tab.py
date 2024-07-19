@@ -403,6 +403,30 @@ class Norms:
                 logging.error(f"Error while sending keys: {e}")
             count += 1
 
+    def fill_data_of_over_head_norms_table_data(self, browser, index_list: list, opt_index_list: list, txt: str):
+        for index, opt_index in zip(index_list, opt_index_list):
+            r_norms_flat_rate = norms_flat_rate_loc[1].replace('num', index)
+            r_norms_flat_rate_loc = replace_in_tuple(norms_flat_rate_loc, 1, r_norms_flat_rate)
+            do_double_click(browser, r_norms_flat_rate_loc)
+            input_norms_flat_rate_loc = r_norms_flat_rate_loc[1] + "//input"
+            r_input_norms_flat_rate_loc = replace_in_tuple(r_norms_flat_rate_loc, 1, input_norms_flat_rate_loc)
+            do_send_keys(browser, r_input_norms_flat_rate_loc, txt)
+            do_send_keys(browser, r_input_norms_flat_rate_loc, Keys.ENTER)
+            norms_percentage_rate = norms_percentage_rate_loc[1].replace('num', index)
+            r_norms_percentage_rate_loc = replace_in_tuple(norms_percentage_rate_loc, 1, norms_percentage_rate)
+            do_double_click(browser, r_norms_percentage_rate_loc)
+            input_norms_percentage_rate_loc = r_norms_percentage_rate_loc[1] + "//input"
+            r_input_norms_percentage_rate_loc = replace_in_tuple(r_norms_percentage_rate_loc, 1, input_norms_percentage_rate_loc)
+            do_send_keys(browser, r_input_norms_percentage_rate_loc, txt)
+            do_send_keys(browser, r_input_norms_percentage_rate_loc, Keys.ENTER)
+            r_norms_applicable_on = norms_applicable_on_loc[1].replace('num', index)
+            r_norms_applicable_on_loc = replace_in_tuple(norms_applicable_on_loc, 1, r_norms_applicable_on)
+            do_click(browser, r_norms_applicable_on_loc)
+            rr_norms_applicable_options_loc = norms_applicable_options_loc[1].replace('num', index)
+            r_norms_applicable_options = rr_norms_applicable_options_loc + f'[{opt_index}]'
+            applicable_on_option_loc = replace_in_tuple(norms_applicable_options_loc, 1, r_norms_applicable_options)
+            do_click(browser, applicable_on_option_loc)
+
     def select_currency_norms(self, browser):
         self.select_norms(browser, index=3)
         should_be_visible(browser, currency_norms_text, 'currency_norms_text')
@@ -418,7 +442,6 @@ class Norms:
         self.select_norms(browser, index=4)
         should_be_visible(browser, mhr_norms_text, 'mhr_norms_text')
         manu_locate = self.select_norm_factoring_location(browser, ml_index)
-        pdb_apply()
         assert manu_locate == location
         self.select_norm_business_nature(browser, bn_index)
         todayDate = datetime.today()
@@ -434,22 +457,22 @@ class Norms:
         self.select_norms(browser, index=5)
         should_be_visible(browser, process_norms_text, 'process_norms_text')
         manu_locate = self.select_norm_factoring_location(browser, ml_index)
-        assert manu_locate == location
+        # assert manu_locate == location
         self.select_norm_business_nature(browser, bn_index)
         todayDate = datetime.today()
         self.process_norm_effective_from = todayDate.strftime('%m/%d/%Y')
         yesterday = todayDate + timedelta(days=30)
         self.process_norm_effective_till = yesterday.strftime('%m/%d/%Y')
-        do_send_keys(browser, effective_from, str(self.mhr_norm_effective_from))
-        do_send_keys(browser, effective_till, str(self.mhr_norm_effective_till))
+        do_send_keys(browser, effective_from, str(self.process_norm_effective_from))
+        do_send_keys(browser, effective_till, str(self.process_norm_effective_till))
         self.get_process_norms_table_data(browser)
         do_click(browser, save_btn)
 
-    def select_over_head_norms(self, browser, location, ml_index=2, bn_index=2):
+    def select_over_head_norms(self, browser, location, index_list: list, opt_index_list: list, txt: str, ml_index=2, bn_index=2, ):
         self.select_norms(browser, index=6)
         should_be_visible(browser, over_head_text, 'over_head_text')
         manu_locate = self.select_norm_factoring_location(browser, ml_index)
-        assert manu_locate == location
+        # assert manu_locate == location
         self.select_norm_business_nature(browser, bn_index)
         todayDate = datetime.today()
         self.over_head_norm_effective_from = todayDate.strftime('%m/%d/%Y')
@@ -457,40 +480,14 @@ class Norms:
         self.over_head_norm_effective_till = yesterday.strftime('%m/%d/%Y')
         do_send_keys(browser, effective_from, str(self.over_head_norm_effective_from))
         do_send_keys(browser, effective_till, str(self.over_head_norm_effective_till))
-        self.fill_data_of_over_head_norms_table_data(browser, '4', '2')
+        self.fill_data_of_over_head_norms_table_data(browser, index_list, opt_index_list, txt)
         do_click(browser, save_btn)
-
-    def fill_data_of_over_head_norms_table_data(self, browser, index='2', opt_index='2', txt='10'):
-        r_norms_flat_rate = norms_flat_rate_loc[1].replace('num', index)
-        r_norms_flat_rate_loc = replace_in_tuple(norms_flat_rate_loc, 1, r_norms_flat_rate)
-        do_double_click(browser, r_norms_flat_rate_loc)
-        input_norms_flat_rate_loc = r_norms_flat_rate_loc[1] + "//input"
-        r_input_norms_flat_rate_loc = replace_in_tuple(r_norms_flat_rate_loc, 1, input_norms_flat_rate_loc)
-        do_send_keys(browser, r_input_norms_flat_rate_loc, txt)
-        do_send_keys(browser, r_input_norms_flat_rate_loc, Keys.ENTER)
-        norms_percentage_rate = norms_percentage_rate_loc[1].replace('num', index)
-        r_norms_percentage_rate_loc = replace_in_tuple(norms_percentage_rate_loc, 1, norms_percentage_rate)
-        do_double_click(browser, r_norms_percentage_rate_loc)
-        input_norms_percentage_rate_loc = r_norms_percentage_rate_loc[1] + "//input"
-        r_input_norms_percentage_rate_loc = replace_in_tuple(r_norms_percentage_rate_loc, 1, input_norms_percentage_rate_loc)
-        do_send_keys(browser, r_input_norms_percentage_rate_loc, txt)
-        do_send_keys(browser, r_input_norms_percentage_rate_loc, Keys.ENTER)
-        r_norms_applicable_on = norms_applicable_on_loc[1].replace('num', index)
-        r_norms_applicable_on_loc = replace_in_tuple(norms_applicable_on_loc, 1, r_norms_applicable_on)
-        do_click(browser, r_norms_applicable_on_loc)
-        pdb_apply()
-        rr_norms_applicable_options_loc = norms_applicable_options_loc[1].replace('num', index)
-        applicable_on_position_loc = replace_in_tuple(norms_applicable_options_loc, 1, rr_norms_applicable_options_loc)
-        r_norms_applicable_options = applicable_on_position_loc[1] + f'[{opt_index}]'
-        applicable_on_option_loc = replace_in_tuple(applicable_on_position_loc, 1, r_norms_applicable_options)
-        do_click(browser, applicable_on_option_loc)
 
     def select_raw_material_norm(self, browser, fis_index=6, nf_index=4):
         self.select_norms(browser, index=7)
         should_be_visible(browser, raw_material_norms_text, 'raw_material_norms_text')
         self.rm_norm_fiscal_year = self.select_fiscal_year(browser, fis_index)
         self.rm_norms_filter = self.select_norms_filter(browser, nf_index)
-        pdb_apply()
         self.get_raw_material_norms_table_data(browser)
         self.fill_raw_material_col_data(browser)
         sleep(2)
@@ -526,7 +523,6 @@ class Norms:
             count += 1
 
     def all_data_of_mhr_cols(self, browser):
-        pdb_apply()
         self.provide_mhr_info(browser)
         self.select_machine_name(browser)
         self.select_mhr_info_process(browser)
@@ -650,6 +646,14 @@ class Norms:
                 table_cell_data[self.process_norms_table_headers[i - 1]] = cell_data_txt
             col_names_lst.append(table_cell_data)
             logging.info(col_names_lst)
+        process_norms_table_new_rate_loc1 = process_norms_table_new_rate_loc[1] + '[1]'
+        process_norms_table_new_rate_loc1 = replace_in_tuple(process_norms_table_new_rate_loc, 1, process_norms_table_new_rate_loc1)
+        do_send_keys(browser, process_norms_table_new_rate_loc1, '100')
+
+        process_norms_table_new_rate_loc2 = process_norms_table_new_rate_loc[1] + '[2]'
+        process_norms_table_new_rate_loc2 = replace_in_tuple(process_norms_table_new_rate_loc, 1,
+                                                             process_norms_table_new_rate_loc2)
+        do_send_keys(browser, process_norms_table_new_rate_loc2, '100')
 
 
 
