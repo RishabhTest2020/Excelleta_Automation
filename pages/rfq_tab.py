@@ -341,10 +341,15 @@ class Rfq:
             scroll_into_the_view(browser, txtbox[0], txtbox[1])
             do_send_keys(browser, txtbox, data)
 
-    def select_rfq_toggles(self, browser):
+    def select_rfq_toggles(self, browser, assem_type):
         for key, path in rfq_toggles_loc.items():
             scroll_into_the_view(browser, path[0], path[1])
             js_click_by_xpath(browser, path[1])
+        if assem_type == 'single':
+            assembly_type_loc = assembly_type_tog_loc[1].replace('[2]', '[1]')
+            js_click_by_xpath(browser, assembly_type_loc)
+        else:
+            js_click_by_xpath(browser, assembly_type_tog_loc[1])
 
     def verify_created_dict(self, browser, all_data_dict: dict):
         loader_should_be_invisile(browser, 10)

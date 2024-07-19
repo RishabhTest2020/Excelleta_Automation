@@ -1,4 +1,4 @@
-Feature: Automation Smoke Test Plan Prod BrowserStack
+Feature: Automation Sanity Test Plan Execelleta
 
 
   @Sanity @TestCI
@@ -10,7 +10,7 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
   Scenario: TC_02 Verify login with invalid creds
     Given Login with invalid creds test@yopmail.com 123test into Excelleta UI
 
-  @Test @Sanity
+  @Sanity
   Scenario: TC_03 Verify Accounts Tab and New Account creation
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -20,8 +20,7 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Then Verify created account data
     Then Verify accounts table head column
 
-
-  @Test @Sanity
+  @Sanity
   Scenario: TC_04 Verify Contacts Tab and New Contact creation
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -41,7 +40,7 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 5
-    Then Create a RFQ
+    Then Create a RFQ single
     When Navigate to RFQ tab 30
     Then Verify created Rfq data
     Then Verify Rfq table head column
@@ -54,23 +53,38 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 5
-    Then Create a RFQ
+    Then Create a RFQ single
     When Navigate to RFQ tab 30
     Then Add Drawing Data
     When Navigate to Technical Evaluation tab 10
-    When Edit TE Assembly and fill raw material data
-    When Create TE data
+    When Edit TE Assembly and fill raw material data single
+    When Create TE data 1
     Then Verify TE data
     Then Approve TE all levels
 
-  @Test
-  Scenario: TC_08 Add Norms
+
+  @Sanity
+  Scenario: TC_07 Create Multi level BOM
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create norms data
-
-  @Test
-  Scenario: TC_07 Create TE Bop details
-    Given Login into Excelleta UI
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 5
+    Then Create a RFQ multi
+    When Navigate to RFQ tab 30
+    Then Add Drawing Data
     When Navigate to Technical Evaluation tab 10
-    When Create TE BOP data
+    When Edit TE Assembly and fill raw material data multi
+    When Create TE data 1
+    When Add sub assembly and its data
+    When Create TE data 2
+    When Add assembly part 1 1
+    When Create TE data 3
+    When Create TE BOP data 1
+    When Create TE data 4
+    When Add assembly part 2 2
+    When Create TE data 3
+    When Create TE BOP data 2
+    When Create TE data 4
+

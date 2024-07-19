@@ -100,8 +100,9 @@ rfq_toggles_loc = {
     'rfq_sample_quantity': (By.XPATH, '(//*[contains(text(), "Sample Required")]/..//input)[2]'),
     'norms_settled': (By.XPATH, '(//*[contains(text(), "Norms Settled")]/..//input)[2]'),
     'tooling_cost': (By.XPATH, '(//*[contains(text(), "Tooling Cost")]/..//input)[2]'),
-    'assembly_type': (By.XPATH, '(//*[contains(text(), "Assembly Type")]/..//input)[2]')
 }
+
+assembly_type_tog_loc = (By.XPATH, '(//*[contains(text(), "Assembly Type")]/..//input)[2]')
 
 diagram_highlight_blink = (By.XPATH, '//h4[contains(text(), "Stage")]/..//div[@class = "act-border"]')
 add_drawing_diagram = (By.XPATH, '//button[contains(text(), "Add Drawing Data")]')

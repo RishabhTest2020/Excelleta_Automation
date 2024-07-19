@@ -5,7 +5,9 @@ assembly_node_label = (By.XPATH, '(//li[@class="treeParentList"]//span[@class="n
 assembly_list_add_btn = (By.XPATH, '(//div[@id="listContainer"])')
 add_view_operation = (By.XPATH, '//button[text()="Add/View Operation"]')
 edit_operation = (By.XPATH, '//button[text()="Edit"]')
-add_sub_assembly = (By.XPATH,'//button[text()="Add Sub-Assembly"]')
+sub_assemply_btn = (By.XPATH, '//button[contains(text(), "Add Sub-Assembly")]')
+add_part_btn = (By.XPATH, '//button[contains(text(), "Add Part")]')
+add_bop_btn = (By.XPATH, '//button[contains(text(), "Add BOP")]')
 
 machine_loc = (By.XPATH, '//select[@name="machineId"]')
 machine_loc_select = (By.XPATH, '(//select[@name="machineId"]/option)')
@@ -47,7 +49,15 @@ raw_mat_loc_select = (By.XPATH, '(//select[@name="rmMaterialId"]/option)')
 override_rod_size_loc = (By.XPATH, '//select[@name="overrideStdRodSize"]')
 override_rod_size_loc_select = (By.XPATH, '(//select[@name="overrideStdRodSize"]/option)')
 rod_length_loc = (By.XPATH, '(//*[contains(text(), "Length")]/..//input)')
-net_weight_part_loc = (By.XPATH, '(//*[contains(text(), "Net Wt./Part(Kg)")]/..//input)')
+net_weight_part_loc = (By.XPATH, '(//*[contains(text(), "Net Wt./")]/..//input)')
+surface_area_val_loc = (By.XPATH, '(//*[contains(text(), "Surface Area")]/..//input)')
+sub_assembly_name_loc = (By.XPATH, '(//*[contains(text(), "Sub Assembly Name")]/..//input)')
+sub_assembly_component_number_loc = (By.XPATH, '(//*[contains(text(), "Component Number")]/..//input)')
+add_part_name_loc = (By.XPATH, '(//*[contains(text(), "Part Name")]/..//input)')
+
+surface_treatment_loc = (By.XPATH, '//select[@name="surfaceTreatment"]')
+surface_treatment_loc_select = (By.XPATH, '(//select[@name="surfaceTreatment"]/option)')
+
 update_btn = (By.XPATH, '//button[contains(text(), "Update")]')
 
 sub_assembly_compo_num_loc = (By.XPATH,'//*[contains(text(),"Component Number")]/parent::div//input[contains(@placeholder,"Enter Component Number")]')
