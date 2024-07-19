@@ -64,7 +64,7 @@ Feature: Automation Smoke Test Plan Prod BrowserStack
     Then Approve TE all levels
 
   @Test
-  Scenario: Add Norms
+  Scenario: TC_08 Add Norms
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
     Then Create norms data

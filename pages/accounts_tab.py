@@ -2,6 +2,8 @@ import logging
 import time
 from datetime import timedelta
 
+from selenium.webdriver import Keys
+
 from helpers.common_helpers import *
 import pytest
 from locators.accounts_tab_locators import *
@@ -294,6 +296,20 @@ class Norms:
         self.bop_norms_filter = None
         self.bop_fiscal_year = None
         self.norm_vars = {}
+        self.raw_material_col_data = None
+        self.bop_norms_col_data = None
+        self.expd_mhr_info_data = None
+        self.machine_name = None
+        self.mhr_info_place_txt = None
+        self.oum_info_txt = None
+        self.machine_variable_values = None
+        self.space_rental_values = None
+        self.finance_cost_values = None
+        self.man_power_cost_values = None
+        self.other_costs_values = None
+        self.bop_col_headers = None
+        self.raw_mate_col_headers = None
+        self.process_norms_table_headers = None
 
     def select_norms(self, browser, index):
         do_click(browser, norms_type)
@@ -335,6 +351,7 @@ class Norms:
         option = get_element_text(browser, select_option_loc)
         do_click(browser, select_option_loc)
         sleep(0.5)
+        logging.info(option)
         return option
 
     def select_norm_business_nature(self, browser, index, dd_index=2):
@@ -347,12 +364,44 @@ class Norms:
         do_click(browser, select_bn_loc)
         return option
 
-    def select_bop_norms(self, browser, fis_index=6, nf_index=3):
+    def select_bop_norms(self, browser, fis_index=6, nf_index=4):
         self.select_norms(browser, index=2)
         should_be_visible(browser, bop_norms_text, 'bop_norms_text')
         self.bop_fiscal_year = self.select_fiscal_year(browser, fis_index)
         self.bop_norms_filter = self.select_norms_filter(browser, nf_index)
-        # do_click(browser, save_btn)
+        self.fill_bop_norms_cols_data(browser)
+        sleep(2)
+        do_click(browser, save_btn)
+
+    def get_bop_norms_default_col_data(self, browser):
+        self.bop_col_headers = ['BOP Name', 'Business Nature', 'Manufacturing Location', 'Fiscal Year']
+        default_table_data = []
+        table_cell_data ={}
+        for num in range(1, 5):
+            bop_table_cols_data = raw_material_cols[1] + f'[{num}]'
+            bop_table_cols_data_loc = replace_in_tuple(raw_material_cols, 1, bop_table_cols_data)
+            cell_data_txt = get_element_text(browser, bop_table_cols_data_loc)
+            table_cell_data[self.bop_col_headers[num - 1]] = cell_data_txt
+        default_table_data.append(table_cell_data)
+
+    def fill_bop_norms_cols_data(self, browser):
+        self.bop_norms_col_data = ['100', '75', '25', '80', '30', '70', '30']
+        elems = browser.find_elements(raw_material_cols[0], raw_material_cols[1])
+        elems_len = len(elems)
+        count = 0
+        for num in range(5, elems_len + 1):
+            bop_norms_data = raw_material_cols[1] + f'[{num}]'
+            bop_norms_data_loc = replace_in_tuple(raw_material_cols, 1, bop_norms_data)
+            scroll_into_the_view(browser, bop_norms_data_loc[0], bop_norms_data_loc[1])
+            do_double_click(browser, bop_norms_data_loc)
+            sleep(1)
+            input_bop_norms_data_loc = bop_norms_data_loc[1] + "//input"
+            input_bop_norms_data_val_loc = replace_in_tuple(bop_norms_data_loc, 1, input_bop_norms_data_loc)
+            try:
+                do_send_keys(browser, input_bop_norms_data_val_loc, self.bop_norms_col_data[count])
+            except Exception as e:
+                logging.error(f"Error while sending keys: {e}")
+            count += 1
 
     def select_currency_norms(self, browser):
         self.select_norms(browser, index=3)
@@ -369,6 +418,7 @@ class Norms:
         self.select_norms(browser, index=4)
         should_be_visible(browser, mhr_norms_text, 'mhr_norms_text')
         manu_locate = self.select_norm_factoring_location(browser, ml_index)
+        pdb_apply()
         assert manu_locate == location
         self.select_norm_business_nature(browser, bn_index)
         todayDate = datetime.today()
@@ -377,6 +427,7 @@ class Norms:
         self.mhr_norm_effective_till = yesterday.strftime('%m/%d/%Y')
         do_send_keys(browser, effective_from, str(self.mhr_norm_effective_from))
         do_send_keys(browser, effective_till, str(self.mhr_norm_effective_till))
+        self.all_data_of_mhr_cols(browser)
         do_click(browser, save_btn)
 
     def select_process_norms(self, browser, location, ml_index=2, bn_index=2):
@@ -391,6 +442,7 @@ class Norms:
         self.process_norm_effective_till = yesterday.strftime('%m/%d/%Y')
         do_send_keys(browser, effective_from, str(self.mhr_norm_effective_from))
         do_send_keys(browser, effective_till, str(self.mhr_norm_effective_till))
+        self.get_process_norms_table_data(browser)
         do_click(browser, save_btn)
 
     def select_over_head_norms(self, browser, location, ml_index=2, bn_index=2):
@@ -405,11 +457,199 @@ class Norms:
         self.over_head_norm_effective_till = yesterday.strftime('%m/%d/%Y')
         do_send_keys(browser, effective_from, str(self.over_head_norm_effective_from))
         do_send_keys(browser, effective_till, str(self.over_head_norm_effective_till))
+        self.fill_data_of_over_head_norms_table_data(browser, '4', '2')
         do_click(browser, save_btn)
 
-    def select_raw_material_norm(self, browser, fis_index=6, nf_index=3):
+    def fill_data_of_over_head_norms_table_data(self, browser, index='2', opt_index='2', txt='10'):
+        r_norms_flat_rate = norms_flat_rate_loc[1].replace('num', index)
+        r_norms_flat_rate_loc = replace_in_tuple(norms_flat_rate_loc, 1, r_norms_flat_rate)
+        do_double_click(browser, r_norms_flat_rate_loc)
+        input_norms_flat_rate_loc = r_norms_flat_rate_loc[1] + "//input"
+        r_input_norms_flat_rate_loc = replace_in_tuple(r_norms_flat_rate_loc, 1, input_norms_flat_rate_loc)
+        do_send_keys(browser, r_input_norms_flat_rate_loc, txt)
+        do_send_keys(browser, r_input_norms_flat_rate_loc, Keys.ENTER)
+        norms_percentage_rate = norms_percentage_rate_loc[1].replace('num', index)
+        r_norms_percentage_rate_loc = replace_in_tuple(norms_percentage_rate_loc, 1, norms_percentage_rate)
+        do_double_click(browser, r_norms_percentage_rate_loc)
+        input_norms_percentage_rate_loc = r_norms_percentage_rate_loc[1] + "//input"
+        r_input_norms_percentage_rate_loc = replace_in_tuple(r_norms_percentage_rate_loc, 1, input_norms_percentage_rate_loc)
+        do_send_keys(browser, r_input_norms_percentage_rate_loc, txt)
+        do_send_keys(browser, r_input_norms_percentage_rate_loc, Keys.ENTER)
+        r_norms_applicable_on = norms_applicable_on_loc[1].replace('num', index)
+        r_norms_applicable_on_loc = replace_in_tuple(norms_applicable_on_loc, 1, r_norms_applicable_on)
+        do_click(browser, r_norms_applicable_on_loc)
+        pdb_apply()
+        rr_norms_applicable_options_loc = norms_applicable_options_loc[1].replace('num', index)
+        applicable_on_position_loc = replace_in_tuple(norms_applicable_options_loc, 1, rr_norms_applicable_options_loc)
+        r_norms_applicable_options = applicable_on_position_loc[1] + f'[{opt_index}]'
+        applicable_on_option_loc = replace_in_tuple(applicable_on_position_loc, 1, r_norms_applicable_options)
+        do_click(browser, applicable_on_option_loc)
+
+    def select_raw_material_norm(self, browser, fis_index=6, nf_index=4):
         self.select_norms(browser, index=7)
         should_be_visible(browser, raw_material_norms_text, 'raw_material_norms_text')
         self.rm_norm_fiscal_year = self.select_fiscal_year(browser, fis_index)
         self.rm_norms_filter = self.select_norms_filter(browser, nf_index)
+        pdb_apply()
+        self.get_raw_material_norms_table_data(browser)
+        self.fill_raw_material_col_data(browser)
+        sleep(2)
         do_click(browser, save_btn)
+
+    def get_raw_material_norms_table_data(self, browser):
+        self.raw_mate_col_headers = ['RM Name', 'RM Type', 'Business Nature', 'Manufacturing Location', 'Fiscal Year']
+        default_raw_mate_table_data = []
+        table_cell_data = {}
+        for num in range(1, 6):
+            raw_material_cols_data = raw_material_cols[1] + f'[{num}]'
+            raw_material_cols_data_loc = replace_in_tuple(raw_material_cols, 1, raw_material_cols_data)
+            cell_data_txt = get_element_text(browser, raw_material_cols_data_loc)
+            table_cell_data[self.raw_mate_col_headers[num - 1]] = cell_data_txt
+        default_raw_mate_table_data.append(table_cell_data)
+        logging.info(default_raw_mate_table_data)
+
+    def fill_raw_material_col_data(self, browser):
+        self.raw_material_col_data = ['15', '20', '75', '25', '80', '30', '70', '30', '72', '34', '76', '31', '80', '44']
+        elems = browser.find_elements(raw_material_cols[0], raw_material_cols[1])
+        elems_len = len(elems)
+        count = 0
+        for num in range(6, elems_len + 1):
+            raw_material_data = raw_material_cols[1] + f'[{num}]'
+            raw_material_data_loc = replace_in_tuple(raw_material_cols, 1, raw_material_data)
+            scroll_into_the_view(browser, raw_material_data_loc[0], raw_material_data_loc[1])
+            do_double_click(browser, raw_material_data_loc)
+            input_raw_material_data_loc = raw_material_data_loc[1] + "//input"
+            sleep(1)
+            input_bop_norms_data_val_loc = replace_in_tuple(raw_material_data_loc, 1, input_raw_material_data_loc)
+            do_send_keys(browser, input_bop_norms_data_val_loc, self.raw_material_col_data[count])
+            do_send_keys(browser, input_bop_norms_data_val_loc, Keys.ENTER)
+            count += 1
+
+    def all_data_of_mhr_cols(self, browser):
+        pdb_apply()
+        self.provide_mhr_info(browser)
+        self.select_machine_name(browser)
+        self.select_mhr_info_process(browser)
+        self.select_oum_info_col(browser)
+        self.fill_machine_variable_cols(browser)
+        self.fill_space_rental_cost_cols(browser)
+        self.fill_finance_cost_cols(browser)
+        self.fill_man_power_cost_cols(browser)
+        self.fill_electric_cost_cols(browser)
+        self.fill_other_costs_cols(browser)
+
+    def provide_mhr_info(self, browser):
+        self.expd_mhr_info_data = [random_correct_name(8, 4, 'first_name'), generate_random_number(5), "paramOne", "paramTwo", "paramThree", "paramFour"]
+        for field_name, data in zip(mht_cols_valus, self.expd_mhr_info_data):
+            mhr_info_field = mhr_data_cols_loc[1].replace('field', field_name)
+            mhr_info_field_loc = replace_in_tuple(mhr_data_cols_loc, 1, mhr_info_field)
+            scroll_into_the_view(browser, mhr_info_field_loc[0], mhr_info_field_loc[1])
+            do_clear(browser, mhr_info_field_loc)
+            do_send_keys(browser, mhr_info_field_loc, data)
+        self.select_machine_name(browser)
+        self.select_mhr_info_process(browser)
+        self.select_oum_info_col(browser)
+
+    def select_machine_name(self, browser, index=6):
+        scroll_into_the_view(browser, machine_name_selec_loc[0], machine_name_selec_loc[1])
+        do_click(browser, machine_name_selec_loc)
+        machine_name_place = machine_name_options_loc[1] + f'[{index}]'
+        machine_name_place = replace_in_tuple(machine_name_options_loc, 1, machine_name_place)
+        self.machine_name = get_element_text(browser, machine_name_place)
+        scroll_into_the_view(browser, machine_name_place[0], machine_name_place[1])
+        do_click(browser, machine_name_place)
+
+    def select_mhr_info_process(self, browser, index=2):
+        scroll_into_the_view(browser, mhr_info_process_selec_loc[0], mhr_info_process_selec_loc[1])
+        do_click(browser, mhr_info_process_selec_loc)
+        mhr_info_place = mhr_info_options_loc[1] + f'[{index}]'
+        mhr_info_place = replace_in_tuple(mhr_info_options_loc, 1, mhr_info_place)
+        self.mhr_info_place_txt = get_element_text(browser, mhr_info_place)
+        scroll_into_the_view(browser, mhr_info_place[0], mhr_info_place[1])
+        do_click(browser, mhr_info_place)
+
+    def select_oum_info_col(self, browser, index=3):
+        scroll_into_the_view(browser, oum_info_col_loc[0], oum_info_col_loc[1])
+        do_click(browser, oum_info_col_loc)
+        oum_info_place = mhr_info_options_loc[1] + f'[{index}]'
+        oum_info_place = replace_in_tuple(mhr_info_options_loc, 1, oum_info_place)
+        self.oum_info_txt = get_element_text(browser, oum_info_place)
+        scroll_into_the_view(browser, oum_info_place[0], oum_info_place[1])
+        do_click(browser, oum_info_place)
+
+    def fill_machine_variable_cols(self, browser, no_of_work_days=7, no_of_hrs_inshift=10, no_of_days_for_prod=5, no_of_hrs_for_costing=12, cycle_time=25 ):
+        self.machine_variable_values = [generate_random_number(5), no_of_work_days, no_of_hrs_inshift, no_of_days_for_prod, no_of_hrs_for_costing, cycle_time]
+        should_be_visible(browser, machine_variable_header_loc, "machine_variable_header_loc")
+        for field_name, data in zip(machine_variables, self.machine_variable_values):
+            machine_vars_field = mhr_data_cols_loc[1].replace('field', field_name)
+            machine_vars_field_loc = replace_in_tuple(mhr_data_cols_loc, 1, machine_vars_field)
+            do_clear(browser, machine_vars_field_loc)
+            do_send_keys(browser, machine_vars_field_loc, data)
+
+    def fill_space_rental_cost_cols(self, browser, length=500, width =55, height=400, feet=550):
+        self.space_rental_values = [length, width, height, feet]
+        should_be_visible(browser, space_rental_cost_header_loc, "space_rental_cost_header_loc")
+        for field_name, data in zip(space_rental_cost_data, self.space_rental_values):
+            space_rental_field = mhr_data_cols_loc[1].replace('field', field_name)
+            space_rental_field_loc = replace_in_tuple(mhr_data_cols_loc, 1, space_rental_field)
+            do_clear(browser, space_rental_field_loc)
+            do_send_keys(browser, space_rental_field_loc, data)
+
+    def fill_finance_cost_cols(self, browser, depriciation_perce=10, interest=15):
+        self.finance_cost_values = [depriciation_perce, interest]
+        should_be_visible(browser, finance_cost_header_loc, "finance_cost_header_loc")
+        for field_name, data in zip(finance_cost_data, self.finance_cost_values):
+            finance_cost_field = mhr_data_cols_loc[1].replace('field', field_name)
+            finance_cost_field_loc = replace_in_tuple(mhr_data_cols_loc, 1, finance_cost_field)
+            do_clear(browser, finance_cost_field_loc)
+            do_send_keys(browser, finance_cost_field_loc, data)
+
+    def fill_man_power_cost_cols(self, browser):
+        self.man_power_cost_values = [20, 5000, 10, 3000, 2500]
+        should_be_visible(browser, man_power_cost_header_loc, "man_power_cost_header_loc")
+        for field_name, data in zip(man_power_cost_data, self.man_power_cost_values):
+            man_power_cost_field = mhr_data_cols_loc[1].replace('field', field_name)
+            man_power_cost_field_loc = replace_in_tuple(mhr_data_cols_loc, 1, man_power_cost_field)
+            do_clear(browser, man_power_cost_field_loc)
+            do_send_keys(browser, man_power_cost_field_loc, data)
+
+    def fill_electric_cost_cols(self, browser):
+        self.electric_cost_values = [200, 500, 10, 14, 250]
+        should_be_visible(browser, electricity_cost_header_loc, "electricity_cost_header_loc")
+        for field_name, data in zip(electric_cost_data, self.electric_cost_values):
+            electric_cost_field = mhr_data_cols_loc[1].replace('field', field_name)
+            electric_cost_field_loc = replace_in_tuple(mhr_data_cols_loc, 1, electric_cost_field)
+            do_clear(browser, electric_cost_field_loc)
+            do_send_keys(browser, electric_cost_field_loc, data)
+
+    def fill_other_costs_cols(self, browser):
+        self.other_costs_values = [20, 35, 100000, 200]
+        should_be_visible(browser, electricity_cost_header_loc, "electricity_cost_header_loc")
+        for field_name, data in zip(other_costs_data, self.other_costs_values):
+            other_cost_field = mhr_data_cols_loc[1].replace('field', field_name)
+            other_cost_field_loc = replace_in_tuple(mhr_data_cols_loc, 1, other_cost_field)
+            do_clear(browser, other_cost_field_loc)
+            do_send_keys(browser, other_cost_field_loc, data)
+
+    def get_process_norms_table_data(self, browser):
+        self.process_norms_table_headers = ['Machine', 'Process', 'Capacity', 'Process Unit', 'Rate(New)', 'Existing Rate']
+        elems = browser.find_elements(process_norms_table_data_loc[0], process_norms_table_data_loc[1])
+        elems_len = len(elems)
+        col_names_lst = []
+        for index in range(1, elems_len + 1):
+            process_norms_cols_loc = process_norms_table_data_loc[1] + f'[{index}]//td'
+            logging.info(process_norms_cols_loc)
+            r_process_norms_cols_loc = replace_in_tuple(process_norms_table_data_loc, 1, process_norms_cols_loc)
+            process_norms_cols_elems = browser.find_elements(r_process_norms_cols_loc[0], r_process_norms_cols_loc[1])
+            elems_len = len(process_norms_cols_elems)
+            table_cell_data = {}
+            for i in range(1, elems_len + 1):
+                process_norms_cell_value_loc = r_process_norms_cols_loc[1] + f'[{i}]'
+                process_norms_cell_value_txt = replace_in_tuple(r_process_norms_cols_loc, 1, process_norms_cell_value_loc)
+                cell_data_txt = get_element_text(browser, process_norms_cell_value_txt)
+                table_cell_data[self.process_norms_table_headers[i - 1]] = cell_data_txt
+            col_names_lst.append(table_cell_data)
+            logging.info(col_names_lst)
+
+
+
