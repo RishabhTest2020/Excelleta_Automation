@@ -284,3 +284,12 @@ contact_details_data = ['Contact Name', 'Email ID', 'Phone Number', ' Other Phon
 bop_basic_details = ['componentNumber', 'revisionNumber', 'qtyPerAssembly']
 
 bop_raw_material_data = ['bopTypeOfMaterial', 'rmGradeAsPerDrawing', 'rmThicknessPerDrawing', 'rmNetWtPart']
+
+#Norms_data----------------------------------------------------------------------------------------------------
+mht_cols_valus = ['mhrName', 'mhrNo', 'paramOne', 'paramTwo', 'paramThree', 'paramFour']
+machine_variables = ['costOfMachine', 'numOfWorkingDays', 'numOfHrsInShift', 'numOfShiftsPerDay', 'numOfHoursPerDayForCosting', 'cycleTime']
+space_rental_cost_data = ['spaceLength', 'spaceWidth', 'spaceHeight', 'spaceRent']
+finance_cost_data = ['depreciation', 'interest']
+man_power_cost_data = ['skilledManpowerReq', 'skilledManpowerCost', 'unSkilledManpowerReq', 'unSkilledManpowerCost', 'staffCostPerShift']
+electric_cost_data = ['ecUnitCost', 'ecMotorRatingHP', 'ecMotorRatingFactor', 'ecLoadFactor']
+other_costs_data = ['maintenanceCostPercent', 'consumableCostPercent', 'legalCost', 'deltaAdjustments']
