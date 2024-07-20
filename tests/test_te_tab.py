@@ -54,7 +54,6 @@ def edit_te_raw_material(browser, ass_type):
         sleep(2)
     except TimeoutException:
         pass
-    pdb_apply()
 
 
 @when('Add sub assembly and its data')
