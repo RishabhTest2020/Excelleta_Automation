@@ -87,4 +87,10 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create TE data 3
     When Create TE BOP data 2
     When Create TE data 4
+    Then Approve TE all levels
+
+  @Test
+  Scenario: Test Norms
+    Given Login into Excelleta UI
+    Then Create norms data
 
