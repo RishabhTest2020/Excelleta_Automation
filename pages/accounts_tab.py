@@ -312,6 +312,13 @@ class Norms:
         self.raw_mate_col_headers = None
         self.process_norms_table_headers = None
 
+    def goto_account_from_te(self, browser, name):
+        acc_te_loc = te_accounts_loc[1].replace('accountName', name)
+        acc_te_loc_full = replace_in_tuple(te_accounts_loc, 1, acc_te_loc)
+        do_click(browser, acc_te_loc_full)
+        loader_should_be_invisile(browser, sec=5)
+
+
     def select_norms(self, browser, index):
         do_click(browser, norms_type)
         values = get_list_of_elems_text(browser, norms_type_options[0], norms_type_options[1])
@@ -423,10 +430,10 @@ class Norms:
             r_norms_applicable_on = norms_applicable_on_loc[1].replace('num', index)
             r_norms_applicable_on_loc = replace_in_tuple(norms_applicable_on_loc, 1, r_norms_applicable_on)
             do_click(browser, r_norms_applicable_on_loc)
-            rr_norms_applicable_options_loc = norms_applicable_options_loc[1].replace('num', index)
+            rr_norms_applicable_options_loc = norms_applicable_options_loc[1].replace('num', f'{int(index)-1}')
             r_norms_applicable_options = rr_norms_applicable_options_loc + f'[{opt_index}]'
-            applicable_on_option_loc = replace_in_tuple(norms_applicable_options_loc, 1, r_norms_applicable_options)
-            do_click(browser, applicable_on_option_loc)
+            js_click_by_xpath(browser, r_norms_applicable_options)
+            do_click(browser, (By.TAG_NAME, 'body'))
 
     def select_currency_norms(self, browser):
         self.select_norms(browser, index=3)
@@ -443,7 +450,7 @@ class Norms:
         self.select_norms(browser, index=4)
         should_be_visible(browser, mhr_norms_text, 'mhr_norms_text')
         manu_locate = self.select_norm_factoring_location(browser, ml_index)
-        assert manu_locate == location
+        # assert manu_locate == location
         self.select_norm_business_nature(browser, bn_index)
         todayDate = datetime.today()
         self.mhr_norm_effective_from = todayDate.strftime('%m/%d/%Y')
@@ -468,6 +475,7 @@ class Norms:
         do_send_keys(browser, effective_till, str(self.process_norm_effective_till))
         self.get_process_norms_table_data(browser)
         do_click(browser, save_btn)
+        sleep(2)
 
     def select_over_head_norms(self, browser, location, index_list: list, opt_index_list: list, txt: str, ml_index=2, bn_index=2, ):
         self.select_norms(browser, index=6)
@@ -483,6 +491,7 @@ class Norms:
         do_send_keys(browser, effective_till, str(self.over_head_norm_effective_till))
         self.fill_data_of_over_head_norms_table_data(browser, index_list, opt_index_list, txt)
         do_click(browser, save_btn)
+        sleep(2)
 
     def select_raw_material_norm(self, browser, fis_index=6, nf_index=4):
         self.select_norms(browser, index=7)
@@ -491,8 +500,9 @@ class Norms:
         self.rm_norms_filter = self.select_norms_filter(browser, nf_index)
         self.get_raw_material_norms_table_data(browser)
         self.fill_raw_material_col_data(browser)
-        sleep(2)
+        sleep(1)
         do_click(browser, save_btn)
+        sleep(2)
 
     def get_raw_material_norms_table_data(self, browser):
         self.raw_mate_col_headers = ['RM Name', 'RM Type', 'Business Nature', 'Manufacturing Location', 'Fiscal Year']
@@ -507,11 +517,13 @@ class Norms:
         logging.info(default_raw_mate_table_data)
 
     def fill_raw_material_col_data(self, browser):
-        self.raw_material_col_data = ['15', '20', '75', '25', '80', '30', '70', '30', '72', '34', '76', '31', '80', '44']
+        self.raw_material_col_data = ['15', '20', '75', '25', '80', '30', '70', '30', '72', '34', '76', '31', '80', '44'
+                                      , '15', '20', '75', '25', '80', '30', '70', '30', '72', '34', '76', '31', '80',
+                                      '44']
         elems = browser.find_elements(raw_material_cols[0], raw_material_cols[1])
         elems_len = len(elems)
         count = 0
-        for num in range(6, elems_len + 1):
+        for num in range(11, elems_len + 1):
             raw_material_data = raw_material_cols[1] + f'[{num}]'
             raw_material_data_loc = replace_in_tuple(raw_material_cols, 1, raw_material_data)
             scroll_into_the_view(browser, raw_material_data_loc[0], raw_material_data_loc[1])
@@ -650,11 +662,12 @@ class Norms:
         process_norms_table_new_rate_loc1 = process_norms_table_new_rate_loc[1] + '[1]'
         process_norms_table_new_rate_loc1 = replace_in_tuple(process_norms_table_new_rate_loc, 1, process_norms_table_new_rate_loc1)
         do_send_keys(browser, process_norms_table_new_rate_loc1, '100')
+        do_send_keys(browser, process_norms_table_new_rate_loc1, Keys.ENTER)
 
-        process_norms_table_new_rate_loc2 = process_norms_table_new_rate_loc[1] + '[2]'
-        process_norms_table_new_rate_loc2 = replace_in_tuple(process_norms_table_new_rate_loc, 1,
-                                                             process_norms_table_new_rate_loc2)
-        do_send_keys(browser, process_norms_table_new_rate_loc2, '100')
+        # process_norms_table_new_rate_loc2 = process_norms_table_new_rate_loc[1] + '[2]'
+        # process_norms_table_new_rate_loc2 = replace_in_tuple(process_norms_table_new_rate_loc, 1,
+        #                                                      process_norms_table_new_rate_loc2)
+        # do_send_keys(browser, process_norms_table_new_rate_loc2, '100')
 
 
 

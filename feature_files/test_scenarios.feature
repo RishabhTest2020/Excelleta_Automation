@@ -60,10 +60,10 @@ Feature: Automation Sanity Test Plan Execelleta
     When Edit TE Assembly and fill raw material data single
     When Create TE data 1
     Then Verify TE data
-    Then Approve TE all levels
+    Then Approve TE all levels true
 
 
-  @Sanity
+  @Sanity @Test
   Scenario: TC_07 Create Multi level BOM
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -87,10 +87,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create TE data 3
     When Create TE BOP data 2
     When Create TE data 4
-    Then Approve TE all levels
-
-  @Test
-  Scenario: Test Norms
-    Given Login into Excelleta UI
+    Then Approve TE all levels false
     Then Create norms data
+
 

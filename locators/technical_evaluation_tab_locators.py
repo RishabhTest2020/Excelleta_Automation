@@ -32,7 +32,7 @@ approve_request = (By.XPATH, '//button[contains(text(), "Approv")]')
 te_approval_history = (By.XPATH, '(//li[contains(text(), "Approval History")])[1]')
 slide_back_btn = (By.XPATH, '//div[@class="slide-in-right"]//a[contains(@class, "backArrow")]')
 operations_tab_back_btn = (By.XPATH, '(//a[contains(@class, "backArrow")])[2]')
-te_accounts_loc = (By.XPATH, '//p[contains(@title, "accountName")]')
+
 
 
 drawing_name_loc = (By.XPATH, '//select[@name="drawingNameId"]')

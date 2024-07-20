@@ -124,9 +124,10 @@ def verify_te_data(browser):
     create_testeps.verify_data_te(browser, create_te_class_data)
 
 
-@then('Approve TE all levels')
-def approve_te_levels(browser):
-    do_click(browser, operations_tab_back_btn)
+@then(parsers.parse('Approve TE all levels {back}'))
+def approve_te_levels(browser, back):
+    if back == 'true':
+        do_click(browser, operations_tab_back_btn)
     approve_te_steps.approve_te(browser, rfq_steps.development_lead, rfq_steps.plant_head
                                 , 'Somvir Singh')
 

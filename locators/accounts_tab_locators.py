@@ -137,3 +137,4 @@ other_cost_header_loc = (By.XPATH, '//*[contains(text(),"Other Cost")]')
 
 process_norms_table_data_loc = (By.XPATH, '(//*[contains(@class,"generic-table")]//tbody//tr)')
 process_norms_table_new_rate_loc = (By.XPATH, '(//table[contains(@class, "generic-table")]//input[@type="number"])')
+te_accounts_loc = (By.XPATH, '//p[contains(@title, "accountName")]')
