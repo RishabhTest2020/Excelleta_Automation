@@ -283,6 +283,7 @@ class Accounts:
 class Norms:
 
     def __init__(self):
+        self.electric_cost_values = None
         self.rm_norms_filter = None
         self.rm_norm_fiscal_year = None
         self.over_head_norm_effective_till = None

@@ -39,7 +39,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 5
+    When Navigate to RFQ tab 10
     Then Create a RFQ single
     When Navigate to RFQ tab 30
     Then Verify created Rfq data
@@ -52,7 +52,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 5
+    When Navigate to RFQ tab 10
     Then Create a RFQ single
     When Navigate to RFQ tab 30
     Then Add Drawing Data
@@ -70,7 +70,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 5
+    When Navigate to RFQ tab 10
     Then Create a RFQ multi
     When Navigate to RFQ tab 30
     Then Add Drawing Data
@@ -79,11 +79,11 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create TE data 1
     When Add sub assembly and its data
     When Create TE data 2
-    When Add assembly part 1 1
+    When Add assembly part 1 2
     When Create TE data 3
     When Create TE BOP data 1
     When Create TE data 4
-    When Add assembly part 2 2
+    When Add assembly part 2 3
     When Create TE data 3
     When Create TE BOP data 2
     When Create TE data 4

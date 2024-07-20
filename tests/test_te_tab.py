@@ -47,13 +47,14 @@ def edit_te_raw_material(browser, ass_type):
         do_send_keys(browser, net_weight_part_loc, edit_te_steps.net_weigh_part)
         do_send_keys(browser, surface_area_val_loc, surface_area_val)
         edit_te_steps.__dict__['surface_area_val'] = surface_area_val
+    do_click(browser, update_btn)
+    sleep(2)
     try:
         do_click(browser, update_btn)
         sleep(2)
     except TimeoutException:
-        sleep(1)
-        do_click(browser, update_btn)
-        sleep(2)
+        pass
+    pdb_apply()
 
 
 @when('Add sub assembly and its data')
@@ -101,6 +102,7 @@ def edit_te_raw_material(browser, index, rm_index):
     edit_te_steps_parts.select_surface_treatment(browser)
     edit_te_steps_parts.select_rm_type(browser)
     edit_te_steps_parts.select_raw_material(browser, index=rm_index)
+    pdb_apply()
     edit_te_steps_parts.select_add_rod_size(browser)
     edit_te_steps_parts.__dict__['part_name'] = part_name
     edit_te_steps_parts.__dict__['part_component_number'] = part_component_number
