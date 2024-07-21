@@ -47,13 +47,13 @@ def edit_te_raw_material(browser, ass_type):
         do_send_keys(browser, net_weight_part_loc, edit_te_steps.net_weigh_part)
         do_send_keys(browser, surface_area_val_loc, surface_area_val)
         edit_te_steps.__dict__['surface_area_val'] = surface_area_val
+    do_click(browser, update_btn)
+    sleep(2)
     try:
         do_click(browser, update_btn)
         sleep(2)
     except TimeoutException:
-        sleep(1)
-        do_click(browser, update_btn)
-        sleep(2)
+        pass
 
 
 @when('Add sub assembly and its data')
@@ -124,9 +124,10 @@ def verify_te_data(browser):
     create_testeps.verify_data_te(browser, create_te_class_data)
 
 
-@then('Approve TE all levels')
-def approve_te_levels(browser):
-    do_click(browser, operations_tab_back_btn)
+@then(parsers.parse('Approve TE all levels {back}'))
+def approve_te_levels(browser, back):
+    if back == 'true':
+        do_click(browser, operations_tab_back_btn)
     approve_te_steps.approve_te(browser, rfq_steps.development_lead, rfq_steps.plant_head
                                 , 'Somvir Singh')
 
