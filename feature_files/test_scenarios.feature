@@ -70,7 +70,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 10
+    When Navigate to RFQ tab 15
     Then Create a RFQ multi
     When Navigate to RFQ tab 30
     Then Add Drawing Data

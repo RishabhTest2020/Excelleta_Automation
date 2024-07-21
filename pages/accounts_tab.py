@@ -283,6 +283,7 @@ class Accounts:
 class Norms:
 
     def __init__(self):
+        self.over_heads_desc = []
         self.electric_cost_values = None
         self.rm_norms_filter = None
         self.rm_norm_fiscal_year = None
@@ -317,7 +318,6 @@ class Norms:
         acc_te_loc_full = replace_in_tuple(te_accounts_loc, 1, acc_te_loc)
         do_click(browser, acc_te_loc_full)
         loader_should_be_invisile(browser, sec=5)
-
 
     def select_norms(self, browser, index):
         do_click(browser, norms_type)
@@ -378,8 +378,9 @@ class Norms:
         self.bop_fiscal_year = self.select_fiscal_year(browser, fis_index)
         self.bop_norms_filter = self.select_norms_filter(browser, nf_index)
         self.fill_bop_norms_cols_data(browser)
-        sleep(2)
+        sleep(1)
         do_click(browser, save_btn)
+        sleep(2)
 
     def get_bop_norms_default_col_data(self, browser):
         self.bop_col_headers = ['BOP Name', 'Business Nature', 'Manufacturing Location', 'Fiscal Year']
@@ -413,6 +414,10 @@ class Norms:
 
     def fill_data_of_over_head_norms_table_data(self, browser, index_list: list, opt_index_list: list, txt: str):
         for index, opt_index in zip(index_list, opt_index_list):
+            other_norms_descriptions_loc = other_norms_descriptions_col_loc[1] + f'[{index}]'
+            other_norms_descriptions_loc_tup = replace_in_tuple(other_norms_descriptions_col_loc, 1, other_norms_descriptions_loc)
+            head_desc = get_element_text(browser, other_norms_descriptions_loc_tup)
+            self.over_heads_desc.append(head_desc)
             r_norms_flat_rate = norms_flat_rate_loc[1].replace('num', index)
             r_norms_flat_rate_loc = replace_in_tuple(norms_flat_rate_loc, 1, r_norms_flat_rate)
             do_double_click(browser, r_norms_flat_rate_loc)
