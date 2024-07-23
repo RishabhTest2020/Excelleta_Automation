@@ -171,7 +171,7 @@ class Approve_TE:
                 ah_headers = get_list_of_elems_text(browser, approval_pop_header[0], approval_pop_header[1])
                 assert ah_headers == approval_history_headers
                 if i == range_mod[-1]:
-                    approval_pop_values1 = approval_pop_values[1].replace("[2]",  "[1]")
+                    approval_pop_values1 = approval_pop_values[1].replace("[2]", "[1]")
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
                 else:
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
@@ -239,7 +239,7 @@ class Edit_TE:
         self.rm_type = get_element_text(browser, select_loc)
         do_click(browser, select_loc)
         sleep(0.5)
-        
+
     def select_raw_material(self, browser, index=2):
         scroll_into_the_view(browser, rm_type_loc[0], rm_type_loc[1])
         do_click(browser, raw_mat_loc)
@@ -322,4 +322,3 @@ class CreateBopDetails:
         bop_type_value_loc = replace_in_tuple(bop_name_values_loc, 1, bop_type_value)
         self.bop_type_value = get_element_text(browser, bop_type_value_loc)
         do_click(browser, bop_type_value_loc)
-

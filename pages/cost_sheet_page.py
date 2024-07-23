@@ -97,3 +97,34 @@ class CostSheetPage:
         self.enter_flat_rate_discount(browser)
         return option
 
+    def verify_cost_sections_data(self, browser, all_data_dict, section):
+        cost_section_loc = cost_section_rows_loc.replace('section_name', f'{section}')
+        values = get_list_of_elems_text(browser, cost_section_rows_loc[0], cost_section_loc)
+        logging.info(values)
+        assert len(values) > 0
+        all_data = list(all_data_dict.values())
+        acc_data_list1 = all_data[0]
+        acc_data_list = list(acc_data_list1)
+        for i in all_data[1:]:
+            i_type = type(i)
+            if i_type == list:
+                acc_data_list.extend(i)
+            else:
+                acc_data_list.append(str(i))
+        logging.info(acc_data_list)
+        values = [x for x in values if x != "-"]
+        non_present_data = []
+        for i in values:
+            for j in acc_data_list:
+                if isinstance(j, int):
+                    k = str(j)
+                else:
+                    k = j
+                if i == k:
+                    break
+                else:
+                    if acc_data_list.index(j) == len(acc_data_list) - 1:
+                        non_present_data.append(i)
+                        break
+        logging.info(non_present_data)
+        assert len(non_present_data) <= 3

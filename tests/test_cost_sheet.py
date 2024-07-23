@@ -29,3 +29,10 @@ def generate_costing_norms(browser):
     cost_sheet_steps.add_expense_flat_rate(browser)
     do_click(browser, add_update_btn_loc)
     sleep(2)
+
+
+@then('Verify Cost Raw Material data')
+def verify_te_data(browser):
+    create_te_class_data = get_class_global_variables_dict(cost_sheet_steps)
+    logging.info(create_te_class_data.values())
+    cost_sheet_steps.verify_cost_sections_data(browser, create_te_class_data)
