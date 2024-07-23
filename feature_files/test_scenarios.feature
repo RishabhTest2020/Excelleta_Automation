@@ -63,7 +63,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Approve TE all levels true
 
 
-  @Sanity
+  @Sanity @Test
   Scenario: TC_07 Create Multi level BOM
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -89,10 +89,4 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create TE data 4
     Then Approve TE all levels false
     Then Create norms data
-
-
-  @Test
-Scenario: TC_08 Generate costing data
-  Given Login into Excelleta UI
-  When Navigate to Accounts tab 5
-  Then Generate Costing Data
+    Then Generate Costing Data
