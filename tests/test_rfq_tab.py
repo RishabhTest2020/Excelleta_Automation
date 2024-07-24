@@ -57,6 +57,8 @@ def create_rfq(browser, type):
     rfq_steps.select_cft_member(browser)
     rfq_steps.verify_heading(browser)
     do_click(browser, save_btn)
+    current_url = browser.current_url
+    assert 'editRFQ' in current_url
 
 
 @then('Verify created Rfq data')

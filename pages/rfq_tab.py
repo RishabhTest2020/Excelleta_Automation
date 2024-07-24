@@ -318,7 +318,7 @@ class Rfq:
     def select_surface_treatment_head(self, browser):
         do_click(browser, surface_treat_loc)
         self.surface_treatment_head = get_element_text(browser, surface_treat_select)
-        do_click(browser, plant_head_select)
+        do_click(browser, surface_treat_select)
 
     def select_cft_member(self, browser):
         do_click(browser, cft_member_loc)
