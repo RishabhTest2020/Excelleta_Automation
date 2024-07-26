@@ -39,20 +39,20 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 10
+    When Navigate to RFQ tab 20
     Then Create a RFQ single
     When Navigate to RFQ tab 30
     Then Verify created Rfq data
     Then Verify Rfq table head column
 
-  @Sanity
+  @Sanity @Test
   Scenario: TC_06 Create and verify Drawing data and TE data
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 10
+    When Navigate to RFQ tab 20
     Then Create a RFQ single
     When Navigate to RFQ tab 30
     Then Add Drawing Data
@@ -63,14 +63,14 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Approve TE all levels true
 
 
-  @Sanity @Test
+  @Sanity #@Test
   Scenario: TC_07 Create Multi level BOM
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 15
+    When Navigate to RFQ tab 20
     Then Create a RFQ multi
     When Navigate to RFQ tab 30
     Then Add Drawing Data

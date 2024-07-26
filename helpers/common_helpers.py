@@ -181,7 +181,7 @@ def do_send_keys(browser, by_locator, text, sec=5):
         EC.visibility_of_element_located(by_locator)).send_keys(text)
 
 
-def get_element_text(browser, by_locator: object):
+def get_element_text(browser, by_locator: tuple):
     """
     Gets text of the chosen element
     Args:
@@ -221,7 +221,7 @@ def is_visible(browser, by_locator, sec=5) -> bool:
     """
     elem = False
     try:
-        elem = WebDriverWait(browser, sec, poll_frequency=1, ignored_exceptions=WebDriverException).until(
+        elem = WebDriverWait(browser, sec, poll_frequency=1, ignored_exceptions=[WebDriverException]).until(
             EC.visibility_of_element_located(by_locator))
     except (WebDriverException, Exception, TimeoutException):
         # take_screenshot(browser)
@@ -259,7 +259,7 @@ def is_invisible(browser, by_locator, sec=5) -> bool:
     """
     elem = False
     try:
-        elem = WebDriverWait(browser, timeout=sec, ignored_exceptions=[WebDriverException]).until(
+        elem = WebDriverWait(browser, sec, ignored_exceptions=[WebDriverException]).until(
             EC.invisibility_of_element_located(by_locator))
     except (WebDriverException, Exception):
         return bool(elem)

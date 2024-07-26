@@ -16,10 +16,10 @@ def acc_head_colm(browser):
     rfq_steps.verify_rfq_head_col(browser)
 
 
-@then(parsers.parse('Create a RFQ {type}'))
-def create_rfq(browser, type):
+@then(parsers.parse('Create a RFQ {types}'))
+def create_rfq(browser, types):
     do_click(browser, add_rfq_btn)
-    rfq_steps.select_account_and_key_person(browser, accounts_steps.account_details[0])
+    rfq_steps.select_account_and_key_person(browser, 'prfqcrcm')#accounts_steps.account_details[0])
     rfq_steps.select_business_evaluation(browser)
     rfq_steps.verify_domain(browser, 'Domestic')
     rfq_steps.select_business_nature(browser)
@@ -47,7 +47,7 @@ def create_rfq(browser, type):
     rfq_steps.select_project_life(browser)
     rfq_steps.select_quotation_type(browser)
     rfq_steps.select_rfq_shipping_address(browser)
-    rfq_steps.select_rfq_toggles(browser, type)
+    rfq_steps.select_rfq_toggles(browser, types)
     rfq_steps.select_development_lead(browser)
     rfq_steps.select_marketing_lead(browser)
     rfq_steps.select_pm_lead(browser)
@@ -55,7 +55,9 @@ def create_rfq(browser, type):
     rfq_steps.select_plant_head(browser)
     rfq_steps.select_surface_treatment_head(browser)
     rfq_steps.select_cft_member(browser)
+    rfq_steps.select_business_dev_head(browser)
     rfq_steps.verify_heading(browser)
+    sleep(2)
     do_click(browser, save_btn)
     current_url = browser.current_url
     assert 'editRFQ' in current_url

@@ -153,7 +153,8 @@ class Approve_TE:
         self.formatted_time_app = None
 
     def approve_te(self, browser, *args):
-        range_mod = range(0, 4)
+        args_len = len(args)
+        range_mod = range(0, args_len + 1)
         for i in range_mod:
             text = random_correct_name(5, 5, 'first_name')
             self.comments.append(text)

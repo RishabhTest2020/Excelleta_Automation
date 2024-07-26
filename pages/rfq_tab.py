@@ -16,6 +16,7 @@ from datetime import datetime, timedelta
 class Rfq:
 
     def __init__(self):
+        self.business_dev_head = None
         self.rfq_text_boxes_data = None
         self.cft_member = None
         self.surface_treatment_head = None
@@ -324,7 +325,12 @@ class Rfq:
         do_click(browser, cft_member_loc)
         self.cft_member = get_element_text(browser, cft_member_select)
         do_click(browser, cft_member_select)
-        should_be_visible(browser, dev_head_loc, 'dev_head_loc')
+
+    def select_business_dev_head(self, browser):
+        scroll_into_the_view(browser, dev_head_loc[0], dev_head_loc[1])
+        do_click(browser, dev_head_loc)
+        self.business_dev_head = get_element_text(browser, dev_head_select)
+        do_click(browser, dev_head_select)        
 
     def verify_heading(self, browser):
         headings = ['Customer Information', 'Business Information', 'Project Details', 'Sample Quantity', 'Timeline',
