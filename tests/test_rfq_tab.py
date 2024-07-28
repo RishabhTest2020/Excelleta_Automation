@@ -57,8 +57,8 @@ def create_rfq(browser, types):
     rfq_steps.select_cft_member(browser)
     rfq_steps.select_business_dev_head(browser)
     rfq_steps.verify_heading(browser)
-    sleep(2)
     do_click(browser, save_btn)
+    sleep(2)
     current_url = browser.current_url
     assert 'editRFQ' in current_url
 

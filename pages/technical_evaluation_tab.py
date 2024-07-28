@@ -18,7 +18,11 @@ class Create_TE:
 
     def goto_te_verify_part_add_assembly(self, browser, te_name, tool):
         te_loc = (By.XPATH, f'//a[contains(text(), "{te_name}")]')
-        do_click(browser, te_loc)
+        logging.info(te_loc)
+        try:
+            do_click(browser, te_loc, 15)
+        except TimeoutException:
+            do_click(browser, te_loc)
         loader_should_be_invisile(browser, 3)
         tool_txt = get_element_text(browser, assembly_node_label)
         assert tool_txt == tool
