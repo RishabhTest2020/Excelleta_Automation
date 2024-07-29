@@ -19,7 +19,7 @@ def acc_head_colm(browser):
 @then(parsers.parse('Create a RFQ {types}'))
 def create_rfq(browser, types):
     do_click(browser, add_rfq_btn)
-    rfq_steps.select_account_and_key_person(browser, 'prfqcrcm')#accounts_steps.account_details[0])
+    rfq_steps.select_account_and_key_person(browser, accounts_steps.account_details[0])
     rfq_steps.select_business_evaluation(browser)
     rfq_steps.verify_domain(browser, 'Domestic')
     rfq_steps.select_business_nature(browser)
@@ -58,7 +58,7 @@ def create_rfq(browser, types):
     rfq_steps.select_business_dev_head(browser)
     rfq_steps.verify_heading(browser)
     do_click(browser, save_btn)
-    sleep(2)
+    loader_should_be_invisile(browser, 5)
     current_url = browser.current_url
     assert 'editRFQ' in current_url
 

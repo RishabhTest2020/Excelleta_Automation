@@ -94,7 +94,7 @@ text_boxes = {'annual_amount_txtbox': ('xpath', '//input[@formcontrolname="annua
                   ('xpath', '//input[@formcontrolname="nearestDeliveryPort"]')}
 
 rfq_toggles_loc = {
-    'rfq_surface_treatment': (By.XPATH, '(//*[contains(text(), "Surface Treatment Required")]/..//input)[1  ]'),
+    'rfq_surface_treatment': (By.XPATH, '(//*[contains(text(), "Surface Treatment Required")]/..//input)[2]'),
     'rfq_external_testing': (By.XPATH, '(//*[contains(text(), "External Testing")]/..//input)[2]'),
     'rfq_standard_available': (By.XPATH, '(//*[contains(text(), "Standards Available")]/..//input)[2]'),
     'rfq_sample_quantity': (By.XPATH, '(//*[contains(text(), "Sample Required")]/..//input)[2]'),

@@ -17,6 +17,16 @@ class CostSheetPage:
         self.cost_rm_norm_date_range = None
         self.cost_rm_fiscal_year = None
 
+
+    def goto_created_mte(self, browser, mte_name):
+        te_loc = (By.XPATH, f'//a[contains(text(), "MTE-{mte_name}")]')
+        logging.info(te_loc)
+        try:
+            do_click(browser, te_loc, 15)
+        except TimeoutException:
+            do_click(browser, te_loc)
+        loader_should_be_invisile(browser, 3)
+
     def rm_norms_fiscal_year_option(self, browser, index):
         do_click(browser, norms_fiscal_year_loc)
         values = get_list_of_elems_text(browser, norms_fiscal_year_options[0], norms_fiscal_year_options[1])
@@ -98,7 +108,7 @@ class CostSheetPage:
         return option
 
     def verify_cost_sections_data(self, browser, all_data_dict, section):
-        cost_section_loc = cost_section_rows_loc.replace('section_name', f'{section}')
+        cost_section_loc = cost_section_rows_loc[1].replace('section_name', f'{section}')
         values = get_list_of_elems_text(browser, cost_section_rows_loc[0], cost_section_loc)
         logging.info(values)
         assert len(values) > 0

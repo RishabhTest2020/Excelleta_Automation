@@ -38,6 +38,7 @@ def account_creation(browser):
     accounts_steps.select_city_field(browser)
     browser.find_element(By.TAG_NAME, 'body').send_keys(Keys.CONTROL + Keys.HOME)
     do_click(browser, save_btn)
+    sleep(2)
     nav_path = accounts_nav_name_loc[1].replace('acc_name', accounts_steps.account_details[0])
     nav_loc = replace_in_tuple(accounts_nav_name_loc, 1, nav_path)
     should_be_visible(browser, nav_loc, 'acc_nav_check')

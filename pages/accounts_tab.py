@@ -315,6 +315,7 @@ class Norms:
 
     def goto_account_from_te(self, browser, name):
         acc_te_loc = te_accounts_loc[1].replace('accountName', name)
+        logging.info(acc_te_loc)
         acc_te_loc_full = replace_in_tuple(te_accounts_loc, 1, acc_te_loc)
         do_click(browser, acc_te_loc_full)
         loader_should_be_invisile(browser, sec=5)

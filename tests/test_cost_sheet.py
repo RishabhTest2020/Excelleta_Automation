@@ -1,15 +1,20 @@
 import logging
 from helpers.common_helpers import *
 from pages.cost_sheet_page import *
-from pytest_bdd import given, when, then
+from pytest_bdd import given, when, then, parsers
 from locators.cost_sheet_locators import *
-
+from tests.test_rfq_tab import drawing_data_steps
+from tests.test_te_tab import te_all_data_dicts, create_testeps
 
 cost_sheet_steps = CostSheetPage()
 
 
 @then('Generate Costing Data')
 def generate_costing_norms(browser):
+    browser.get(globalEnvs.main_url + '/marketing-technical-evaluation')
+    sleep(2)
+    mte_name = drawing_data_steps.te_link.split("-")[1]
+    cost_sheet_steps.goto_created_mte(browser, mte_name)
     do_click(browser, generate_costing_bn_loc)
     sleep(2)
     do_click(browser, cs_actions_btn_loc)
@@ -31,8 +36,9 @@ def generate_costing_norms(browser):
     sleep(2)
 
 
-@then('Verify Cost Raw Material data')
-def verify_te_data(browser):
+@then(parsers.parse('Verify Cost Raw Material data {section}'))
+def verify_te_data(browser, section):
     create_te_class_data = get_class_global_variables_dict(cost_sheet_steps)
+    create_te_class_data['te_all_data_dicts'] = te_all_data_dicts
     logging.info(create_te_class_data.values())
-    cost_sheet_steps.verify_cost_sections_data(browser, create_te_class_data)
+    cost_sheet_steps.verify_cost_sections_data(browser, create_te_class_data, section)

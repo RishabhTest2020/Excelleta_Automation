@@ -131,7 +131,7 @@ def approve_te_levels(browser, back):
     if back == 'true':
         do_click(browser, operations_tab_back_btn)
     approve_te_steps.approve_te(browser, rfq_steps.development_lead, rfq_steps.plant_head
-                                , rfq_steps.surface_treatment_head, rfq_steps.business_dev_head)
+                                , rfq_steps.business_dev_head)
 
 
 @when(parsers.parse('Create TE BOP data {index:d}'))
