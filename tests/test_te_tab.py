@@ -131,8 +131,8 @@ def verify_te_data(browser):
 def approve_te_levels(browser, back):
     if back == 'true':
         do_click(browser, operations_tab_back_btn)
-    approve_te_steps.approve_te(browser, rfq_steps.development_lead, rfq_steps.plant_head
-                                , rfq_steps.business_dev_head)
+    approve_te_steps.approve_te(browser, rfq_steps.development_lead, rfq_steps.plant_head,
+                                rfq_steps.business_dev_head)
 
 
 @when(parsers.parse('Create TE BOP data {index:d}'))
@@ -153,7 +153,6 @@ def create_te_bop_info(browser, index):
 
 @when(parsers.parse('Create ST Ops data {index:d}'))
 def create_st_operations_info(browser, index):
-    pdb_apply()
     add_st_opts_steps.add_st_operation(browser, ops=True, index=index)
     should_be_visible(browser, st_operation_header_loc, "st_operation_header_loc")
     add_st_opts_steps.select_st_process(browser)
@@ -165,6 +164,6 @@ def create_st_operations_info(browser, index):
     add_st_opts_steps.select_masking_drop(browser)
     add_st_opts_steps.st_operations_mandtry_fields(browser)
     add_st_opts_steps.st_operations_un_mandtry_fields(browser)
-    sleep(2)
+    sleep(1)
     do_click(browser, save_btn)
     sleep(2)

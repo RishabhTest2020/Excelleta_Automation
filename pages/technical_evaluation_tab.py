@@ -181,6 +181,8 @@ class Approve_TE:
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
                 else:
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
+                if args_len == 4 and range_mod.index(i) == 3:
+                    i = 2
                 actual_vals = [f'TE Approval Level - {i}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
                                self.formatted_time[2:][i - 1], self.formatted_time[2:][i], self.comments[i]]
                 logging.info(ah_row_vals)
@@ -344,7 +346,7 @@ class AddSTOperations:
     def select_st_process(self, browser, index=3):
         do_click(browser, st_operation_drop_down_loc)
         st_process_options_val = st_process_options_loc[1] + f'[{index}]'
-        st_process_options_val_loc = replace_in_tuple(st_process_options_loc, 3, st_process_options_val)
+        st_process_options_val_loc = replace_in_tuple(st_process_options_loc, 1, st_process_options_val)
         self.st_process_val_txt = get_element_text(browser, st_process_options_val_loc)
         do_click(browser, st_process_options_val_loc)
 

@@ -61,6 +61,8 @@ def create_rfq(browser, types):
     loader_should_be_invisile(browser, 5)
     current_url = browser.current_url
     assert 'editRFQ' in current_url
+    rfq_no = current_url.split("/")[-2]
+    rfq_steps.__dict__["rfq_url_id"] = f'RFQ-{rfq_no}'
 
 
 @then('Verify created Rfq data')
@@ -104,8 +106,7 @@ def verify_account(browser):
 
 @then('Add Drawing Data')
 def create_drawing_data(browser):
-    values = get_list_of_elems_text(browser, accounts_table_row_loc[0], accounts_table_row_loc[1])
-    drawing_data_steps.goto_rfq_verify_chart_blink(browser, values[0])
+    drawing_data_steps.goto_rfq_verify_chart_blink(browser, rfq_steps.__dict__['rfq_url_id'])
     drawing_data_steps.add_drawing_data(browser)
     drawing_data_steps.select_2d_soft_copy(browser)
     drawing_data_steps.select_3d_soft_copy(browser)
