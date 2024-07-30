@@ -15,7 +15,7 @@ edit_te_steps_sub_assembly = Edit_TE()
 edit_te_steps_parts = Edit_TE()
 edit_te_steps_bop = Edit_TE()
 bop_data_steps = CreateBopDetails()
-
+add_st_opts_steps = AddSTOperations()
 
 @when(parsers.parse('Create TE data {index:d}'))
 def create_te_data(browser, index):
@@ -143,5 +143,23 @@ def create_te_bop_info(browser, index):
     bop_data_steps.select_bop_name_field(browser)
     bop_data_steps.select_bop_type_field(browser)
     sleep(1)
+    do_click(browser, save_btn)
+    sleep(2)
+
+
+@when(parsers.parse('Create ST Ops data {index:d}'))
+def create_st_operations_info(browser, index):
+    add_st_opts_steps.add_st_operation(browser, ops=True, index=index)
+    should_be_visible(browser, st_operation_header_loc, "st_operation_header_loc")
+    add_st_opts_steps.select_st_process(browser)
+    add_st_opts_steps.select_critical_non_critical(browser)
+    create_testeps.select_operation_source(browser)
+    add_st_opts_steps.select_subtract_type_drop_down(browser)
+    add_st_opts_steps.select_subtract_drop_down(browser)
+    add_st_opts_steps.select_drain_hole_reqd(browser)
+    add_st_opts_steps.select_masking_drop(browser)
+    add_st_opts_steps.st_operations_mandtry_fields(browser)
+    add_st_opts_steps.st_operations_un_mandtry_fields(browser)
+    sleep(2)
     do_click(browser, save_btn)
     sleep(2)

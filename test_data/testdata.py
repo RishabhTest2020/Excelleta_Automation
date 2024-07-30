@@ -294,3 +294,9 @@ man_power_cost_data = ['skilledManpowerReq', 'skilledManpowerCost', 'unSkilledMa
 electric_cost_data = ['ecUnitCost', 'ecMotorRatingHP', 'ecMotorRatingFactor', 'ecLoadFactor']
 other_costs_data = ['maintenanceCostPercent', 'consumableCostPercent', 'legalCost', 'deltaAdjustments']
 rm_norms_date_range_data = ['Please select', 'Annual (JUL-JUN)', 'H1 (JUL-DEC)', 'H2 (JAN-JUN)', 'Q1 (JUL-SEP)', 'Q2 (OCT-DEC)', 'Q3 (JAN-MAR)', 'Q4 (APR-JUN)']
+
+#ST_Operations_Data ______________________________________________________________
+st_ops_mandary_fields = ['componentSTCost', 'thickness', 'drainHoleQty']
+st_ops_un_mndtry_fields = ['finalSurfaceArea', 'maskingSurfaceArea', 'maskingCost', 'rmMake', 'colourRequirement',
+                           'componentSTProfitPercent', 'specialInvestment', 'otherAdditionalCost',
+                           'specialTestingCharges', 'othersOne', 'othersTwo']
