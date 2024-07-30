@@ -149,6 +149,7 @@ def create_te_bop_info(browser, index):
 
 @when(parsers.parse('Create ST Ops data {index:d}'))
 def create_st_operations_info(browser, index):
+    pdb_apply()
     add_st_opts_steps.add_st_operation(browser, ops=True, index=index)
     should_be_visible(browser, st_operation_header_loc, "st_operation_header_loc")
     add_st_opts_steps.select_st_process(browser)
