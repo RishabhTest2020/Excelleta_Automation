@@ -83,6 +83,7 @@ class Create_TE:
         self.operation_source = get_element_text(browser, select_dep_loc)
         do_click(browser, select_dep_loc)
         sleep(0.5)
+        return self.operation_source
 
     def select_inspection_instrument(self, browser, dep_index=3):
         do_click(browser, ins_instrument_loc)
@@ -327,3 +328,87 @@ class CreateBopDetails:
         bop_type_value_loc = replace_in_tuple(bop_name_values_loc, 1, bop_type_value)
         self.bop_type_value = get_element_text(browser, bop_type_value_loc)
         do_click(browser, bop_type_value_loc)
+
+
+class AddSTOperations:
+    def __init__(self):
+        self.st_process_val_txt = None
+        self.st_critical_non_critical_options_val_txt = None
+        self.st_subtract_type_option_val_txt = None
+        self.st_subtract_option_val_txt = None
+        self.st_drain_hole_reqd_option_val_txt = None
+        self.st_masking_options_val_txt = None
+        self.st_madatary_input_fields_data = []
+        self.st_un_madatary_input_fields_data = []
+
+    def select_st_process(self, browser, index=3):
+        do_click(browser, st_operation_drop_down_loc)
+        st_process_options_val = st_process_options_loc[1] + f'[{index}]'
+        st_process_options_val_loc = replace_in_tuple(st_process_options_loc, 3, st_process_options_val)
+        self.st_process_val_txt = get_element_text(browser, st_process_options_val_loc)
+        do_click(browser, st_process_options_val_loc)
+
+    def select_critical_non_critical(self, browser, index=1):
+        do_click(browser, st_critical_non_critical_drop_loc)
+        st_critical_non_critical_options_val = st_critical_non_critical_options_loc[1] + f'[{index}]'
+        st_critical_non_critical_options_val_loc = replace_in_tuple(st_critical_non_critical_options_loc, 1, st_critical_non_critical_options_val)
+        self.st_critical_non_critical_options_val_txt = get_element_text(browser, st_critical_non_critical_options_val_loc)
+        do_click(browser, st_critical_non_critical_options_val_loc)
+
+    def select_subtract_type_drop_down(self, browser, index=2):
+        do_click(browser, st_subtract_type_drop_loc)
+        st_subtract_type_option_val = st_subtract_type_option_loc[1] + f'[{index}]'
+        st_subtract_type_option_val_loc = replace_in_tuple(st_subtract_type_option_loc, 1, st_subtract_type_option_val)
+        self.st_subtract_type_option_val_txt = get_element_text(browser, st_subtract_type_option_val_loc)
+        do_click(browser, st_subtract_type_option_val_loc)
+
+    def select_subtract_drop_down(self, browser, index=2):
+        do_click(browser, st_subtract_drop_loc)
+        st_subtract_option_val = st_subtract_option_loc[1] + f'[{index}]'
+        st_subtract_option_val_loc = replace_in_tuple(st_subtract_option_loc, 1, st_subtract_option_val)
+        self.st_subtract_option_val_txt = get_element_text(browser, st_subtract_option_val_loc)
+        do_click(browser, st_subtract_option_val_loc)
+
+    def select_drain_hole_reqd(self, browser, index=3):
+        do_click(browser, st_drain_hole_reqd_drop_loc)
+        st_drain_hole_reqd_option_val = st_drain_hole_reqd_option_loc[1] + f'[{index}]'
+        st_drain_hole_reqd_option_val_loc = replace_in_tuple(st_drain_hole_reqd_option_loc, 1, st_drain_hole_reqd_option_val)
+        self.st_drain_hole_reqd_option_val_txt = get_element_text(browser, st_drain_hole_reqd_option_val_loc)
+        do_click(browser, st_drain_hole_reqd_option_val_loc)
+
+    def select_masking_drop(self, browser, index=2):
+        do_click(browser, st_masking_drop_down_loc)
+        st_masking_options_val = st_masking_options_loc[1] + f'[{index}]'
+        st_masking_options_val_loc = replace_in_tuple(st_masking_options_loc, 1, st_masking_options_val)
+        self.st_masking_options_val_txt = get_element_text(browser, st_masking_options_val_loc)
+        do_click(browser, st_masking_options_val_loc)
+
+    def st_operations_mandtry_fields(self, browser):
+        self.st_madatary_input_fields_data = [generate_random_number(3), 60, 100]
+        for field_name, data in zip(st_ops_mandary_fields, self.st_madatary_input_fields_data):
+            st_ops_field = st_ops_mndtry_details_common_loc[1].replace('field', field_name)
+            st_ops_field_loc = replace_in_tuple(st_ops_mndtry_details_common_loc, 1, st_ops_field)
+            do_clear(browser, st_ops_field_loc)
+            scroll_into_the_view(browser, st_ops_field_loc[0], st_ops_field_loc[1])
+            do_send_keys(browser, st_ops_field_loc, data)
+
+    def st_operations_un_mandtry_fields(self, browser):
+        self.st_un_madatary_input_fields_data = [generate_random_five_digit_number(), generate_random_number(6),
+                                                 generate_random_number(9), 5, 'green', 20, generate_random_number(6), generate_random_five_digit_number(), generate_random_number(4), 5000, 'NA', 'NA']
+        for field_name, data in zip(st_ops_un_mndtry_fields, self.st_un_madatary_input_fields_data):
+            st_ops_field = st_ops_mndtry_details_common_loc[1].replace('field', field_name)
+            st_ops_field_loc = replace_in_tuple(st_ops_mndtry_details_common_loc, 1, st_ops_field)
+            do_clear(browser, st_ops_field_loc)
+            scroll_into_the_view(browser, st_ops_field_loc[0], st_ops_field_loc[1])
+            do_send_keys(browser, st_ops_field_loc, data)
+        upload_elem = browser.find_element(te_bop_logo[0], te_bop_logo[1])
+        upload_elem.send_keys(os.getcwd() + '/files/watermark.png')
+        do_click(browser, upload_img_accept_btn_loc)
+
+    def add_st_operation(self, browser, index=1, ops=True):
+        assembly_list_add_btn_loc = assembly_list_add_btn[1] + f'[{index}]'
+        assembly_list_add_btn_loc_tup = replace_in_tuple(assembly_list_add_btn, 1, assembly_list_add_btn_loc)
+        do_click(browser, assembly_list_add_btn_loc_tup)
+        if ops is True:
+            do_click(browser, st_operation_btn_loc)
+            sleep(2)
