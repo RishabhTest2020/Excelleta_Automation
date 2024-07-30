@@ -87,8 +87,8 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create TE data 3
     When Create TE BOP data 2
     When Create TE data 4
-#    When Create ST Ops data 3
-#    When Create ST Ops data 5
+    When Create ST Ops data 3
+    When Create ST Ops data 5
     Then Approve TE all levels, back false
     Then Create norms data
     Then Generate Costing Data
