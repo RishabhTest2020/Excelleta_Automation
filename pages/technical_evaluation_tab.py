@@ -178,10 +178,12 @@ class Approve_TE:
                 assert ah_headers == approval_history_headers
                 if i == range_mod[-1]:
                     approval_pop_values1 = approval_pop_values[1].replace("[2]", "[1]")
-                    ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
+                elif i == range_mod[1] and args_len >= 4:
+                    approval_pop_values1 = approval_pop_values[1].replace("[2]", f"[{args_len - i}]")
                 else:
-                    ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
-                if args_len == 4 and range_mod.index(i) == 3:
+                    approval_pop_values1 = approval_pop_values[1]
+                ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
+                if args_len >= 4 and range_mod.index(i) == 3:
                     i = 2
                 actual_vals = [f'TE Approval Level - {i}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
                                self.formatted_time[2:][i - 1], self.formatted_time[2:][i], self.comments[i]]
@@ -345,7 +347,6 @@ class AddSTOperations:
 
     def select_st_process(self, browser, index=3):
         do_click(browser, st_operation_drop_down_loc)
-        pdb_apply()
         st_process_options_val = st_process_options_loc[1] + f'[{index}]'
         st_process_options_val_loc = replace_in_tuple(st_process_options_loc, 1, st_process_options_val)
         self.st_process_val_txt = get_element_text(browser, st_process_options_val_loc)
@@ -354,8 +355,10 @@ class AddSTOperations:
     def select_critical_non_critical(self, browser, index=2):
         do_click(browser, st_critical_non_critical_drop_loc)
         st_critical_non_critical_options_val = st_critical_non_critical_options_loc[1] + f'[{index}]'
-        st_critical_non_critical_options_val_loc = replace_in_tuple(st_critical_non_critical_options_loc, 1, st_critical_non_critical_options_val)
-        self.st_critical_non_critical_options_val_txt = get_element_text(browser, st_critical_non_critical_options_val_loc)
+        st_critical_non_critical_options_val_loc = replace_in_tuple(st_critical_non_critical_options_loc, 1,
+                                                                    st_critical_non_critical_options_val)
+        self.st_critical_non_critical_options_val_txt = get_element_text(browser,
+                                                                         st_critical_non_critical_options_val_loc)
         do_click(browser, st_critical_non_critical_options_val_loc)
 
     def select_subtract_type_drop_down(self, browser, index=2):
@@ -375,7 +378,8 @@ class AddSTOperations:
     def select_drain_hole_reqd(self, browser, index=3):
         do_click(browser, st_drain_hole_reqd_drop_loc)
         st_drain_hole_reqd_option_val = st_drain_hole_reqd_option_loc[1] + f'[{index}]'
-        st_drain_hole_reqd_option_val_loc = replace_in_tuple(st_drain_hole_reqd_option_loc, 1, st_drain_hole_reqd_option_val)
+        st_drain_hole_reqd_option_val_loc = replace_in_tuple(st_drain_hole_reqd_option_loc, 1,
+                                                             st_drain_hole_reqd_option_val)
         self.st_drain_hole_reqd_option_val_txt = get_element_text(browser, st_drain_hole_reqd_option_val_loc)
         do_click(browser, st_drain_hole_reqd_option_val_loc)
 
@@ -397,7 +401,9 @@ class AddSTOperations:
 
     def st_operations_un_mandtry_fields(self, browser):
         self.st_un_madatary_input_fields_data = [generate_random_five_digit_number(), generate_random_number(6),
-                                                 generate_random_number(9), 5, 'green', 20, generate_random_number(6), generate_random_five_digit_number(), generate_random_number(4), 5000, 'NA', 'NA']
+                                                 generate_random_number(9), 5, 'green', 20, generate_random_number(6),
+                                                 generate_random_five_digit_number(), generate_random_number(4), 5000,
+                                                 'NA', 'NA']
         for field_name, data in zip(st_ops_un_mndtry_fields, self.st_un_madatary_input_fields_data):
             st_ops_field = st_ops_mndtry_details_common_loc[1].replace('field', field_name)
             st_ops_field_loc = replace_in_tuple(st_ops_mndtry_details_common_loc, 1, st_ops_field)
@@ -415,3 +421,36 @@ class AddSTOperations:
         if ops is True:
             do_click(browser, st_operation_btn_loc)
             sleep(2)
+
+
+class TE_API_calls:
+    def __init__(self):
+        self.token = None
+        self.api_login()
+
+    def api_login(self, email=globalEnvs.user_email, password=globalEnvs.user_password):
+        url = f'{globalEnvs.api_url}/users/auth'
+        headers = {'Accept': 'application/json, text/plain, */*', 'content-type': 'application/json'}
+        payload = {
+            "email": email,
+            "password": password
+        }
+        resp = requests.post(url, headers=headers, data=payload)
+        resp_js = resp.json()
+        self.token = resp_js['token']
+
+    def approve_te(self, token, te_id):
+        url = f'{globalEnvs.api_url}/approval/updateApprovalStatus'
+        headers = {'Accept': 'application/json, text/plain, */*', 'content-type': 'application/json',
+                   'Authorization': f'Bearer {token}'}
+        payload = {
+            "entityId": int(te_id),
+            "entityType": "TE",
+            "adminUser": True,
+            "status": "APPROVED",
+            "approvedBy": 2,
+            "comment": "bsjbs",
+            "version": "Version-1"
+        }
+        resp = requests.post(url, headers=headers, data=payload)
+        resp_js = resp.json()

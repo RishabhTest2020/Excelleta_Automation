@@ -4,8 +4,6 @@ from dotenv import load_dotenv
 
 class global_env_vars:
     def __init__(self):
-        # self.var2=None
-        # self.var1= None
         self.get_env()
         self.env_vars()
 
@@ -17,7 +15,6 @@ class global_env_vars:
         except Exception as e:
             print(e)
         env_file_path = os.getcwd() + '/envFiles/' + env + '.env'
-        # import pdb; p+db.set_trace()
         load_dotenv(env_file_path)
 
     def env_vars(self):
@@ -25,6 +22,11 @@ class global_env_vars:
         self.user_email = os.getenv('user_email')
         self.user_password = os.getenv('user_password')
         self.env = os.getenv('env')
-
+        self.api_url = os.getenv('api_url')
+        self.Siddharth_email = os.getenv('Siddharth_email')
+        self.Ashish_email = os.getenv('Ashish_email')
+        self.Prakash_email = os.getenv('Prakash_email')
+        self.Somvir_email = os.getenv('Somvir_email')
+        self.approver_password = os.getenv('approver_password')
 
 globalEnvs = global_env_vars()

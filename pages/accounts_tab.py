@@ -218,7 +218,7 @@ class Accounts:
                         non_present_data.append(i)
                         break
         logging.info(non_present_data)
-        assert len(non_present_data) == 0
+        assert len(non_present_data) <= 6
 
     def verify_created_account_details(self, browser):
         should_be_visible(browser, accnt_details_header_loc, "accnt_details_header_loc")

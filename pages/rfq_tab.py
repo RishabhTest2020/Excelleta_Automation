@@ -200,6 +200,7 @@ class Rfq:
 
     def select_per_day_volume(self, browser):
         self.day_volume = 10
+        do_clear(browser, day_vol_txtbox)
         do_send_keys(browser, day_vol_txtbox, self.day_volume)
         self.day_volume_unit = get_element_text(browser, rfq_day_vol_loc)
 
@@ -352,10 +353,13 @@ class Rfq:
             scroll_into_the_view(browser, path[0], path[1])
             js_click_by_xpath(browser, path[1])
         if assem_type == 'single':
+            st_type = rfq_surface_treatment_loc[1].replace('[1]', '[2]')
             assembly_type_loc = assembly_type_tog_loc[1].replace('[2]', '[1]')
             js_click_by_xpath(browser, assembly_type_loc)
+            js_click_by_xpath(browser, st_type)
         else:
             js_click_by_xpath(browser, assembly_type_tog_loc[1])
+            js_click_by_xpath(browser, rfq_surface_treatment_loc[1])
 
     def verify_created_dict(self, browser, all_data_dict: dict):
         loader_should_be_invisile(browser, 10)
