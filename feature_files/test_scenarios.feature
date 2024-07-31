@@ -95,4 +95,4 @@ Feature: Automation Sanity Test Plan Execelleta
 Scenario: TC_08 Generate st data
   Given Login into Excelleta UI
   When Navigate to Accounts tab 5
-  Then Create ST Ops data 3
+  When Create ST Ops data 3
