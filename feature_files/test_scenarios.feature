@@ -93,3 +93,10 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create norms data
     Then Generate Costing Data
 #    Then Verify Cost Raw Material data Raw Material
+
+
+  @Test
+Scenario: TC_08 Generate st data
+  Given Login into Excelleta UI
+  When Navigate to Accounts tab 5
+  When Create ST Ops data 3

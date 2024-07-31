@@ -345,12 +345,13 @@ class AddSTOperations:
 
     def select_st_process(self, browser, index=3):
         do_click(browser, st_operation_drop_down_loc)
+        pdb_apply()
         st_process_options_val = st_process_options_loc[1] + f'[{index}]'
         st_process_options_val_loc = replace_in_tuple(st_process_options_loc, 1, st_process_options_val)
         self.st_process_val_txt = get_element_text(browser, st_process_options_val_loc)
         do_click(browser, st_process_options_val_loc)
 
-    def select_critical_non_critical(self, browser, index=1):
+    def select_critical_non_critical(self, browser, index=2):
         do_click(browser, st_critical_non_critical_drop_loc)
         st_critical_non_critical_options_val = st_critical_non_critical_options_loc[1] + f'[{index}]'
         st_critical_non_critical_options_val_loc = replace_in_tuple(st_critical_non_critical_options_loc, 1, st_critical_non_critical_options_val)
