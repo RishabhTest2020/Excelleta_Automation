@@ -137,7 +137,7 @@ def approve_te_levels(browser, back, level):
         approve_te_steps.approve_te(browser, rfq_steps.development_lead, rfq_steps.plant_head,
                                     rfq_steps.business_dev_head)
     else:
-        approve_te_steps.approve_te(browser, rfq_steps.development_lead, rfq_steps.plant_head,
+        approve_te_steps.approve_te(browser, te_no, rfq_steps.development_lead, rfq_steps.plant_head,
                                     rfq_steps.surface_treatment_head, rfq_steps.business_dev_head)
 
 

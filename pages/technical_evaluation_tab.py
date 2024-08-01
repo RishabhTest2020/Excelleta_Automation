@@ -157,22 +157,36 @@ class Approve_TE:
         self.comments = []
         self.formatted_time_app = None
 
-    def approve_te(self, browser, *args):
+    def approve_te(self, browser, te_id=None, *args):
         args_len = len(args)
         range_mod = range(0, args_len + 1)
         for i in range_mod:
             text = random_correct_name(5, 5, 'first_name')
             self.comments.append(text)
-            do_click(browser, approve_request)
-            do_send_keys(browser, add_comment, text)
-            current_date_time = datetime.now()
-            self.formatted_time.append(current_date_time.strftime("%d-%b-%Y, %I:%M %p"))
-            do_click(browser, save_btn)
-            current_date_time2 = datetime.now()
-            self.formatted_time.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
+            if args_len == 3 or (args_len >= 4 and i == 0):
+                do_click(browser, approve_request)
+                do_send_keys(browser, add_comment, text)
+                current_date_time = datetime.now()
+                self.formatted_time.append(current_date_time.strftime("%d-%b-%Y, %I:%M %p"))
+                do_click(browser, save_btn)
+                current_date_time2 = datetime.now()
+                self.formatted_time.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
+            else:
+                te_calls = TE_API_calls()
+                current_date_time = datetime.now()
+                self.formatted_time.append(current_date_time.strftime("%d-%b-%Y, %I:%M %p"))
+                approver_email = [x for x in globalEnvs.__dict__ if args[i - 1].split(" ")[0] in x]
+                te_calls.api_login(email=os.getenv(approver_email[0]), password=globalEnvs.approver_password)
+                te_calls.approve_te(token=te_calls.token, te_id=te_id, userid=te_calls.user_id, comment=text)
+                current_date_time2 = datetime.now()
+                self.formatted_time.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
             sleep(1)
+
             if i > 0:
                 sleep(4)
+                if args_len >= 4:
+                    browser.refresh()
+                    loader_should_be_invisile(browser, 2)
                 do_click(browser, te_approval_history)
                 ah_headers = get_list_of_elems_text(browser, approval_pop_header[0], approval_pop_header[1])
                 assert ah_headers == approval_history_headers
@@ -183,9 +197,10 @@ class Approve_TE:
                 else:
                     approval_pop_values1 = approval_pop_values[1]
                 ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
+                j = i
                 if args_len >= 4 and range_mod.index(i) == 3:
-                    i = 2
-                actual_vals = [f'TE Approval Level - {i}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
+                    j = 2
+                actual_vals = [f'TE Approval Level - {j}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
                                self.formatted_time[2:][i - 1], self.formatted_time[2:][i], self.comments[i]]
                 logging.info(ah_row_vals)
                 logging.info(actual_vals)
@@ -424,9 +439,10 @@ class AddSTOperations:
 
 
 class TE_API_calls:
+
     def __init__(self):
+        self.user_id = None
         self.token = None
-        self.api_login()
 
     def api_login(self, email=globalEnvs.user_email, password=globalEnvs.user_password):
         url = f'{globalEnvs.api_url}/users/auth'
@@ -435,22 +451,23 @@ class TE_API_calls:
             "email": email,
             "password": password
         }
-        resp = requests.post(url, headers=headers, data=payload)
+        resp = requests.post(f"{url}", headers=headers, json=payload, verify=False)
         resp_js = resp.json()
         self.token = resp_js['token']
+        self.user_id = resp_js['userDto']['id']
 
-    def approve_te(self, token, te_id):
+    def approve_te(self, token, te_id, userid, comment):
         url = f'{globalEnvs.api_url}/approval/updateApprovalStatus'
         headers = {'Accept': 'application/json, text/plain, */*', 'content-type': 'application/json',
                    'Authorization': f'Bearer {token}'}
         payload = {
             "entityId": int(te_id),
             "entityType": "TE",
-            "adminUser": True,
+            "adminUser": False,
             "status": "APPROVED",
-            "approvedBy": 2,
-            "comment": "bsjbs",
+            "approvedBy": int(userid),
+            "comment": comment,
             "version": "Version-1"
         }
-        resp = requests.post(url, headers=headers, data=payload)
-        resp_js = resp.json()
+        resp = requests.post(url, headers=headers, json=payload, verify=False)
+        assert resp.status_code == 200
