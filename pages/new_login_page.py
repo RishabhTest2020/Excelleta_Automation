@@ -29,7 +29,7 @@ def goto_tab(browser, tab_name, wait):
     tab_loc = menu_tab_loc.replace("tab_name", tab_name)
     do_click(browser, (By.XPATH, tab_loc))
     if tab_name == 'Technical Evaluation':
-        tab_name = 'TE List View'
+        tab_name = 'Technical Evaluation List View'
     page_name = pages_name_loc.replace("tab_name", tab_name)
     should_be_visible(browser, (By.XPATH, page_name), tab_name, 10)
     loader_should_be_invisile(browser, wait)

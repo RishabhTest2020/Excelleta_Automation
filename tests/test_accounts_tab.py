@@ -38,6 +38,7 @@ def account_creation(browser):
     accounts_steps.select_city_field(browser)
     browser.find_element(By.TAG_NAME, 'body').send_keys(Keys.CONTROL + Keys.HOME)
     do_click(browser, save_btn)
+    sleep(2)
     nav_path = accounts_nav_name_loc[1].replace('acc_name', accounts_steps.account_details[0])
     nav_loc = replace_in_tuple(accounts_nav_name_loc, 1, nav_path)
     should_be_visible(browser, nav_loc, 'acc_nav_check')
@@ -80,25 +81,3 @@ def create_norms(browser):
     norms_steps.select_bop_norms(browser)
     sleep(1)
 
-
-@then('Generate Costing Data')
-def generate_costing_norms(browser):
-    do_click(browser, generate_costing_bn_loc)
-    sleep(2)
-    do_click(browser, cs_actions_btn_loc)
-    sleep(1)
-    do_click(browser, cs_actions_norms_btn_loc)
-    should_be_visible(browser, cs_actions_norms_header_loc, "cs_actions_norms_header_loc")
-    norms_steps.rm_norms_fiscal_year_option(browser, index='6')
-    norms_steps.rm_norms_date_range_option(browser, index='2')
-    #norms_steps.bop_norms_date_range_option(browser, index=2) Not getting Values in this drop down
-    norms_steps.process_norms_date_range_selection(browser, index='2')
-    norms_steps.other_norms_date_range_selection(browser, index='2')
-    norms_steps.over_head_norms_selection(browser, index='1')
-    do_click(browser, generate_costing_btn_loc)
-    sleep(2)
-    do_click(browser, cs_add_expense_btn_loc)
-    should_be_visible(browser, cs_add_expense_header_loc, "cs_add_expense_header_loc")
-    norms_steps.add_expense_flat_rate(browser)
-    do_click(browser, add_update_btn_loc)
-    sleep(2)

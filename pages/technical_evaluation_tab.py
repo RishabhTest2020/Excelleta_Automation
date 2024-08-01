@@ -18,7 +18,11 @@ class Create_TE:
 
     def goto_te_verify_part_add_assembly(self, browser, te_name, tool):
         te_loc = (By.XPATH, f'//a[contains(text(), "{te_name}")]')
-        do_click(browser, te_loc)
+        logging.info(te_loc)
+        try:
+            do_click(browser, te_loc, 15)
+        except TimeoutException:
+            do_click(browser, te_loc)
         loader_should_be_invisile(browser, 3)
         tool_txt = get_element_text(browser, assembly_node_label)
         assert tool_txt == tool
@@ -154,7 +158,8 @@ class Approve_TE:
         self.formatted_time_app = None
 
     def approve_te(self, browser, *args):
-        range_mod = range(0, 4)
+        args_len = len(args)
+        range_mod = range(0, args_len + 1)
         for i in range_mod:
             text = random_correct_name(5, 5, 'first_name')
             self.comments.append(text)
@@ -172,10 +177,12 @@ class Approve_TE:
                 ah_headers = get_list_of_elems_text(browser, approval_pop_header[0], approval_pop_header[1])
                 assert ah_headers == approval_history_headers
                 if i == range_mod[-1]:
-                    approval_pop_values1 = approval_pop_values[1].replace("[2]",  "[1]")
+                    approval_pop_values1 = approval_pop_values[1].replace("[2]", "[1]")
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
                 else:
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
+                if args_len == 4 and range_mod.index(i) == 3:
+                    i = 2
                 actual_vals = [f'TE Approval Level - {i}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
                                self.formatted_time[2:][i - 1], self.formatted_time[2:][i], self.comments[i]]
                 logging.info(ah_row_vals)
@@ -240,7 +247,7 @@ class Edit_TE:
         self.rm_type = get_element_text(browser, select_loc)
         do_click(browser, select_loc)
         sleep(0.5)
-        
+
     def select_raw_material(self, browser, index=2):
         scroll_into_the_view(browser, rm_type_loc[0], rm_type_loc[1])
         do_click(browser, raw_mat_loc)
