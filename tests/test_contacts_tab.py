@@ -52,3 +52,29 @@ def verify_account(browser):
     contact_class_data['acc_name'] = accounts_steps.account_details[0]
     logging.info(contact_class_data.values())
     contacts_steps.verify_created_contact(browser, contact_class_data)
+
+
+@then('Verify contact details of account page')
+def verification_of_contact_details_of_acct_page(browser):
+    pdb_apply()
+    contact_class_data_acc = get_class_global_variables_dict(contacts_steps)
+    logging.info(contact_class_data_acc)
+    anni_dated = contact_class_data_acc['anniversary_date']
+    dob = contact_class_data_acc['dob_data']
+    anni_date_obj = datetime.strptime(anni_dated, '%d/%m/%Y')
+    anni_date = anni_date_obj.strftime('%d-%b-%Y')
+    dob_obj = datetime.strptime(dob, '%d/%m/%Y')
+    dob = dob_obj.strftime('%d-%b-%Y')
+    contact_class_data_acc['anniversary_date'] = anni_date
+    contact_class_data_acc['dob_data'] = dob
+    contact_class_data_acc['acc_name'] = accounts_steps.account_details[0]
+    contact_class_data_acc['contact_billing_data'] = [element for item in contact_class_data_acc['contact_billing_data'] for element in (item.split(', ') if isinstance(item, str) else [item])]
+    contact_class_data_acc.update({
+        "Email Opt In": "Yes",
+        "Send Greetings": "Yes",
+        "Send Acknowledgement": "Yes",
+        "Updated By": "Saurabh Shrivastava"
+    })
+    logging.info(contact_class_data_acc.values())
+    pdb_apply()
+    contacts_steps.verify_account_page_contact_details(browser, contact_class_data_acc)

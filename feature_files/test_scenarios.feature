@@ -27,7 +27,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
-    #Then Verify created contact FE Info
+    Then Verify created contact FE Info
     When Navigate to Contact tab 5
     Then Verify created contact data
     Then Verify contact table head column
@@ -96,7 +96,10 @@ Feature: Automation Sanity Test Plan Execelleta
 
 
   @Test
-Scenario: TC_08 Generate st data
+Scenario: TC_08 Generate contact data
   Given Login into Excelleta UI
   When Navigate to Accounts tab 5
-  When Create ST Ops data 3
+  Then Create an account
+  When Navigate to Contact tab 5
+  When Create an Contact
+  Then Verify contact details of account page

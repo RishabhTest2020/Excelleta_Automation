@@ -221,6 +221,7 @@ class Accounts:
         assert len(non_present_data) == 0
 
     def verify_created_account_details(self, browser):
+        pdb_apply()
         should_be_visible(browser, accnt_details_header_loc, "accnt_details_header_loc")
         for col_name in account_details_data:
             acct_details_cols = account_details_cols_locs[1].replace("field", col_name)
@@ -386,7 +387,7 @@ class Norms:
     def get_bop_norms_default_col_data(self, browser):
         self.bop_col_headers = ['BOP Name', 'Business Nature', 'Manufacturing Location', 'Fiscal Year']
         default_table_data = []
-        table_cell_data ={}
+        table_cell_data = {}
         for num in range(1, 5):
             bop_table_cols_data = raw_material_cols[1] + f'[{num}]'
             bop_table_cols_data_loc = replace_in_tuple(raw_material_cols, 1, bop_table_cols_data)
@@ -416,7 +417,8 @@ class Norms:
     def fill_data_of_over_head_norms_table_data(self, browser, index_list: list, opt_index_list: list, txt: str):
         for index, opt_index in zip(index_list, opt_index_list):
             other_norms_descriptions_loc = other_norms_descriptions_col_loc[1] + f'[{index}]'
-            other_norms_descriptions_loc_tup = replace_in_tuple(other_norms_descriptions_col_loc, 1, other_norms_descriptions_loc)
+            other_norms_descriptions_loc_tup = replace_in_tuple(other_norms_descriptions_col_loc, 1,
+                                                                other_norms_descriptions_loc)
             head_desc = get_element_text(browser, other_norms_descriptions_loc_tup)
             self.over_heads_desc.append(head_desc)
             r_norms_flat_rate = norms_flat_rate_loc[1].replace('num', index)
@@ -430,13 +432,14 @@ class Norms:
             r_norms_percentage_rate_loc = replace_in_tuple(norms_percentage_rate_loc, 1, norms_percentage_rate)
             do_double_click(browser, r_norms_percentage_rate_loc)
             input_norms_percentage_rate_loc = r_norms_percentage_rate_loc[1] + "//input"
-            r_input_norms_percentage_rate_loc = replace_in_tuple(r_norms_percentage_rate_loc, 1, input_norms_percentage_rate_loc)
+            r_input_norms_percentage_rate_loc = replace_in_tuple(r_norms_percentage_rate_loc, 1,
+                                                                 input_norms_percentage_rate_loc)
             do_send_keys(browser, r_input_norms_percentage_rate_loc, txt)
             do_send_keys(browser, r_input_norms_percentage_rate_loc, Keys.ENTER)
             r_norms_applicable_on = norms_applicable_on_loc[1].replace('num', index)
             r_norms_applicable_on_loc = replace_in_tuple(norms_applicable_on_loc, 1, r_norms_applicable_on)
             do_click(browser, r_norms_applicable_on_loc)
-            rr_norms_applicable_options_loc = norms_applicable_options_loc[1].replace('num', f'{int(index)-1}')
+            rr_norms_applicable_options_loc = norms_applicable_options_loc[1].replace('num', f'{int(index) - 1}')
             r_norms_applicable_options = rr_norms_applicable_options_loc + f'[{opt_index}]'
             js_click_by_xpath(browser, r_norms_applicable_options)
             do_click(browser, (By.TAG_NAME, 'body'))
@@ -483,7 +486,8 @@ class Norms:
         do_click(browser, save_btn)
         sleep(2)
 
-    def select_over_head_norms(self, browser, location, index_list: list, opt_index_list: list, txt: str, ml_index=2, bn_index=2, ):
+    def select_over_head_norms(self, browser, location, index_list: list, opt_index_list: list, txt: str, ml_index=2,
+                               bn_index=2, ):
         self.select_norms(browser, index=6)
         should_be_visible(browser, over_head_text, 'over_head_text')
         manu_locate = self.select_norm_factoring_location(browser, ml_index)
@@ -524,7 +528,7 @@ class Norms:
 
     def fill_raw_material_col_data(self, browser):
         self.raw_material_col_data = ['15', '20', '75', '25', '80', '30', '70', '30', '72', '34', '76', '31', '80', '44'
-                                      , '15', '20', '75', '25', '80', '30', '70', '30', '72', '34', '76', '31', '80',
+            , '15', '20', '75', '25', '80', '30', '70', '30', '72', '34', '76', '31', '80',
                                       '44']
         elems = browser.find_elements(raw_material_cols[0], raw_material_cols[1])
         elems_len = len(elems)
@@ -554,7 +558,8 @@ class Norms:
         self.fill_other_costs_cols(browser)
 
     def provide_mhr_info(self, browser):
-        self.expd_mhr_info_data = [random_correct_name(8, 4, 'first_name'), generate_random_number(5), "paramOne", "paramTwo", "paramThree", "paramFour"]
+        self.expd_mhr_info_data = [random_correct_name(8, 4, 'first_name'), generate_random_number(5), "paramOne",
+                                   "paramTwo", "paramThree", "paramFour"]
         for field_name, data in zip(mht_cols_valus, self.expd_mhr_info_data):
             mhr_info_field = mhr_data_cols_loc[1].replace('field', field_name)
             mhr_info_field_loc = replace_in_tuple(mhr_data_cols_loc, 1, mhr_info_field)
@@ -592,8 +597,10 @@ class Norms:
         scroll_into_the_view(browser, oum_info_place[0], oum_info_place[1])
         do_click(browser, oum_info_place)
 
-    def fill_machine_variable_cols(self, browser, no_of_work_days=7, no_of_hrs_inshift=10, no_of_days_for_prod=5, no_of_hrs_for_costing=12, cycle_time=25 ):
-        self.machine_variable_values = [generate_random_number(5), no_of_work_days, no_of_hrs_inshift, no_of_days_for_prod, no_of_hrs_for_costing, cycle_time]
+    def fill_machine_variable_cols(self, browser, no_of_work_days=7, no_of_hrs_inshift=10, no_of_days_for_prod=5,
+                                   no_of_hrs_for_costing=12, cycle_time=25):
+        self.machine_variable_values = [generate_random_number(5), no_of_work_days, no_of_hrs_inshift,
+                                        no_of_days_for_prod, no_of_hrs_for_costing, cycle_time]
         should_be_visible(browser, machine_variable_header_loc, "machine_variable_header_loc")
         for field_name, data in zip(machine_variables, self.machine_variable_values):
             machine_vars_field = mhr_data_cols_loc[1].replace('field', field_name)
@@ -601,7 +608,7 @@ class Norms:
             do_clear(browser, machine_vars_field_loc)
             do_send_keys(browser, machine_vars_field_loc, data)
 
-    def fill_space_rental_cost_cols(self, browser, length=500, width =55, height=400, feet=550):
+    def fill_space_rental_cost_cols(self, browser, length=500, width=55, height=400, feet=550):
         self.space_rental_values = [length, width, height, feet]
         should_be_visible(browser, space_rental_cost_header_loc, "space_rental_cost_header_loc")
         for field_name, data in zip(space_rental_cost_data, self.space_rental_values):
@@ -647,7 +654,8 @@ class Norms:
             do_send_keys(browser, other_cost_field_loc, data)
 
     def get_process_norms_table_data(self, browser):
-        self.process_norms_table_headers = ['Machine', 'Process', 'Capacity', 'Process Unit', 'Rate(New)', 'Existing Rate']
+        self.process_norms_table_headers = ['Machine', 'Process', 'Capacity', 'Process Unit', 'Rate(New)',
+                                            'Existing Rate']
         elems = browser.find_elements(process_norms_table_data_loc[0], process_norms_table_data_loc[1])
         elems_len = len(elems)
         col_names_lst = []
@@ -660,13 +668,15 @@ class Norms:
             table_cell_data = {}
             for i in range(1, elems_len + 1):
                 process_norms_cell_value_loc = r_process_norms_cols_loc[1] + f'[{i}]'
-                process_norms_cell_value_txt = replace_in_tuple(r_process_norms_cols_loc, 1, process_norms_cell_value_loc)
+                process_norms_cell_value_txt = replace_in_tuple(r_process_norms_cols_loc, 1,
+                                                                process_norms_cell_value_loc)
                 cell_data_txt = get_element_text(browser, process_norms_cell_value_txt)
                 table_cell_data[self.process_norms_table_headers[i - 1]] = cell_data_txt
             col_names_lst.append(table_cell_data)
             logging.info(col_names_lst)
         process_norms_table_new_rate_loc1 = process_norms_table_new_rate_loc[1] + '[1]'
-        process_norms_table_new_rate_loc1 = replace_in_tuple(process_norms_table_new_rate_loc, 1, process_norms_table_new_rate_loc1)
+        process_norms_table_new_rate_loc1 = replace_in_tuple(process_norms_table_new_rate_loc, 1,
+                                                             process_norms_table_new_rate_loc1)
         do_send_keys(browser, process_norms_table_new_rate_loc1, '100')
         do_send_keys(browser, process_norms_table_new_rate_loc1, Keys.ENTER)
 
@@ -674,6 +684,5 @@ class Norms:
         # process_norms_table_new_rate_loc2 = replace_in_tuple(process_norms_table_new_rate_loc, 1,
         #                                                      process_norms_table_new_rate_loc2)
         # do_send_keys(browser, process_norms_table_new_rate_loc2, '100')
-
 
 

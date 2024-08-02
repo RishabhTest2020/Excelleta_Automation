@@ -712,3 +712,14 @@ def send_report_to_teams(text, color, status):
         print("Message sent successfully!")
     else:
         print(f"Failed to send message. Status code: {response.status_code}, Response: {response.text}")
+
+
+def flatten_list(nested_list):
+    flat_list = []
+    for item in nested_list:
+        if isinstance(item, list):
+            flat_list.extend(flatten_list(item))
+        else:
+            flat_list.append(item)
+    return flat_list
+
