@@ -163,7 +163,7 @@ class Approve_TE:
         for i in range_mod:
             text = random_correct_name(5, 5, 'first_name')
             self.comments.append(text)
-            if args_len == 3 or (args_len >= 4 and i == 0):
+            if (args_len == 3) or (args_len >= 4 and i == 0):
                 do_click(browser, approve_request)
                 do_send_keys(browser, add_comment, text)
                 current_date_time = datetime.now()
@@ -173,9 +173,9 @@ class Approve_TE:
                 self.formatted_time.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
             else:
                 te_calls = TE_API_calls()
+                approver_email = [x for x in globalEnvs.__dict__ if args[i - 1].split(" ")[0] in x]
                 current_date_time = datetime.now()
                 self.formatted_time.append(current_date_time.strftime("%d-%b-%Y, %I:%M %p"))
-                approver_email = [x for x in globalEnvs.__dict__ if args[i - 1].split(" ")[0] in x]
                 te_calls.api_login(email=os.getenv(approver_email[0]), password=globalEnvs.approver_password)
                 te_calls.approve_te(token=te_calls.token, te_id=te_id, userid=te_calls.user_id, comment=text)
                 current_date_time2 = datetime.now()
@@ -186,7 +186,7 @@ class Approve_TE:
                 sleep(4)
                 if args_len >= 4:
                     browser.refresh()
-                    loader_should_be_invisile(browser, 2)
+                    sleep(2)
                 do_click(browser, te_approval_history)
                 ah_headers = get_list_of_elems_text(browser, approval_pop_header[0], approval_pop_header[1])
                 assert ah_headers == approval_history_headers
@@ -197,11 +197,16 @@ class Approve_TE:
                 else:
                     approval_pop_values1 = approval_pop_values[1]
                 ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
-                j = i
-                if args_len >= 4 and range_mod.index(i) == 3:
-                    j = 2
-                actual_vals = [f'TE Approval Level - {j}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
-                               self.formatted_time[2:][i - 1], self.formatted_time[2:][i], self.comments[i]]
+                if args_len >= 4 and range_mod.index(i) >= 3:
+                    j = i - 1
+                else:
+                    j = i
+                if args_len >= 4:
+                    actual_vals = [f'TE Approval Level - {j}', args[i - 1], args[i - 1], 'Approved',
+                                   self.formatted_time[2:][i - 1], self.formatted_time[2:][i], self.comments[i]]
+                else:
+                    actual_vals = [f'TE Approval Level - {j}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
+                                   self.formatted_time[2:][i - 1], self.formatted_time[2:][i], self.comments[i]]
                 logging.info(ah_row_vals)
                 logging.info(actual_vals)
                 assert ah_row_vals == actual_vals
@@ -453,6 +458,7 @@ class TE_API_calls:
         }
         resp = requests.post(f"{url}", headers=headers, json=payload, verify=False)
         resp_js = resp.json()
+        logging.info(resp_js)
         self.token = resp_js['token']
         self.user_id = resp_js['userDto']['id']
 
@@ -471,3 +477,4 @@ class TE_API_calls:
         }
         resp = requests.post(url, headers=headers, json=payload, verify=False)
         assert resp.status_code == 200
+        logging.info(resp.json())
