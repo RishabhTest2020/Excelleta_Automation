@@ -138,3 +138,12 @@ class CostSheetPage:
                         break
         logging.info(non_present_data)
         assert len(non_present_data) <= 3
+
+    def goto_created_cost_sheet(self, browser, mte_name):
+        te_loc = (By.XPATH, f'(//a[contains(text(), "MTE-{mte_name}")]/../../..//a)[1]')
+        logging.info(te_loc)
+        try:
+            do_click(browser, te_loc, 15)
+        except TimeoutException:
+            do_click(browser, te_loc)
+        loader_should_be_invisile(browser, 3)

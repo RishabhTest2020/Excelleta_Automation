@@ -181,7 +181,7 @@ class Rfq:
 
     def select_estimates_sop(self, browser):
         todayDate = datetime.today()
-        yesterday = todayDate + timedelta(days=4)
+        yesterday = todayDate + timedelta(days=8)
         yesterday_formatted_date = yesterday.strftime('%m/%d/%Y')
         self.estimates_sop = yesterday_formatted_date
         do_send_keys(browser, rfq_estimates_sop_loc, yesterday_formatted_date)
