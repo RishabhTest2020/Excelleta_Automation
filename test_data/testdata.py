@@ -300,3 +300,8 @@ st_ops_mandary_fields = ['componentSTCost', 'thickness', 'drainHoleQty']
 st_ops_un_mndtry_fields = ['finalSurfaceArea', 'maskingSurfaceArea', 'maskingCost', 'rmMake', 'colourRequirement',
                            'componentSTProfitPercent', 'specialInvestment', 'otherAdditionalCost',
                            'specialTestingCharges', 'othersOne', 'othersTwo']
+
+acc_page_contact_details = ['Name', 'Profile URL', 'Email ID', 'Phone Number', 'Other Phone Number', 'Department',
+                            'Designation', 'Reports To', 'Gender', 'Birth Date', 'Marital Status', 'Anniversary',
+                            'Email Opt In', 'Send Greetings', 'Send Acknowledgement', 'Official Address',
+                            'Residential Address', 'Created By', 'Created Date', 'Updated By', 'Updated Date']

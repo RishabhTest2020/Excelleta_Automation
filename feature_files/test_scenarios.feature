@@ -27,7 +27,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
-    #Then Verify created contact FE Info
+    Then Verify created contact FE Info
     When Navigate to Contact tab 5
     Then Verify created contact data
     Then Verify contact table head column

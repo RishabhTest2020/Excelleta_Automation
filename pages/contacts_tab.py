@@ -1,5 +1,6 @@
 import logging
 import os
+from itertools import chain
 
 from selenium.webdriver import Keys
 
@@ -224,6 +225,7 @@ class Contacts:
         assert len(non_present_data) <= 7
 
     def verify_created_contact_details(self, browser, email_opt_in="Yes", greetings_opt="Yes", acknowledgement="Yes"):
+        pdb_apply()
         logging.info(self.contact_details)
         logging.info(self.contact_billing_data)
         contact_details_link = contact_details_loc[1].replace("fname", self.contact_details[0])
@@ -231,12 +233,19 @@ class Contacts:
         do_click(browser, contact_details_link_loc)
         sleep(5)
         loader_should_be_invisile(browser, 10)
+        contact_billing_data_one = self.contact_billing_data[0].split(', ')
+        contact_billing_data_two = self.contact_billing_data[2].split(', ')
+        anniversary_day = datetime.strptime(self.anniversary_date, '%d/%m/%Y')
+        formatted_anniversary_day = anniversary_day.strftime('%d-%b-%Y')
+        logging.info(formatted_anniversary_day)
+        birth_day = datetime.strptime(self.dob_data, '%d/%m/%Y')
+        formatted_birth_day = birth_day.strftime('%d-%b-%Y')
         expected_contact_details_list = [self.name_title, self.contact_details[0], self.contact_details[1],
                                          self.contact_details[2], self.contact_details[3], "9090909090", self.department,
-                                         self.designation, self.gender, self.dob_data, self.marital, self.anniversary_date,
-                                         email_opt_in, greetings_opt, acknowledgement, self.contact_billing_data[0],
+                                         self.designation, self.gender, formatted_birth_day, self.marital, formatted_anniversary_day,
+                                         email_opt_in, greetings_opt, acknowledgement, contact_billing_data_one[0], contact_billing_data_one[1],
                                          self.contact_city, self.contact_state, self.contact_country,
-                                         self.contact_billing_data[1], self.contact_billing_data[2],
+                                         self.contact_billing_data[1], contact_billing_data_two[0], contact_billing_data_two[1],
                                          self.contact_city, self.contact_state, self.contact_country, self.contact_billing_data[3]]
         logging.info(expected_contact_details_list)
         actual_contact_data_list = []
@@ -256,6 +265,8 @@ class Contacts:
             if field_name == "Official Address" or field_name == "Residential Address":
                 address_details = contact_details_value_txt.split(',')
                 cleaned_addresses_details = [address.strip() for address in address_details]
+                if cleaned_addresses_details[-1].isdigit():
+                    cleaned_addresses_details[-1] = int(cleaned_addresses_details[-1])
                 actual_contact_data_list.extend(cleaned_addresses_details)
                 logging.info(actual_contact_data_list)
                 continue
@@ -268,5 +279,61 @@ class Contacts:
         logging.info(expected_contact_details_list)
         assert actual_contact_data_list == expected_contact_details_list
 
-
+    def verify_account_page_contact_details(self, browser, contact_class_data_acc):
+        pdb_apply()
+        # sleep(3)
+        # loader_should_be_invisile(browser, 5)
+        values = []
+        for field_name in acc_page_contact_details:
+            contact_details_elems = acc_page_contact_value_loc[1].replace("field", field_name)
+            logging.info(contact_details_elems)
+            contact_details_value_loc = replace_in_tuple(acc_page_contact_value_loc, 1, contact_details_elems)
+            contact_details_value_txt = get_element_text(browser, contact_details_value_loc)
+            if field_name == "Name":
+                contact_name_details = contact_details_value_txt.split()
+                contact_name_details[0] = contact_name_details[0].rstrip('.')
+                values = contact_name_details.copy()
+                logging.info(values)
+                continue
+            if field_name == "Official Address" or field_name == "Residential Address":
+                address_details = contact_details_value_txt.split(',')
+                cleaned_addresses_details = [address.strip() for address in address_details]
+                if cleaned_addresses_details[-1].isdigit():
+                    cleaned_addresses_details[-1] = int(cleaned_addresses_details[-1])
+                values.extend(cleaned_addresses_details)
+                logging.info(values)
+                continue
+            values.append(contact_details_value_txt)
+        pdb_apply()
+        logging.info(values)
+        logging.info("List need to check")
+        pdb_apply()
+        all_data = list(contact_class_data_acc.values())
+        print(all_data)
+        all_data = flatten_list(all_data)
+        print(all_data)
+        acc_page_cont_data_list = []
+        for i in all_data:
+            i_type = type(i)
+            if i_type == list:
+                acc_page_cont_data_list.extend(i)
+            else:
+                acc_page_cont_data_list.append(str(i))
+        logging.info(acc_page_cont_data_list)
+        values = [x for x in values if x != "-"]
+        non_present_data = []
+        for i in values[1:-3]:
+            for j in acc_page_cont_data_list:
+                if '9090909090' in i:
+                    i = str(i).replace("+91-", '')
+                if i == j:
+                    break
+                else:
+                    if acc_page_cont_data_list.index(j) == len(acc_page_cont_data_list) - 1:
+                        non_present_data.append(i)
+                        break
+        pdb_apply()
+        logging.info(non_present_data)
+        logging.info(len(non_present_data))
+        assert len(non_present_data) <= 3
 
