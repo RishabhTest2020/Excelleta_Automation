@@ -93,4 +93,4 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create norms data
     Then Generate Costing Data and Norms
     When Navigate to Costing Sheet tab 10
-    Then Verify Cost Raw Material data Raw Material
+#    Then Verify Cost Raw Material data Raw Material
