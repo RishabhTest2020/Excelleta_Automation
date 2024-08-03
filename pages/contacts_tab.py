@@ -281,8 +281,8 @@ class Contacts:
 
     def verify_account_page_contact_details(self, browser, contact_class_data_acc):
         pdb_apply()
-        # sleep(3)
-        # loader_should_be_invisile(browser, 5)
+        sleep(3)
+        loader_should_be_invisile(browser, 5)
         values = []
         for field_name in acc_page_contact_details:
             contact_details_elems = acc_page_contact_value_loc[1].replace("field", field_name)
@@ -297,7 +297,7 @@ class Contacts:
                 continue
             if field_name == "Official Address" or field_name == "Residential Address":
                 address_details = contact_details_value_txt.split(',')
-                cleaned_addresses_details = [address.strip() for address in address_details]
+                cleaned_addresses_details = [address.replace('.', '').strip() for address in address_details]
                 if cleaned_addresses_details[-1].isdigit():
                     cleaned_addresses_details[-1] = int(cleaned_addresses_details[-1])
                 values.extend(cleaned_addresses_details)
@@ -310,19 +310,19 @@ class Contacts:
         pdb_apply()
         all_data = list(contact_class_data_acc.values())
         print(all_data)
-        all_data = flatten_list(all_data)
-        print(all_data)
-        acc_page_cont_data_list = []
-        for i in all_data:
-            i_type = type(i)
-            if i_type == list:
-                acc_page_cont_data_list.extend(i)
-            else:
-                acc_page_cont_data_list.append(str(i))
+        acc_page_cont_data_list = flatten_list(all_data)
+        # print(all_data)
+        # acc_page_cont_data_list = []
+        # for i in all_data:
+        #     i_type = type(i)
+        #     if i_type == list:
+        #         acc_page_cont_data_list.extend(i)
+        #     else:
+        #         acc_page_cont_data_list.append(str(i))
         logging.info(acc_page_cont_data_list)
-        values = [x for x in values if x != "-"]
+        values = [str(x) for x in values if x != "-"]
         non_present_data = []
-        for i in values[1:-3]:
+        for i in values[1:]:
             for j in acc_page_cont_data_list:
                 if '9090909090' in i:
                     i = str(i).replace("+91-", '')

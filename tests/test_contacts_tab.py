@@ -58,6 +58,7 @@ def verify_account(browser):
 def verification_of_contact_details_of_acct_page(browser):
     pdb_apply()
     contact_class_data_acc = get_class_global_variables_dict(contacts_steps)
+    pdb_apply()
     logging.info(contact_class_data_acc)
     anni_dated = contact_class_data_acc['anniversary_date']
     dob = contact_class_data_acc['dob_data']
@@ -76,5 +77,5 @@ def verification_of_contact_details_of_acct_page(browser):
         "Updated By": "Saurabh Shrivastava"
     })
     logging.info(contact_class_data_acc.values())
-    pdb_apply()
+    #pdb_apply()
     contacts_steps.verify_account_page_contact_details(browser, contact_class_data_acc)
