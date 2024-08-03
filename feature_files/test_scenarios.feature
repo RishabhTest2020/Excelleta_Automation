@@ -91,5 +91,5 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4
     Then Create norms data
-    Then Generate Costing Data
+    Then Generate Costing Data and Norms
 #    Then Verify Cost Raw Material data Raw Material

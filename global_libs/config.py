@@ -29,4 +29,5 @@ class global_env_vars:
         self.Somvir_email = os.getenv('Somvir_email')
         self.approver_password = os.getenv('approver_password')
 
+
 globalEnvs = global_env_vars()

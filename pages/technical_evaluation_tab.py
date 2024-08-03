@@ -155,7 +155,7 @@ class Approve_TE:
     def __init__(self):
         self.formatted_time = []
         self.comments = []
-        self.formatted_time_app = None
+        self.formatted_time_app = []
 
     def approve_te(self, browser, te_id=None, *args):
         args_len = len(args)
@@ -170,16 +170,16 @@ class Approve_TE:
                 self.formatted_time.append(current_date_time.strftime("%d-%b-%Y, %I:%M %p"))
                 do_click(browser, save_btn)
                 current_date_time2 = datetime.now()
-                self.formatted_time.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
+                self.formatted_time_app.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
             else:
                 te_calls = TE_API_calls()
                 approver_email = [x for x in globalEnvs.__dict__ if args[i - 1].split(" ")[0] in x]
+                te_calls.api_login(email=os.getenv(approver_email[0]), password=globalEnvs.approver_password)
                 current_date_time = datetime.now()
                 self.formatted_time.append(current_date_time.strftime("%d-%b-%Y, %I:%M %p"))
-                te_calls.api_login(email=os.getenv(approver_email[0]), password=globalEnvs.approver_password)
                 te_calls.approve_te(token=te_calls.token, te_id=te_id, userid=te_calls.user_id, comment=text)
                 current_date_time2 = datetime.now()
-                self.formatted_time.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
+                self.formatted_time_app.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
             sleep(1)
 
             if i > 0:
@@ -203,10 +203,10 @@ class Approve_TE:
                     j = i
                 if args_len >= 4:
                     actual_vals = [f'TE Approval Level - {j}', args[i - 1], args[i - 1], 'Approved',
-                                   self.formatted_time[2:][i - 1], self.formatted_time[2:][i], self.comments[i]]
+                                   self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
                 else:
                     actual_vals = [f'TE Approval Level - {j}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
-                                   self.formatted_time[2:][i - 1], self.formatted_time[2:][i], self.comments[i]]
+                                   self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
                 logging.info(ah_row_vals)
                 logging.info(actual_vals)
                 assert ah_row_vals == actual_vals
@@ -474,6 +474,22 @@ class TE_API_calls:
             "approvedBy": int(userid),
             "comment": comment,
             "version": "Version-1"
+        }
+        resp = requests.post(url, headers=headers, json=payload, verify=False)
+        assert resp.status_code == 200
+        logging.info(resp.json())
+
+    def approve_cost_sheet(self, token, te_id, userid, comment):
+        url = f'{globalEnvs.api_url}/approval/updateApprovalStatus'
+        headers = {'Accept': 'application/json, text/plain, */*', 'content-type': 'application/json',
+                   'Authorization': f'Bearer {token}'}
+        payload = {
+            "entityId": int(te_id),
+            "entityType": "COSTSHEET",
+            "adminUser": False,
+            "status": "APPROVED",
+            "approvedBy": int(userid),
+            "comment": comment,
         }
         resp = requests.post(url, headers=headers, json=payload, verify=False)
         assert resp.status_code == 200
