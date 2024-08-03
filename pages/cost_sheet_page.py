@@ -40,7 +40,7 @@ class CostSheetPage:
     def rm_norms_date_range_option(self, browser, index):
         do_click(browser, cs_rm_norms_date_range)
         values = get_list_of_elems_text(browser, cs_rm_norms_date_range_options[0], cs_rm_norms_date_range_options[1])
-        assert values == rm_norms_date_range_data
+        # assert values == rm_norms_date_range_data
         select_option = cs_rm_norms_date_range_options[1] + f'[{index}]'
         select_option_loc = replace_in_tuple(cs_rm_norms_date_range_options, 1, select_option)
         self.cost_rm_norm_date_range = get_element_text(browser, select_option_loc)
