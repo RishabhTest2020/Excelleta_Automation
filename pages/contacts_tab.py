@@ -225,7 +225,6 @@ class Contacts:
         assert len(non_present_data) <= 7
 
     def verify_created_contact_details(self, browser, email_opt_in="Yes", greetings_opt="Yes", acknowledgement="Yes"):
-        pdb_apply()
         logging.info(self.contact_details)
         logging.info(self.contact_billing_data)
         contact_details_link = contact_details_loc[1].replace("fname", self.contact_details[0])
@@ -280,7 +279,6 @@ class Contacts:
         assert actual_contact_data_list == expected_contact_details_list
 
     def verify_account_page_contact_details(self, browser, contact_class_data_acc):
-        pdb_apply()
         # sleep(3)
         # loader_should_be_invisile(browser, 5)
         values = []
@@ -304,10 +302,8 @@ class Contacts:
                 logging.info(values)
                 continue
             values.append(contact_details_value_txt)
-        pdb_apply()
         logging.info(values)
         logging.info("List need to check")
-        pdb_apply()
         all_data = list(contact_class_data_acc.values())
         print(all_data)
         all_data = flatten_list(all_data)
@@ -332,7 +328,6 @@ class Contacts:
                     if acc_page_cont_data_list.index(j) == len(acc_page_cont_data_list) - 1:
                         non_present_data.append(i)
                         break
-        pdb_apply()
         logging.info(non_present_data)
         logging.info(len(non_present_data))
         assert len(non_present_data) <= 3

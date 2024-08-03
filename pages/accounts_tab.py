@@ -221,7 +221,6 @@ class Accounts:
         assert len(non_present_data) <= 6
 
     def verify_created_account_details(self, browser):
-        pdb_apply()
         should_be_visible(browser, accnt_details_header_loc, "accnt_details_header_loc")
         for col_name in account_details_data:
             acct_details_cols = account_details_cols_locs[1].replace("field", col_name)
