@@ -5,7 +5,8 @@ cost_section_rows_loc = (By.XPATH, '//h2[contains(text(), "section_name")]/..//d
 cost_send_for_approval_loc = (By.XPATH, '//span[contains(text(), "Send For Approval")]')
 cost_approval_history_loc = (By.XPATH, '(//span[contains(text(), "Approval History")])')
 cost_approve_btn_loc = (By.XPATH, '//span[contains(text(), "Approve")]')
-cost_send_customer_for_approval = By.XPATH, '//span[contains(text(), "Send Customer")]'
+cost_send_customer_for_approval = (By.XPATH, '//span[contains(text(), "Send Customer")]')
+select_cost_sheet_loc = (By.XPATH, '(//a[contains(text(), "mte_name")]/../../..//a)[1]')
 
 #Cost_Sheet_Actions
 generate_costing_bn_loc = (By.XPATH, '//*[contains(@class,"main-row")]//*[contains(text(),"Generate Costing")]')

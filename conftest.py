@@ -38,6 +38,8 @@ def browser(request):
     Example: browser=chrome url=https:your_url pytest
     """
     Browser = get_browser_value()
+    username = os.environ.get('USER') or os.environ.get('USERNAME')
+    logging.info(f'Username: {username}')
     if Browser == 'chrome':
         options = webdriver.ChromeOptions()
         # options.add_extension(os.getcwd() + '/files/modheader.crx')
@@ -58,10 +60,10 @@ def browser(request):
         options.add_argument("--disable-autofill-keyboard-accessory-view")
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option("useAutomationExtension", False)
-        # if sys.platform == 'win32':
-        #     service = ChromeService(executable_path=os.getcwd() + '/chromedriver-win64/chromedriver.exe')
-        # else:
-        service = webdriver.chrome.service.Service(ChromeDriverManager().install())
+        if username == 'Hp':
+            service = ChromeService(executable_path=os.getcwd() + '/chromedriver-win64/chromedriver.exe')
+        else:
+            service = webdriver.chrome.service.Service(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service, options=options)
         print("Selenium version:", selenium.__version__)
     elif Browser == 'headless_chrome':
@@ -90,7 +92,7 @@ def browser(request):
         options.add_argument("--window-size=1920x1080")
         options.add_argument("--disable-web-security")
         options.add_argument("--allow-running-insecure-content")
-        if sys.platform == 'win32':
+        if username == 'Hp':
             service = ChromeService(executable_path=os.getcwd() + '/chromedriver-win64/chromedriver.exe')
         else:
             service = webdriver.chrome.service.Service(ChromeDriverManager().install())

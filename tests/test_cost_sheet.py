@@ -1,5 +1,6 @@
 import logging
 from helpers.common_helpers import *
+from locators.rfq_tab_locators import save_btn
 from pages.cost_sheet_page import *
 from pytest_bdd import given, when, then, parsers
 from locators.cost_sheet_locators import *
@@ -34,10 +35,16 @@ def generate_costing_norms(browser):
     cost_sheet_steps.add_expense_flat_rate(browser)
     do_click(browser, add_update_btn_loc)
     sleep(2)
+    do_click(browser, save_btn)
+    sleep(2)
+    current_url = browser.current_url
+    assert 'MTE' in current_url
 
 
 @then(parsers.parse('Verify Cost Raw Material data {section}'))
 def verify_te_data(browser, section):
+    mte_name = drawing_data_steps.te_link.split("-")[1]
+    cost_sheet_steps.goto_created_cost_sheet(browser, mte_name)
     create_te_class_data = get_class_global_variables_dict(cost_sheet_steps)
     create_te_class_data['te_all_data_dicts'] = te_all_data_dicts
     logging.info(create_te_class_data.values())
