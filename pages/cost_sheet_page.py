@@ -3,6 +3,9 @@ import os
 from selenium.webdriver import Keys
 from helpers.common_helpers import *
 from locators.contact_tab_locators import *
+from locators.rfq_tab_locators import *
+from locators.technical_evaluation_tab_locators import approve_request
+from pages.technical_evaluation_tab import TE_API_calls
 from test_data.testdata import *
 from time import sleep
 from locators.cost_sheet_locators import *
@@ -138,3 +141,34 @@ class CostSheetPage:
                         break
         logging.info(non_present_data)
         assert len(non_present_data) <= 3
+
+
+class Approve_Cost_Sheet:
+    def __init__(self):
+        self.formatted_time = []
+        self.comments = []
+        self.formatted_time_app = []
+    def approve_cost_sheet(self, browser, te_id=None, *args):
+        args_len = len(args)
+        range_mod = range(0, args_len + 1)
+        for i in range_mod:
+            text = random_correct_name(5, 5, 'first_name')
+            self.comments.append(text)
+            if (args_len == 3) or (args_len >= 4 and i == 0):
+                do_click(browser, approve_request)
+                do_send_keys(browser, add_comment, text)
+                current_date_time = datetime.now()
+                self.formatted_time.append(current_date_time.strftime("%d-%b-%Y, %I:%M %p"))
+                do_click(browser, save_btn)
+                current_date_time2 = datetime.now()
+                self.formatted_time_app.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
+            else:
+                te_calls = TE_API_calls()
+                approver_email = [x for x in globalEnvs.__dict__ if args[i - 1].split(" ")[0] in x]
+                te_calls.api_login(email=os.getenv(approver_email[0]), password=globalEnvs.approver_password)
+                current_date_time = datetime.now()
+                self.formatted_time.append(current_date_time.strftime("%d-%b-%Y, %I:%M %p"))
+                te_calls.approve_cost_sheet(token=te_calls.token, te_id=te_id, userid=te_calls.user_id, comment=text)
+                current_date_time2 = datetime.now()
+                self.formatted_time_app.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
+            sleep(1)

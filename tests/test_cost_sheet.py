@@ -11,6 +11,7 @@ cost_sheet_steps = CostSheetPage()
 
 @then('Generate Costing Data and Norms')
 def generate_costing_norms(browser):
+    pdb_apply()
     browser.get(globalEnvs.main_url + '/marketing-technical-evaluation')
     sleep(2)
     mte_name = drawing_data_steps.te_link.split("-")[1]

@@ -18,6 +18,7 @@ def acc_head_colm(browser):
 
 @then(parsers.parse('Create a RFQ {types}'))
 def create_rfq(browser, types):
+    pdb_apply()
     do_click(browser, add_rfq_btn)
     rfq_steps.select_account_and_key_person(browser, accounts_steps.account_details[0])
     rfq_steps.select_business_evaluation(browser)
