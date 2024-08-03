@@ -45,7 +45,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify created Rfq data
     Then Verify Rfq table head column
 
-  @Sanity @Test
+  @Sanity #@Test
   Scenario: TC_06 Create and verify Drawing data and TE data
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -63,7 +63,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Approve TE all levels, back true level 3
 
 
-  @Sanity #@Test
+  @Sanity @Test
   Scenario: TC_07 Create Multi level BOM and create norms
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
