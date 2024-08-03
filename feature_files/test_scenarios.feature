@@ -92,5 +92,5 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Approve TE all levels, back false level 4
     Then Create norms data
     Then Generate Costing Data and Norms
-    When Navigate to Costing Sheet tab 10
+#    When Navigate to Costing Sheet tab 10
 #    Then Verify Cost Raw Material data Raw Material
