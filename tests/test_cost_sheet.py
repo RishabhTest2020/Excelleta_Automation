@@ -9,7 +9,7 @@ from tests.test_te_tab import te_all_data_dicts, create_testeps
 cost_sheet_steps = CostSheetPage()
 
 
-@then('Generate Costing Data')
+@then('Generate Costing Data and Norms')
 def generate_costing_norms(browser):
     browser.get(globalEnvs.main_url + '/marketing-technical-evaluation')
     sleep(2)

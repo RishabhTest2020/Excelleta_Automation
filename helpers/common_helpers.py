@@ -247,7 +247,7 @@ def should_be_visible(browser, by_locator, msg, sec=5):
         sys.exit(1)
 
 
-def is_invisible(browser, by_locator, sec=5) -> bool:
+def is_invisible(browser, by_locator, sec) -> bool:
     """
     Waits and checks if element is invisible
     Args:
@@ -259,7 +259,7 @@ def is_invisible(browser, by_locator, sec=5) -> bool:
     """
     elem = False
     try:
-        elem = WebDriverWait(browser, sec, ignored_exceptions=[WebDriverException]).until(
+        elem = WebDriverWait(browser, sec, poll_frequency=1, ignored_exceptions=[WebDriverException]).until(
             EC.invisibility_of_element_located(by_locator))
     except (WebDriverException, Exception):
         return bool(elem)
@@ -454,7 +454,7 @@ def loader_should_be_invisile(browser, sec):
 
 
 # Function to get XPath of an element
-def get_element_xpath(driver, element: WebElement) -> str:
+def get_element_xpath(browser, element: WebElement) -> str:
     if element.get_attribute("id"):
         return f'id("{element.get_attribute("id")}")'
 
