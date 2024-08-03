@@ -27,7 +27,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
-    #Then Verify created contact FE Info
+    Then Verify created contact FE Info
     When Navigate to Contact tab 5
     Then Verify created contact data
     Then Verify contact table head column
@@ -39,7 +39,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 10
+    When Navigate to RFQ tab 20
     Then Create a RFQ single
     When Navigate to RFQ tab 30
     Then Verify created Rfq data
@@ -52,7 +52,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 10
+    When Navigate to RFQ tab 25
     Then Create a RFQ single
     When Navigate to RFQ tab 30
     Then Add Drawing Data
@@ -60,17 +60,17 @@ Feature: Automation Sanity Test Plan Execelleta
     When Edit TE Assembly and fill raw material data single
     When Create TE data 1
     Then Verify TE data
-    Then Approve TE all levels true
+    Then Approve TE all levels, back true level 3
 
 
   @Sanity @Test
-  Scenario: TC_07 Create Multi level BOM
+  Scenario: TC_07 Create Multi level BOM and create norms
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 15
+    When Navigate to RFQ tab 25
     Then Create a RFQ multi
     When Navigate to RFQ tab 30
     Then Add Drawing Data
@@ -87,7 +87,9 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create TE data 3
     When Create TE BOP data 2
     When Create TE data 4
-    Then Approve TE all levels false
+    When Create ST Ops data 3
+    When Create ST Ops data 5
+    Then Approve TE all levels, back false level 4
     Then Create norms data
-
-
+    Then Generate Costing Data and Norms
+#    Then Verify Cost Raw Material data Raw Material

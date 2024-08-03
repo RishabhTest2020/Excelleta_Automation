@@ -94,7 +94,6 @@ text_boxes = {'annual_amount_txtbox': ('xpath', '//input[@formcontrolname="annua
                   ('xpath', '//input[@formcontrolname="nearestDeliveryPort"]')}
 
 rfq_toggles_loc = {
-    'rfq_surface_treatment': (By.XPATH, '(//*[contains(text(), "Surface Treatment Required")]/..//input)[2]'),
     'rfq_external_testing': (By.XPATH, '(//*[contains(text(), "External Testing")]/..//input)[2]'),
     'rfq_standard_available': (By.XPATH, '(//*[contains(text(), "Standards Available")]/..//input)[2]'),
     'rfq_sample_quantity': (By.XPATH, '(//*[contains(text(), "Sample Required")]/..//input)[2]'),
@@ -102,6 +101,7 @@ rfq_toggles_loc = {
     'tooling_cost': (By.XPATH, '(//*[contains(text(), "Tooling Cost")]/..//input)[2]'),
 }
 
+rfq_surface_treatment_loc = (By.XPATH, '(//*[contains(text(), "Surface Treatment Required")]/..//input)[1]')
 assembly_type_tog_loc = (By.XPATH, '(//*[contains(text(), "Assembly Type")]/..//input)[2]')
 
 diagram_highlight_blink = (By.XPATH, '//h4[contains(text(), "Stage")]/..//div[@class = "act-border"]')

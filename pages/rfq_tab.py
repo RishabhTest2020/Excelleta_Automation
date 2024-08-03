@@ -16,6 +16,7 @@ from datetime import datetime, timedelta
 class Rfq:
 
     def __init__(self):
+        self.business_dev_head = None
         self.rfq_text_boxes_data = None
         self.cft_member = None
         self.surface_treatment_head = None
@@ -199,6 +200,7 @@ class Rfq:
 
     def select_per_day_volume(self, browser):
         self.day_volume = 10
+        do_clear(browser, day_vol_txtbox)
         do_send_keys(browser, day_vol_txtbox, self.day_volume)
         self.day_volume_unit = get_element_text(browser, rfq_day_vol_loc)
 
@@ -318,13 +320,18 @@ class Rfq:
     def select_surface_treatment_head(self, browser):
         do_click(browser, surface_treat_loc)
         self.surface_treatment_head = get_element_text(browser, surface_treat_select)
-        do_click(browser, plant_head_select)
+        do_click(browser, surface_treat_select)
 
     def select_cft_member(self, browser):
         do_click(browser, cft_member_loc)
         self.cft_member = get_element_text(browser, cft_member_select)
         do_click(browser, cft_member_select)
-        should_be_visible(browser, dev_head_loc, 'dev_head_loc')
+
+    def select_business_dev_head(self, browser):
+        scroll_into_the_view(browser, dev_head_loc[0], dev_head_loc[1])
+        do_click(browser, dev_head_loc)
+        self.business_dev_head = get_element_text(browser, dev_head_select)
+        do_click(browser, dev_head_select)        
 
     def verify_heading(self, browser):
         headings = ['Customer Information', 'Business Information', 'Project Details', 'Sample Quantity', 'Timeline',
@@ -346,10 +353,13 @@ class Rfq:
             scroll_into_the_view(browser, path[0], path[1])
             js_click_by_xpath(browser, path[1])
         if assem_type == 'single':
+            st_type = rfq_surface_treatment_loc[1].replace('[1]', '[2]')
             assembly_type_loc = assembly_type_tog_loc[1].replace('[2]', '[1]')
             js_click_by_xpath(browser, assembly_type_loc)
+            js_click_by_xpath(browser, st_type)
         else:
             js_click_by_xpath(browser, assembly_type_tog_loc[1])
+            js_click_by_xpath(browser, rfq_surface_treatment_loc[1])
 
     def verify_created_dict(self, browser, all_data_dict: dict):
         loader_should_be_invisile(browser, 10)

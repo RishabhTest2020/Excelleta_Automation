@@ -73,3 +73,21 @@ bop_details_header_loc = (By.XPATH, '//*[contains(@class,"form-group")]//*[conta
 te_bop_logo = (By.XPATH, '//input[@id="logo"]')
 te_bop_remarks_input_loc = (By.XPATH, '//*[contains(@class,"remarkPart")]//textarea')
 upload_img_accept_btn_loc = (By.XPATH, '//*[contains(@class,"modal-container")]//*[contains(text(),"Accept")]')
+
+
+#ST Operations
+st_operation_btn_loc = (By.XPATH, '//*[contains(text(),"Add/View ST Operation")]')
+st_operation_header_loc = (By.XPATH, '//*[contains(@id,"ST Operation")]//*[contains(text(),"ST Operation")]')
+st_operation_drop_down_loc = (By.XPATH, '//*[contains(@class,"stProcessId")]//select')
+st_process_options_loc = (By.XPATH, '(//*[contains(@class,"stProcessId")]//select//option)')
+st_critical_non_critical_drop_loc = (By.XPATH, '//*[contains(@class,"stCriticalNonCritical")]//select')
+st_critical_non_critical_options_loc = (By.XPATH, '(//*[contains(@class,"stCriticalNonCritical")]//select//option)')
+st_subtract_type_drop_loc = (By.XPATH, '//*[contains(@class,"substrateType")]//select')
+st_subtract_type_option_loc = (By.XPATH, '(//*[contains(@class,"substrateType")]//select//option)')
+st_subtract_drop_loc = (By.XPATH, '//*[contains(@class,"substrateClass")]//select')
+st_subtract_option_loc = (By.XPATH, '(//*[contains(@class,"substrateClass")]//select//option)')
+st_drain_hole_reqd_drop_loc = (By.XPATH, '//*[contains(@class,"drainHoleReqd")]//select')
+st_drain_hole_reqd_option_loc = (By.XPATH, '(//*[contains(@class,"drainHoleReqd")]//select//option)')
+st_masking_drop_down_loc = (By.XPATH, '//*[contains(@class,"masking")]//select')
+st_masking_options_loc = (By.XPATH, '(//*[contains(@class,"masking")]//select//option)')
+st_ops_mndtry_details_common_loc = (By.XPATH, '//*[contains(@class,"field")]//input')

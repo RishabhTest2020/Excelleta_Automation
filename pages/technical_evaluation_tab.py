@@ -18,7 +18,11 @@ class Create_TE:
 
     def goto_te_verify_part_add_assembly(self, browser, te_name, tool):
         te_loc = (By.XPATH, f'//a[contains(text(), "{te_name}")]')
-        do_click(browser, te_loc)
+        logging.info(te_loc)
+        try:
+            do_click(browser, te_loc, 15)
+        except TimeoutException:
+            do_click(browser, te_loc)
         loader_should_be_invisile(browser, 3)
         tool_txt = get_element_text(browser, assembly_node_label)
         assert tool_txt == tool
@@ -79,6 +83,7 @@ class Create_TE:
         self.operation_source = get_element_text(browser, select_dep_loc)
         do_click(browser, select_dep_loc)
         sleep(0.5)
+        return self.operation_source
 
     def select_inspection_instrument(self, browser, dep_index=3):
         do_click(browser, ins_instrument_loc)
@@ -150,33 +155,58 @@ class Approve_TE:
     def __init__(self):
         self.formatted_time = []
         self.comments = []
-        self.formatted_time_app = None
+        self.formatted_time_app = []
 
-    def approve_te(self, browser, *args):
-        range_mod = range(0, 4)
+    def approve_te(self, browser, te_id=None, *args):
+        args_len = len(args)
+        range_mod = range(0, args_len + 1)
         for i in range_mod:
             text = random_correct_name(5, 5, 'first_name')
             self.comments.append(text)
-            do_click(browser, approve_request)
-            do_send_keys(browser, add_comment, text)
-            current_date_time = datetime.now()
-            self.formatted_time.append(current_date_time.strftime("%d-%b-%Y, %I:%M %p"))
-            do_click(browser, save_btn)
-            current_date_time2 = datetime.now()
-            self.formatted_time.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
+            if (args_len == 3) or (args_len >= 4 and i == 0):
+                do_click(browser, approve_request)
+                do_send_keys(browser, add_comment, text)
+                current_date_time = datetime.now()
+                self.formatted_time.append(current_date_time.strftime("%d-%b-%Y, %I:%M %p"))
+                do_click(browser, save_btn)
+                current_date_time2 = datetime.now()
+                self.formatted_time_app.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
+            else:
+                te_calls = TE_API_calls()
+                approver_email = [x for x in globalEnvs.__dict__ if args[i - 1].split(" ")[0] in x]
+                te_calls.api_login(email=os.getenv(approver_email[0]), password=globalEnvs.approver_password)
+                current_date_time = datetime.now()
+                self.formatted_time.append(current_date_time.strftime("%d-%b-%Y, %I:%M %p"))
+                te_calls.approve_te(token=te_calls.token, te_id=te_id, userid=te_calls.user_id, comment=text)
+                current_date_time2 = datetime.now()
+                self.formatted_time_app.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
             sleep(1)
+
             if i > 0:
                 sleep(4)
+                if args_len >= 4:
+                    browser.refresh()
+                    sleep(2)
                 do_click(browser, te_approval_history)
                 ah_headers = get_list_of_elems_text(browser, approval_pop_header[0], approval_pop_header[1])
                 assert ah_headers == approval_history_headers
                 if i == range_mod[-1]:
-                    approval_pop_values1 = approval_pop_values[1].replace("[2]",  "[1]")
-                    ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
+                    approval_pop_values1 = approval_pop_values[1].replace("[2]", "[1]")
+                elif i == range_mod[1] and args_len >= 4:
+                    approval_pop_values1 = approval_pop_values[1].replace("[2]", f"[{args_len - i}]")
                 else:
-                    ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
-                actual_vals = [f'TE Approval Level - {i}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
-                               self.formatted_time[2:][i - 1], self.formatted_time[2:][i], self.comments[i]]
+                    approval_pop_values1 = approval_pop_values[1]
+                ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
+                if args_len >= 4 and range_mod.index(i) >= 3:
+                    j = i - 1
+                else:
+                    j = i
+                if args_len >= 4:
+                    actual_vals = [f'TE Approval Level - {j}', args[i - 1], args[i - 1], 'Approved',
+                                   self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
+                else:
+                    actual_vals = [f'TE Approval Level - {j}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
+                                   self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
                 logging.info(ah_row_vals)
                 logging.info(actual_vals)
                 assert ah_row_vals == actual_vals
@@ -239,7 +269,7 @@ class Edit_TE:
         self.rm_type = get_element_text(browser, select_loc)
         do_click(browser, select_loc)
         sleep(0.5)
-        
+
     def select_raw_material(self, browser, index=2):
         scroll_into_the_view(browser, rm_type_loc[0], rm_type_loc[1])
         do_click(browser, raw_mat_loc)
@@ -323,3 +353,144 @@ class CreateBopDetails:
         self.bop_type_value = get_element_text(browser, bop_type_value_loc)
         do_click(browser, bop_type_value_loc)
 
+
+class AddSTOperations:
+    def __init__(self):
+        self.st_process_val_txt = None
+        self.st_critical_non_critical_options_val_txt = None
+        self.st_subtract_type_option_val_txt = None
+        self.st_subtract_option_val_txt = None
+        self.st_drain_hole_reqd_option_val_txt = None
+        self.st_masking_options_val_txt = None
+        self.st_madatary_input_fields_data = []
+        self.st_un_madatary_input_fields_data = []
+
+    def select_st_process(self, browser, index=3):
+        do_click(browser, st_operation_drop_down_loc)
+        st_process_options_val = st_process_options_loc[1] + f'[{index}]'
+        st_process_options_val_loc = replace_in_tuple(st_process_options_loc, 1, st_process_options_val)
+        self.st_process_val_txt = get_element_text(browser, st_process_options_val_loc)
+        do_click(browser, st_process_options_val_loc)
+
+    def select_critical_non_critical(self, browser, index=2):
+        do_click(browser, st_critical_non_critical_drop_loc)
+        st_critical_non_critical_options_val = st_critical_non_critical_options_loc[1] + f'[{index}]'
+        st_critical_non_critical_options_val_loc = replace_in_tuple(st_critical_non_critical_options_loc, 1,
+                                                                    st_critical_non_critical_options_val)
+        self.st_critical_non_critical_options_val_txt = get_element_text(browser,
+                                                                         st_critical_non_critical_options_val_loc)
+        do_click(browser, st_critical_non_critical_options_val_loc)
+
+    def select_subtract_type_drop_down(self, browser, index=2):
+        do_click(browser, st_subtract_type_drop_loc)
+        st_subtract_type_option_val = st_subtract_type_option_loc[1] + f'[{index}]'
+        st_subtract_type_option_val_loc = replace_in_tuple(st_subtract_type_option_loc, 1, st_subtract_type_option_val)
+        self.st_subtract_type_option_val_txt = get_element_text(browser, st_subtract_type_option_val_loc)
+        do_click(browser, st_subtract_type_option_val_loc)
+
+    def select_subtract_drop_down(self, browser, index=2):
+        do_click(browser, st_subtract_drop_loc)
+        st_subtract_option_val = st_subtract_option_loc[1] + f'[{index}]'
+        st_subtract_option_val_loc = replace_in_tuple(st_subtract_option_loc, 1, st_subtract_option_val)
+        self.st_subtract_option_val_txt = get_element_text(browser, st_subtract_option_val_loc)
+        do_click(browser, st_subtract_option_val_loc)
+
+    def select_drain_hole_reqd(self, browser, index=3):
+        do_click(browser, st_drain_hole_reqd_drop_loc)
+        st_drain_hole_reqd_option_val = st_drain_hole_reqd_option_loc[1] + f'[{index}]'
+        st_drain_hole_reqd_option_val_loc = replace_in_tuple(st_drain_hole_reqd_option_loc, 1,
+                                                             st_drain_hole_reqd_option_val)
+        self.st_drain_hole_reqd_option_val_txt = get_element_text(browser, st_drain_hole_reqd_option_val_loc)
+        do_click(browser, st_drain_hole_reqd_option_val_loc)
+
+    def select_masking_drop(self, browser, index=2):
+        do_click(browser, st_masking_drop_down_loc)
+        st_masking_options_val = st_masking_options_loc[1] + f'[{index}]'
+        st_masking_options_val_loc = replace_in_tuple(st_masking_options_loc, 1, st_masking_options_val)
+        self.st_masking_options_val_txt = get_element_text(browser, st_masking_options_val_loc)
+        do_click(browser, st_masking_options_val_loc)
+
+    def st_operations_mandtry_fields(self, browser):
+        self.st_madatary_input_fields_data = [generate_random_number(3), 60, 100]
+        for field_name, data in zip(st_ops_mandary_fields, self.st_madatary_input_fields_data):
+            st_ops_field = st_ops_mndtry_details_common_loc[1].replace('field', field_name)
+            st_ops_field_loc = replace_in_tuple(st_ops_mndtry_details_common_loc, 1, st_ops_field)
+            do_clear(browser, st_ops_field_loc)
+            scroll_into_the_view(browser, st_ops_field_loc[0], st_ops_field_loc[1])
+            do_send_keys(browser, st_ops_field_loc, data)
+
+    def st_operations_un_mandtry_fields(self, browser):
+        self.st_un_madatary_input_fields_data = [generate_random_five_digit_number(), generate_random_number(6),
+                                                 generate_random_number(9), 5, 'green', 20, generate_random_number(6),
+                                                 generate_random_five_digit_number(), generate_random_number(4), 5000,
+                                                 'NA', 'NA']
+        for field_name, data in zip(st_ops_un_mndtry_fields, self.st_un_madatary_input_fields_data):
+            st_ops_field = st_ops_mndtry_details_common_loc[1].replace('field', field_name)
+            st_ops_field_loc = replace_in_tuple(st_ops_mndtry_details_common_loc, 1, st_ops_field)
+            do_clear(browser, st_ops_field_loc)
+            scroll_into_the_view(browser, st_ops_field_loc[0], st_ops_field_loc[1])
+            do_send_keys(browser, st_ops_field_loc, data)
+        upload_elem = browser.find_element(te_bop_logo[0], te_bop_logo[1])
+        upload_elem.send_keys(os.getcwd() + '/files/watermark.png')
+        do_click(browser, upload_img_accept_btn_loc)
+
+    def add_st_operation(self, browser, index=1, ops=True):
+        assembly_list_add_btn_loc = assembly_list_add_btn[1] + f'[{index}]'
+        assembly_list_add_btn_loc_tup = replace_in_tuple(assembly_list_add_btn, 1, assembly_list_add_btn_loc)
+        do_click(browser, assembly_list_add_btn_loc_tup)
+        if ops is True:
+            do_click(browser, st_operation_btn_loc)
+            sleep(2)
+
+
+class TE_API_calls:
+
+    def __init__(self):
+        self.user_id = None
+        self.token = None
+
+    def api_login(self, email=globalEnvs.user_email, password=globalEnvs.user_password):
+        url = f'{globalEnvs.api_url}/users/auth'
+        headers = {'Accept': 'application/json, text/plain, */*', 'content-type': 'application/json'}
+        payload = {
+            "email": email,
+            "password": password
+        }
+        resp = requests.post(f"{url}", headers=headers, json=payload, verify=False)
+        resp_js = resp.json()
+        logging.info(resp_js)
+        self.token = resp_js['token']
+        self.user_id = resp_js['userDto']['id']
+
+    def approve_te(self, token, te_id, userid, comment):
+        url = f'{globalEnvs.api_url}/approval/updateApprovalStatus'
+        headers = {'Accept': 'application/json, text/plain, */*', 'content-type': 'application/json',
+                   'Authorization': f'Bearer {token}'}
+        payload = {
+            "entityId": int(te_id),
+            "entityType": "TE",
+            "adminUser": False,
+            "status": "APPROVED",
+            "approvedBy": int(userid),
+            "comment": comment,
+            "version": "Version-1"
+        }
+        resp = requests.post(url, headers=headers, json=payload, verify=False)
+        assert resp.status_code == 200
+        logging.info(resp.json())
+
+    def approve_cost_sheet(self, token, te_id, userid, comment):
+        url = f'{globalEnvs.api_url}/approval/updateApprovalStatus'
+        headers = {'Accept': 'application/json, text/plain, */*', 'content-type': 'application/json',
+                   'Authorization': f'Bearer {token}'}
+        payload = {
+            "entityId": int(te_id),
+            "entityType": "COSTSHEET",
+            "adminUser": False,
+            "status": "APPROVED",
+            "approvedBy": int(userid),
+            "comment": comment,
+        }
+        resp = requests.post(url, headers=headers, json=payload, verify=False)
+        assert resp.status_code == 200
+        logging.info(resp.json())

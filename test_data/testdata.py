@@ -293,3 +293,15 @@ finance_cost_data = ['depreciation', 'interest']
 man_power_cost_data = ['skilledManpowerReq', 'skilledManpowerCost', 'unSkilledManpowerReq', 'unSkilledManpowerCost', 'staffCostPerShift']
 electric_cost_data = ['ecUnitCost', 'ecMotorRatingHP', 'ecMotorRatingFactor', 'ecLoadFactor']
 other_costs_data = ['maintenanceCostPercent', 'consumableCostPercent', 'legalCost', 'deltaAdjustments']
+rm_norms_date_range_data = ['Please select', 'Annual (JUL-JUN)', 'H1 (JUL-DEC)', 'H2 (JAN-JUN)', 'Q1 (JUL-SEP)', 'Q2 (OCT-DEC)', 'Q3 (JAN-MAR)', 'Q4 (APR-JUN)']
+
+#ST_Operations_Data ______________________________________________________________
+st_ops_mandary_fields = ['componentSTCost', 'thickness', 'drainHoleQty']
+st_ops_un_mndtry_fields = ['finalSurfaceArea', 'maskingSurfaceArea', 'maskingCost', 'rmMake', 'colourRequirement',
+                           'componentSTProfitPercent', 'specialInvestment', 'otherAdditionalCost',
+                           'specialTestingCharges', 'othersOne', 'othersTwo']
+
+acc_page_contact_details = ['Name', 'Profile URL', 'Email ID', 'Phone Number', 'Other Phone Number', 'Department',
+                            'Designation', 'Reports To', 'Gender', 'Birth Date', 'Marital Status', 'Anniversary',
+                            'Email Opt In', 'Send Greetings', 'Send Acknowledgement', 'Official Address',
+                            'Residential Address', 'Created By', 'Created Date', 'Updated By', 'Updated Date']
