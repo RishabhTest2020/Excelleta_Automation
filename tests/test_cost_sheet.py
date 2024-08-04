@@ -8,7 +8,7 @@ from tests.test_rfq_tab import drawing_data_steps
 from tests.test_te_tab import te_all_data_dicts, create_testeps
 
 cost_sheet_steps = CostSheetPage()
-
+approve_cs_steps = Approve_Cost_Sheet()
 
 @then('Generate Costing Data and Norms')
 def generate_costing_norms(browser):
@@ -50,3 +50,9 @@ def verify_te_data(browser, section):
     create_te_class_data['te_all_data_dicts'] = te_all_data_dicts
     logging.info(create_te_class_data.values())
     cost_sheet_steps.verify_cost_sections_data(browser, create_te_class_data, section)
+
+@then(parsers.parse('Approve CS all levels'))
+def approve_cs_levels(browser):
+    current_url = browser.current_url
+    cs_no = current_url.split("/")[-1]
+    approve_cs_steps.approve_cost_sheet(browser, cs_no, 'Somvir Singh', 'Nishant Jairath', 'Somvir Singh')

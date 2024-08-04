@@ -9,7 +9,7 @@ from pages.technical_evaluation_tab import TE_API_calls
 from test_data.testdata import *
 from time import sleep
 from locators.cost_sheet_locators import *
-
+from locators.technical_evaluation_tab_locators import *
 
 class CostSheetPage:
     def __init__(self):
@@ -157,27 +157,78 @@ class Approve_Cost_Sheet:
         self.formatted_time = []
         self.comments = []
         self.formatted_time_app = []
-    def approve_cost_sheet(self, browser, te_id=None, *args):
+    def approve_cost_sheet(self, browser, cs_id=None, *args):
         args_len = len(args)
         range_mod = range(0, args_len + 1)
         for i in range_mod:
             text = random_correct_name(5, 5, 'first_name')
             self.comments.append(text)
-            if (args_len == 3) or (args_len >= 4 and i == 0):
-                do_click(browser, approve_request)
+            if i == 0:
+                do_click(browser, send_for_approval_btn_loc)
                 do_send_keys(browser, add_comment, text)
                 current_date_time = datetime.now()
                 self.formatted_time.append(current_date_time.strftime("%d-%b-%Y, %I:%M %p"))
-                do_click(browser, save_btn)
+                do_click(browser, cmt_submit_btn_loc)
+                current_date_time2 = datetime.now()
+                self.formatted_time_app.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
+            elif i == 3:
+                do_click(browser, send_for_cust_approval_btn_loc)
+                do_send_keys(browser, add_comment, text)
+                current_date_time = datetime.now()
+                self.formatted_time.append(current_date_time.strftime("%d-%b-%Y, %I:%M %p"))
+                do_click(browser, cmt_submit_btn_loc)
                 current_date_time2 = datetime.now()
                 self.formatted_time_app.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
             else:
+                if i >= 3:
+                    j = i - 1
+                else:
+                    j = i
                 te_calls = TE_API_calls()
-                approver_email = [x for x in globalEnvs.__dict__ if args[i - 1].split(" ")[0] in x]
+                approver_email = [x for x in globalEnvs.__dict__ if args[j - 1].split(" ")[0] in x]
                 te_calls.api_login(email=os.getenv(approver_email[0]), password=globalEnvs.approver_password)
                 current_date_time = datetime.now()
                 self.formatted_time.append(current_date_time.strftime("%d-%b-%Y, %I:%M %p"))
-                te_calls.approve_cost_sheet(token=te_calls.token, te_id=te_id, userid=te_calls.user_id, comment=text)
+                te_calls.approve_cost_sheet(token=te_calls.token, te_id=cs_id, userid=te_calls.user_id, comment=text)
                 current_date_time2 = datetime.now()
                 self.formatted_time_app.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
             sleep(1)
+            if i > 0:
+                sleep(4)
+                if args_len >= 3:
+                    browser.refresh()
+                    sleep(2)
+                do_click(browser, cs_approval_histry_btn_loc)
+                ah_headers = get_list_of_elems_text(browser, approval_pop_header[0], approval_pop_header[1])
+                assert ah_headers == approval_history_headers
+                if (i == range_mod[1]) or (i == range_mod[2]):
+                    print(i)
+                    if i == 1:
+                        i = 2
+                    else:
+                        i = 1
+                    approval_pop_values1 = approval_pop_values[1].replace("[2]", f"[{i}]")
+                    ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
+                    actual_vals = [f'Management Approval Level - {i}', args[i], args[i], 'Approved',
+                                   self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
+                    logging.info(ah_row_vals)
+                    logging.info(actual_vals)
+                    #assert ah_row_vals == actual_vals
+                elif i == range_mod[3]:
+                    print(i)
+                    approval_pop_values1 = approval_pop_values[1].replace("[2]", "[1]")
+                    ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
+                    actual_vals = [f'Customer Approval', "-", "Saurabh Shrivastava", 'Submitted',
+                                   self.formatted_time[i], "", self.comments[i]]
+                    logging.info(ah_row_vals)
+                    logging.info(actual_vals)
+                    #assert ah_row_vals == actual_vals
+                elif i == range_mod[4]:
+                    print(i)
+                    approval_pop_values1 = approval_pop_values[1].replace("[2]", "[1]")
+                    ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
+                    actual_vals = [f'Customer Approval', args[i], args[i], 'Approved',
+                                   self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
+                    logging.info(ah_row_vals)
+                    logging.info(actual_vals)
+                    #assert ah_row_vals == actual_vals

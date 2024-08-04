@@ -233,7 +233,7 @@ class Rfq:
     def select_costing_completion_date(self, browser):
         todayDate = datetime.today()
         yesterday = todayDate + timedelta(days=7)
-        yesterday_formatted_date = yesterday.strftime('%m/%d/%Y')
+        yesterday_formatted_date = yesterday.strftime('%d/%m/%Y')
         self.costing_completion = yesterday_formatted_date
         do_send_keys(browser, costing_completed_loc, yesterday_formatted_date)
 

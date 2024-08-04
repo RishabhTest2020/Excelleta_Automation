@@ -20,7 +20,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify created account data
     Then Verify accounts table head column
 
-  @Sanity
+  @Sanity #@Test
   Scenario: TC_04 Verify Contacts Tab and New Contact creation
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -45,7 +45,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify created Rfq data
     Then Verify Rfq table head column
 
-  @Sanity @Test
+  @Sanity #@Test
   Scenario: TC_06 Create and verify Drawing data and TE data
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -63,7 +63,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Approve TE all levels, back true level 3
 
 
-  @Sanity #@Test
+  @Sanity  #@Test
   Scenario: TC_07 Create Multi level BOM and create norms
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -94,3 +94,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Generate Costing Data and Norms
     When Navigate to Costing Sheet tab 10
     Then Verify Cost Raw Material data Raw Material
+
+    @Test
+  Scenario: TC_07 Test Cost Sheet
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Approve CS all levels
