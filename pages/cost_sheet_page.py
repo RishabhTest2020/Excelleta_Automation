@@ -157,9 +157,10 @@ class Approve_Cost_Sheet:
         self.formatted_time = []
         self.comments = []
         self.formatted_time_app = []
+
     def approve_cost_sheet(self, browser, cs_id=None, *args):
         args_len = len(args)
-        range_mod = range(0, args_len + 1)
+        range_mod = range(0, args_len + 2)
         for i in range_mod:
             text = random_correct_name(5, 5, 'first_name')
             self.comments.append(text)
@@ -180,7 +181,7 @@ class Approve_Cost_Sheet:
                 current_date_time2 = datetime.now()
                 self.formatted_time_app.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
             else:
-                if i >= 3:
+                if i > 3:
                     j = i - 1
                 else:
                     j = i
@@ -194,41 +195,37 @@ class Approve_Cost_Sheet:
                 self.formatted_time_app.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
             sleep(1)
             if i > 0:
-                sleep(4)
-                if args_len >= 3:
-                    browser.refresh()
-                    sleep(2)
+                browser.refresh()
+                sleep(2)
                 do_click(browser, cs_approval_histry_btn_loc)
                 ah_headers = get_list_of_elems_text(browser, approval_pop_header[0], approval_pop_header[1])
                 assert ah_headers == approval_history_headers
                 if (i == range_mod[1]) or (i == range_mod[2]):
                     print(i)
                     if i == 1:
-                        i = 2
+                        j = 2
                     else:
-                        i = 1
-                    approval_pop_values1 = approval_pop_values[1].replace("[2]", f"[{i}]")
+                        j = 1
+                    approval_pop_values1 = approval_pop_values[1].replace("[2]", f"[{j}]")
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
-                    actual_vals = [f'Management Approval Level - {i}', args[i], args[i], 'Approved',
+                    actual_vals = [f'Management Approval Level - {i}', args[i-1], args[i-1], 'Approved',
                                    self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
-                    logging.info(ah_row_vals)
-                    logging.info(actual_vals)
-                    #assert ah_row_vals == actual_vals
                 elif i == range_mod[3]:
                     print(i)
-                    approval_pop_values1 = approval_pop_values[1].replace("[2]", "[1]")
-                    ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
+                    ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
                     actual_vals = [f'Customer Approval', "-", "Saurabh Shrivastava", 'Submitted',
-                                   self.formatted_time[i], "", self.comments[i]]
-                    logging.info(ah_row_vals)
-                    logging.info(actual_vals)
-                    #assert ah_row_vals == actual_vals
-                elif i == range_mod[4]:
+                                   self.formatted_time[i], self.comments[i]]
+                elif i == range_mod[-1]:
                     print(i)
+                    j = i-2
                     approval_pop_values1 = approval_pop_values[1].replace("[2]", "[1]")
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
-                    actual_vals = [f'Customer Approval', args[i], args[i], 'Approved',
+                    actual_vals = [f'Customer Approval', args[j], args[j], 'Approved',
                                    self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
-                    logging.info(ah_row_vals)
-                    logging.info(actual_vals)
-                    #assert ah_row_vals == actual_vals
+                else:
+                    ah_row_vals = None
+                    actual_vals = None
+                logging.info(ah_row_vals)
+                logging.info(actual_vals)
+                assert ah_row_vals == actual_vals
+                do_click(browser, slide_back_btn)

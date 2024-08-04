@@ -233,7 +233,7 @@ class Rfq:
     def select_costing_completion_date(self, browser):
         todayDate = datetime.today()
         yesterday = todayDate + timedelta(days=7)
-        yesterday_formatted_date = yesterday.strftime('%d/%m/%Y')
+        yesterday_formatted_date = yesterday.strftime('%m/%d/%Y')
         self.costing_completion = yesterday_formatted_date
         do_send_keys(browser, costing_completed_loc, yesterday_formatted_date)
 
@@ -409,6 +409,7 @@ class Drawing_data:
 
     def goto_rfq_verify_chart_blink(self, browser, rfq_name):
         rfq_loc = (By.XPATH, f'//a[contains(text(), "{rfq_name}")]')
+        logging.info(rfq_name)
         do_click(browser, rfq_loc)
         loader_should_be_invisile(browser, 3)
         diagram_highlight_blink_loc = diagram_highlight_blink[1].replace("Stage", "Drawing")

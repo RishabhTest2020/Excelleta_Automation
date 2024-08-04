@@ -106,7 +106,7 @@ def verify_account(browser):
 
 @then('Add Drawing Data')
 def create_drawing_data(browser):
-    drawing_data_steps.goto_rfq_verify_chart_blink(browser, rfq_steps.__dict__['rfq_url_id'])
+    # drawing_data_steps.goto_rfq_verify_chart_blink(browser, rfq_steps.__dict__['rfq_url_id'])
     drawing_data_steps.add_drawing_data(browser)
     drawing_data_steps.select_2d_soft_copy(browser)
     drawing_data_steps.select_3d_soft_copy(browser)
