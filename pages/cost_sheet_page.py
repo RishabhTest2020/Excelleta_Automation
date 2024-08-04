@@ -149,7 +149,7 @@ class CostSheetPage:
             do_click(browser, te_loc, 15)
         except TimeoutException:
             do_click(browser, te_loc)
-        loader_should_be_invisile(browser, 3)
+        loader_should_be_invisile(browser, 6)
 
 
 class Approve_Cost_Sheet:

@@ -58,7 +58,7 @@ def create_rfq(browser, types):
     rfq_steps.select_business_dev_head(browser)
     rfq_steps.verify_heading(browser)
     do_click(browser, save_btn)
-    loader_should_be_invisile(browser, 5)
+    loader_should_be_invisile(browser, 10)
     current_url = browser.current_url
     assert 'editRFQ' in current_url
     rfq_no = current_url.split("/")[-2]
