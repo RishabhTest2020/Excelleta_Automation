@@ -101,7 +101,7 @@ def verify_account(browser):
     address_str = address.split(",")[0] + ', ' + ",".join(addrr)
     rfq_class_data['rfq_shipping_address'] = address_str
     logging.info(rfq_class_data.values())
-    rfq_steps.verify_created_dict(browser, rfq_class_data)
+    rfq_steps.verify_created_dict(browser, rfq_class_data, accounts_steps.account_details[0])
 
 
 @then('Add Drawing Data')
