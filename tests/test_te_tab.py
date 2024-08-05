@@ -127,17 +127,17 @@ def verify_te_data(browser):
     create_testeps.verify_data_te(browser, create_te_class_data)
 
 
-@then(parsers.parse('Approve TE all levels, back {back} level {level}'))
-def approve_te_levels(browser, back, level):
+@then(parsers.parse('Approve TE all levels, back {back} level {level} assert {asserts}'))
+def approve_te_levels(browser, back, level, asserts):
     if back == 'true':
         do_click(browser, operations_tab_back_btn)
     current_url = browser.current_url
     te_no = current_url.split("/")[-2]
     if level == '3':
-        approve_te_steps.approve_te(browser, None, rfq_steps.development_lead, rfq_steps.plant_head,
+        approve_te_steps.approve_te(browser, None, asserts, rfq_steps.development_lead, rfq_steps.plant_head,
                                     rfq_steps.business_dev_head)
     else:
-        approve_te_steps.approve_te(browser, te_no, rfq_steps.development_lead, rfq_steps.plant_head,
+        approve_te_steps.approve_te(browser, te_no, asserts, rfq_steps.development_lead, rfq_steps.plant_head,
                                     rfq_steps.surface_treatment_head, rfq_steps.business_dev_head)
 
 

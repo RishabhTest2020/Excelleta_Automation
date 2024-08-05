@@ -58,6 +58,7 @@ def verify_account(browser):
 @then('Verify contact details of account page')
 def verification_of_contact_details_of_acct_page(browser):
     contact_class_data_acc = get_class_global_variables_dict(contacts_steps)
+    pdb_apply()
     logging.info(contact_class_data_acc)
     anni_dated = contact_class_data_acc['anniversary_date']
     dob = contact_class_data_acc['dob_data']

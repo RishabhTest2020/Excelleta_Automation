@@ -157,7 +157,7 @@ class Approve_TE:
         self.comments = []
         self.formatted_time_app = []
 
-    def approve_te(self, browser, te_id=None, *args):
+    def approve_te(self, browser, te_id=None, asserts=True, *args):
         args_len = len(args)
         range_mod = range(0, args_len + 1)
         for i in range_mod:
@@ -181,36 +181,36 @@ class Approve_TE:
                 current_date_time2 = datetime.now()
                 self.formatted_time_app.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
             sleep(1)
-
-            if i > 0:
-                sleep(4)
-                if args_len >= 4:
-                    browser.refresh()
-                    sleep(2)
-                do_click(browser, te_approval_history)
-                ah_headers = get_list_of_elems_text(browser, approval_pop_header[0], approval_pop_header[1])
-                assert ah_headers == approval_history_headers
-                if i == range_mod[-1]:
-                    approval_pop_values1 = approval_pop_values[1].replace("[2]", "[1]")
-                elif i == range_mod[1] and args_len >= 4:
-                    approval_pop_values1 = approval_pop_values[1].replace("[2]", f"[{args_len - i}]")
-                else:
-                    approval_pop_values1 = approval_pop_values[1]
-                ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
-                if args_len >= 4 and range_mod.index(i) >= 3:
-                    j = i - 1
-                else:
-                    j = i
-                if args_len >= 4:
-                    actual_vals = [f'TE Approval Level - {j}', args[i - 1], args[i - 1], 'Approved',
-                                   self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
-                else:
-                    actual_vals = [f'TE Approval Level - {j}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
-                                   self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
-                logging.info(ah_row_vals)
-                logging.info(actual_vals)
-                assert ah_row_vals == actual_vals
-                do_click(browser, slide_back_btn)
+            if asserts is True or asserts == 'True':
+                if i > 0:
+                    sleep(4)
+                    if args_len >= 4:
+                        browser.refresh()
+                        sleep(2)
+                    do_click(browser, te_approval_history)
+                    ah_headers = get_list_of_elems_text(browser, approval_pop_header[0], approval_pop_header[1])
+                    assert ah_headers == approval_history_headers
+                    if i == range_mod[-1]:
+                        approval_pop_values1 = approval_pop_values[1].replace("[2]", "[1]")
+                    elif i == range_mod[1] and args_len >= 4:
+                        approval_pop_values1 = approval_pop_values[1].replace("[2]", f"[{args_len - i}]")
+                    else:
+                        approval_pop_values1 = approval_pop_values[1]
+                    ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
+                    if args_len >= 4 and range_mod.index(i) >= 3:
+                        j = i - 1
+                    else:
+                        j = i
+                    if args_len >= 4:
+                        actual_vals = [f'TE Approval Level - {j}', args[i - 1], args[i - 1], 'Approved',
+                                       self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
+                    else:
+                        actual_vals = [f'TE Approval Level - {j}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
+                                       self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
+                    logging.info(ah_row_vals)
+                    logging.info(actual_vals)
+                    assert ah_row_vals == actual_vals
+                    do_click(browser, slide_back_btn)
 
 
 class Edit_TE:

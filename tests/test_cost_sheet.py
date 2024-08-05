@@ -1,13 +1,15 @@
 import logging
+from selenium.common import ElementClickInterceptedException
 from helpers.common_helpers import *
 from locators.rfq_tab_locators import save_btn
 from pages.cost_sheet_page import *
 from pytest_bdd import given, when, then, parsers
 from locators.cost_sheet_locators import *
-from tests.test_rfq_tab import drawing_data_steps
+from tests.test_rfq_tab import drawing_data_steps, rfq_steps
 from tests.test_te_tab import te_all_data_dicts, create_testeps
 
 cost_sheet_steps = CostSheetPage()
+approve_cs_steps = Approve_Cost_Sheet()
 
 
 @then('Generate Costing Data and Norms')
@@ -35,17 +37,33 @@ def generate_costing_norms(browser):
     cost_sheet_steps.add_expense_flat_rate(browser)
     do_click(browser, add_update_btn_loc)
     sleep(2)
-    do_click(browser, save_btn)
+    try:
+        do_click(browser, save_btn)
+    except ElementClickInterceptedException:
+        sleep(2)
+        do_click(browser, save_btn)
     sleep(2)
     current_url = browser.current_url
     assert 'MTE' in current_url
 
 
-@then(parsers.parse('Verify Cost Raw Material data {section}'))
-def verify_te_data(browser, section):
+@then('Goto MTE Cost Sheet')
+def mte_cost_sheet(browser):
     mte_name = drawing_data_steps.te_link.split("-")[1]
     cost_sheet_steps.goto_created_cost_sheet(browser, mte_name)
+
+
+@then(parsers.parse('Verify Cost Raw Material data {section}'))
+def verify_te_data(browser, section):
     create_te_class_data = get_class_global_variables_dict(cost_sheet_steps)
     create_te_class_data['te_all_data_dicts'] = te_all_data_dicts
     logging.info(create_te_class_data.values())
     cost_sheet_steps.verify_cost_sections_data(browser, create_te_class_data, section)
+
+
+@then(parsers.parse('Approve CS all levels'))
+def approve_cs_levels(browser):
+    current_url = browser.current_url
+    cs_no = current_url.split("/")[-1]
+    approve_cs_steps.approve_cost_sheet(browser, cs_no, rfq_steps.business_dev_head, rfq_steps.cft_member,
+                                        rfq_steps.business_dev_head)

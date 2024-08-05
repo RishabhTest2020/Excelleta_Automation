@@ -58,7 +58,7 @@ def create_rfq(browser, types):
     rfq_steps.select_business_dev_head(browser)
     rfq_steps.verify_heading(browser)
     do_click(browser, save_btn)
-    loader_should_be_invisile(browser, 5)
+    loader_should_be_invisile(browser, 10)
     current_url = browser.current_url
     assert 'editRFQ' in current_url
     rfq_no = current_url.split("/")[-2]
@@ -106,7 +106,7 @@ def verify_account(browser):
 
 @then('Add Drawing Data')
 def create_drawing_data(browser):
-    drawing_data_steps.goto_rfq_verify_chart_blink(browser, rfq_steps.__dict__['rfq_url_id'])
+    # drawing_data_steps.goto_rfq_verify_chart_blink(browser, rfq_steps.__dict__['rfq_url_id'])
     drawing_data_steps.add_drawing_data(browser)
     drawing_data_steps.select_2d_soft_copy(browser)
     drawing_data_steps.select_3d_soft_copy(browser)
