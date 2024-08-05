@@ -130,3 +130,5 @@ te_menu_btn = (By.XPATH, '//div[@id="rfq-data4"]//button')
 
 te_name_link = (By.XPATH, '//div[@class="rfqSection"]//td[@class="link"]')
 
+rfq_table_row_loc = (By.XPATH, '(//a[contains(text(), "acc_name")]/../../..//*[contains(@class, "ag-cell-value")]/span)')
+

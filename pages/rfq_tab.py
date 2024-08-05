@@ -361,14 +361,15 @@ class Rfq:
             js_click_by_xpath(browser, assembly_type_tog_loc[1])
             js_click_by_xpath(browser, rfq_surface_treatment_loc[1])
 
-    def verify_created_dict(self, browser, all_data_dict: dict):
-        loader_should_be_invisile(browser, 10)
-        values = get_list_of_elems_text(browser, accounts_table_row_loc[0], accounts_table_row_loc[1])
+    def verify_created_dict(self, browser, all_data_dict: dict, acc_name):
+        sleep(2)
+        rfq_tabl_loc = rfq_table_row_loc[1].replace("acc_name", acc_name)
+        values = get_list_of_elems_text(browser, rfq_table_row_loc[0], rfq_tabl_loc)
         logging.info(values)
         assert len(values) > 0
         all_data = list(all_data_dict.values())
         acc_data_list1 = all_data[0]
-        acc_data_list = list(acc_data_list1)
+        acc_data_list = [acc_data_list1]
         for i in all_data[1:]:
             i_type = type(i)
             if i_type == list:
@@ -392,7 +393,7 @@ class Rfq:
                         non_present_data.append(i)
                         break
         logging.info(non_present_data)
-        assert len(non_present_data) <= 10
+        assert len(non_present_data) <= 9
         self.rfq_id = values[0]
 
 
