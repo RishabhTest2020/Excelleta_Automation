@@ -20,7 +20,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify created account data
     Then Verify accounts table head column
 
-  @Sanity @Test
+  @Sanity #@Test
   Scenario: TC_04 Verify Contacts Tab and New Contact creation
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
