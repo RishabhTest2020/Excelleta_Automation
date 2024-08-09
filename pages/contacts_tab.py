@@ -231,14 +231,14 @@ class Contacts:
         contact_details_link_loc = replace_in_tuple(contact_details_loc, 1, contact_details_link)
         do_click(browser, contact_details_link_loc)
         sleep(5)
-        loader_should_be_invisile(browser, 10)
+        #loader_should_be_invisile(browser, 5)
         contact_billing_data_one = self.contact_billing_data[0].split(', ')
         contact_billing_data_two = self.contact_billing_data[2].split(', ')
-        anniversary_day = datetime.strptime(self.anniversary_date, '%d/%m/%Y')
+        anniversary_day = datetime.strptime(self.anniversary_date, '%m/%d/%Y')
         formatted_anniversary_day = anniversary_day.strftime('%d-%b-%Y')
         logging.info(formatted_anniversary_day)
-        birth_day = datetime.strptime(self.dob_data, '%d/%m/%Y')
-        formatted_birth_day = birth_day.strftime('%d-%b-%Y')
+        birth_day = datetime.strptime(self.dob_data, '%m/%d/%Y')
+        formatted_birth_day = birth_day.strftime('%b-%d-%Y')
         expected_contact_details_list = [self.name_title, self.contact_details[0], self.contact_details[1],
                                          self.contact_details[2], self.contact_details[3], "9090909090", self.department,
                                          self.designation, self.gender, formatted_birth_day, self.marital, formatted_anniversary_day,
