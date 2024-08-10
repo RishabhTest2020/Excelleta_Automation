@@ -238,7 +238,7 @@ class Contacts:
         formatted_anniversary_day = anniversary_day.strftime('%d-%b-%Y')
         logging.info(formatted_anniversary_day)
         birth_day = datetime.strptime(self.dob_data, '%m/%d/%Y')
-        formatted_birth_day = birth_day.strftime('%b-%d-%Y')
+        formatted_birth_day = birth_day.strftime('%d-%b-%Y')
         expected_contact_details_list = [self.name_title, self.contact_details[0], self.contact_details[1],
                                          self.contact_details[2], self.contact_details[3], "9090909090", self.department,
                                          self.designation, self.gender, formatted_birth_day, self.marital, formatted_anniversary_day,
