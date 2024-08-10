@@ -516,4 +516,3 @@ class Drawing_data:
         scroll_into_the_view(browser, diagram_highlight_blink[0], diagram_highlight_blink_loc)
         diagram_highlight_blink_loc1 = replace_in_tuple(diagram_highlight_blink, 1, diagram_highlight_blink_loc)
         should_be_visible(browser, diagram_highlight_blink_loc1, 'diagram_highlight_blink_loc')
-
