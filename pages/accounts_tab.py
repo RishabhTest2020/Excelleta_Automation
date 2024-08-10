@@ -684,4 +684,12 @@ class Norms:
         #                                                      process_norms_table_new_rate_loc2)
         # do_send_keys(browser, process_norms_table_new_rate_loc2, '100')
 
+    def verify_norms_manufacturing_location(self, browser, index, expected_location):
+        for i in range(4, 7):
+            self.select_norms(browser, index=i)
+            do_click(browser, manuf_location)
+            select_option = manuf_location_options[1] + f'[{index}]'
+            select_option_loc = replace_in_tuple(manuf_location_options, 1, select_option)
+            option = get_element_text(browser, select_option_loc)
+            assert option == expected_location
 
