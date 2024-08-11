@@ -397,6 +397,29 @@ class Rfq:
         self.rfq_id = values[0]
 
 
+    def verify_selected_managers_data(self, browser):
+        do_click(browser, rfq_more_details_btn_loc)
+        sleep(2)
+        do_click(browser, rfq_details_edit_btn_loc)
+        loader_should_be_invisile(browser, 5)
+        should_be_invisible(browser, manager_details_header_loc, "manager_details_header_loc")
+        pm_lead_name = get_element_text(browser, pm_lead_loc)
+        assert pm_lead_name == self.pm_lead
+        mk_lead_name = get_element_text(browser, mk_lead_loc)
+        assert mk_lead_name == self.marketing_lead
+        dev_lead_name = get_element_text(browser, dev_lead_loc)
+        assert dev_lead_name == self.development_lead
+        plant_lead_name = get_element_text(browser, plant_head_loc)
+        assert plant_lead_name == self.plant_head
+        surface_head_name = get_element_text(browser, surface_treat_loc)
+        assert surface_head_name == self.surface_treatment_head
+        cft_mem_name = get_element_text(browser, cft_member_loc)
+        assert cft_mem_name == self.cft_member
+        dev_head_name = get_element_text(browser, dev_head_loc)
+        assert dev_head_name == self.business_dev_head
+
+
+
 class Drawing_data:
 
     def __init__(self):

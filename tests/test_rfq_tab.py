@@ -117,8 +117,17 @@ def create_drawing_data(browser):
 
 @then('Verify Manufacturing Location of Norms')
 def manufacturing_location_from_norms(browser):
-    norms_steps.goto_account_from_te(browser, name=accounts_steps.account_details[0])
+    account_details_link = contact_details_loc[1].replace("fname", accounts_steps.account_details[0])
+    account_details_link_loc = replace_in_tuple(contact_details_loc, 1, account_details_link)
+    do_click(browser, account_details_link_loc)
+    sleep(2)
+    #norms_steps.goto_account_from_te(browser, name=accounts_steps.account_details[0])
     do_click(browser, accounts_norms)
     sleep(2)
     norms_steps.verify_norms_manufacturing_location(browser, index="2",
                                                     expected_location=rfq_steps.manufacturing_location)
+
+
+@then('Verify Managers Information in RFQ')
+def verify_selected_managers_list(browser):
+    rfq_steps.verify_selected_managers_data(browser)
