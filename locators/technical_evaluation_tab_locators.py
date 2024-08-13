@@ -91,3 +91,9 @@ st_drain_hole_reqd_option_loc = (By.XPATH, '(//*[contains(@class,"drainHoleReqd"
 st_masking_drop_down_loc = (By.XPATH, '//*[contains(@class,"masking")]//select')
 st_masking_options_loc = (By.XPATH, '(//*[contains(@class,"masking")]//select//option)')
 st_ops_mndtry_details_common_loc = (By.XPATH, '//*[contains(@class,"field")]//input')
+
+te_clone_loc = (By.XPATH, '//button[contains(text(), "TE Clone")]')
+ecn_type_drop_down_loc = (By.XPATH, '//*[contains(@id, "ecnValue")]')
+ecn_type_options_loc = (By.XPATH, '(//*[contains(@id, "ecnValue")]//option)')
+revoke_loc = (By.XPATH, '//button[contains(text(), "Revoke")]')
+
