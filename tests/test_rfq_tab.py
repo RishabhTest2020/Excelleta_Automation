@@ -1,10 +1,10 @@
 import logging
 
 from helpers.common_helpers import *
-from locators.accounts_tab_locators import save_btn
+from locators.accounts_tab_locators import save_btn, accounts_norms
 from pages.rfq_tab import *
 from pytest_bdd import given, when, then, parsers
-from tests.test_accounts_tab import accounts_steps
+from tests.test_accounts_tab import accounts_steps, norms_steps
 
 rfq_steps = Rfq()
 drawing_data_steps = Drawing_data()
@@ -30,7 +30,7 @@ def create_rfq(browser, types):
     rfq_steps.select_confidentiality(browser)
     rfq_steps.select_customer_target_date(browser)
     rfq_steps.select_dev_lead_location(browser)
-    rfq_steps.select_manufacturing_location(browser)
+    rfq_steps.select_manufacturing_location(browser, index=3)
     rfq_steps.select_company_priority(browser)
     rfq_steps.select_finalizing_date(browser)
     rfq_steps.select_cft_completion_date(browser)
@@ -113,3 +113,21 @@ def create_drawing_data(browser):
     drawing_data_steps.add_roi_and_approve(browser)
     drawing_data_steps.add_technical_feasibility(browser)
     loader_should_be_invisile(browser, 10)
+
+
+@then('Verify Manufacturing Location of Norms')
+def manufacturing_location_from_norms(browser):
+    account_details_link = contact_details_loc[1].replace("fname", accounts_steps.account_details[0])
+    account_details_link_loc = replace_in_tuple(contact_details_loc, 1, account_details_link)
+    do_click(browser, account_details_link_loc)
+    sleep(2)
+    #norms_steps.goto_account_from_te(browser, name=accounts_steps.account_details[0])
+    do_click(browser, accounts_norms)
+    sleep(2)
+    norms_steps.verify_norms_manufacturing_location(browser, index="2",
+                                                    expected_location=rfq_steps.manufacturing_location)
+
+
+@then('Verify Managers Information in RFQ')
+def verify_selected_managers_list(browser):
+    rfq_steps.verify_selected_managers_data(browser)

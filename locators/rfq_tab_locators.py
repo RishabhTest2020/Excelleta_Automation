@@ -132,3 +132,6 @@ te_name_link = (By.XPATH, '//div[@class="rfqSection"]//td[@class="link"]')
 
 rfq_table_row_loc = (By.XPATH, '(//a[contains(text(), "acc_name")]/../../..//*[contains(@class, "ag-cell-value")]/span)')
 
+rfq_more_details_btn_loc = (By.XPATH, '//*[contains(@class,"companyDetails")]//*[contains(text(),"RFQ More Details")]')
+rfq_details_edit_btn_loc = (By.XPATH, '//*[contains(@class,"action-btns")]//*[contains(@alt,"edit_icon")]')
+manager_details_header_loc = (By.XPATH, '//*[contains(@formgroupname,"managerDetails")]//h3[contains(text(),"Manager Details")]')

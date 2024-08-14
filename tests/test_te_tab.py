@@ -141,6 +141,16 @@ def approve_te_levels(browser, back, level, asserts):
                                     rfq_steps.surface_treatment_head, rfq_steps.business_dev_head)
 
 
+@then(parsers.parse('Reject TE, back {back} level {level} assert {asserts}'))
+def reject_te_levels(browser, back, level, asserts):
+    if back == 'true':
+        do_click(browser, operations_tab_back_btn)
+    current_url = browser.current_url
+    te_no = current_url.split("/")[-2]
+    approve_te_steps.reject_te(browser, te_no, level, asserts, rfq_steps.development_lead, rfq_steps.plant_head,
+                               rfq_steps.surface_treatment_head, rfq_steps.business_dev_head)
+
+
 @when(parsers.parse('Create TE BOP data {index:d}'))
 def create_te_bop_info(browser, index):
     create_testeps.add_operation(browser, ops=False, index=index)
@@ -173,3 +183,8 @@ def create_st_operations_info(browser, index):
     sleep(1)
     do_click(browser, save_btn)
     sleep(2)
+
+
+@then('Clone TE')
+def te_clone(browser):
+    edit_te_steps.clone_te(browser)

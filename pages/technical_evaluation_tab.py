@@ -203,19 +203,76 @@ class Approve_TE:
                         j = i
                     if args_len >= 4:
                         actual_vals = [f'TE Approval Level - {j}', args[i - 1], args[i - 1], 'Approved',
-                                       self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
+                                       self.formatted_time[i], self.formatted_time_app[i], self.comments[-1]]
                     else:
                         actual_vals = [f'TE Approval Level - {j}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
-                                       self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
+                                       self.formatted_time[i], self.formatted_time_app[i], self.comments[-1]]
                     logging.info(ah_row_vals)
                     logging.info(actual_vals)
                     assert ah_row_vals == actual_vals
                     do_click(browser, slide_back_btn)
 
+    def reject_te(self, browser, te_id, level, asserts=True, *args):
+        args_len = len(args)
+        range_mod = range(0, args_len + 1)
+        for i in range_mod:
+            text = random_correct_name(5, 5, 'first_name')
+            self.comments.append(text)
+            if i == 0 and int(level) >= 1:
+                do_click(browser, approve_request)
+                do_send_keys(browser, add_comment, text)
+                do_click(browser, save_btn)
+            else:
+                te_calls = TE_API_calls()
+                approver_email = [x for x in globalEnvs.__dict__ if args[i - 1].split(" ")[0] in x]
+                te_calls.api_login(email=os.getenv(approver_email[0]), password=globalEnvs.approver_password)
+                if i == int(level):
+                    te_calls.approve_te(token=te_calls.token, te_id=te_id, userid=te_calls.user_id, comment=text,
+                                        status="REJECTED")
+                else:
+                    te_calls.approve_te(token=te_calls.token, te_id=te_id, userid=te_calls.user_id, comment=text)
+            sleep(1)
+            if (asserts is True or asserts == 'True') and i == int(level):
+                if i > 0:
+                    browser.refresh()
+                    sleep(2)
+                    do_click(browser, te_approval_history)
+                    ah_headers = get_list_of_elems_text(browser, approval_pop_header[0], approval_pop_header[1])
+                    assert ah_headers == approval_history_headers
+                    approval_pop_values1 = approval_pop_values[1].replace("[2]", "[1]")
+                    ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
+                    time1 = ah_row_vals[-2]
+                    time2 = ah_row_vals[-3]
+                    if int(level) == 2:
+                        actual_vals = [f'TE Approval Level - 2', args[i], args[i - 1], 'Rejected',
+                                       time2, time1, self.comments[-1]]
+                        ah_row_vals2 = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
+                        time3 = ah_row_vals2[-2]
+                        time4 = ah_row_vals2[-3]
+                        actual_vals2 = [f'TE Approval Level - 2', args[i - 1], args[i - 1], 'Rejected',
+                                        time4, time3, self.comments[-1]]
+                        logging.info(ah_row_vals2)
+                        logging.info(actual_vals2)
+                        assert ah_row_vals2 == actual_vals2
+
+                    else:
+                        if int(level) >= 3:
+                            j = i - 1
+                        else:
+                            j = i
+                        actual_vals = [f'TE Approval Level - {j}', args[i - 1], args[i - 1], 'Rejected',
+                                       time2, time1, self.comments[-1]]
+                    logging.info(ah_row_vals)
+                    logging.info(actual_vals)
+                    assert ah_row_vals == actual_vals
+                    do_click(browser, slide_back_btn)
+                    break
+
 
 class Edit_TE:
 
     def __init__(self):
+        self.ecn_type = None
         self.surface_treatment = None
         self.net_weigh_part = 0.2
         self.rod_length = 100
@@ -301,6 +358,20 @@ class Edit_TE:
         self.surface_treatment = get_element_text(browser, select_loc)
         do_click(browser, select_loc)
         sleep(0.5)
+        
+    def clone_te(self, browser, index=2):
+        do_click(browser, te_clone_loc)
+        do_click(browser, ecn_type_drop_down_loc)
+        values = get_list_of_elems_text(browser, ecn_type_options_loc[0], ecn_type_options_loc[1])
+        assert values == ecn_dd_data
+        select_name = ecn_type_options_loc[1] + f'[{index}]'
+        select_loc = replace_in_tuple(ecn_type_options_loc, 1, select_name)
+        self.ecn_type = get_element_text(browser, select_loc)
+        do_click(browser, select_loc)
+        do_send_keys(browser, add_comment, "test")
+        do_click(browser, save_btn)
+        sleep(0.5)
+        
 
 
 class CreateBopDetails:
@@ -462,7 +533,8 @@ class TE_API_calls:
         self.token = resp_js['token']
         self.user_id = resp_js['userDto']['id']
 
-    def approve_te(self, token, te_id, userid, comment):
+    def approve_te(self, token, te_id, userid, comment, status="APPROVED"):
+        #REJECTED
         url = f'{globalEnvs.api_url}/approval/updateApprovalStatus'
         headers = {'Accept': 'application/json, text/plain, */*', 'content-type': 'application/json',
                    'Authorization': f'Bearer {token}'}
@@ -470,7 +542,7 @@ class TE_API_calls:
             "entityId": int(te_id),
             "entityType": "TE",
             "adminUser": False,
-            "status": "APPROVED",
+            "status": status,
             "approvedBy": int(userid),
             "comment": comment,
             "version": "Version-1"
@@ -479,7 +551,7 @@ class TE_API_calls:
         assert resp.status_code == 200
         logging.info(resp.json())
 
-    def approve_cost_sheet(self, token, te_id, userid, comment):
+    def approve_cost_sheet(self, token, te_id, userid, comment, status="APPROVED"):
         url = f'{globalEnvs.api_url}/approval/updateApprovalStatus'
         headers = {'Accept': 'application/json, text/plain, */*', 'content-type': 'application/json',
                    'Authorization': f'Bearer {token}'}
@@ -487,7 +559,7 @@ class TE_API_calls:
             "entityId": int(te_id),
             "entityType": "COSTSHEET",
             "adminUser": False,
-            "status": "APPROVED",
+            "status": status,
             "approvedBy": int(userid),
             "comment": comment,
         }

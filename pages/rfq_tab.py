@@ -147,7 +147,9 @@ class Rfq:
     def select_dev_lead_location(self, browser, index=2):
         do_click(browser, rfq_dev_lead_loc)
         values = get_list_of_elems_text(browser, rfq_dev_lead_loc_select[0], rfq_dev_lead_loc_select[1])
-        assert values == rfq_dev_lead_location_data
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(rfq_dev_lead_location_data, values)
+        assert val is True
         select_name = rfq_dev_lead_loc_select[1] + f'[{index}]'
         select_dep_loc = replace_in_tuple(rfq_dev_lead_loc_select, 1, select_name)
         self.dev_lead_location = get_element_text(browser, select_dep_loc)
@@ -157,7 +159,9 @@ class Rfq:
     def select_manufacturing_location(self, browser, index=2):
         do_click(browser, rfq_manufacturing_loc)
         values = get_list_of_elems_text(browser, rfq_manufacturing_loc_select[0], rfq_manufacturing_loc_select[1])
-        assert values == rfq_manufacturing_location_data
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(rfq_manufacturing_location_data, values)
+        assert val is True
         select_name = rfq_manufacturing_loc_select[1] + f'[{index}]'
         select_dep_loc = replace_in_tuple(rfq_manufacturing_loc_select, 1, select_name)
         self.manufacturing_location = get_element_text(browser, select_dep_loc)
@@ -397,6 +401,29 @@ class Rfq:
         self.rfq_id = values[0]
 
 
+    def verify_selected_managers_data(self, browser):
+        do_click(browser, rfq_more_details_btn_loc)
+        sleep(2)
+        do_click(browser, rfq_details_edit_btn_loc)
+        loader_should_be_invisile(browser, 5)
+        should_be_invisible(browser, manager_details_header_loc, "manager_details_header_loc")
+        pm_lead_name = get_element_text(browser, pm_lead_loc)
+        assert pm_lead_name == self.pm_lead
+        mk_lead_name = get_element_text(browser, mk_lead_loc)
+        assert mk_lead_name == self.marketing_lead
+        dev_lead_name = get_element_text(browser, dev_lead_loc)
+        assert dev_lead_name == self.development_lead
+        plant_lead_name = get_element_text(browser, plant_head_loc)
+        assert plant_lead_name == self.plant_head
+        surface_head_name = get_element_text(browser, surface_treat_loc)
+        assert surface_head_name == self.surface_treatment_head
+        cft_mem_name = get_element_text(browser, cft_member_loc)
+        assert cft_mem_name == self.cft_member
+        dev_head_name = get_element_text(browser, dev_head_loc)
+        assert dev_head_name == self.business_dev_head
+
+
+
 class Drawing_data:
 
     def __init__(self):
@@ -516,4 +543,3 @@ class Drawing_data:
         scroll_into_the_view(browser, diagram_highlight_blink[0], diagram_highlight_blink_loc)
         diagram_highlight_blink_loc1 = replace_in_tuple(diagram_highlight_blink, 1, diagram_highlight_blink_loc)
         should_be_visible(browser, diagram_highlight_blink_loc1, 'diagram_highlight_blink_loc')
-

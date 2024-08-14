@@ -81,3 +81,4 @@ def create_norms(browser):
     norms_steps.select_bop_norms(browser)
     sleep(1)
 
+

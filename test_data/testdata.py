@@ -250,7 +250,7 @@ te_inspection_instrument_dd_data = ['Please select', 'Abbressive Cutter', 'Angle
                                     'Wring Thread Gauge Set. (For Bolt Od)']
 
 approval_history_headers = ['Step Name', 'Assigned to', 'Submitted By', 'Status', 'Assigned Date', 'Activity Date',
-                            'Comment']
+                            'Comment', 'Action']
 
 norms_dd_data = ['Please select', 'BOP Norms', 'Currency Norms', 'MHR Norms', 'Process Norms', 'Over Head Norms',
                    'Raw Material Norms']
@@ -305,3 +305,5 @@ acc_page_contact_details = ['Name', 'Profile URL', 'Email ID', 'Phone Number', '
                             'Designation', 'Reports To', 'Gender', 'Birth Date', 'Marital Status', 'Anniversary',
                             'Email Opt In', 'Send Greetings', 'Send Acknowledgement', 'Official Address',
                             'Residential Address', 'Created By', 'Created Date', 'Updated By', 'Updated Date']
+
+ecn_dd_data = ['Select ECN Type', 'Drawing Change', 'Part Details Change', 'Process Details Changes', 'Others']
