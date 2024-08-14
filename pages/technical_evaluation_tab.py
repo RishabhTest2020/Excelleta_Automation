@@ -265,6 +265,7 @@ class Approve_TE:
                     logging.info(ah_row_vals)
                     logging.info(actual_vals)
                     assert ah_row_vals == actual_vals
+                    do_click(browser, slide_back_btn)
                     break
 
 

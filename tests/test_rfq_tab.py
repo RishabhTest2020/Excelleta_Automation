@@ -30,7 +30,7 @@ def create_rfq(browser, types):
     rfq_steps.select_confidentiality(browser)
     rfq_steps.select_customer_target_date(browser)
     rfq_steps.select_dev_lead_location(browser)
-    rfq_steps.select_manufacturing_location(browser)
+    rfq_steps.select_manufacturing_location(browser, index=3)
     rfq_steps.select_company_priority(browser)
     rfq_steps.select_finalizing_date(browser)
     rfq_steps.select_cft_completion_date(browser)
