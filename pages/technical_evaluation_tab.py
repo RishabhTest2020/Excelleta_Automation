@@ -203,10 +203,10 @@ class Approve_TE:
                         j = i
                     if args_len >= 4:
                         actual_vals = [f'TE Approval Level - {j}', args[i - 1], args[i - 1], 'Approved',
-                                       self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
+                                       self.formatted_time[i], self.formatted_time_app[i], self.comments[-1]]
                     else:
                         actual_vals = [f'TE Approval Level - {j}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
-                                       self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
+                                       self.formatted_time[i], self.formatted_time_app[i], self.comments[-1]]
                     logging.info(ah_row_vals)
                     logging.info(actual_vals)
                     assert ah_row_vals == actual_vals
@@ -245,12 +245,12 @@ class Approve_TE:
                     time2 = ah_row_vals[-3]
                     if int(level) == 2:
                         actual_vals = [f'TE Approval Level - 2', args[i], args[i - 1], 'Rejected',
-                                       time2, time1, self.comments[i]]
+                                       time2, time1, self.comments[-1]]
                         ah_row_vals2 = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
                         time3 = ah_row_vals2[-2]
                         time4 = ah_row_vals2[-3]
                         actual_vals2 = [f'TE Approval Level - 2', args[i - 1], args[i - 1], 'Rejected',
-                                        time4, time3, self.comments[i]]
+                                        time4, time3, self.comments[-1]]
                         logging.info(ah_row_vals2)
                         logging.info(actual_vals2)
                         assert ah_row_vals2 == actual_vals2
@@ -261,7 +261,7 @@ class Approve_TE:
                         else:
                             j = i
                         actual_vals = [f'TE Approval Level - {j}', args[i - 1], args[i - 1], 'Rejected',
-                                       time2, time1, self.comments[i]]
+                                       time2, time1, self.comments[-1]]
                     logging.info(ah_row_vals)
                     logging.info(actual_vals)
                     assert ah_row_vals == actual_vals
