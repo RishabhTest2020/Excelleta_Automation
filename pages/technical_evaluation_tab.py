@@ -244,7 +244,7 @@ class Approve_TE:
                     time1 = ah_row_vals[-2]
                     time2 = ah_row_vals[-3]
                     if int(level) == 2:
-                        actual_vals = [f'TE Approval Level - 2', args[i], args[i -1], 'Rejected',
+                        actual_vals = [f'TE Approval Level - 2', args[i], args[i - 1], 'Rejected',
                                        time2, time1, self.comments[i]]
                         ah_row_vals2 = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
                         time3 = ah_row_vals2[-2]
