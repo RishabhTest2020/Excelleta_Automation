@@ -118,13 +118,13 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4 assert False
     Then Create norms data
-    Then Generate Costing Data and Norms
+    Then Generate Costing Data and Norms, Nav direct false
     When Navigate to Costing Sheet tab 10
     Then Goto MTE Cost Sheet
     Then Approve CS all levels
 #  Then Verify Cost Raw Material data Raw Material
 
-  @Sanity @Test
+  @Sanity #@Test
   Scenario: TC_09 Create Multi level BOM and reject approval all levels
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -158,3 +158,11 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Reject TE, back false level 4 assert True
     Then Clone TE
     Then Approve TE all levels, back false level 4 assert True
+
+  @Test
+  Scenario: TC_09 Create Multi level BOM and reject approval all levels
+    Given Login into Excelleta UI
+    Then Generate Costing Data and Norms, Nav direct true
+    When Navigate to Costing Sheet tab 10
+    Then Goto MTE Cost Sheet
+    Then Reject CS at level 1

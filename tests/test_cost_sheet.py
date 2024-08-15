@@ -12,12 +12,18 @@ cost_sheet_steps = CostSheetPage()
 approve_cs_steps = Approve_Cost_Sheet()
 
 
-@then('Generate Costing Data and Norms')
-def generate_costing_norms(browser):
-    browser.get(globalEnvs.main_url + '/marketing-technical-evaluation')
-    sleep(2)
-    mte_name = drawing_data_steps.te_link.split("-")[1]
-    cost_sheet_steps.goto_created_mte(browser, mte_name)
+@then(parsers.parse('Generate Costing Data and Norms, Nav direct {direct}'))
+def generate_costing_norms(browser, direct):
+    if direct == "true":
+        mte = get_element_text(browser, costing_mte_loc)
+        cost_sheet_steps.__dict__['mte_name'] = mte
+        do_click(browser, costing_mte_loc)
+        sleep(2)
+    else:
+        browser.get(globalEnvs.main_url + '/marketing-technical-evaluation')
+        sleep(2)
+        mte_name = drawing_data_steps.te_link.split("-")[1]
+        cost_sheet_steps.goto_created_mte(browser, mte_name)
     do_click(browser, generate_costing_bn_loc)
     sleep(2)
     do_click(browser, cs_actions_btn_loc)
@@ -49,7 +55,10 @@ def generate_costing_norms(browser):
 
 @then('Goto MTE Cost Sheet')
 def mte_cost_sheet(browser):
-    mte_name = drawing_data_steps.te_link.split("-")[1]
+    try:
+        mte_name = drawing_data_steps.te_link.split("-")[1]
+    except:
+        mte_name = cost_sheet_steps.__dict__['mte_name'].split("-")[1].split(" ")[0]
     cost_sheet_steps.goto_created_cost_sheet(browser, mte_name)
 
 
@@ -67,3 +76,11 @@ def approve_cs_levels(browser):
     cs_no = current_url.split("/")[-1]
     approve_cs_steps.approve_cost_sheet(browser, cs_no, rfq_steps.business_dev_head, rfq_steps.cft_member,
                                         rfq_steps.business_dev_head)
+
+
+@then(parsers.parse('Reject CS at level {level:d}'))
+def approve_cs_levels(browser, level):
+    current_url = browser.current_url
+    cs_no = current_url.split("/")[-1]
+    approve_cs_steps.reject_cost_sheet(browser, level, cs_no, "Somvir Singh", "Nishant Jairath", "Somvir Singh")#rfq_steps.business_dev_head, rfq_steps.cft_member,
+                                       # rfq_steps.business_dev_head)
