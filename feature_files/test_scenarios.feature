@@ -47,15 +47,15 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify created Rfq data
     Then Verify Rfq table head column
 
-  @Sanity  @Test
+  @Sanity  #@Test
   Scenario: TC_06 Create and verify Drawing data and TE data
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-#    Then Create an account
-#    When Navigate to Contact tab 5
-#    When Create an Contact
-#    When Navigate to RFQ tab 25
-#    Then Create a RFQ single
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 25
+    Then Create a RFQ single
     Then Add Drawing Data
     When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data single
