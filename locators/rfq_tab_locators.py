@@ -122,9 +122,12 @@ roi_file_loc = (By.XPATH, '//input[@id="roiFile"]')
 save_btn = (By.XPATH, '//button[contains(@type, "submit")]')
 roi_menu_btn = (By.XPATH, '//div[@id="rfq-data3"]//button')
 approve_roi_te = (By.XPATH, '//*[contains(@class, "menuAction")]//*[contains(text(), "Approve")]')
+reject_roi_te = (By.XPATH, '//*[contains(@class,"menu-list")]//*[contains(text(),"Reject")]')
+revoke_roi_te = (By.XPATH, '//*[contains(@class,"menu-list")]//*[contains(text(),"Revoke")]')
 add_comment = (By.XPATH, '//input[@id="comment"]')
 
 add_technical_feasibility = (By.XPATH, '//button[contains(text(), "Add Technical Feasibility")]')
+tech_feasi_is_no_loc = (By.XPATH, '//label[contains(@class,"radio-label") and span[text()="No"]]')
 tf_file_loc = (By.XPATH, '//input[@id="feasibilitySheet"]')
 te_menu_btn = (By.XPATH, '//div[@id="rfq-data4"]//button')
 
