@@ -114,6 +114,46 @@ def create_drawing_data(browser):
     drawing_data_steps.add_technical_feasibility(browser)
     loader_should_be_invisile(browser, 10)
 
+@then('Reject ROI data')
+def roi_data_rejection(browser):
+    drawing_data_steps.add_drawing_data(browser)
+    drawing_data_steps.select_2d_soft_copy(browser)
+    drawing_data_steps.select_3d_soft_copy(browser)
+    drawing_data_steps.add_roi_and_reject(browser)
+
+@then('Revoke ROI data')
+def roi_data_revoke(browser):
+    drawing_data_steps.add_drawing_data(browser)
+    drawing_data_steps.select_2d_soft_copy(browser)
+    drawing_data_steps.select_3d_soft_copy(browser)
+    drawing_data_steps.add_roi_and_revoke(browser)
+
+@then('Reject technical feasibility')
+def technical_feasibility_rejection(browser):
+    drawing_data_steps.add_drawing_data(browser)
+    drawing_data_steps.select_2d_soft_copy(browser)
+    drawing_data_steps.select_3d_soft_copy(browser)
+    drawing_data_steps.add_roi_and_approve(browser)
+    drawing_data_steps.add_technical_feasibility_reject(browser)
+
+
+@then('Revoke technical feasibility')
+def technical_feasibility_revoke(browser):
+    drawing_data_steps.add_drawing_data(browser)
+    drawing_data_steps.select_2d_soft_copy(browser)
+    drawing_data_steps.select_3d_soft_copy(browser)
+    drawing_data_steps.add_roi_and_approve(browser)
+    drawing_data_steps.add_technical_feasibility_revoke(browser)
+
+
+@then('Technical feasibility as No')
+def technical_feasibility_no_status(browser):
+    drawing_data_steps.add_drawing_data(browser)
+    drawing_data_steps.select_2d_soft_copy(browser)
+    drawing_data_steps.select_3d_soft_copy(browser)
+    drawing_data_steps.add_roi_and_approve(browser)
+    drawing_data_steps.add_technical_feasibility_as_no(browser)
+
 
 @then('Verify Manufacturing Location of Norms')
 def manufacturing_location_from_norms(browser):
