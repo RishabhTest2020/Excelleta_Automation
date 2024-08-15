@@ -44,7 +44,7 @@ jobs:
     - name: Excelleta Sanity Test
       run: |
         echo $TAG
-        browser=headless_chrome pytest -s -k test_tc_09_create_multi_level_bom_and_reject_approval_all_levels
+        browser=headless_chrome pytest -s -m Sanity -n 4 --reruns 1 --reruns-delay 5
       continue-on-error: true
 
     - name: Upload artifact
