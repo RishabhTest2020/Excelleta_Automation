@@ -41,13 +41,11 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create an Contact
     When Navigate to RFQ tab 20
     Then Create a RFQ single
-    When Navigate to RFQ tab 10
-    Then Verify Manufacturing Location of Norms
     When Navigate to RFQ tab 30
     Then Verify created Rfq data
     Then Verify Rfq table head column
 
-  @Sanity #@Test
+  @Sanity  #@Test
   Scenario: TC_06 Create and verify Drawing data and TE data
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -118,13 +116,13 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4 assert False
     Then Create norms data
-    Then Generate Costing Data and Norms
+    Then Generate Costing Data and Norms, Nav direct false
     When Navigate to Costing Sheet tab 10
     Then Goto MTE Cost Sheet
     Then Approve CS all levels
 #  Then Verify Cost Raw Material data Raw Material
 
-  @Sanity @Test
+  @Sanity #@Test
   Scenario: TC_09 Create Multi level BOM and reject approval all levels
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -158,3 +156,23 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Reject TE, back false level 4 assert True
     Then Clone TE
     Then Approve TE all levels, back false level 4 assert True
+
+  @Sanity #@Test
+  Scenario: TC_10 Verify Norms Manufacturing locations navs
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 20
+    Then Create a RFQ single
+    When Navigate to RFQ tab 10
+    Then Verify Manufacturing Location of Norms
+
+  @Test
+  Scenario: Reject CS
+    Given Login into Excelleta UI
+    Then Generate Costing Data and Norms, Nav direct true
+    When Navigate to Costing Sheet tab 10
+    Then Goto MTE Cost Sheet
+    Then Reject CS at level 1

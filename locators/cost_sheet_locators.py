@@ -10,6 +10,7 @@ select_cost_sheet_loc = (By.XPATH, '(//a[contains(text(), "mte_name")]/../../../
 
 #Cost_Sheet_Actions
 generate_costing_bn_loc = (By.XPATH, '//*[contains(@class,"main-row")]//*[contains(text(),"Generate Costing")]')
+costing_mte_loc = (By.XPATH, '//button[contains(@title, "MTE")]')
 cs_actions_btn_loc = (By.XPATH, '//*[contains(@class,"floating-label") and normalize-space(text())="Actions"]')
 cs_actions_norms_btn_loc = (By.XPATH, '//*[contains(@class,"norms-btn") and normalize-space(text())="Norms"]')
 cs_actions_norms_header_loc = (By.XPATH, '//*[contains(@class,"floating_modal")]//*[normalize-space(text())="Norms Section"]')
