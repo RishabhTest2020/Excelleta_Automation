@@ -517,6 +517,60 @@ class Drawing_data:
         do_click(browser, save_btn)
         sleep(2)
 
+    def add_roi_and_reject(self, browser):
+        do_click(browser, add_roi_btn)
+        self.roi_years = '5'
+        do_send_keys(browser, roi_field_loc, self.roi_years)
+        elem = browser.find_element(By.XPATH, roi_file_loc[1])
+        elem.send_keys(os.getcwd() + '/files/Account_List.xlsx')
+        sleep(0.4)
+        do_send_keys(browser, add_comment, 'Test')
+        do_click(browser, save_btn)
+        sleep(2)
+        should_be_invisible(browser, add_roi_btn, "add_roi_btn")
+        wait_for_ajax(browser)
+        scroll_into_the_view(browser, roi_menu_btn[0], roi_menu_btn[1])
+        sleep(0.5)
+        try:
+            do_click(browser, roi_menu_btn)
+            do_click(browser, reject_roi_te)
+        except (TimeoutException, StaleElementReferenceException, ElementClickInterceptedException):
+            sleep(0.5)
+            do_click(browser, roi_menu_btn)
+            do_click(browser, reject_roi_te)
+        do_send_keys(browser, add_comment, 'Test')
+        do_click(browser, save_btn)
+        sleep(2)
+        should_be_visible(browser, add_roi_btn, "add_roi_btn")
+        should_be_invisible(browser, add_technical_feasibility, "add_technical_feasibility")
+
+    def add_roi_and_revoke(self, browser):
+        do_click(browser, add_roi_btn)
+        self.roi_years = '5'
+        do_send_keys(browser, roi_field_loc, self.roi_years)
+        elem = browser.find_element(By.XPATH, roi_file_loc[1])
+        elem.send_keys(os.getcwd() + '/files/Account_List.xlsx')
+        sleep(0.4)
+        do_send_keys(browser, add_comment, 'Test')
+        do_click(browser, save_btn)
+        sleep(2)
+        should_be_invisible(browser, add_roi_btn, "add_roi_btn")
+        wait_for_ajax(browser)
+        scroll_into_the_view(browser, roi_menu_btn[0], roi_menu_btn[1])
+        sleep(0.5)
+        try:
+            do_click(browser, roi_menu_btn)
+            do_click(browser, revoke_roi_te)
+        except (TimeoutException, StaleElementReferenceException, ElementClickInterceptedException):
+            sleep(0.5)
+            do_click(browser, roi_menu_btn)
+            do_click(browser, revoke_roi_te)
+        do_send_keys(browser, add_comment, 'Test')
+        do_click(browser, save_btn)
+        sleep(2)
+        should_be_visible(browser, add_roi_btn, "add_roi_btn")
+        should_be_invisible(browser, add_technical_feasibility, "add_technical_feasibility")
+
     def add_technical_feasibility(self, browser):
         do_click(browser, add_technical_feasibility)
         elem = browser.find_element(By.XPATH, tf_file_loc[1])
@@ -543,3 +597,60 @@ class Drawing_data:
         scroll_into_the_view(browser, diagram_highlight_blink[0], diagram_highlight_blink_loc)
         diagram_highlight_blink_loc1 = replace_in_tuple(diagram_highlight_blink, 1, diagram_highlight_blink_loc)
         should_be_visible(browser, diagram_highlight_blink_loc1, 'diagram_highlight_blink_loc')
+
+    def add_technical_feasibility_reject(self, browser):
+        do_click(browser, add_technical_feasibility)
+        elem = browser.find_element(By.XPATH, tf_file_loc[1])
+        elem.send_keys(os.getcwd() + '/files/Account_List.xlsx')
+        sleep(0.4)
+        do_send_keys(browser, add_comment, 'Test')
+        do_click(browser, save_btn)
+        should_be_invisible(browser, add_technical_feasibility, "add_technical_feasibility")
+        sleep(2)
+        wait_for_ajax(browser)
+        scroll_into_the_view(browser, te_menu_btn[0], te_menu_btn[1])
+        sleep(1)
+        do_click(browser, te_menu_btn)
+        try:
+            do_click(browser, reject_roi_te)
+        except (TimeoutException, ElementClickInterceptedException):
+            do_click(browser, te_menu_btn)
+            do_click(browser, reject_roi_te)
+        do_send_keys(browser, add_comment, 'Test')
+        do_click(browser, save_btn)
+        sleep(2)
+        should_be_visible(browser, add_technical_feasibility, "add_technical_feasibility")
+
+
+    def add_technical_feasibility_revoke(self, browser):
+        do_click(browser, add_technical_feasibility)
+        elem = browser.find_element(By.XPATH, tf_file_loc[1])
+        elem.send_keys(os.getcwd() + '/files/Account_List.xlsx')
+        sleep(0.4)
+        do_send_keys(browser, add_comment, 'Test')
+        do_click(browser, save_btn)
+        should_be_invisible(browser, add_technical_feasibility, "add_technical_feasibility")
+        sleep(2)
+        wait_for_ajax(browser)
+        scroll_into_the_view(browser, te_menu_btn[0], te_menu_btn[1])
+        sleep(1)
+        do_click(browser, te_menu_btn)
+        try:
+            do_click(browser, revoke_roi_te)
+        except (TimeoutException, ElementClickInterceptedException):
+            do_click(browser, te_menu_btn)
+            do_click(browser, revoke_roi_te)
+        do_send_keys(browser, add_comment, 'Test')
+        do_click(browser, save_btn)
+        sleep(2)
+        should_be_visible(browser, add_technical_feasibility, "add_technical_feasibility")
+
+    def add_technical_feasibility_as_no(self, browser):
+        do_click(browser, add_technical_feasibility)
+        elem = browser.find_element(By.XPATH, tf_file_loc[1])
+        elem.send_keys(os.getcwd() + '/files/Account_List.xlsx')
+        sleep(0.4)
+        do_click(browser, tech_feasi_is_no_loc, 20)
+        do_send_keys(browser, add_comment, 'Test')
+        do_click(browser, save_btn)
+        should_be_visible(browser, add_technical_feasibility, "add_technical_feasibility")
