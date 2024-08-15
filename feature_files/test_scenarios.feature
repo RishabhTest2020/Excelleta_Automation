@@ -158,7 +158,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Approve TE all levels, back false level 4 assert True
 
   @Sanity #@Test
-  Scenario: TC_10 Verify Rfq Tab and New Rfq creation
+  Scenario: TC_10 Verify Norms Manufacturing locations navs
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
     Then Create an account
