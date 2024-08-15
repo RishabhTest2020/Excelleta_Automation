@@ -1,7 +1,7 @@
 import logging
 
 from helpers.common_helpers import *
-from locators.accounts_tab_locators import save_btn, accounts_norms
+from locators.accounts_tab_locators import save_btn, accounts_norms, norms_back_arrow_icon_loc
 from pages.rfq_tab import *
 from pytest_bdd import given, when, then, parsers
 from tests.test_accounts_tab import accounts_steps, norms_steps
@@ -166,7 +166,8 @@ def manufacturing_location_from_norms(browser):
     sleep(2)
     norms_steps.verify_norms_manufacturing_location(browser, index="2",
                                                     expected_location=rfq_steps.manufacturing_location)
-
+    sleep(1)
+    do_click(browser, norms_back_arrow_icon_loc)
 
 @then('Verify Managers Information in RFQ')
 def verify_selected_managers_list(browser):
