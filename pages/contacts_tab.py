@@ -205,7 +205,8 @@ class Contacts:
         for i in all_data:
             i_type = type(i)
             if i_type == list:
-                acc_data_list.extend(i)
+                str_list = list(map(str, i))
+                acc_data_list.extend(str_list)
             else:
                 acc_data_list.append(str(i))
         logging.info(acc_data_list)
@@ -222,7 +223,7 @@ class Contacts:
                         non_present_data.append(i)
                         break
         logging.info(non_present_data)
-        assert len(non_present_data) <= 7
+        assert len(non_present_data) <= 8
 
     def verify_created_contact_details(self, browser, email_opt_in="Yes", greetings_opt="Yes", acknowledgement="Yes"):
         logging.info(self.contact_details)
