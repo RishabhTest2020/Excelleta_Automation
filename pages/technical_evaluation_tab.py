@@ -553,7 +553,7 @@ class TE_API_calls:
         assert resp.status_code == 200
         logging.info(resp.json())
 
-    def approve_cost_sheet(self, token, te_id, userid, comment, status="APPROVED"):
+    def approve_cost_sheet(self, token, te_id, userid, comment, status="APPROVED", cust_app=False):
         url = f'{globalEnvs.api_url}/approval/updateApprovalStatus'
         headers = {'Accept': 'application/json, text/plain, */*', 'content-type': 'application/json',
                    'Authorization': f'Bearer {token}'}
@@ -565,6 +565,9 @@ class TE_API_calls:
             "approvedBy": int(userid),
             "comment": comment,
         }
+        if cust_app is True:
+            payload['rejectedCommentId'] = 1736
+            payload['specificReasonCommentId'] = 1739
         resp = requests.post(url, headers=headers, json=payload, verify=False)
         assert resp.status_code == 200
         logging.info(resp.json())
