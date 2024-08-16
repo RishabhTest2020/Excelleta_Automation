@@ -241,6 +241,8 @@ class Approve_Cost_Sheet:
                 do_send_keys(browser, add_comment, text)
                 do_click(browser, cmt_submit_btn_loc)
             elif i == 3:
+                browser.refresh()
+                sleep(2)
                 do_click(browser, send_for_cust_approval_btn_loc)
                 do_send_keys(browser, add_comment, text)
                 do_click(browser, cmt_submit_btn_loc)
@@ -253,8 +255,12 @@ class Approve_Cost_Sheet:
                 approver_email = [x for x in globalEnvs.__dict__ if args[j - 1].split(" ")[0] in x]
                 te_calls.api_login(email=os.getenv(approver_email[0]), password=globalEnvs.approver_password)
                 if i == int(level):
+                    if int(level) == 4:
+                        cust_app = True
+                    else:
+                        cust_app = False
                     te_calls.approve_cost_sheet(token=te_calls.token, te_id=cs_id, userid=te_calls.user_id,
-                                                comment=text, status="REJECTED")
+                                                comment=text, status="REJECTED", cust_app=cust_app)
                 else:
                     te_calls.approve_cost_sheet(token=te_calls.token, te_id=cs_id, userid=te_calls.user_id,
                                                 comment=text)
@@ -269,19 +275,14 @@ class Approve_Cost_Sheet:
                 ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
                 time1 = ah_row_vals[-2]
                 time2 = ah_row_vals[-3]
-                if (i == range_mod[1]) or (i == range_mod[2]):
-                    actual_vals = [f'Management Approval Level - {i}', args[i - 1], args[i - 1], 'Rejected',
-                                   time2, time1, self.comments[-1]]
-                elif i == range_mod[3]:
-                    actual_vals = [f'Customer Approval', "-", "Saurabh Shrivastava", 'Submitted',
-                                   time1, self.comments[-1]]
-                elif i == range_mod[-1]:
+                if int(level) == 4:
                     print(i)
                     j = i - 2
                     actual_vals = [f'Customer Approval', args[j], args[j], 'Rejected',
-                                   time2, time1, self.comments[-1]]
+                                   time2, time1, f'Cost Revision - Need To Rework On Cost - {self.comments[-1]}']
                 else:
-                    actual_vals = None
+                    actual_vals = [f'Management Approval Level - {i}', args[i - 1], args[i - 1], 'Rejected',
+                                   time2, time1, self.comments[-1]]
                 logging.info(ah_row_vals)
                 logging.info(actual_vals)
                 assert ah_row_vals == actual_vals
