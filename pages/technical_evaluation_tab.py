@@ -197,16 +197,18 @@ class Approve_TE:
                     else:
                         approval_pop_values1 = approval_pop_values[1]
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
+                    time1 = ah_row_vals[-2]
+                    time2 = ah_row_vals[-3]
                     if args_len >= 4 and range_mod.index(i) >= 3:
                         j = i - 1
                     else:
                         j = i
                     if args_len >= 4:
                         actual_vals = [f'TE Approval Level - {j}', args[i - 1], args[i - 1], 'Approved',
-                                       self.formatted_time[i], self.formatted_time_app[i], self.comments[-1]]
+                                       time2, time1, self.comments[-1]]
                     else:
                         actual_vals = [f'TE Approval Level - {j}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
-                                       self.formatted_time[i], self.formatted_time_app[i], self.comments[-1]]
+                                       time2, time1, self.comments[-1]]
                     logging.info(ah_row_vals)
                     logging.info(actual_vals)
                     assert ah_row_vals == actual_vals
@@ -551,7 +553,7 @@ class TE_API_calls:
         assert resp.status_code == 200
         logging.info(resp.json())
 
-    def approve_cost_sheet(self, token, te_id, userid, comment, status="APPROVED"):
+    def approve_cost_sheet(self, token, te_id, userid, comment, status="APPROVED", cust_app=False):
         url = f'{globalEnvs.api_url}/approval/updateApprovalStatus'
         headers = {'Accept': 'application/json, text/plain, */*', 'content-type': 'application/json',
                    'Authorization': f'Bearer {token}'}
@@ -563,6 +565,9 @@ class TE_API_calls:
             "approvedBy": int(userid),
             "comment": comment,
         }
+        if cust_app is True:
+            payload['rejectedCommentId'] = 1736
+            payload['specificReasonCommentId'] = 1739
         resp = requests.post(url, headers=headers, json=payload, verify=False)
         assert resp.status_code == 200
         logging.info(resp.json())
