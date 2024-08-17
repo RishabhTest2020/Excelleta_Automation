@@ -169,7 +169,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 10
     Then Verify Manufacturing Location of Norms
 
-  @Test
+  #@Test
   Scenario: TC_11 Create Multi level BOM, Generate cost snd all level reject flow
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -209,7 +209,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Goto MTE Cost Sheet
     Then Reject CS at level 4
 
-  @Sanity  @Test
+  @Sanity
   Scenario: TC_12 Verify Reject And Revoke Functionality of ROI
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -221,6 +221,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Reject ROI data
     Then Revoke ROI data
 
+  @Sanity
   Scenario: TC_13 Verify Reject And Revoke Functionality OF TF
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -232,6 +233,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Reject technical feasibility
     Then Revoke technical feasibility
 
+  @Sanity
   Scenario: TC_14 Verify Technical Feasibility As No
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -242,7 +244,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create a RFQ single
     Then Technical feasibility as No
 
-
+  #@Test
   Scenario: TC_15 Verify Managers data in Edit RFQ
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5

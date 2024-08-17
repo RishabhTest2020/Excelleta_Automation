@@ -406,7 +406,7 @@ class Rfq:
         sleep(2)
         do_click(browser, rfq_details_edit_btn_loc)
         loader_should_be_invisile(browser, 5)
-        should_be_invisible(browser, manager_details_header_loc, "manager_details_header_loc")
+        should_be_visible(browser, manager_details_header_loc, "manager_details_header_loc")
         pm_lead_name = get_element_text(browser, pm_lead_loc)
         assert pm_lead_name == self.pm_lead
         mk_lead_name = get_element_text(browser, mk_lead_loc)
@@ -605,8 +605,8 @@ class Drawing_data:
         sleep(0.4)
         do_send_keys(browser, add_comment, 'Test')
         do_click(browser, save_btn)
-        should_be_invisible(browser, add_technical_feasibility, "add_technical_feasibility")
         sleep(2)
+        should_be_invisible(browser, add_technical_feasibility, "add_technical_feasibility")
         wait_for_ajax(browser)
         scroll_into_the_view(browser, te_menu_btn[0], te_menu_btn[1])
         sleep(1)
