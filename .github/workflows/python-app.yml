@@ -8,7 +8,8 @@ on:
 
 env:
   # Setting an environment variable with the value of a configuration variable
-  env_var: ${{ vars.ENV_CONTEXT_VAR }}
+  tag_var: ${{ vars.TAG }}
+  actor_var: ${{ vars.GITHUB_ACTOR }}
 
 
 jobs:
@@ -68,5 +69,5 @@ jobs:
 #        publish_dir: ./automation-report
     - name: Env check
       run: |
-        echo ${{ vars.TAG }}
-        echo ${{ vars.GITHUB_ACTOR }}
+        echo "$tag_var"
+        echo $actor_var
