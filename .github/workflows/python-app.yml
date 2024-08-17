@@ -8,7 +8,7 @@ on:
 
 env:
   # Setting an environment variable with the value of a configuration variable
-  env_var: ${{ vars.Excelleta }}
+  env_var: ${{ vars.ENV_CONTEXT_VAR }}
 
 
 jobs:
@@ -67,4 +67,6 @@ jobs:
 #        github_token: ${{ secrets.GITHUB_TOKEN }}
 #        publish_dir: ./automation-report
     - name: Env check
-      run: echo ${{ vars.TAG }}
+      run: |
+        echo ${{ vars.TAG }}
+        echo ${{ vars.GITHUB_ACTOR }}
