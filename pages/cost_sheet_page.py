@@ -10,6 +10,7 @@ from test_data.testdata import *
 from time import sleep
 from locators.cost_sheet_locators import *
 from locators.technical_evaluation_tab_locators import *
+from time import sleep, strftime
 
 
 class CostSheetPage:
@@ -288,3 +289,24 @@ class Approve_Cost_Sheet:
                 assert ah_row_vals == actual_vals
                 do_click(browser, slide_back_btn)
                 break
+
+    def revoke_cost_sheet(self, browser):
+        do_click(browser, send_for_approval_btn_loc)
+        do_send_keys(browser, add_comment, "test")
+        do_click(browser, cmt_submit_btn_loc)
+        send_approval_time = strftime("%d-%b-%Y, %I:%M %p")
+        sleep(2)
+        do_click(browser, cs_revoke_btn_loc)
+        text = random_correct_name(5, 5, 'first_name')
+        do_send_keys(browser, add_comment, text)
+        do_click(browser, cmt_submit_btn_loc)
+        revoke_time = strftime("%d-%b-%Y, %I:%M %p")
+        sleep(2)
+        do_click(browser, cs_approval_histry_btn_loc)
+        revoke_pop_values = approval_pop_values[1].replace("[2]", "[1]")
+        revoke_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], revoke_pop_values)
+        actual_vals = [f'Management Approval Level - 1', 'Somvir Singh', 'Saurabh Shrivastava', 'Revoked',
+                       send_approval_time, revoke_time, text]
+        logging.info(revoke_row_vals)
+        logging.info(actual_vals)
+        assert revoke_row_vals == actual_vals
