@@ -8,7 +8,7 @@ on:
 
 env:
   # Setting an environment variable with the value of a configuration variable
-  env_var: ${{ vars.Excelleta }}
+  env_var: ${{ vars.ENV_CONTEXT_VAR }}
 
 
 jobs:
@@ -18,50 +18,56 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Python 3.12.3
-      uses: actions/setup-python@v3
-      with:
-          python-version: "3.12.3"
-    - name: Install dependencies
+#    - name: Set up Python 3.12.3
+#      uses: actions/setup-python@v3
+#      with:
+#          python-version: "3.12.3"
+#    - name: Install dependencies
+#      run: |
+#        sudo apt update
+#        sudo apt install -y bind9 dnsutils
+#        CHROME_DRIVER_VERSION=`curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE`
+#        sudo mkdir -m 0755 -p /etc/apt/keyrings/
+#        curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/excelleta.gpg
+#        echo "deb https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+#        sudo apt -y install google-chrome-stable
+#        wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip -P ~/
+#        unzip ~/chromedriver_linux64.zip -d ~/
+#        rm ~/chromedriver_linux64.zip
+#        mv -f ~/chromedriver /usr/local/bin/chromedriver
+#        sudo chown -R root /usr/local/bin/chromedriver
+#        sudo chmod 0755 /usr/local/bin/chromedriver
+#        USER_NAME=${GITLAB_USER_LOGIN//.}
+#        python -m pip install --upgrade pip
+#        pip install -r requirements.txt
+#
+#    - name: Excelleta Sanity Test
+#      run: |
+#        echo $TAG
+#        browser=headless_chrome pytest -s -m Sanity -n 4 --last-failed --reruns 1
+#      continue-on-error: true
+#
+#    - name: Upload artifact
+#      uses: actions/upload-artifact@v3
+#      with:
+#        name: automation-report
+#        path: report/
+#        retention-days: 0.5
+#
+#    - name: Download build artifact
+#      uses: actions/download-artifact@v2
+#      with:
+#        name: automation-report
+#        path: ./automation-report
+#
+#    - name: Deploy Report to GitHub Pages
+#      uses: peaceiris/actions-gh-pages@v3
+#      with:
+#        github_token: ${{ secrets.GITHUB_TOKEN }}
+#        publish_dir: ./automation-report
+    - name: Env check
       run: |
-        sudo apt update
-        sudo apt install -y bind9 dnsutils
-        CHROME_DRIVER_VERSION=`curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE`
-        sudo mkdir -m 0755 -p /etc/apt/keyrings/
-        curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/excelleta.gpg
-        echo "deb https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-        sudo apt -y install google-chrome-stable
-        wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip -P ~/
-        unzip ~/chromedriver_linux64.zip -d ~/
-        rm ~/chromedriver_linux64.zip
-        mv -f ~/chromedriver /usr/local/bin/chromedriver
-        sudo chown -R root /usr/local/bin/chromedriver
-        sudo chmod 0755 /usr/local/bin/chromedriver
-        USER_NAME=${GITLAB_USER_LOGIN//.}
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-
-    - name: Excelleta Sanity Test
-      run: |
-        echo $TAG
-        browser=headless_chrome pytest -s -m="${{ secrets.TAG }}" -n 6 -k="${{ secrets.TEST_NAME }}" --last-failed --reruns 1
-      continue-on-error: true
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: automation-report
-        path: report/
-        retention-days: 0.5
-
-    - name: Download build artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: automation-report
-        path: ./automation-report
-
-    - name: Deploy Report to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./automation-report
+        echo $TEST_VAR
+        echo "$TEST_VAR"
+      env:
+        TEST_VAR: ${{ vars.TEST_NAME }}
