@@ -255,3 +255,51 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create a RFQ single
     Then Add Drawing Data
     Then Verify Edit Managers Information in RFQ
+
+
+  #@Sanity
+  Scenario: TC_16 Revoke TE and verify Approval History
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 25
+    Then Create a RFQ single
+    Then Add Drawing Data
+    When Navigate to Technical Evaluation tab 10
+    When Edit TE Assembly and fill raw material data single
+    When Create TE data 1
+    Then Revoke TE and Verify History
+
+  #@Sanity
+  Scenario: TC_17 Create Multi level BOM, Generate cost snd all level reject flow
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 25
+    Then Create a RFQ multi
+    Then Add Drawing Data
+    When Navigate to Technical Evaluation tab 10
+    When Edit TE Assembly and fill raw material data multi
+    When Create TE data 1
+    When Add sub assembly and its data
+    When Create TE data 2
+    When Add assembly part 1 2
+    When Create TE data 3
+    When Create TE BOP data 1
+    When Create TE data 4
+    When Add assembly part 2 3
+    When Create TE data 3
+    When Create TE BOP data 2
+    When Create TE data 4
+    When Create ST Ops data 3
+    When Create ST Ops data 5
+    Then Approve TE all levels, back false level 4 assert False
+    Then Create norms data
+    Then Generate Costing Data and Norms, Nav direct false
+    When Navigate to Costing Sheet tab 10
+    Then Goto MTE Cost Sheet
+    Then Revoke Cost sheet

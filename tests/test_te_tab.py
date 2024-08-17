@@ -188,3 +188,8 @@ def create_st_operations_info(browser, index):
 @then('Clone TE')
 def te_clone(browser):
     edit_te_steps.clone_te(browser)
+
+
+@then('Revoke TE and Verify History')
+def revoke_te_history(browser):
+    approve_te_steps.te_revoke_functionality(browser)

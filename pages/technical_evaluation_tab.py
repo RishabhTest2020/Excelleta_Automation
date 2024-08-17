@@ -4,7 +4,7 @@ from helpers.common_helpers import *
 from locators.rfq_tab_locators import *
 from locators.technical_evaluation_tab_locators import *
 from test_data.testdata import *
-from time import sleep
+from time import sleep, strftime
 
 
 class Create_TE:
@@ -270,6 +270,28 @@ class Approve_TE:
                     do_click(browser, slide_back_btn)
                     break
 
+    def te_revoke_functionality(self, browser):
+        do_click(browser, submit_cft_approval)
+        do_send_keys(browser, add_comment, "Test")
+        do_click(browser, save_btn)
+        te_created_time = strftime("%d-%b-%Y, %I:%M %p")
+        sleep(2)
+        do_click(browser, revoke_loc)
+        text = random_correct_name(5, 5, 'first_name')
+        do_send_keys(browser, add_comment, text)
+        do_click(browser, save_btn)
+        revoke_time = strftime("%d-%b-%Y, %I:%M %p")
+        sleep(5)
+        do_click(browser, te_approval_history)
+        sleep(2)
+        revoke_pop_values = approval_pop_values[1].replace("[2]", "[1]")
+        revoke_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], revoke_pop_values)
+        actual_vals = [f'TE Approval Level - 1', 'Siddharth Suman', 'Saurabh Shrivastava', 'Revoked',
+                       te_created_time, revoke_time, text]
+        logging.info(revoke_row_vals)
+        logging.info(actual_vals)
+        assert revoke_row_vals == actual_vals
+
 
 class Edit_TE:
 
@@ -514,7 +536,6 @@ class AddSTOperations:
         if ops is True:
             do_click(browser, st_operation_btn_loc)
             sleep(2)
-
 
 class TE_API_calls:
 

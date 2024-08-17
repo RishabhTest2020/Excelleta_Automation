@@ -41,3 +41,4 @@ send_for_approval_btn_loc = (By.XPATH, '//*[contains(@class,"custom-header-btns"
 cmt_submit_btn_loc = (By.XPATH, '//*[contains(text(), "Submit")]')
 send_for_cust_approval_btn_loc = (By.XPATH, '//*[contains(@class,"custom-header-btns")]//*[contains(text(), "Send Customer For Approval")]')
 cs_approval_histry_btn_loc = (By.XPATH, '//*[contains(text(), "Approval History")]')
+cs_revoke_btn_loc = (By.XPATH, '//*[contains(@class,"custom-header-btns")]//span[contains(text(), "Revoke")]')

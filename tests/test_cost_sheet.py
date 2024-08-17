@@ -84,3 +84,7 @@ def approve_cs_levels(browser, level):
     cs_no = current_url.split("/")[-1]
     approve_cs_steps.reject_cost_sheet(browser, level, cs_no, "Somvir Singh", "Nishant Jairath", "Somvir Singh")#rfq_steps.business_dev_head, rfq_steps.cft_member,
                                        # rfq_steps.business_dev_head)
+
+@then('Revoke Cost sheet')
+def revoke_cost_sheet_data(browser):
+    approve_cs_steps.revoke_cost_sheet(browser)
