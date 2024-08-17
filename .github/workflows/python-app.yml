@@ -6,9 +6,9 @@ name: Execelleta Automation
 on:
   workflow_dispatch:
 
-#env:
-#  # Setting an environment variable with the value of a configuration variable
-#  env_var: ${{ vars.Excelleta }}
+env:
+  # Setting an environment variable with the value of a configuration variable
+  env_var: ${{ vars.Excelleta }}
 
 
 jobs:
@@ -18,10 +18,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Python 3.12.3
-      uses: actions/setup-python@v3
-      with:
-          python-version: "3.12.3"
+#    - name: Set up Python 3.12.3
+#      uses: actions/setup-python@v3
+#      with:
+#          python-version: "3.12.3"
 #
 #    - name: Install dependencies
 #      run: |
@@ -66,5 +66,5 @@ jobs:
 #      with:
 #        github_token: ${{ secrets.GITHUB_TOKEN }}
 #        publish_dir: ./automation-report
-    - name: Deploy Report to GitHub Pages
+    - name: Env check
       run: echo ${{ vars.TAG }}
