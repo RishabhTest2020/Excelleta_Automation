@@ -32,7 +32,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify created contact data
     Then Verify contact table head column
 
-  @Sanity  #@Test
+  @Sanity
   Scenario: TC_05 Verify Rfq Tab and New Rfq creation
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -169,10 +169,55 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 10
     Then Verify Manufacturing Location of Norms
 
-  @Test
-  Scenario: Reject CS
+  #@Test
+  Scenario: TC_11 Reject CS
     Given Login into Excelleta UI
     Then Generate Costing Data and Norms, Nav direct true
     When Navigate to Costing Sheet tab 10
     Then Goto MTE Cost Sheet
     Then Reject CS at level 1
+
+  @Sanity  @Test
+  Scenario: TC_12 Verify Reject And Revoke Functionality of ROI
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 25
+    Then Create a RFQ single
+    Then Reject ROI data
+    Then Revoke ROI data
+
+  Scenario: TC_13 Verify Reject And Revoke Functionality OF TF
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 25
+    Then Create a RFQ single
+    Then Reject technical feasibility
+    Then Revoke technical feasibility
+
+  Scenario: TC_14 Verify Technical Feasibility As No
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 25
+    Then Create a RFQ single
+    Then Technical feasibility as No
+
+
+  Scenario: TC_15 Verify Managers data in Edit RFQ
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 25
+    Then Create a RFQ single
+    Then Add Drawing Data
+    Then Verify Edit Managers Information in RFQ

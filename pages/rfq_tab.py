@@ -654,3 +654,5 @@ class Drawing_data:
         do_send_keys(browser, add_comment, 'Test')
         do_click(browser, save_btn)
         should_be_visible(browser, add_technical_feasibility, "add_technical_feasibility")
+        should_be_invisible(browser, te_menu_btn, "tf_menu_btn")
+

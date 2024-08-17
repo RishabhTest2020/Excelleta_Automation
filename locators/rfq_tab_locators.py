@@ -129,7 +129,7 @@ add_comment = (By.XPATH, '//input[@id="comment"]')
 add_technical_feasibility = (By.XPATH, '//button[contains(text(), "Add Technical Feasibility")]')
 tech_feasi_is_no_loc = (By.XPATH, '//label[contains(@class,"radio-label") and span[text()="No"]]')
 tf_file_loc = (By.XPATH, '//input[@id="feasibilitySheet"]')
-te_menu_btn = (By.XPATH, '//div[@id="rfq-data4"]//button')
+te_menu_btn = (By.XPATH, '//div[@id="rfq-data4"]//*[contains(@class,"menuAction")]//button')
 
 te_name_link = (By.XPATH, '//div[@class="rfqSection"]//td[@class="link"]')
 
