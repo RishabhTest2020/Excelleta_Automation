@@ -1,7 +1,7 @@
 import logging
 
 from helpers.common_helpers import *
-from locators.accounts_tab_locators import save_btn, accounts_norms
+from locators.accounts_tab_locators import save_btn, accounts_norms, norms_back_arrow_icon_loc
 from pages.rfq_tab import *
 from pytest_bdd import given, when, then, parsers
 from tests.test_accounts_tab import accounts_steps, norms_steps
@@ -123,9 +123,6 @@ def roi_data_rejection(browser):
 
 @then('Revoke ROI data')
 def roi_data_revoke(browser):
-    drawing_data_steps.add_drawing_data(browser)
-    drawing_data_steps.select_2d_soft_copy(browser)
-    drawing_data_steps.select_3d_soft_copy(browser)
     drawing_data_steps.add_roi_and_revoke(browser)
 
 @then('Reject technical feasibility')
@@ -139,10 +136,6 @@ def technical_feasibility_rejection(browser):
 
 @then('Revoke technical feasibility')
 def technical_feasibility_revoke(browser):
-    drawing_data_steps.add_drawing_data(browser)
-    drawing_data_steps.select_2d_soft_copy(browser)
-    drawing_data_steps.select_3d_soft_copy(browser)
-    drawing_data_steps.add_roi_and_approve(browser)
     drawing_data_steps.add_technical_feasibility_revoke(browser)
 
 
@@ -166,8 +159,9 @@ def manufacturing_location_from_norms(browser):
     sleep(2)
     norms_steps.verify_norms_manufacturing_location(browser, index="2",
                                                     expected_location=rfq_steps.manufacturing_location)
+    sleep(1)
+    do_click(browser, norms_back_arrow_icon_loc)
 
-
-@then('Verify Managers Information in RFQ')
+@then('Verify Edit Managers Information in RFQ')
 def verify_selected_managers_list(browser):
     rfq_steps.verify_selected_managers_data(browser)

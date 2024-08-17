@@ -82,5 +82,5 @@ def approve_cs_levels(browser):
 def approve_cs_levels(browser, level):
     current_url = browser.current_url
     cs_no = current_url.split("/")[-1]
-    approve_cs_steps.reject_cost_sheet(browser, level, cs_no, "Somvir Singh", "Nishant Jairath", "Somvir Singh")#rfq_steps.business_dev_head, rfq_steps.cft_member,
-                                       # rfq_steps.business_dev_head)
+    approve_cs_steps.reject_cost_sheet(browser, level, cs_no, rfq_steps.business_dev_head, rfq_steps.cft_member,
+                                       rfq_steps.business_dev_head)

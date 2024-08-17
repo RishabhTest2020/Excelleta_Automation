@@ -32,7 +32,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify created contact data
     Then Verify contact table head column
 
-  @Sanity #@Test
+  @Sanity
   Scenario: TC_05 Verify Rfq Tab and New Rfq creation
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -169,7 +169,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 10
     Then Verify Manufacturing Location of Norms
 
-  @Test
+  @Sanity @Test
   Scenario: TC_11 Create Multi level BOM, Generate cost snd all level reject flow
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -208,3 +208,50 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to Costing Sheet tab 5
     Then Goto MTE Cost Sheet
     Then Reject CS at level 4
+
+  @Sanity
+  Scenario: TC_12 Verify Reject And Revoke Functionality of ROI
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 25
+    Then Create a RFQ single
+    Then Reject ROI data
+    Then Revoke ROI data
+
+  @Sanity
+  Scenario: TC_13 Verify Reject And Revoke Functionality OF TF
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 25
+    Then Create a RFQ single
+    Then Reject technical feasibility
+    Then Revoke technical feasibility
+
+  @Sanity
+  Scenario: TC_14 Verify Technical Feasibility As No
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 25
+    Then Create a RFQ single
+    Then Technical feasibility as No
+
+  #@Test
+  Scenario: TC_15 Verify Managers data in Edit RFQ
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 25
+    Then Create a RFQ single
+    Then Add Drawing Data
+    Then Verify Edit Managers Information in RFQ

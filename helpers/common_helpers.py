@@ -191,6 +191,7 @@ def get_element_text(browser, by_locator: tuple):
     wait_for_ajax(browser)
     elem_text = WebDriverWait(browser, 30, poll_frequency=0.4).until(
         EC.presence_of_element_located(by_locator)).text
+    logging.info(elem_text)
     return elem_text
 
 
