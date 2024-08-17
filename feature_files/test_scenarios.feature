@@ -6,11 +6,11 @@ Feature: Automation Sanity Test Plan Execelleta
     Given Login into Excelleta UI
 
 
-  @Sanity
+  @Sanity @TestCI
   Scenario: TC_02 Verify login with invalid creds
     Given Login with invalid creds test@yopmail.com 123test into Excelleta UI
 
-  @Sanity
+  @Sanity @TestCI
   Scenario: TC_03 Verify Accounts Tab and New Account creation
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
