@@ -169,7 +169,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 10
     Then Verify Manufacturing Location of Norms
 
-  #@Test
+  @Sanity @Test
   Scenario: TC_11 Create Multi level BOM, Generate cost snd all level reject flow
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
