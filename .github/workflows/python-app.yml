@@ -8,7 +8,7 @@ on:
 
 env:
   # Setting an environment variable with the value of a configuration variable
-  TAG_VAR: ${{ env.TAG }}
+  TAG_VAR: ${{ vars.TAG }}
   ACTOR_VAR: ${{ vars.GITHUB_ACTOR }}
 
 
@@ -71,3 +71,5 @@ jobs:
       run: |
         echo "$TAG_VAR"
         echo $ACTOR_VAR
+        echo ${{ env.TAG }}
+        echo ${{ secrets.TAG }}
