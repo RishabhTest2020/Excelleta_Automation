@@ -89,7 +89,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4 assert True
 
-#@Sanity #@Test
+@Sanity #@Test
   Scenario: TC_08 Create Multi level BOM, create norms and Generate cost approval flow
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -170,7 +170,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify Manufacturing Location of Norms
 
   @Sanity @Test
-  Scenario: TC_11 Create Multi level BOM, Generate cost snd all level reject flow
+  Scenario: TC_11 Create Multi level BOM, Generate cost and all level reject flow
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
     Then Create an account
@@ -257,7 +257,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify Edit Managers Information in RFQ
 
 
-  #@Sanity
+  @Sanity
   Scenario: TC_16 Revoke TE and verify Approval History
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -272,8 +272,8 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create TE data 1
     Then Revoke TE and Verify History
 
-  #@Sanity
-  Scenario: TC_17 Create Multi level BOM, Generate cost snd all level reject flow
+  @Sanity
+  Scenario: TC_17 Create Multi level BOM, Generate cost and revoke flow
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
     Then Create an account
