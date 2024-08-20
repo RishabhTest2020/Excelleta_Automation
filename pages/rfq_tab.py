@@ -620,6 +620,7 @@ class Drawing_data:
         do_click(browser, save_btn)
         sleep(2)
         should_be_visible(browser, add_technical_feasibility, "add_technical_feasibility")
+        sleep(5)
 
 
     def add_technical_feasibility_revoke(self, browser):
