@@ -61,7 +61,6 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify TE data
     Then Approve TE all levels, back true level 3 assert True
 
-
   @Sanity #@Test
   Scenario: TC_07 Create Multi level BOM and approve flow
     Given Login into Excelleta UI
@@ -255,7 +254,6 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create a RFQ single
     Then Add Drawing Data
     Then Verify Edit Managers Information in RFQ
-
 
   @Sanity
   Scenario: TC_16 Revoke TE and verify Approval History
