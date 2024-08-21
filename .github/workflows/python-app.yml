@@ -38,7 +38,7 @@ jobs:
 
     - name: Excelleta Sanity Test
       run: |
-        ENV=${{ secrets.ENV }} browser=headless_chrome pytest -s -m ${{ secrets.TAG }} -n ${{ secrets.THREADS }} --last-failed --reruns 1
+        ENV=${{ secrets.ENV }} browser=headless_chrome pytest -s -m=${{ secrets.TAG }} -n=${{ secrets.THREADS }} -k=${{ secrets.TEST_NAME }} --last-failed --reruns 1
       continue-on-error: true
 
     - name: Upload artifact
@@ -58,4 +58,5 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./automation-report
+        publish_dir: ./public
+        destination_dir: ${{ github.run_id }}
