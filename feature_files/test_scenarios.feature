@@ -1,3 +1,4 @@
+#noinspection CucumberPlusUndefinedStep
 Feature: Automation Sanity Test Plan Execelleta
 
 
