@@ -1,3 +1,5 @@
+name: TestYML
+
 on:
   workflow_dispatch:
 env:
