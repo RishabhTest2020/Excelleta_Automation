@@ -1,23 +1,23 @@
-## This workflow will install Python dependencies, run tests and lint with a single version of Python
-## For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
-#
-#name: Execelleta Automation
-#
-#on:
-#  workflow_dispatch:
-#
-#env:
-#  # Setting an environment variable with the value of a configuration variable
-#  env_var: ${{ vars.Excelleta }}
-#
-#
-#jobs:
-#  build:
-#
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#    - uses: actions/checkout@v4
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Execelleta Automation
+
+on:
+  workflow_dispatch:
+
+env:
+  # Setting an environment variable with the value of a configuration variable
+  env_var: ${{ vars.Excelleta }}
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
 #    - name: Set up Python 3.12.3
 #      uses: actions/setup-python@v3
 #      with:
@@ -65,31 +65,5 @@
 #      with:
 #        github_token: ${{ secrets.GITHUB_TOKEN }}
 #        publish_dir: ./automation-report
-
-name: TestYML
-
-on:
-  workflow_dispatch:
-env:
-  # Setting an environment variable with the value of a configuration variable
-  env_var: ${{ vars.ENV_CONTEXT_VAR }}
-
-jobs:
-  display-variables:
-    name: ${{ vars.JOB_NAME }}
-    # You can use configuration variables with the `vars` context for dynamic jobs
-    if: ${{ vars.USE_VARIABLES == 'true' }}
-    runs-on: ${{ vars.RUNNER }}
-    environment: ${{ vars.ENVIRONMENT_STAGE }}
-    steps:
-    - name: Use variables
-      run: |
-        echo "repository variable : $REPOSITORY_VAR"
-        echo "organization variable : $ORGANIZATION_VAR"
-        echo "overridden variable : $OVERRIDE_VAR"
-        echo "variable from shell environment : $env_var"
-      env:
-        REPOSITORY_VAR: ${{ vars.REPOSITORY_VAR }}
-        ORGANIZATION_VAR: ${{ vars.ORGANIZATION_VAR }}
-        OVERRIDE_VAR: ${{ vars.OVERRIDE_VAR }}
-
+    - name: Test Vars
+      run: echo "${{ github.TEST_NAME }}"
