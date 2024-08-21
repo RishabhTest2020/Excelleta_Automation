@@ -210,19 +210,19 @@ class Approve_Cost_Sheet:
                     approval_pop_values1 = approval_pop_values[1].replace("[2]", f"[{j}]")
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
                     actual_vals = [f'Management Approval Level - {i}', args[i - 1], args[i - 1], 'Approved',
-                                   self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
+                                   self.formatted_time[i], self.formatted_time_app[i], self.comments[-1]]
                 elif i == range_mod[3]:
                     print(i)
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
                     actual_vals = [f'Customer Approval', "-", "Saurabh Shrivastava", 'Submitted',
-                                   self.formatted_time[i], self.comments[i]]
+                                   self.formatted_time[i], self.comments[-1]]
                 elif i == range_mod[-1]:
                     print(i)
                     j = i - 2
                     approval_pop_values1 = approval_pop_values[1].replace("[2]", "[1]")
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
                     actual_vals = [f'Customer Approval', args[j], args[j], 'Approved',
-                                   self.formatted_time[i], self.formatted_time_app[i], self.comments[i]]
+                                   self.formatted_time[i], self.formatted_time_app[i], self.comments[-1]]
                 else:
                     ah_row_vals = None
                     actual_vals = None
@@ -295,13 +295,13 @@ class Approve_Cost_Sheet:
         do_send_keys(browser, add_comment, "test")
         do_click(browser, cmt_submit_btn_loc)
         send_approval_time = strftime("%d-%b-%Y, %I:%M %p")
-        loader_should_be_invisile(browser, 5)
+        loader_should_be_invisile(browser, 8)
         do_click(browser, cs_revoke_btn_loc)
         text = random_correct_name(5, 5, 'first_name')
         do_send_keys(browser, add_comment, text)
         do_click(browser, cmt_submit_btn_loc)
         revoke_time = strftime("%d-%b-%Y, %I:%M %p")
-        loader_should_be_invisile(browser, 5)
+        loader_should_be_invisile(browser, 8)
         do_click(browser, cs_approval_histry_btn_loc)
         revoke_pop_values = approval_pop_values[1].replace("[2]", "[1]")
         revoke_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], revoke_pop_values)

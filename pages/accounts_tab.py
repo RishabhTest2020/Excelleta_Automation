@@ -41,12 +41,8 @@ class Accounts:
         assert accounts_table_header_col.sort() == col_names_lst.sort()
 
     def add_accounts_data_in_txt_box(self, browser):
-        if sys.platform == 'win32':
-            number = '99090909090'
-        else:
-            number = '99090909090'
         self.account_details = [random_correct_name(8, 4, 'first_name'), f'{random_email_generator()}',
-                                'www.testwesite.com', number, '12345678', generate_random_pan(),
+                                'www.testwesite.com', '99090909090', '12345678', generate_random_pan(),
                                 f'{generate_random_five_digit_number()}', 7]
         logging.info(self.account_details)
         for field_name, data in zip(accounts_create_fields_gen, self.account_details):
@@ -54,6 +50,13 @@ class Accounts:
             acc_field_loc = replace_in_tuple(acc_field_txtbox, 1, acco_field)
             do_clear(browser, acc_field_loc)
             do_send_keys(browser, acc_field_loc, data)
+            if field_name == accounts_create_fields_gen[3]:
+                invalid_mess = is_visible(browser, invalid_phone_num_erroe_loc)
+                if invalid_mess is True:
+                    do_clear(browser, acc_field_loc)
+                    do_send_keys(browser, acc_field_loc, data[1:])
+                    self.account_details.remove(self.account_details[3])
+                    self.account_details.insert(3, data[1:])
 
     def select_start_month_field(self, browser):
         loader_should_be_invisile(browser, 4)
