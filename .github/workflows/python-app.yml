@@ -6,11 +6,6 @@ name: Execelleta Automation
 on:
   workflow_dispatch:
 
-env:
-  # Setting an environment variable with the value of a configuration variable
-  env_var: ${{ vars.Excelleta }}
-
-
 jobs:
   build:
 
@@ -43,8 +38,7 @@ jobs:
 
     - name: Excelleta Sanity Test
       run: |
-        echo $TAG
-        browser=headless_chrome pytest -s -m Sanity -n 6 --last-failed --reruns 1
+        ENV=${{ secrets.ENV }} browser=headless_chrome run_id=${{ github.run_id }} pytest -s -m=${{ secrets.TAG }} -n=${{ secrets.THREADS }} -k=${{ secrets.TEST_NAME }} --last-failed --reruns 1
       continue-on-error: true
 
     - name: Upload artifact
@@ -65,3 +59,4 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./automation-report
+        destination_dir: ${{ github.run_id }}
