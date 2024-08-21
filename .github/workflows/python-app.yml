@@ -38,7 +38,7 @@ jobs:
 
     - name: Excelleta Sanity Test
       run: |
-        ENV=${{ secrets.ENV }} browser=headless_chrome pytest -s -m=${{ secrets.TAG }} -n=${{ secrets.THREADS }} -k=${{ secrets.TEST_NAME }} --last-failed --reruns 1
+        ENV=${{ secrets.ENV }} browser=headless_chrome run_id=${{ github.run_id }} pytest -s -m=${{ secrets.TAG }} -n=${{ secrets.THREADS }} -k=${{ secrets.TEST_NAME }} --last-failed --reruns 1
       continue-on-error: true
 
     - name: Upload artifact

@@ -658,6 +658,7 @@ def delete_all_class_vars_in_project(project_directory):
 
 def send_report_to_teams(text, color, status):
     webhook_url = "https://excelleta.webhook.office.com/webhookb2/88990897-a6cd-4721-8d00-b2d80a6382e0@8e8f16fe-82f5-4b4a-ac6a-69533b9f7f7a/IncomingWebhook/3a8629371f8147039d3415ff22c0e8dd/ffc76b7c-34a7-4e5c-a187-e312da7118d8"
+    runId = os.environ['run_id']
     message = {
         "type": "message",
         "attachments": [
@@ -686,7 +687,7 @@ def send_report_to_teams(text, color, status):
                                 },
                                 {
                                     "type": "TextBlock",
-                                    "text": "[Click here to check report](https://rishabhtest2020.github.io/Excelleta_Automation/report.html?sort=result)",
+                                    "text": f"[Click here to check report](https://rishabhtest2020.github.io/Excelleta_Automation/{runId}/report.html?sort=result)",
                                     "wrap": True
                                 },
                                 {
