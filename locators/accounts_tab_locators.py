@@ -140,3 +140,4 @@ process_norms_table_new_rate_loc = (By.XPATH, '(//table[contains(@class, "generi
 te_accounts_loc = (By.XPATH, '//p[contains(@title, "accountName")]')
 acc_page_contact_value_loc = (By.XPATH, '//*[contains(@class,"contact-info")]//*[contains(text(),"field")]/following-sibling::td')
 norms_back_arrow_icon_loc = (By.XPATH, '//*[contains(@class,"content-header")]//*[contains(@class,"backArrow")]')
+invalid_phone_num_erroe_loc = (By.XPATH, '//span[contains(text(), "Invalid Phone Number format")]')
