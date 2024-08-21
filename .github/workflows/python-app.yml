@@ -38,7 +38,6 @@ jobs:
 
     - name: Excelleta Sanity Test
       run: |
-        echo $TAG
         ENV=${{ secrets.ENV }} browser=headless_chrome pytest -s -m ${{ secrets.TAG }} -n ${{ secrets.THREADS }} --last-failed --reruns 1
       continue-on-error: true
 
