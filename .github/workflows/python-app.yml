@@ -66,4 +66,4 @@ jobs:
 #        github_token: ${{ secrets.GITHUB_TOKEN }}
 #        publish_dir: ./automation-report
     - name: Test Vars
-      run: echo "${{ github.TEST_NAME }}"
+      run: echo "${{ vars.TEST_NAME }}"
