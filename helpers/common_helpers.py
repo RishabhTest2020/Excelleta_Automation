@@ -675,7 +675,7 @@ def send_report_to_teams(text, color, status):
                             "items": [
                                 {
                                     "type": "TextBlock",
-                                    "text": f"🔔 **{globalEnvs.env} {status}**",
+                                    "text": f"🔔 **{globalEnvs.env} {status}**".upper(),
                                     "weight": "bolder",
                                     "size": "large",
                                     "color": color

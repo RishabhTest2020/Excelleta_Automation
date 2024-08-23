@@ -150,9 +150,8 @@ class TestResult:
 @pytest.hookimpl(hookwrapper=True)
 def pytest_terminal_summary(terminalreporter, exitstatus):
     """
-    This function takes information from BrowserStack or from GotLab worker and returns execution results on Slack
     Returns:
-        Report sent to Slack (Promo test_automation channel)
+        Report sent to Teams (test_automation channel)
     """
     yield
     if hasattr(terminalreporter.config, 'workerinput'):
