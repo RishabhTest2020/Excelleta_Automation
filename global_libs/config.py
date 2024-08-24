@@ -38,6 +38,7 @@ class global_env_vars:
         self.H_K_email = os.getenv('H_K_email')
         self.Anil_email = os.getenv('Anil_email')
         self.Sanjay_email = os.getenv('Sanjay_email')
+        self.Pradeep_email = os.getenv('Pradeep_email')
         self.approver_password = os.getenv('approver_password')
 
 

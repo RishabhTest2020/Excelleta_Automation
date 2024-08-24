@@ -172,6 +172,7 @@ class Approve_TE:
                 current_date_time2 = datetime.now()
                 self.formatted_time_app.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
             else:
+                logging.info(args[i - 1])
                 te_calls = TE_API_calls()
                 approver_email = [x for x in globalEnvs.__dict__ if args[i - 1].split(" ")[0] in x]
                 logging.info(approver_email)

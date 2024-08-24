@@ -164,9 +164,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 20
+    When Navigate to RFQ tab 25
     Then Create a RFQ single, location 3
-    When Navigate to RFQ tab 10
+    When Navigate to RFQ tab 25
     Then Verify Manufacturing Location of Norms
 
   @Sanity #@Test
