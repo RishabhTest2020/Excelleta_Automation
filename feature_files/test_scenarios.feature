@@ -199,15 +199,19 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Generate Costing Data and Norms, Nav direct false
     When Navigate to Costing Sheet tab 10
     Then Goto MTE Cost Sheet
-    Then Reject CS at level 1
+    Then Reject CS at level 1, cs reason NA
     Then Generate Costing Data and Norms, Nav direct true
     When Navigate to Costing Sheet tab 5
     Then Goto MTE Cost Sheet
-    Then Reject CS at level 2
+    Then Reject CS at level 2, cs reason NA
     Then Generate Costing Data and Norms, Nav direct true
     When Navigate to Costing Sheet tab 5
     Then Goto MTE Cost Sheet
-    Then Reject CS at level 4
+    Then Reject CS at level 4, cs reason revision
+    Then Generate Costing Data and Norms, Nav direct true
+    When Navigate to Costing Sheet tab 5
+    Then Goto MTE Cost Sheet
+    Then Reject CS at level 4, cs reason lost
 
   @Sanity
   Scenario: TC_12 Verify Reject And Revoke Functionality of ROI

@@ -231,7 +231,7 @@ class Approve_Cost_Sheet:
                 assert ah_row_vals == actual_vals
                 do_click(browser, slide_back_btn)
 
-    def reject_cost_sheet(self, browser, level, cs_id=None, *args):
+    def reject_cost_sheet(self, browser, level, cs_id=None, reason='revision', *args):
         args_len = len(args)
         range_mod = range(0, args_len + 2)
         for i in range_mod:
@@ -261,7 +261,7 @@ class Approve_Cost_Sheet:
                     else:
                         cust_app = False
                     te_calls.approve_cost_sheet(token=te_calls.token, te_id=cs_id, userid=te_calls.user_id,
-                                                comment=text, status="REJECTED", cust_app=cust_app)
+                                                comment=text, status="REJECTED", cust_app=cust_app, reason=reason)
                 else:
                     te_calls.approve_cost_sheet(token=te_calls.token, te_id=cs_id, userid=te_calls.user_id,
                                                 comment=text)
@@ -279,8 +279,12 @@ class Approve_Cost_Sheet:
                 if int(level) == 4:
                     print(i)
                     j = i - 2
+                    if reason == 'lost':
+                        reject_reason = 'Lost - Infrastructure Not Available'
+                    else:
+                        reject_reason = 'Cost Revision - Need To Rework On Cost'
                     actual_vals = [f'Customer Approval', args[j], args[j], 'Rejected',
-                                   time2, time1, f'Cost Revision - Need To Rework On Cost - {self.comments[-1]}']
+                                   time2, time1, f'{reject_reason} - {self.comments[-1]}']
                 else:
                     actual_vals = [f'Management Approval Level - {i}', args[i - 1], args[i - 1], 'Rejected',
                                    time2, time1, self.comments[-1]]
@@ -289,7 +293,6 @@ class Approve_Cost_Sheet:
                 assert ah_row_vals == actual_vals
                 do_click(browser, slide_back_btn)
                 break
-
     def revoke_cost_sheet(self, browser):
         do_click(browser, send_for_approval_btn_loc)
         do_send_keys(browser, add_comment, "test")
