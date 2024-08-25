@@ -1,3 +1,4 @@
+import logging
 import os
 from dotenv import load_dotenv
 
@@ -16,6 +17,7 @@ class global_env_vars:
             print(e)
         env_file_path = os.getcwd() + '/envFiles/' + env + '.env'
         load_dotenv(env_file_path)
+        logging.info(env)
 
     def env_vars(self):
         self.main_url = os.getenv('main_url')
