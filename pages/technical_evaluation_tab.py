@@ -203,8 +203,8 @@ class Approve_TE:
                     time2 = ah_row_vals[-3]
                     if args_len >= 4 and range_mod.index(i) >= 3:
                         j = i - 1
-                        if range_mod.index(i) == 3:
-                            self.comments.pop(-1)
+                        # if range_mod.index(i) == 3:
+                        #     self.comments.pop(-1)
                     else:
                         j = i
                     if args_len >= 4:
