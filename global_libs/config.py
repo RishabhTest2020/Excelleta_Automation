@@ -28,6 +28,17 @@ class global_env_vars:
         self.Prakash_email = os.getenv('Prakash_email')
         self.Somvir_email = os.getenv('Somvir_email')
         self.Nishant_email = os.getenv('Nishant_email')
+        self.H_K_email = os.getenv('H_K_email')
+        self.Hitesh_email = os.getenv('Hitesh_email')
+        self.Ghanshyam_email = os.getenv('Ghanshyam_email')
+        self.Arun_email = os.getenv('Arun_email')
+        self.Kartikay_email = os.getenv('Kartikay_email')
+        self.YashKant_email = os.getenv('YashKant_email')
+        self.Uttam_email = os.getenv('Uttam_email')
+        self.Sunil_email = os.getenv('Sunil_email')
+        self.Anil_email = os.getenv('Anil_email')
+        self.Sanjay_email = os.getenv('Sanjay_email')
+        self.Pradeep_email = os.getenv('Pradeep_email')
         self.approver_password = os.getenv('approver_password')
 
 

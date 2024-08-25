@@ -423,7 +423,6 @@ class Rfq:
         assert dev_head_name == self.business_dev_head
 
 
-
 class Drawing_data:
 
     def __init__(self):

@@ -172,8 +172,10 @@ class Approve_TE:
                 current_date_time2 = datetime.now()
                 self.formatted_time_app.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
             else:
+                logging.info(args[i - 1])
                 te_calls = TE_API_calls()
                 approver_email = [x for x in globalEnvs.__dict__ if args[i - 1].split(" ")[0] in x]
+                logging.info(approver_email)
                 te_calls.api_login(email=os.getenv(approver_email[0]), password=globalEnvs.approver_password)
                 current_date_time = datetime.now()
                 self.formatted_time.append(current_date_time.strftime("%d-%b-%Y, %I:%M %p"))
@@ -201,6 +203,8 @@ class Approve_TE:
                     time2 = ah_row_vals[-3]
                     if args_len >= 4 and range_mod.index(i) >= 3:
                         j = i - 1
+                        # if range_mod.index(i) == 3:
+                        #     self.comments.pop(-1)
                     else:
                         j = i
                     if args_len >= 4:
@@ -537,6 +541,7 @@ class AddSTOperations:
             do_click(browser, st_operation_btn_loc)
             sleep(2)
 
+
 class TE_API_calls:
 
     def __init__(self):
@@ -570,11 +575,12 @@ class TE_API_calls:
             "comment": comment,
             "version": "Version-1"
         }
+        logging.info(payload)
         resp = requests.post(url, headers=headers, json=payload, verify=False)
         assert resp.status_code == 200
         logging.info(resp.json())
 
-    def approve_cost_sheet(self, token, te_id, userid, comment, status="APPROVED", cust_app=False):
+    def approve_cost_sheet(self, token, te_id, userid, comment, status="APPROVED", cust_app=False, reason='revision'):
         url = f'{globalEnvs.api_url}/approval/updateApprovalStatus'
         headers = {'Accept': 'application/json, text/plain, */*', 'content-type': 'application/json',
                    'Authorization': f'Bearer {token}'}
@@ -587,8 +593,13 @@ class TE_API_calls:
             "comment": comment,
         }
         if cust_app is True:
-            payload['rejectedCommentId'] = 1736
-            payload['specificReasonCommentId'] = 1739
+            if reason == 'lost':
+                payload['rejectedCommentId'] = 1737
+                payload['specificReasonCommentId'] = 1722
+            else:
+                payload['rejectedCommentId'] = 1736
+                payload['specificReasonCommentId'] = 1739
+        logging.info(payload)
         resp = requests.post(url, headers=headers, json=payload, verify=False)
         assert resp.status_code == 200
         logging.info(resp.json())

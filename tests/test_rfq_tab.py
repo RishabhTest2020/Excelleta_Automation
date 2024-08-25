@@ -16,8 +16,8 @@ def acc_head_colm(browser):
     rfq_steps.verify_rfq_head_col(browser)
 
 
-@then(parsers.parse('Create a RFQ {types}'))
-def create_rfq(browser, types):
+@then(parsers.parse('Create a RFQ {types}, location {loc_index:d}'))
+def create_rfq(browser, types, loc_index):
     do_click(browser, add_rfq_btn)
     rfq_steps.select_account_and_key_person(browser, accounts_steps.account_details[0])
     rfq_steps.select_business_evaluation(browser)
@@ -30,7 +30,7 @@ def create_rfq(browser, types):
     rfq_steps.select_confidentiality(browser)
     rfq_steps.select_customer_target_date(browser)
     rfq_steps.select_dev_lead_location(browser)
-    rfq_steps.select_manufacturing_location(browser, index=3)
+    rfq_steps.select_manufacturing_location(browser, index=loc_index)
     rfq_steps.select_company_priority(browser)
     rfq_steps.select_finalizing_date(browser)
     rfq_steps.select_cft_completion_date(browser)
@@ -114,6 +114,7 @@ def create_drawing_data(browser):
     drawing_data_steps.add_technical_feasibility(browser)
     loader_should_be_invisile(browser, 10)
 
+
 @then('Reject ROI data')
 def roi_data_rejection(browser):
     drawing_data_steps.add_drawing_data(browser)
@@ -121,9 +122,11 @@ def roi_data_rejection(browser):
     drawing_data_steps.select_3d_soft_copy(browser)
     drawing_data_steps.add_roi_and_reject(browser)
 
+
 @then('Revoke ROI data')
 def roi_data_revoke(browser):
     drawing_data_steps.add_roi_and_revoke(browser)
+
 
 @then('Reject technical feasibility')
 def technical_feasibility_rejection(browser):
@@ -161,6 +164,7 @@ def manufacturing_location_from_norms(browser):
                                                     expected_location=rfq_steps.manufacturing_location)
     sleep(1)
     do_click(browser, norms_back_arrow_icon_loc)
+
 
 @then('Verify Edit Managers Information in RFQ')
 def verify_selected_managers_list(browser):
