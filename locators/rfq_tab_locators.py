@@ -139,3 +139,7 @@ rfq_table_row_loc = (By.XPATH, '(//a[contains(text(), "acc_name")]/../../..//*[c
 rfq_more_details_btn_loc = (By.XPATH, '//*[contains(@class,"companyDetails")]//*[contains(text(),"RFQ More Details")]')
 rfq_details_edit_btn_loc = (By.XPATH, '//*[contains(@class,"action-btns")]//*[contains(@alt,"edit_icon")]')
 manager_details_header_loc = (By.XPATH, '//*[contains(@formgroupname,"managerDetails")]//h3[contains(text(),"Manager Details")]')
+
+compound_feas_as_yes_loc = (By.XPATH, '//label[contains(@class,"radio-label") and span[text()="Yes"]]')
+add_compound_feasibility_loc = (By.XPATH, '//*[contains(text(),"Add Compound Feasibility")]')
+compound_cf_sheet_input_loc = (By.XPATH, '//input[@id="compoundFeasibilitySheet"]')

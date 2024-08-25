@@ -305,6 +305,16 @@ class Edit_TE:
         self.manufacturing_source = None
         self.surface_area_unit = None
         self.drawing_name = None
+        self.uom_type = None
+        self.prod_category_type = None
+        self.supplier_name = None
+        self.inner_diameter = None
+        self.fabric_gross_weight = None
+        self.gross_weight_factor = None
+        self.material_density = None
+        self.cutting_margin = None
+        self.net_length = None
+        self.outer_diameter = None
 
     def edit_assembly(self, browser):
         do_click(browser, assembly_list_add_btn)
@@ -344,7 +354,10 @@ class Edit_TE:
         scroll_into_the_view(browser, rm_type_loc[0], rm_type_loc[1])
         do_click(browser, rm_type_loc)
         values = get_list_of_elems_text(browser, rm_type_loc_select[0], rm_type_loc_select[1])
-        assert values == rm_type_dd_data
+        if os.environ['ENV'] == "bony":
+            assert values == rm_type_data_bony
+        else:
+            assert values == rm_type_dd_data
         select_name = rm_type_loc_select[1] + f'[{index}]'
         select_loc = replace_in_tuple(rm_type_loc_select, 1, select_name)
         self.rm_type = get_element_text(browser, select_loc)
@@ -355,7 +368,10 @@ class Edit_TE:
         scroll_into_the_view(browser, rm_type_loc[0], rm_type_loc[1])
         do_click(browser, raw_mat_loc)
         values = get_list_of_elems_text(browser, raw_mat_loc_select[0], raw_mat_loc_select[1])
-        assert values == rod_bar_dd_data
+        if os.environ['ENV'] == "bony":
+            assert values == raw_material_data_bony
+        else:
+            assert values == rod_bar_dd_data
         select_name = raw_mat_loc_select[1] + f'[{index}]'
         select_loc = replace_in_tuple(raw_mat_loc_select, 1, select_name)
         self.raw_material = get_element_text(browser, select_loc)
@@ -395,7 +411,68 @@ class Edit_TE:
         do_send_keys(browser, add_comment, "test")
         do_click(browser, save_btn)
         sleep(0.5)
-        
+
+    def select_uom_of_compound_bony(self, browser, index=2):
+        scroll_into_the_view(browser, uom_compound_loc[0], uom_compound_loc[1])
+        do_click(browser, uom_compound_loc)
+        values = get_list_of_elems_text(browser, uom_compound_options_loc[0], uom_compound_options_loc[1])
+        assert values == uom_compound_data
+        select_name = uom_compound_options_loc[1] + f'[{index}]'
+        select_loc = replace_in_tuple(uom_compound_options_loc, 1, select_name)
+        self.uom_type = get_element_text(browser, select_loc)
+        do_click(browser, select_loc)
+        sleep(0.5)
+
+    def select_product_category_bony(self, browser, index=2):
+        scroll_into_the_view(browser, uom_compound_loc[0], uom_compound_loc[1])
+        do_click(browser, prod_category_loc)
+        values = get_list_of_elems_text(browser, prod_category_options_loc[0], prod_category_options_loc[1])
+        assert values == prod_category_data
+        select_name = prod_category_options_loc[1] + f'[{index}]'
+        select_loc = replace_in_tuple(uom_compound_options_loc, 1, select_name)
+        self.prod_category_type = get_element_text(browser, select_loc)
+        do_click(browser, select_loc)
+        sleep(0.5)
+
+    def enter_supplier_name(self, browser):
+        scroll_into_the_view(browser, compound_supplier_name_loc[0], compound_supplier_name_loc[1])
+        self.supplier_name = random_correct_name(8, 4, 'first_name')
+        do_send_keys(browser, compound_supplier_name_loc, self.supplier_name)
+
+    def enter_inner_diameter(self, browser):
+        scroll_into_the_view(browser, inner_diameter_loc[0], inner_diameter_loc[1])
+        self.inner_diameter = generate_random_number(3)
+        do_send_keys(browser, inner_diameter_loc, self.inner_diameter)
+
+    def enter_outer_diameter(self, browser):
+        scroll_into_the_view(browser, outer_diameter_loc[0], outer_diameter_loc[1])
+        self.outer_diameter = generate_random_number(3)
+        do_send_keys(browser, outer_diameter_loc, self.outer_diameter)
+
+    def enter_net_length(self, browser):
+        scroll_into_the_view(browser, net_length_loc[0], net_length_loc[1])
+        self.net_length = generate_random_number(5)
+        do_send_keys(browser, net_length_loc, self.net_length)
+
+    def enter_cutting_margin(self, browser):
+        scroll_into_the_view(browser, cutting_margin_loc[0], cutting_margin_loc[1])
+        self.cutting_margin = generate_random_number(5)
+        do_send_keys(browser, cutting_margin_loc, self.cutting_margin)
+
+    def enter_material_density(self, browser):
+        scroll_into_the_view(browser, material_density_loc[0], material_density_loc[1])
+        self.material_density = generate_random_number(5)
+        do_send_keys(browser, material_density_loc, self.material_density)
+
+    def enter_gross_weight_factor(self, browser):
+        scroll_into_the_view(browser, gross_weight_factor_loc[0], gross_weight_factor_loc[1])
+        self.gross_weight_factor = generate_random_number(5)
+        do_send_keys(browser, gross_weight_factor_loc, self.gross_weight_factor)
+
+    def enter_fabric_gross_weight(self, browser):
+        scroll_into_the_view(browser, fabric_gross_weight_loc[0], fabric_gross_weight_loc[1])
+        self.fabric_gross_weight = generate_random_number(5)
+        do_send_keys(browser, fabric_gross_weight_loc, self.fabric_gross_weight)
 
 
 class CreateBopDetails:

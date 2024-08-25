@@ -661,3 +661,11 @@ class Drawing_data:
         should_be_visible(browser, add_technical_feasibility, "add_technical_feasibility")
         should_be_invisible(browser, te_menu_btn, "tf_menu_btn")
 
+    def add_compound_feasibility(self, browser):
+        do_click(browser, add_compound_feasibility_loc)
+        elem = browser.find_element(By.XPATH, compound_cf_sheet_input_loc[1])
+        elem.send_keys(os.getcwd() + '/files/Account_List.xlsx')
+        sleep(0.4)
+        do_click(browser, compound_feas_as_yes_loc, 20)
+        do_send_keys(browser, add_comment, 'Test')
+        do_click(browser, save_btn)

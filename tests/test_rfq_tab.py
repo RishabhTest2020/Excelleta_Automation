@@ -28,7 +28,10 @@ def create_rfq(browser, types):
     rfq_steps.select_business_value(browser)
     rfq_steps.fill_rfq_txt_box(browser)
     rfq_steps.select_rfq_received_date(browser)
-    rfq_steps.select_confidentiality(browser)
+    if os.environ['ENV'] == "bony":
+        rfq_steps.select_confidentiality(browser, dep_index=3)
+    else:
+        rfq_steps.select_confidentiality(browser)
     rfq_steps.select_customer_target_date(browser)
     rfq_steps.select_dev_lead_location(browser)
     rfq_steps.select_manufacturing_location(browser, index=3)
@@ -114,7 +117,7 @@ def create_drawing_data(browser):
     drawing_data_steps.select_2d_soft_copy(browser)
     drawing_data_steps.select_3d_soft_copy(browser)
     if os.environ['ENV'] == 'bony':
-        pass
+        drawing_data_steps.add_compound_feasibility(browser)
     else:
         drawing_data_steps.add_roi_and_approve(browser)
     drawing_data_steps.add_technical_feasibility(browser)

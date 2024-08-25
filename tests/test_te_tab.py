@@ -35,8 +35,8 @@ def create_te_data(browser, index):
 
 @when(parsers.parse('Edit TE Assembly and fill raw material data {ass_type}'))
 def edit_te_raw_material(browser, ass_type):
-    create_testeps.goto_te_verify_part_add_assembly(browser, drawing_data_steps.te_link,
-                                                    f"{rfq_txtboxes_data[3]} ({str(rfq_txtboxes_data[4])})")
+    # create_testeps.goto_te_verify_part_add_assembly(browser, drawing_data_steps.te_link,
+    #                                                 f"{rfq_txtboxes_data[3]} ({str(rfq_txtboxes_data[4])})")
     edit_te_steps.edit_assembly(browser)
     edit_te_steps.select_drawing_name(browser)
     edit_te_steps.select_surface_area_unit(browser)
@@ -44,7 +44,20 @@ def edit_te_raw_material(browser, ass_type):
     if ass_type == 'single':
         edit_te_steps.select_rm_type(browser)
         edit_te_steps.select_raw_material(browser)
-        edit_te_steps.select_add_rod_size(browser)
+        if os.environ['ENV'] == "metalman":
+            edit_te_steps.select_add_rod_size(browser)
+        else:
+            edit_te_steps.select_uom_of_compound_bony(browser)
+            edit_te_steps.select_product_category_bony(browser)
+            edit_te_steps.enter_supplier_name(browser)
+            sleep(5)
+            edit_te_steps.enter_inner_diameter(browser)
+            edit_te_steps.enter_outer_diameter(browser)
+            edit_te_steps.enter_net_length(browser)
+            edit_te_steps.enter_cutting_margin(browser)
+            edit_te_steps.enter_material_density(browser)
+            edit_te_steps.enter_gross_weight_factor(browser)
+            edit_te_steps.enter_fabric_gross_weight(browser)
     else:
         surface_area_val = 100
         do_send_keys(browser, net_weight_part_loc, edit_te_steps.net_weigh_part)

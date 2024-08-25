@@ -273,6 +273,15 @@ surface_area_unit_dd_data = ['Please select', 'Sq. Feet', 'Sq. Inch']
 manufacturing_source_dd_data = ['Please select', 'In House', 'Outsource']
 
 rm_type_dd_data = ['Please select', 'Rod/Bar', 'Sheet Metal', 'Tube']
+rm_type_data_bony = ['Please select', 'Compound', 'Fabric', 'Yarn']
+raw_material_data_bony = ['Please select', 'AEM', 'AW-01 NATURAL', 'AW01 (POM)', 'Black (MASTERBATCH)', 'CHLOROPRENE',
+                          'CSM', 'CSM (HYP 60 GREY )', 'CSM (HYP 70 GREY )', 'ECO (CNG)', 'ECO (TRISTONE)', 'EPDM',
+                          'FKM', 'GRAY (MASTERBATCH)', 'GREEN (MASTERBATCH)', 'HDPE (BLACK)', 'HNBR', 'HT ACM',
+                          'HYTREL 4056', 'LDPE (BLACK)', 'LJ-3170N (TPO)', 'MI3530 (PP)', 'Natural (PA 66)',
+                          'NBR (AN50)', 'NBR (BRC57310)', 'NBR (CNG RTC)', 'NBR + PVC', 'NR',
+                          'NR (TPO RAIKEN TECHNOS LJ-31709)', 'NYLON 66 + GF 30%', 'NYLON 66+GF15%',
+                          'ORANGE (MASTERBATCH)', 'POM (NATURAL)', 'PPCP (M3135)', 'PU', 'PVC (BALCK)', 'SBR',
+                          'SILICONE', 'TENAC-C Z4520 (POM)', 'TF30 (POM)', 'UTN 320 (PA66)']
 
 rod_bar_dd_data = ['Please select', 'AISI 304 (Ø 9.53) Round', 'ASTM A510 TYPE 1 GRADE 1018 (Ø 5.2) Round',
                    'C20 AS PER IS:1570 (Ø 8) Round', 'C25 (Ø 8) Round', 'C35 (IS:1570) (Ø 16) Round',
@@ -319,3 +328,7 @@ acc_page_contact_details = ['Name', 'Profile URL', 'Email ID', 'Phone Number', '
                             'Residential Address', 'Created By', 'Created Date', 'Updated By', 'Updated Date']
 
 ecn_dd_data = ['Select ECN Type', 'Drawing Change', 'Part Details Change', 'Process Details Changes', 'Others']
+
+uom_compound_data = ['Please select', 'Bend', 'Kg', 'Nos', 'Feet', 'Hours', 'Inch', 'Millimeters',
+                     'Minutes', 'Meter', 'Second', 'SQ Feet', 'SQ Inch', 'Stroke']
+prod_category_data = ['Please select', 'Hose', 'Mould']
