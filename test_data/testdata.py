@@ -9,13 +9,14 @@ accounts_table_header_col = ['Action', 'Account No', 'Account Name', 'Website', 
 accounts_create_fields_gen = ['accountName', 'accountEmail', 'website', 'mobileNumber',
                               'landlineNumber', 'panNo', 'customerCode', 'noOfWorkingDays']
 
-
 start_months_data = ['Select Month', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
                      'September', 'October', 'November', 'December']
 
 rm_type_list = ['Select Norms Rate Type', 'Base Rate', 'Landed Rate']
 
-business_nature_list = ['Select All', 'Fabrication', 'Heavy Fabrication']
+business_nature_list_metalman = ['Select All', 'Fabrication', 'Heavy Fabrication']
+
+business_nature_list_bony = ['Select All', 'Fabrication', 'Heavy Fabrication', 'Polymer']
 
 business_domain_list = ['Select All', 'Domestic', 'Export']
 
@@ -170,10 +171,9 @@ contact_table_header_col = ['Action', 'Profile', 'First Name', 'Account Name', '
                             'Residential Country', 'Residential State', 'Residential City', 'Residential Address',
                             'Created On', 'Last Modified On', 'Status']
 
-
 # rfq test data............................................................................
 
-rfq_txtboxes_data = [10000, 'Test Automation', 'Bajaj pulsar 220F', 'Carburetor', 123, 820, 1200, 'Port delivery text' ]
+rfq_txtboxes_data = [10000, 'Test Automation', 'Bajaj pulsar 220F', 'Carburetor', 123, 820, 1200, 'Port delivery text']
 
 rfq_business_evaluation_data = ['Select Business Evaluation', 'Existing Product Existing Customer',
                                 'Existing Product New Customer', 'New Product Existing Customer',
@@ -183,15 +183,23 @@ rfq_business_values_data = ['Select Business value', 'High', 'Low', 'Medium']
 
 rfq_confidentiality_dropdown = ['Select Confidentiality', 'No', 'Yes']
 
+rfq_dev_lead_location_data_metalman = ['Select Development Lead Location', 'Delhi Corp', 'MAPL B-03 Waluj',
+                                       'MAPL B-12 Waluj',
+                                       'MAPL B-17 Waluj', 'MAPL B-31 Waluj', 'MAPL Hosur', 'MAPL Pithampur',
+                                       'MMT Dharuhera',
+                                       'MMT Pantnagar -I', 'MMT Pantnagar -III']
 
-rfq_dev_lead_location_data = ['Select Development Lead Location', 'Delhi Corp', 'MAPL B-03 Waluj', 'MAPL B-12 Waluj',
-                         'MAPL B-17 Waluj', 'MAPL B-31 Waluj', 'MAPL Hosur', 'MAPL Pithampur', 'MMT Dharuhera',
-                         'MMT Pantnagar -I', 'MMT Pantnagar -III']
+rfq_dev_lead_location_data_bony = ['Select Development Lead Location', 'Bony Plant Gujarat', 'Bony Plant Manesar',
+                                   'Bony Plant No. 132/24', 'Bony Plant No. 77', 'Bony Plot No 37P',
+                                   'Saket Fabs Pvt. Ltd.', 'SFAB Plant 18/2']
 
-rfq_manufacturing_location_data = ['Select Manufacturing Location', 'MAPL B-03 Waluj', 'MAPL B-12 Waluj',
+rfq_manufacturing_location_data_metalman = ['Select Manufacturing Location', 'MAPL B-03 Waluj', 'MAPL B-12 Waluj',
                                    'MAPL B-17 Waluj', 'MAPL B-31 Waluj', 'MAPL Hosur', 'MAPL Pithampur',
                                    'MMT Dharuhera', 'MMT Pantnagar -I', 'MMT Pantnagar -III']
 
+rfq_manufacturing_location_data_bony = ['Select Manufacturing Location', 'Bony Plant Gujarat', 'Bony Plant Manesar',
+                                        'Bony Plant No. 132/24', 'Bony Plant No. 77', 'Bony Plot No 37P',
+                                        'Saket Fabs Pvt. Ltd.', 'SFAB Plant 18/2']
 
 rfq_company_priority_dropdown = ['Select Company Priority', 'High', 'Low', 'Medium']
 
@@ -209,7 +217,8 @@ rfq_currency_data = ['Select a currency', 'BRL', 'CAD', 'CLP', 'EUR', 'INR', 'LK
 rfq_cost_packaging_dropdown = ['Select Packaging Cost', 'Not to be Quoted', 'Others', 'To be Quoted in Part Cost']
 
 rfq_incoterms_data = ['Select Incoterms', 'Carriage and Insurance Paid To (CIP)', 'Cost and Freight (CFR)',
-                      'Cost, insurance & freight (CIF)', 'Delivered at Place (DAP)', 'Delivered at Place Unloaded (DPU)',
+                      'Cost, insurance & freight (CIF)', 'Delivered at Place (DAP)',
+                      'Delivered at Place Unloaded (DPU)',
                       'Delivered at Terminal (DAT)', 'Delivered duty paid (DDP)', 'Ex-Works (EXW)',
                       'Free alongside ship (FAS)', 'Free Carrier (FCA)', 'Free on board (FOB)']
 
@@ -253,7 +262,7 @@ approval_history_headers = ['Step Name', 'Assigned to', 'Submitted By', 'Status'
                             'Comment', 'Action']
 
 norms_dd_data = ['Please select', 'BOP Norms', 'Currency Norms', 'MHR Norms', 'Process Norms', 'Over Head Norms',
-                   'Raw Material Norms']
+                 'Raw Material Norms']
 
 fiscal_year_dd_data = ['Please select', '2020', '2021', '2022', '2023', '2024']
 
@@ -273,9 +282,9 @@ rod_bar_dd_data = ['Please select', 'AISI 304 (Ø 9.53) Round', 'ASTM A510 TYPE 
                    'SAE 1020 (Ø 13) Round', 'SAE 1020 (Ø 14) Round', 'SAE1018 (Ø 22.4) Round', 'SAE1018 (Ø 28) Round',
                    'SS316 (Ø 3) Round', 'SS316 (Ø 4) Round', 'SS316 (Ø 5) Round', 'SS316 (Ø 6) Round']
 
-
 account_details_data = ['Account Name', 'Email ID', 'Website', 'Phone Number', 'Landline Number', 'PAN Number', 'GSTIN',
-                        'FY Start Month', 'RM Norms Rate Type', 'Customer Code', 'Number of Working Days(In year)', 'Business Nature',
+                        'FY Start Month', 'RM Norms Rate Type', 'Customer Code', 'Number of Working Days(In year)',
+                        'Business Nature',
                         'Business Domain ', 'Business Segment', 'Payment Method', 'Payment Term']
 
 contact_details_data = ['Contact Name', 'Email ID', 'Phone Number', ' Other Phone Number', 'Department', 'Designation',
@@ -287,13 +296,16 @@ bop_raw_material_data = ['bopTypeOfMaterial', 'rmGradeAsPerDrawing', 'rmThicknes
 
 #Norms_data----------------------------------------------------------------------------------------------------
 mht_cols_valus = ['mhrName', 'mhrNo', 'paramOne', 'paramTwo', 'paramThree', 'paramFour']
-machine_variables = ['costOfMachine', 'numOfWorkingDays', 'numOfHrsInShift', 'numOfShiftsPerDay', 'numOfHoursPerDayForCosting', 'cycleTime']
+machine_variables = ['costOfMachine', 'numOfWorkingDays', 'numOfHrsInShift', 'numOfShiftsPerDay',
+                     'numOfHoursPerDayForCosting', 'cycleTime']
 space_rental_cost_data = ['spaceLength', 'spaceWidth', 'spaceHeight', 'spaceRent']
 finance_cost_data = ['depreciation', 'interest']
-man_power_cost_data = ['skilledManpowerReq', 'skilledManpowerCost', 'unSkilledManpowerReq', 'unSkilledManpowerCost', 'staffCostPerShift']
+man_power_cost_data = ['skilledManpowerReq', 'skilledManpowerCost', 'unSkilledManpowerReq', 'unSkilledManpowerCost',
+                       'staffCostPerShift']
 electric_cost_data = ['ecUnitCost', 'ecMotorRatingHP', 'ecMotorRatingFactor', 'ecLoadFactor']
 other_costs_data = ['maintenanceCostPercent', 'consumableCostPercent', 'legalCost', 'deltaAdjustments']
-rm_norms_date_range_data = ['Please select', 'Annual (JUL-JUN)', 'H1 (JUL-DEC)', 'H2 (JAN-JUN)', 'Q1 (JUL-SEP)', 'Q2 (OCT-DEC)', 'Q3 (JAN-MAR)', 'Q4 (APR-JUN)']
+rm_norms_date_range_data = ['Please select', 'Annual (JUL-JUN)', 'H1 (JUL-DEC)', 'H2 (JAN-JUN)', 'Q1 (JUL-SEP)',
+                            'Q2 (OCT-DEC)', 'Q3 (JAN-MAR)', 'Q4 (APR-JUN)']
 
 #ST_Operations_Data ______________________________________________________________
 st_ops_mandary_fields = ['componentSTCost', 'thickness', 'drainHoleQty']

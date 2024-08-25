@@ -102,7 +102,12 @@ class Rfq:
 
     def select_business_nature(self, browser):
         do_click(browser, rfq_business_nature)
-        self.business_nature = get_element_text(browser, rfq_business_nature_select)
+        if os.environ['ENV'] == 'bony':
+            rfq_business_nature_select1 = rfq_business_nature_select[1].replace('[2]', '[4]')
+            rfq_business_nature_select1 = replace_in_tuple(rfq_business_nature_select, 1, rfq_business_nature_select1)
+        else:
+            rfq_business_nature_select1 = rfq_business_nature_select
+        self.business_nature = get_element_text(browser, rfq_business_nature_select1)
         do_click(browser, rfq_business_nature_select)
 
     def select_business_segment(self, browser):
@@ -147,6 +152,7 @@ class Rfq:
     def select_dev_lead_location(self, browser, index=2):
         do_click(browser, rfq_dev_lead_loc)
         values = get_list_of_elems_text(browser, rfq_dev_lead_loc_select[0], rfq_dev_lead_loc_select[1])
+        rfq_dev_lead_location_data = get_env_var_from_globals('rfq_dev_lead_location_data_')
         check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
         val = check_common_elements(rfq_dev_lead_location_data, values)
         assert val is True
@@ -159,6 +165,7 @@ class Rfq:
     def select_manufacturing_location(self, browser, index=2):
         do_click(browser, rfq_manufacturing_loc)
         values = get_list_of_elems_text(browser, rfq_manufacturing_loc_select[0], rfq_manufacturing_loc_select[1])
+        rfq_manufacturing_location_data = get_env_var_from_globals('rfq_manufacturing_location_data_')
         check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
         val = check_common_elements(rfq_manufacturing_location_data, values)
         assert val is True
@@ -298,6 +305,8 @@ class Rfq:
 
     def select_other_info_checkbox(self, browser):
         checkboxes = [roi_chkbox, tect_feas_chkbox, satc_chkbox]
+        if os.environ['ENV'] == 'bony':
+            checkboxes.append(compound_feas_chkbox)
         for chkbox in checkboxes:
             do_click(browser, chkbox)
 

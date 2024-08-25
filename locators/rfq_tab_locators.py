@@ -67,6 +67,7 @@ other_info_txt = (By.XPATH, '//h3[contains(text(), "Other Information")]')
 roi_chkbox = (By.XPATH, '//input[@formcontrolname="roiEvalution"]')
 tect_feas_chkbox = (By.XPATH, '//input[@formcontrolname="techFeasibility"]')
 satc_chkbox = (By.XPATH, '//input[@formcontrolname="sendAttachmentToCustomer"]')
+compound_feas_chkbox = (By.XPATH, '//input[@formcontrolname="compoundFeasibility"]')
 
 manager_det_txt = (By.XPATH, '//h3[contains(text(), "Manager Details")]')
 pm_lead_loc = (By.XPATH, '//select[@formcontrolname="ProjectManagerLead"]')

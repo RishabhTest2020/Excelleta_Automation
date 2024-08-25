@@ -33,7 +33,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify created contact data
     Then Verify contact table head column
 
-  @Sanity
+  @Sanity @Test
   Scenario: TC_05 Verify Rfq Tab and New Rfq creation
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
