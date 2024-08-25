@@ -306,7 +306,7 @@ class Rfq:
     def select_other_info_checkbox(self, browser):
         checkboxes = [roi_chkbox, tect_feas_chkbox, satc_chkbox]
         if os.environ['ENV'] == 'bony':
-            checkboxes.append(compound_feas_chkbox)
+            checkboxes[0] = compound_feas_chkbox
         for chkbox in checkboxes:
             do_click(browser, chkbox)
 

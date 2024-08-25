@@ -1,4 +1,5 @@
 import logging
+import os
 
 from selenium.webdriver import Keys
 
@@ -27,7 +28,11 @@ def account_creation(browser):
     accounts_steps.select_start_month_field(browser)
     accounts_steps.select_rm_norms_field(browser)
     do_send_keys(browser, tnc_loc, 'TNC Automation')
-    accounts_steps.select_business_nature_field(browser)
+    if os.environ['ENV'] == 'bony':
+        bn_type = 4
+    else:
+        bn_type = 2
+    accounts_steps.select_business_nature_field(browser, bn_type=bn_type)
     accounts_steps.select_business_domain_field(browser)
     accounts_steps.select_business_segment_field(browser)
     accounts_steps.select_payment_method_field(browser)
