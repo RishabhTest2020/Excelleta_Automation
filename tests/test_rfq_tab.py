@@ -55,7 +55,8 @@ def create_rfq(browser, types):
     rfq_steps.select_plant_head(browser)
     rfq_steps.select_surface_treatment_head(browser)
     rfq_steps.select_cft_member(browser)
-    rfq_steps.select_business_dev_head(browser)
+    if os.environ['ENV'] == 'metalman':
+        rfq_steps.select_business_dev_head(browser)
     rfq_steps.verify_heading(browser)
     do_click(browser, save_btn)
     loader_should_be_invisile(browser, 10)

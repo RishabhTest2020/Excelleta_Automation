@@ -102,12 +102,7 @@ class Rfq:
 
     def select_business_nature(self, browser):
         do_click(browser, rfq_business_nature)
-        if os.environ['ENV'] == 'bony':
-            rfq_business_nature_select1 = rfq_business_nature_select[1].replace('[2]', '[4]')
-            rfq_business_nature_select1 = replace_in_tuple(rfq_business_nature_select, 1, rfq_business_nature_select1)
-        else:
-            rfq_business_nature_select1 = rfq_business_nature_select
-        self.business_nature = get_element_text(browser, rfq_business_nature_select1)
+        self.business_nature = get_element_text(browser, rfq_business_nature_select)
         do_click(browser, rfq_business_nature_select)
 
     def select_business_segment(self, browser):
