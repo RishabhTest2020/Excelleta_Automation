@@ -1,4 +1,5 @@
 import logging
+import os
 
 from helpers.common_helpers import *
 from locators.accounts_tab_locators import save_btn, accounts_norms, norms_back_arrow_icon_loc
@@ -111,7 +112,10 @@ def create_drawing_data(browser):
     drawing_data_steps.add_drawing_data(browser)
     drawing_data_steps.select_2d_soft_copy(browser)
     drawing_data_steps.select_3d_soft_copy(browser)
-    drawing_data_steps.add_roi_and_approve(browser)
+    if os.environ['ENV'] == 'bony':
+        pass
+    else:
+        drawing_data_steps.add_roi_and_approve(browser)
     drawing_data_steps.add_technical_feasibility(browser)
     loader_should_be_invisile(browser, 10)
 
