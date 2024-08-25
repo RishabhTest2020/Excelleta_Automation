@@ -105,7 +105,7 @@ def browser(request):
     driver.set_page_load_timeout(3000)
     print(request.node.name)
     env = os.environ['ENV']
-    logging.info(env)
+    logging.info("Environment:" + env)
     yield driver
     driver.quit()
 
