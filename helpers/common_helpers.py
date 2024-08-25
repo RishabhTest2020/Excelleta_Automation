@@ -19,6 +19,7 @@ from global_libs.config import globalEnvs
 from locators.common_locators_file import *
 import inspect
 import importlib
+from test_data.testdata import *
 
 
 def wait_for_ajax(browser):
@@ -731,5 +732,4 @@ def get_env_var_from_globals(var):
     all_vars = globals()
     var_str = f'{var}{env}'
     var_val = all_vars[var_str]
-    print(all_vars[var_val])
     return var_val
