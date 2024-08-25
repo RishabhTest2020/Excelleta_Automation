@@ -104,12 +104,15 @@ def browser(request):
     driver.set_script_timeout(1000)
     driver.set_page_load_timeout(3000)
     print(request.node.name)
+    env = os.environ['ENV']
+    logging.info("Environment:" + env)
     yield driver
     driver.quit()
 
 
 def pytest_html_report_title(report):
-    report.title = " Excelleta Automation Report"
+    env = os.environ['ENV']
+    report.title = f"Excelleta Automation Report - {env}"
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
