@@ -575,6 +575,7 @@ class TE_API_calls:
             "comment": comment,
             "version": "Version-1"
         }
+        logging.info(payload)
         resp = requests.post(url, headers=headers, json=payload, verify=False)
         assert resp.status_code == 200
         logging.info(resp.json())
@@ -598,6 +599,7 @@ class TE_API_calls:
             else:
                 payload['rejectedCommentId'] = 1736
                 payload['specificReasonCommentId'] = 1739
+        logging.info(payload)
         resp = requests.post(url, headers=headers, json=payload, verify=False)
         assert resp.status_code == 200
         logging.info(resp.json())
