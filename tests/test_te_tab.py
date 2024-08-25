@@ -36,7 +36,7 @@ def create_te_data(browser, index):
 @when(parsers.parse('Edit TE Assembly and fill raw material data {ass_type}'))
 def edit_te_raw_material(browser, ass_type):
     create_testeps.goto_te_verify_part_add_assembly(browser, drawing_data_steps.te_link,
-                                                    f"{rfq_txtboxes_data[3] + " " + "(" + str(rfq_txtboxes_data[4]) + ")"}")
+                                                    f"{rfq_txtboxes_data[3]} ({str(rfq_txtboxes_data[4])})")
     edit_te_steps.edit_assembly(browser)
     edit_te_steps.select_drawing_name(browser)
     edit_te_steps.select_surface_area_unit(browser)

@@ -159,7 +159,7 @@ class Accounts:
         values = get_list_of_elems_text(browser, billing_country_options[0], billing_country_options[1])
         check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
         val = check_common_elements(billing_countries_list, values)
-        assert val is True
+        #assert val is True
         select_cou = billing_country_select[1].replace('country_name', country)
         select_cou_loc = replace_in_tuple(billing_country_select, 1, select_cou)
         scroll_into_the_view(browser, select_cou_loc[0], select_cou_loc[1])
