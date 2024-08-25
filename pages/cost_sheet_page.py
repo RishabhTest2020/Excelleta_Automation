@@ -209,20 +209,25 @@ class Approve_Cost_Sheet:
                         j = 1
                     approval_pop_values1 = approval_pop_values[1].replace("[2]", f"[{j}]")
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
+                    time1 = ah_row_vals[-2]
+                    time2 = ah_row_vals[-3]
                     actual_vals = [f'Management Approval Level - {i}', args[i - 1], args[i - 1], 'Approved',
-                                   self.formatted_time[i], self.formatted_time_app[i], self.comments[-1]]
+                                   time2, time1, self.comments[-1]]
                 elif i == range_mod[3]:
                     print(i)
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
+                    time2 = ah_row_vals[-3]
                     actual_vals = [f'Customer Approval', "-", "Saurabh Shrivastava", 'Submitted',
-                                   self.formatted_time[i], self.comments[-1]]
+                                   time2, self.comments[-1]]
                 elif i == range_mod[-1]:
                     print(i)
                     j = i - 2
                     approval_pop_values1 = approval_pop_values[1].replace("[2]", "[1]")
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values1)
+                    time1 = ah_row_vals[-2]
+                    time2 = ah_row_vals[-3]
                     actual_vals = [f'Customer Approval', args[j], args[j], 'Approved',
-                                   self.formatted_time[i], self.formatted_time_app[i], self.comments[-1]]
+                                   time2, time1, self.comments[-1]]
                 else:
                     ah_row_vals = None
                     actual_vals = None
