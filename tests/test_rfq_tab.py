@@ -95,6 +95,7 @@ def verify_account(browser):
     rfq_class_data['acc_name'] = accounts_steps.account_details[0]
     rfq_class_data['own_name'] = 'Saurabh Shrivastava'
     rfq_class_data['domain'] = business_domain_list[1]
+    business_nature_list = get_env_var_from_globals('business_nature_list_')
     rfq_class_data['nature'] = business_nature_list[1]
     address = rfq_class_data['rfq_shipping_address'].replace('(', "").replace(')', "")
     addrr = [x.lstrip(" ") for x in address.split(",")[1:]]
@@ -113,6 +114,7 @@ def create_drawing_data(browser):
     drawing_data_steps.add_roi_and_approve(browser)
     drawing_data_steps.add_technical_feasibility(browser)
     loader_should_be_invisile(browser, 10)
+
 
 @then('Reject ROI data')
 def roi_data_rejection(browser):
@@ -161,6 +163,7 @@ def manufacturing_location_from_norms(browser):
                                                     expected_location=rfq_steps.manufacturing_location)
     sleep(1)
     do_click(browser, norms_back_arrow_icon_loc)
+
 
 @then('Verify Edit Managers Information in RFQ')
 def verify_selected_managers_list(browser):
