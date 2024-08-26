@@ -363,7 +363,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Approve TE all levels, back false level 4 assert True
 
   @Sanity #@Test
-  Scenario: TC_18 Create Multi level BOM and approve flow Pantnagar3
+  Scenario: TC_ 20reate Multi level BOM and approve flow Pantnagar3
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
     Then Create an account
