@@ -194,7 +194,7 @@ class Approve_Cost_Sheet:
                 te_calls.approve_cost_sheet(token=te_calls.token, te_id=cs_id, userid=te_calls.user_id, comment=text)
                 current_date_time2 = datetime.now()
                 self.formatted_time_app.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
-            sleep(1)
+            sleep(4)
             if i > 0:
                 browser.refresh()
                 sleep(2)
