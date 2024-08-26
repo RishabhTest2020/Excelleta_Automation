@@ -78,11 +78,11 @@ def approve_cs_levels(browser):
                                         rfq_steps.business_dev_head)
 
 
-@then(parsers.parse('Reject CS at level {level:d}'))
-def approve_cs_levels(browser, level):
+@then(parsers.parse('Reject CS at level {level:d}, cs reason {reason}'))
+def approve_cs_levels(browser, level, reason):
     current_url = browser.current_url
     cs_no = current_url.split("/")[-1]
-    approve_cs_steps.reject_cost_sheet(browser, level, cs_no, rfq_steps.business_dev_head, rfq_steps.cft_member,
+    approve_cs_steps.reject_cost_sheet(browser, level, cs_no, reason, rfq_steps.business_dev_head, rfq_steps.cft_member,
                                        rfq_steps.business_dev_head)
 
 

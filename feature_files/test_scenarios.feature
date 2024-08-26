@@ -41,7 +41,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 20
-    Then Create a RFQ single
+    Then Create a RFQ single, location 3
     When Navigate to RFQ tab 30
     Then Verify created Rfq data
     Then Verify Rfq table head column
@@ -54,7 +54,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
-    Then Create a RFQ single
+    Then Create a RFQ single, location 3
     Then Add Drawing Data
     When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data single
@@ -63,14 +63,14 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Approve TE all levels, back true level 3 assert True
 
   @Sanity #@Test
-  Scenario: TC_07 Create Multi level BOM and approve flow
+  Scenario: TC_07 Create Multi level BOM and approve flow B31
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
-    Then Create a RFQ multi
+    Then Create a RFQ multi, location 6
     Then Add Drawing Data
     When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi
@@ -97,7 +97,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
-    Then Create a RFQ multi
+    Then Create a RFQ multi, location 3
     Then Add Drawing Data
     When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi
@@ -130,7 +130,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
-    Then Create a RFQ multi
+    Then Create a RFQ multi, location 3
     Then Add Drawing Data
     When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi
@@ -164,9 +164,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 20
-    Then Create a RFQ single
-    When Navigate to RFQ tab 10
+    When Navigate to RFQ tab 25
+    Then Create a RFQ single, location 3
+    When Navigate to RFQ tab 25
     Then Verify Manufacturing Location of Norms
 
   @Sanity #@Test
@@ -177,7 +177,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
-    Then Create a RFQ multi
+    Then Create a RFQ multi, location 3
     Then Add Drawing Data
     When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi
@@ -199,15 +199,19 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Generate Costing Data and Norms, Nav direct false
     When Navigate to Costing Sheet tab 10
     Then Goto MTE Cost Sheet
-    Then Reject CS at level 1
+    Then Reject CS at level 1, cs reason NA
     Then Generate Costing Data and Norms, Nav direct true
     When Navigate to Costing Sheet tab 5
     Then Goto MTE Cost Sheet
-    Then Reject CS at level 2
+    Then Reject CS at level 2, cs reason NA
     Then Generate Costing Data and Norms, Nav direct true
     When Navigate to Costing Sheet tab 5
     Then Goto MTE Cost Sheet
-    Then Reject CS at level 4
+    Then Reject CS at level 4, cs reason revision
+    Then Generate Costing Data and Norms, Nav direct true
+    When Navigate to Costing Sheet tab 5
+    Then Goto MTE Cost Sheet
+    Then Reject CS at level 4, cs reason lost
 
   @Sanity
   Scenario: TC_12 Verify Reject And Revoke Functionality of ROI
@@ -217,7 +221,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
-    Then Create a RFQ single
+    Then Create a RFQ single, location 3
     Then Reject ROI data
     Then Revoke ROI data
 
@@ -229,7 +233,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
-    Then Create a RFQ single
+    Then Create a RFQ single, location 3
     Then Reject technical feasibility
     Then Revoke technical feasibility
 
@@ -241,10 +245,10 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
-    Then Create a RFQ single
+    Then Create a RFQ single, location 3
     Then Technical feasibility as No
 
-  #@Test
+  # @Sanity @Test
   Scenario: TC_15 Verify Managers data in Edit RFQ
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -252,7 +256,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
-    Then Create a RFQ single
+    Then Create a RFQ single, location 3
     Then Add Drawing Data
     Then Verify Edit Managers Information in RFQ
 
@@ -264,7 +268,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
-    Then Create a RFQ single
+    Then Create a RFQ single, location 3
     Then Add Drawing Data
     When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data single
@@ -279,7 +283,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
-    Then Create a RFQ multi
+    Then Create a RFQ multi, location 3
     Then Add Drawing Data
     When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi
@@ -302,3 +306,85 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to Costing Sheet tab 10
     Then Goto MTE Cost Sheet
     Then Revoke Cost sheet
+
+
+  @Sanity @Test
+  Scenario: TC_18 Create Multi level BOM and approve flow Dharhuhera
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 25
+    Then Create a RFQ multi, location 9
+    Then Add Drawing Data
+    When Navigate to Technical Evaluation tab 10
+    When Edit TE Assembly and fill raw material data multi
+    When Create TE data 1
+    When Add sub assembly and its data
+    When Create TE data 2
+    When Add assembly part 1 2
+    When Create TE data 3
+    When Create TE BOP data 1
+    When Create TE data 4
+    When Add assembly part 2 3
+    When Create TE data 3
+    When Create TE BOP data 2
+    When Create TE data 4
+    When Create ST Ops data 3
+    When Create ST Ops data 5
+    Then Approve TE all levels, back false level 4 assert True
+
+  @Sanity #@Test
+  Scenario: TC_19 Create Multi level BOM and approve flow Hosur
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 25
+    Then Create a RFQ multi, location 7
+    Then Add Drawing Data
+    When Navigate to Technical Evaluation tab 10
+    When Edit TE Assembly and fill raw material data multi
+    When Create TE data 1
+    When Add sub assembly and its data
+    When Create TE data 2
+    When Add assembly part 1 2
+    When Create TE data 3
+    When Create TE BOP data 1
+    When Create TE data 4
+    When Add assembly part 2 3
+    When Create TE data 3
+    When Create TE BOP data 2
+    When Create TE data 4
+    When Create ST Ops data 3
+    When Create ST Ops data 5
+    Then Approve TE all levels, back false level 4 assert True
+
+  @Sanity #@Test
+  Scenario: TC_18 Create Multi level BOM and approve flow Pantnagar3
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 25
+    Then Create a RFQ multi, location 11
+    Then Add Drawing Data
+    When Navigate to Technical Evaluation tab 10
+    When Edit TE Assembly and fill raw material data multi
+    When Create TE data 1
+    When Add sub assembly and its data
+    When Create TE data 2
+    When Add assembly part 1 2
+    When Create TE data 3
+    When Create TE BOP data 1
+    When Create TE data 4
+    When Add assembly part 2 3
+    When Create TE data 3
+    When Create TE BOP data 2
+    When Create TE data 4
+    When Create ST Ops data 3
+    When Create ST Ops data 5
+    Then Approve TE all levels, back false level 4 assert True
