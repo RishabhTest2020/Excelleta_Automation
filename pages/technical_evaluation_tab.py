@@ -354,10 +354,8 @@ class Edit_TE:
         scroll_into_the_view(browser, rm_type_loc[0], rm_type_loc[1])
         do_click(browser, rm_type_loc)
         values = get_list_of_elems_text(browser, rm_type_loc_select[0], rm_type_loc_select[1])
-        if os.environ['ENV'] == "bony":
-            assert values == rm_type_data_bony
-        else:
-            assert values == rm_type_dd_data
+        rm_type_dd_data = get_env_var_from_globals('rm_type_data_')
+        assert values == rm_type_dd_data
         select_name = rm_type_loc_select[1] + f'[{index}]'
         select_loc = replace_in_tuple(rm_type_loc_select, 1, select_name)
         self.rm_type = get_element_text(browser, select_loc)
@@ -368,10 +366,8 @@ class Edit_TE:
         scroll_into_the_view(browser, rm_type_loc[0], rm_type_loc[1])
         do_click(browser, raw_mat_loc)
         values = get_list_of_elems_text(browser, raw_mat_loc_select[0], raw_mat_loc_select[1])
-        if os.environ['ENV'] == "bony":
-            assert values == raw_material_data_bony
-        else:
-            assert values == rod_bar_dd_data
+        rod_bar_dd_data = get_env_var_from_globals('raw_material_data_')
+        assert values == rod_bar_dd_data
         select_name = raw_mat_loc_select[1] + f'[{index}]'
         select_loc = replace_in_tuple(raw_mat_loc_select, 1, select_name)
         self.raw_material = get_element_text(browser, select_loc)

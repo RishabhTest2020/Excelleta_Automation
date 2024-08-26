@@ -16,6 +16,8 @@ rm_type_list = ['Select Norms Rate Type', 'Base Rate', 'Landed Rate']
 
 business_nature_list_metalman = ['Select All', 'Fabrication', 'Heavy Fabrication']
 
+business_nature_list_etdev = ['Select All', 'Fabrication', 'Heavy Fabrication']
+
 business_nature_list_bony = ['Select All', 'Fabrication', 'Heavy Fabrication', 'Polymer']
 
 business_domain_list = ['Select All', 'Domestic', 'Export']
@@ -189,11 +191,21 @@ rfq_dev_lead_location_data_metalman = ['Select Development Lead Location', 'Delh
                                        'MMT Dharuhera',
                                        'MMT Pantnagar -I', 'MMT Pantnagar -III']
 
+rfq_dev_lead_location_data_etdev = ['Select Development Lead Location', 'Delhi Corp', 'MAPL B-03 Waluj',
+                                       'MAPL B-12 Waluj',
+                                       'MAPL B-17 Waluj', 'MAPL B-31 Waluj', 'MAPL Hosur', 'MAPL Pithampur',
+                                       'MMT Dharuhera',
+                                       'MMT Pantnagar -I', 'MMT Pantnagar -III']
+
 rfq_dev_lead_location_data_bony = ['Select Development Lead Location', 'Bony Plant Gujarat', 'Bony Plant Manesar',
                                    'Bony Plant No. 132/24', 'Bony Plant No. 77', 'Bony Plot No 37P',
                                    'Saket Fabs Pvt. Ltd.', 'SFAB Plant 18/2']
 
 rfq_manufacturing_location_data_metalman = ['Select Manufacturing Location', 'MAPL B-03 Waluj', 'MAPL B-12 Waluj',
+                                   'MAPL B-17 Waluj', 'MAPL B-31 Waluj', 'MAPL Hosur', 'MAPL Pithampur',
+                                   'MMT Dharuhera', 'MMT Pantnagar -I', 'MMT Pantnagar -III']
+
+rfq_manufacturing_location_data_etdev = ['Select Manufacturing Location', 'MAPL B-03 Waluj', 'MAPL B-12 Waluj',
                                    'MAPL B-17 Waluj', 'MAPL B-31 Waluj', 'MAPL Hosur', 'MAPL Pithampur',
                                    'MMT Dharuhera', 'MMT Pantnagar -I', 'MMT Pantnagar -III']
 
@@ -272,8 +284,12 @@ surface_area_unit_dd_data = ['Please select', 'Sq. Feet', 'Sq. Inch']
 
 manufacturing_source_dd_data = ['Please select', 'In House', 'Outsource']
 
-rm_type_dd_data = ['Please select', 'Rod/Bar', 'Sheet Metal', 'Tube']
+rm_type_data_metalman = ['Please select', 'Rod/Bar', 'Sheet Metal', 'Tube']
+
+rm_type_data_etdev = ['Please select', 'Rod/Bar', 'Sheet Metal', 'Tube']
+
 rm_type_data_bony = ['Please select', 'Compound', 'Fabric', 'Yarn']
+
 raw_material_data_bony = ['Please select', 'AEM', 'AW-01 NATURAL', 'AW01 (POM)', 'Black (MASTERBATCH)', 'CHLOROPRENE',
                           'CSM', 'CSM (HYP 60 GREY )', 'CSM (HYP 70 GREY )', 'ECO (CNG)', 'ECO (TRISTONE)', 'EPDM',
                           'FKM', 'GRAY (MASTERBATCH)', 'GREEN (MASTERBATCH)', 'HDPE (BLACK)', 'HNBR', 'HT ACM',
@@ -283,7 +299,15 @@ raw_material_data_bony = ['Please select', 'AEM', 'AW-01 NATURAL', 'AW01 (POM)',
                           'ORANGE (MASTERBATCH)', 'POM (NATURAL)', 'PPCP (M3135)', 'PU', 'PVC (BALCK)', 'SBR',
                           'SILICONE', 'TENAC-C Z4520 (POM)', 'TF30 (POM)', 'UTN 320 (PA66)']
 
-rod_bar_dd_data = ['Please select', 'AISI 304 (Ø 9.53) Round', 'ASTM A510 TYPE 1 GRADE 1018 (Ø 5.2) Round',
+raw_material_data_metalman = ['Please select', 'AISI 304 (Ø 9.53) Round', 'ASTM A510 TYPE 1 GRADE 1018 (Ø 5.2) Round',
+                   'C20 AS PER IS:1570 (Ø 8) Round', 'C25 (Ø 8) Round', 'C35 (IS:1570) (Ø 16) Round',
+                   'EN-8 (Ø 16) Round', 'EN-8 (Ø 18) Round', 'MS (Ø 3.2) Round', 'MS (Ø 4) Round', 'MS (Ø 5) Round',
+                   'MS (Ø 6) Round', 'MS (Ø 7) Round', 'MS -Round Bar (Ø 65) Round', 'MS(ST 42) (Ø 6) Round',
+                   'S45C (Ø 5) Round', 'SAE 1010 (Ø 24) Round', 'SAE 1010 (Ø 3.2) Round', 'SAE 1010 (Ø 8) Round',
+                   'SAE 1020 (Ø 13) Round', 'SAE 1020 (Ø 14) Round', 'SAE1018 (Ø 22.4) Round', 'SAE1018 (Ø 28) Round',
+                   'SS316 (Ø 3) Round', 'SS316 (Ø 4) Round', 'SS316 (Ø 5) Round', 'SS316 (Ø 6) Round']
+
+raw_material_data_etdev = ['Please select', 'AISI 304 (Ø 9.53) Round', 'ASTM A510 TYPE 1 GRADE 1018 (Ø 5.2) Round',
                    'C20 AS PER IS:1570 (Ø 8) Round', 'C25 (Ø 8) Round', 'C35 (IS:1570) (Ø 16) Round',
                    'EN-8 (Ø 16) Round', 'EN-8 (Ø 18) Round', 'MS (Ø 3.2) Round', 'MS (Ø 4) Round', 'MS (Ø 5) Round',
                    'MS (Ø 6) Round', 'MS (Ø 7) Round', 'MS -Round Bar (Ø 65) Round', 'MS(ST 42) (Ø 6) Round',
