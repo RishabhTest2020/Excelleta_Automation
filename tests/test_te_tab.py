@@ -1,4 +1,5 @@
 import logging
+import os
 
 from helpers.common_helpers import *
 from locators.accounts_tab_locators import save_btn
@@ -21,11 +22,17 @@ add_st_opts_steps = AddSTOperations()
 @when(parsers.parse('Create TE data {index:d}'))
 def create_te_data(browser, index):
     create_testeps.add_operation(browser, index=index)
-    create_testeps.select_machine(browser)
+    if os.environ['ENV'] == "bony":
+        create_testeps.select_machine(browser, dep_index=2)
+    else:
+        create_testeps.select_machine(browser)
     create_testeps.select_te_process(browser)
     create_testeps.select_te_process_unit(browser)
     create_testeps.select_operation_source(browser)
-    create_testeps.fill_te_txtbox_data(browser)
+    if os.environ['ENV'] == "bony":
+        create_testeps.fill_bony_te_txtbox_data(browser)
+    else:
+        create_testeps.fill_te_txtbox_data(browser)
     create_testeps.select_inspection_instrument(browser)
     create_testeps.verify_te_heading(browser)
     do_click(browser, save_btn)

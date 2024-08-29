@@ -192,22 +192,22 @@ rfq_dev_lead_location_data_metalman = ['Select Development Lead Location', 'Delh
                                        'MMT Pantnagar -I', 'MMT Pantnagar -III']
 
 rfq_dev_lead_location_data_etdev = ['Select Development Lead Location', 'Delhi Corp', 'MAPL B-03 Waluj',
-                                       'MAPL B-12 Waluj',
-                                       'MAPL B-17 Waluj', 'MAPL B-31 Waluj', 'MAPL Hosur', 'MAPL Pithampur',
-                                       'MMT Dharuhera',
-                                       'MMT Pantnagar -I', 'MMT Pantnagar -III']
+                                    'MAPL B-12 Waluj',
+                                    'MAPL B-17 Waluj', 'MAPL B-31 Waluj', 'MAPL Hosur', 'MAPL Pithampur',
+                                    'MMT Dharuhera',
+                                    'MMT Pantnagar -I', 'MMT Pantnagar -III']
 
 rfq_dev_lead_location_data_bony = ['Select Development Lead Location', 'Bony Plant Gujarat', 'Bony Plant Manesar',
                                    'Bony Plant No. 132/24', 'Bony Plant No. 77', 'Bony Plot No 37P',
                                    'Saket Fabs Pvt. Ltd.', 'SFAB Plant 18/2']
 
 rfq_manufacturing_location_data_metalman = ['Select Manufacturing Location', 'MAPL B-03 Waluj', 'MAPL B-12 Waluj',
-                                   'MAPL B-17 Waluj', 'MAPL B-31 Waluj', 'MAPL Hosur', 'MAPL Pithampur',
-                                   'MMT Dharuhera', 'MMT Pantnagar -I', 'MMT Pantnagar -III']
+                                            'MAPL B-17 Waluj', 'MAPL B-31 Waluj', 'MAPL Hosur', 'MAPL Pithampur',
+                                            'MMT Dharuhera', 'MMT Pantnagar -I', 'MMT Pantnagar -III']
 
 rfq_manufacturing_location_data_etdev = ['Select Manufacturing Location', 'MAPL B-03 Waluj', 'MAPL B-12 Waluj',
-                                   'MAPL B-17 Waluj', 'MAPL B-31 Waluj', 'MAPL Hosur', 'MAPL Pithampur',
-                                   'MMT Dharuhera', 'MMT Pantnagar -I', 'MMT Pantnagar -III']
+                                         'MAPL B-17 Waluj', 'MAPL B-31 Waluj', 'MAPL Hosur', 'MAPL Pithampur',
+                                         'MMT Dharuhera', 'MMT Pantnagar -I', 'MMT Pantnagar -III']
 
 rfq_manufacturing_location_data_bony = ['Select Manufacturing Location', 'Bony Plant Gujarat', 'Bony Plant Manesar',
                                         'Bony Plant No. 132/24', 'Bony Plant No. 77', 'Bony Plot No 37P',
@@ -247,28 +247,65 @@ threed_options = ['Select 3D Soft Copy', 'Completed', 'Incompleted', 'Awaiting f
 
 # Technical evaluation --------------------------------------------------------------------------------------
 
-te_machine_dd_data = ['Please select', 'Buffing/Polishing', 'CNC Machine', 'CNC Pipe Bending', 'CNC Press Brake',
-                      'CNC wire bending', 'Cutting', 'Forging', 'Furnace', 'Gas Cutting', 'Inspection', 'Laser Cutting',
-                      'Machine', 'Machining', 'Manual', 'Manual Welding', 'Plasma Cutting', 'Press',
-                      'Projection Welding', 'Robotic Welding', 'Rolling', 'SPM', 'Shearing', 'Straightening',
-                      'Surface Finishing', 'Traub', 'Turret', 'Welding', 'Welding Machine']
+te_machine_dd_data_matelman = ['Please select', 'Buffing/Polishing', 'CNC Machine', 'CNC Pipe Bending',
+                               'CNC Press Brake',
+                               'CNC wire bending', 'Cutting', 'Forging', 'Furnace', 'Gas Cutting', 'Inspection',
+                               'Laser Cutting',
+                               'Machine', 'Machining', 'Manual', 'Manual Welding', 'Plasma Cutting', 'Press',
+                               'Projection Welding', 'Robotic Welding', 'Rolling', 'SPM', 'Shearing', 'Straightening',
+                               'Surface Finishing', 'Traub', 'Turret', 'Welding', 'Welding Machine']
+te_machine_dd_data_bony = ['Please select', 'Boiler & Vulcaniser', 'Breading Machine', 'Clamping Tool',
+                           'Compression /Transfer / injection m/c/Plastic Inj', 'Crimping', 'Extruder', 'Inspection',
+                           'Kneeting M/C', 'Leaktesting M/c', 'Manual', 'Mixing Mill', 'Pad Printing M/C',
+                           'Painting Booth', 'Printing M/C', 'Proof Testing Machine', 'Shipage Testing Machine',
+                           'Washing M/C', 'oven']
 
-te_process_dd_data = ['Please select', 'Milling & Drilling']
+te_process_dd_data_matelman = ['Please select', 'Milling & Drilling']
+te_process_dd_data_bony = ['Please select', 'HOSE MOUNTING + VULCANIZATION + HOSE DEMOUNTING', 'Valcanization']
 
-te_process_unit_dd_data = ['Please select', 'Nos']
+te_process_unit_dd_data_matelman = ['Please select', 'Nos']
+te_process_unit_dd_data_bony = ['Please select', 'Nos', 'Hours', 'Meter', 'Second']
 
 te_ops_source_dd_data = ['Please select', 'In House', 'Outsource']
 
-te_inspection_instrument_dd_data = ['Please select', 'Abbressive Cutter', 'Angle Plate', 'Belt Polishing Machine',
-                                    'Bore Gauge ( Dial Gauge)', 'Cabinet For Document File Storage', 'Cmm (Arm)',
-                                    'Cmm (Stationary)', 'Dial Indicator With Stand', 'Digital Height Gauge',
-                                    'Digital Vernier Caliper', 'Filler Gauge Set', 'Flat Micrometer', 'Lux Meter',
-                                    'Magnetic V Block', 'Measuring Tape', 'Microscope', 'Point Micrometer',
-                                    'Profile Projector', 'Rockwell Hardness Tester', 'Roughness Tester', 'Saw Cutter',
-                                    'Sine Bar', 'Slip Gauge Set', 'Small Vice', 'Steel Rule', 'Surface Plate (Granite)',
-                                    'Taper Scale', 'Torque Wrench +Socket M5,M6,M8,M10)',
-                                    'Tpg Gauge ( 1Nos Each)(For Nut Id)', 'Utm Machine',
-                                    'Wring Thread Gauge Set. (For Bolt Od)']
+te_inspection_instrument_dd_data_matelman = ['Please select', 'Abbressive Cutter', 'Angle Plate',
+                                             'Belt Polishing Machine',
+                                             'Bore Gauge ( Dial Gauge)', 'Cabinet For Document File Storage',
+                                             'Cmm (Arm)',
+                                             'Cmm (Stationary)', 'Dial Indicator With Stand', 'Digital Height Gauge',
+                                             'Digital Vernier Caliper', 'Filler Gauge Set', 'Flat Micrometer',
+                                             'Lux Meter',
+                                             'Magnetic V Block', 'Measuring Tape', 'Microscope', 'Point Micrometer',
+                                             'Profile Projector', 'Rockwell Hardness Tester', 'Roughness Tester',
+                                             'Saw Cutter',
+                                             'Sine Bar', 'Slip Gauge Set', 'Small Vice', 'Steel Rule',
+                                             'Surface Plate (Granite)',
+                                             'Taper Scale', 'Torque Wrench +Socket M5,M6,M8,M10)',
+                                             'Tpg Gauge ( 1Nos Each)(For Nut Id)', 'Utm Machine',
+                                             'Wring Thread Gauge Set. (For Bolt Od)']
+
+te_inspection_instrument_dd_data_bony = ['Please select', 'Abbressive Cutter', 'Angle Plate', 'Belt Polishing Machine',
+                                         'Bore Gauge ( Dial Gauge)', 'Cabinet For Document File Storage', 'Cmm (Arm)',
+                                         'Cmm (Stationary)', 'Dial Indicator With Stand', 'Digital Height Gauge',
+                                         'Digital Vernier Caliper', 'Filler Gauge Set', 'Flat Micrometer', 'Lux Meter',
+                                         'Magnetic V Block', 'Measuring Tape', 'Microscope', 'Point Micrometer.',
+                                         'Profile Projector', 'Radius Gauge (Inside & Outside)',
+                                         'Rockwell Hardness Tester', 'Roughness Tester', 'Saw Cutter',
+                                         'Sine Bar', 'Slip Gauge Set', 'Small Vice', 'Steel Rule',
+                                         'Surface Plate (Granite)', 'Taper Scale',
+                                         'Torque Wrench +Socket M5,M6,M8,M10)', 'Tpg Gauge ( 1Nos Each) (For Nut Id)',
+                                         'Utm Machine', 'Wring Thread Gauge Set. (For Bolt Od)', 'Please select',
+                                         'Abbressive Cutter', 'Angle Plate', 'Belt Polishing Machine',
+                                         'Bore Gauge ( Dial Gauge)', 'Cabinet For Document File Storage',
+                                         'Cmm (Arm)', 'Cmm (Stationary)', 'Dial Indicator With Stand',
+                                         'Digital Height Gauge', 'Digital Vernier Caliper', 'Filler Gauge Set',
+                                         'Flat Micrometer', 'Lux Meter', 'Magnetic V Block', 'Measuring Tape',
+                                         'Microscope', 'Point Micrometer', 'Profile Projector',
+                                         'Rockwell Hardness Tester', 'Roughness Tester', 'Saw Cutter', 'Sine Bar',
+                                         'Slip Gauge Set', 'Small Vice', 'Steel Rule', 'Surface Plate (Granite)',
+                                         'Taper Scale', 'Torque Wrench +Socket M5,M6,M8,M10)',
+                                         'Tpg Gauge ( 1Nos Each)(For Nut Id)', 'Utm Machine',
+                                         'Wring Thread Gauge Set. (For Bolt Od)']
 
 approval_history_headers = ['Step Name', 'Assigned to', 'Submitted By', 'Status', 'Assigned Date', 'Activity Date',
                             'Comment', 'Action']
@@ -300,20 +337,26 @@ raw_material_data_bony = ['Please select', 'AEM', 'AW-01 NATURAL', 'AW01 (POM)',
                           'SILICONE', 'TENAC-C Z4520 (POM)', 'TF30 (POM)', 'UTN 320 (PA66)']
 
 raw_material_data_metalman = ['Please select', 'AISI 304 (Ø 9.53) Round', 'ASTM A510 TYPE 1 GRADE 1018 (Ø 5.2) Round',
-                   'C20 AS PER IS:1570 (Ø 8) Round', 'C25 (Ø 8) Round', 'C35 (IS:1570) (Ø 16) Round',
-                   'EN-8 (Ø 16) Round', 'EN-8 (Ø 18) Round', 'MS (Ø 3.2) Round', 'MS (Ø 4) Round', 'MS (Ø 5) Round',
-                   'MS (Ø 6) Round', 'MS (Ø 7) Round', 'MS -Round Bar (Ø 65) Round', 'MS(ST 42) (Ø 6) Round',
-                   'S45C (Ø 5) Round', 'SAE 1010 (Ø 24) Round', 'SAE 1010 (Ø 3.2) Round', 'SAE 1010 (Ø 8) Round',
-                   'SAE 1020 (Ø 13) Round', 'SAE 1020 (Ø 14) Round', 'SAE1018 (Ø 22.4) Round', 'SAE1018 (Ø 28) Round',
-                   'SS316 (Ø 3) Round', 'SS316 (Ø 4) Round', 'SS316 (Ø 5) Round', 'SS316 (Ø 6) Round']
+                              'C20 AS PER IS:1570 (Ø 8) Round', 'C25 (Ø 8) Round', 'C35 (IS:1570) (Ø 16) Round',
+                              'EN-8 (Ø 16) Round', 'EN-8 (Ø 18) Round', 'MS (Ø 3.2) Round', 'MS (Ø 4) Round',
+                              'MS (Ø 5) Round',
+                              'MS (Ø 6) Round', 'MS (Ø 7) Round', 'MS -Round Bar (Ø 65) Round', 'MS(ST 42) (Ø 6) Round',
+                              'S45C (Ø 5) Round', 'SAE 1010 (Ø 24) Round', 'SAE 1010 (Ø 3.2) Round',
+                              'SAE 1010 (Ø 8) Round',
+                              'SAE 1020 (Ø 13) Round', 'SAE 1020 (Ø 14) Round', 'SAE1018 (Ø 22.4) Round',
+                              'SAE1018 (Ø 28) Round',
+                              'SS316 (Ø 3) Round', 'SS316 (Ø 4) Round', 'SS316 (Ø 5) Round', 'SS316 (Ø 6) Round']
 
 raw_material_data_etdev = ['Please select', 'AISI 304 (Ø 9.53) Round', 'ASTM A510 TYPE 1 GRADE 1018 (Ø 5.2) Round',
-                   'C20 AS PER IS:1570 (Ø 8) Round', 'C25 (Ø 8) Round', 'C35 (IS:1570) (Ø 16) Round',
-                   'EN-8 (Ø 16) Round', 'EN-8 (Ø 18) Round', 'MS (Ø 3.2) Round', 'MS (Ø 4) Round', 'MS (Ø 5) Round',
-                   'MS (Ø 6) Round', 'MS (Ø 7) Round', 'MS -Round Bar (Ø 65) Round', 'MS(ST 42) (Ø 6) Round',
-                   'S45C (Ø 5) Round', 'SAE 1010 (Ø 24) Round', 'SAE 1010 (Ø 3.2) Round', 'SAE 1010 (Ø 8) Round',
-                   'SAE 1020 (Ø 13) Round', 'SAE 1020 (Ø 14) Round', 'SAE1018 (Ø 22.4) Round', 'SAE1018 (Ø 28) Round',
-                   'SS316 (Ø 3) Round', 'SS316 (Ø 4) Round', 'SS316 (Ø 5) Round', 'SS316 (Ø 6) Round']
+                           'C20 AS PER IS:1570 (Ø 8) Round', 'C25 (Ø 8) Round', 'C35 (IS:1570) (Ø 16) Round',
+                           'EN-8 (Ø 16) Round', 'EN-8 (Ø 18) Round', 'MS (Ø 3.2) Round', 'MS (Ø 4) Round',
+                           'MS (Ø 5) Round',
+                           'MS (Ø 6) Round', 'MS (Ø 7) Round', 'MS -Round Bar (Ø 65) Round', 'MS(ST 42) (Ø 6) Round',
+                           'S45C (Ø 5) Round', 'SAE 1010 (Ø 24) Round', 'SAE 1010 (Ø 3.2) Round',
+                           'SAE 1010 (Ø 8) Round',
+                           'SAE 1020 (Ø 13) Round', 'SAE 1020 (Ø 14) Round', 'SAE1018 (Ø 22.4) Round',
+                           'SAE1018 (Ø 28) Round',
+                           'SS316 (Ø 3) Round', 'SS316 (Ø 4) Round', 'SS316 (Ø 5) Round', 'SS316 (Ø 6) Round']
 
 account_details_data = ['Account Name', 'Email ID', 'Website', 'Phone Number', 'Landline Number', 'PAN Number', 'GSTIN',
                         'FY Start Month', 'RM Norms Rate Type', 'Customer Code', 'Number of Working Days(In year)',

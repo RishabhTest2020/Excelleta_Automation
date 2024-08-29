@@ -1,4 +1,5 @@
 import logging
+import os
 
 from helpers.common_helpers import *
 from locators.rfq_tab_locators import *
@@ -9,6 +10,7 @@ from time import sleep, strftime
 
 class Create_TE:
     def __init__(self):
+        self.bony_te_txt_data = None
         self.te_txt_data = None
         self.inspection_instrument = None
         self.operation_source = None
@@ -36,7 +38,10 @@ class Create_TE:
             sleep(2)
 
     def verify_te_heading(self, browser):
-        headings = ['Operation Details Fabrication', 'Tooling Details Fabrication', 'Other Information Fabrication']
+        if os.environ['ENV'] == "bony":
+            headings = ['Operation Details Polymer', 'Tooling Details Polymer', 'Other Information Polymer']
+        else:
+            headings = ['Operation Details Fabrication', 'Tooling Details Fabrication', 'Other Information Fabrication']
         for head in headings:
             heading = te_headings[1].replace('heading', head)
             heading_loc = replace_in_tuple(te_headings, 1, heading)
@@ -46,6 +51,7 @@ class Create_TE:
     def select_machine(self, browser, dep_index=3):
         do_click(browser, machine_loc)
         values = get_list_of_elems_text(browser, machine_loc_select[0], machine_loc_select[1])
+        te_machine_dd_data = get_env_var_from_globals('te_machine_dd_data_')
         assert values == te_machine_dd_data
         select_name = machine_loc_select[1] + f'[{dep_index}]'
         select_dep_loc = replace_in_tuple(machine_loc_select, 1, select_name)
@@ -56,6 +62,7 @@ class Create_TE:
     def select_te_process(self, browser, dep_index=2):
         do_click(browser, process_loc)
         values = get_list_of_elems_text(browser, process_loc_select[0], process_loc_select[1])
+        te_process_dd_data = get_env_var_from_globals('te_process_dd_data_')
         assert values == te_process_dd_data
         select_name = process_loc_select[1] + f'[{dep_index}]'
         select_dep_loc = replace_in_tuple(process_loc_select, 1, select_name)
@@ -66,6 +73,7 @@ class Create_TE:
     def select_te_process_unit(self, browser, dep_index=2):
         do_click(browser, process_unit_loc)
         values = get_list_of_elems_text(browser, process_unit_loc_select[0], process_unit_loc_select[1])
+        te_process_unit_dd_data = get_env_var_from_globals('te_process_unit_dd_data_')
         assert values == te_process_unit_dd_data
         select_name = process_unit_loc_select[1] + f'[{dep_index}]'
         select_dep_loc = replace_in_tuple(process_unit_loc_select, 1, select_name)
@@ -88,6 +96,7 @@ class Create_TE:
     def select_inspection_instrument(self, browser, dep_index=3):
         do_click(browser, ins_instrument_loc)
         values = get_list_of_elems_text(browser, ins_instrument_loc_select[0], ins_instrument_loc_select[1])
+        te_inspection_instrument_dd_data = get_env_var_from_globals('te_inspection_instrument_dd_data_')
         assert values == te_inspection_instrument_dd_data
         select_name = ins_instrument_loc_select[1] + f'[{dep_index}]'
         select_dep_loc = replace_in_tuple(ins_instrument_loc_select, 1, select_name)
@@ -114,6 +123,23 @@ class Create_TE:
         bill_loc_str_txt = assembly_txt_boxes_txt[1].replace("field_name", ids_list[-1])
         bill_loc_txt = replace_in_tuple(assembly_txt_boxes_txt, 1, bill_loc_str_txt)
         do_send_keys(browser, bill_loc_txt, self.te_txt_data[-1])
+
+    def fill_bony_te_txtbox_data(self, browser):
+        bony_ids_list = ['Cycle Time', 'Unit Value', 'No. of Cavity', 'Name of Tool/Fixture',
+                         'Length', 'Width', 'Height', 'Gross Wt', 'Net Wt', 'Scientific Based Tooling Cost',
+                         'Judgment Based Tooling Cost', 'Skilled Man Power', 'Unskilled Man Power', 'Material Handling',
+                         'Remarks']
+        self.bony_te_txt_data = [150, 53, 174, 'Rod Cutter', 13, 7, 16, 25, 1700, 3249, 3500, 12, 23,
+                                 'Test Bony Material Handling', 'This is bony te for automation testing']
+        for b_id, data in zip(bony_ids_list[:-1], self.bony_te_txt_data[:-1]):
+            bill_loc_str = assembly_txt_boxes[1].replace("field_name", b_id)
+            bill_loc = replace_in_tuple(assembly_txt_boxes, 1, bill_loc_str)
+            logging.info(bill_loc)
+            do_send_keys(browser, bill_loc, data)
+        bill_loc_str_txt = assembly_txt_boxes_txt[1].replace("field_name", bony_ids_list[-1])
+        bill_loc_txt = replace_in_tuple(assembly_txt_boxes_txt, 1, bill_loc_str_txt)
+        do_send_keys(browser, bill_loc_txt, self.bony_te_txt_data[-1])
+
 
     def verify_data_te(self, browser, all_data_dict):
         loader_should_be_invisile(browser, 5)
@@ -398,7 +424,7 @@ class Edit_TE:
         self.surface_treatment = get_element_text(browser, select_loc)
         do_click(browser, select_loc)
         sleep(0.5)
-        
+
     def clone_te(self, browser, index=2):
         do_click(browser, te_clone_loc)
         do_click(browser, ecn_type_drop_down_loc)
