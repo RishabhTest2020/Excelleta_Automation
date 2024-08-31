@@ -17,8 +17,8 @@ def acc_head_colm(browser):
     rfq_steps.verify_rfq_head_col(browser)
 
 
-@then(parsers.parse('Create a RFQ {types}, location {loc_index:d}'))
-def create_rfq(browser, types, loc_index):
+@then(parsers.parse('Create a RFQ {types}, location {loc_name}, {dev_loc}'))
+def create_rfq(browser, types, loc_name, dev_loc):
     do_click(browser, add_rfq_btn)
     rfq_steps.select_account_and_key_person(browser, accounts_steps.account_details[0])
     rfq_steps.select_business_evaluation(browser)
@@ -33,8 +33,8 @@ def create_rfq(browser, types, loc_index):
     else:
         rfq_steps.select_confidentiality(browser)
     rfq_steps.select_customer_target_date(browser)
-    rfq_steps.select_dev_lead_location(browser)
-    rfq_steps.select_manufacturing_location(browser, index=loc_index)
+    rfq_steps.select_dev_lead_location(browser, index=dev_loc)
+    rfq_steps.select_manufacturing_location(browser, index=loc_name)
     rfq_steps.select_company_priority(browser)
     rfq_steps.select_finalizing_date(browser)
     rfq_steps.select_cft_completion_date(browser)

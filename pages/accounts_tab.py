@@ -88,7 +88,8 @@ class Accounts:
         business_nature_list = get_env_var_from_globals('business_nature_list_')
         val = check_common_elements(business_nature_list, values)
         assert val is True
-        select_bn = business_nature_option[1] + f'[{bn_type}]'
+        # select_bn = business_nature_option[1] + f'[{bn_type}]'
+        select_bn = business_nature_option[1].replace('name', bn_type)
         select_bn_loc = replace_in_tuple(business_nature_option, 1, select_bn)
         do_click(browser, select_bn_loc)
         do_click(browser, business_info_h3)

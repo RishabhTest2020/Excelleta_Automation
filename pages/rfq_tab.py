@@ -151,20 +151,22 @@ class Rfq:
         check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
         val = check_common_elements(rfq_dev_lead_location_data, values)
         assert val is True
-        select_name = rfq_dev_lead_loc_select[1] + f'[{index}]'
+        # select_name = rfq_dev_lead_loc_select[1] + f'[{index}]'
+        select_name = rfq_dev_lead_loc_select[1].replace('name', index)
         select_dep_loc = replace_in_tuple(rfq_dev_lead_loc_select, 1, select_name)
         self.dev_lead_location = get_element_text(browser, select_dep_loc)
         do_click(browser, select_dep_loc)
         sleep(0.5)
 
-    def select_manufacturing_location(self, browser, index=2):
+    def select_manufacturing_location(self, browser, index):
         do_click(browser, rfq_manufacturing_loc)
         values = get_list_of_elems_text(browser, rfq_manufacturing_loc_select[0], rfq_manufacturing_loc_select[1])
         rfq_manufacturing_location_data = get_env_var_from_globals('rfq_manufacturing_location_data_')
         check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
         val = check_common_elements(rfq_manufacturing_location_data, values)
         assert val is True
-        select_name = rfq_manufacturing_loc_select[1] + f'[{index}]'
+        # select_name = rfq_manufacturing_loc_select[1] + f'[{index}]'
+        select_name = rfq_manufacturing_loc_select[1].replace('name', index)
         select_dep_loc = replace_in_tuple(rfq_manufacturing_loc_select, 1, select_name)
         self.manufacturing_location = get_element_text(browser, select_dep_loc)
         do_click(browser, select_dep_loc)

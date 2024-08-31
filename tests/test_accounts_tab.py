@@ -5,7 +5,7 @@ from selenium.webdriver import Keys
 
 from helpers.common_helpers import *
 from pages.accounts_tab import *
-from pytest_bdd import given, when, then
+from pytest_bdd import given, when, then, parsers
 from pages.rfq_tab import Rfq
 
 
@@ -20,18 +20,14 @@ def acc_head_colm(browser):
     accounts_steps.verify_accounts_head_col(browser)
 
 
-@then('Create an account')
-def account_creation(browser):
+@then(parsers.parse('Create an account {bn_type}'))
+def account_creation(browser, bn_type):
     do_click(browser, add_accounts_btn)
     should_be_visible(browser, acc_basic_info_txt, 'acc_basic_info_txt')
     accounts_steps.add_accounts_data_in_txt_box(browser)
     accounts_steps.select_start_month_field(browser)
     accounts_steps.select_rm_norms_field(browser)
     do_send_keys(browser, tnc_loc, 'TNC Automation')
-    if os.environ['ENV'] == 'bony':
-        bn_type = 4
-    else:
-        bn_type = 2
     accounts_steps.select_business_nature_field(browser, bn_type=bn_type)
     accounts_steps.select_business_domain_field(browser)
     accounts_steps.select_business_segment_field(browser)
