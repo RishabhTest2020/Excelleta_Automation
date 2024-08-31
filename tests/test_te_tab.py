@@ -124,7 +124,20 @@ def edit_te_raw_material(browser, index, rm_index):
     edit_te_steps_parts.select_surface_treatment(browser)
     edit_te_steps_parts.select_rm_type(browser)
     edit_te_steps_parts.select_raw_material(browser, index=rm_index)
-    edit_te_steps_parts.select_add_rod_size(browser)
+    if os.environ['ENV'] == 'matelman':
+        edit_te_steps_parts.select_add_rod_size(browser)
+    else:
+        edit_te_steps.select_uom_of_compound_bony(browser)
+        edit_te_steps.select_product_category_bony(browser)
+        edit_te_steps.enter_supplier_name(browser)
+        sleep(5)
+        edit_te_steps.enter_inner_diameter(browser)
+        edit_te_steps.enter_outer_diameter(browser)
+        edit_te_steps.enter_net_length(browser)
+        edit_te_steps.enter_cutting_margin(browser)
+        edit_te_steps.enter_material_density(browser)
+        edit_te_steps.enter_gross_weight_factor(browser)
+        edit_te_steps.enter_fabric_gross_weight(browser)
     edit_te_steps_parts.__dict__['part_name'] = part_name
     edit_te_steps_parts.__dict__['part_component_number'] = part_component_number
     try:
