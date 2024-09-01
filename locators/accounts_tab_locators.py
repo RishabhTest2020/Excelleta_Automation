@@ -31,8 +31,7 @@ business_domain_option_txt = (By.XPATH, '(//*[contains(@name, "businessDomainIds
 business_domain_selected = (By.XPATH, '(//*[text()= "Business Domain"]/parent::*//span[@class="selected-item"])')
 business_segment = (By.XPATH, '//*[contains(text(), "Select Business Segment")]')
 business_segment_option = (By.XPATH, '(//*[contains(@name, "segmentIds")]//input/..)')
-# business_segment_option_txt = (By.XPATH, '(//*[contains(@name, "segmentIds")]//div)')
-business_segment_option_txt = (By.XPATH, '//*[@aria-label= "name"]/..')
+business_segment_option_txt = (By.XPATH, '(//*[contains(@name, "segmentIds")]//div)')
 business_segment_selected = (By.XPATH, '(//*[text()= "Business Segment"]/parent::*//span[@class="selected-item"])')
 
 

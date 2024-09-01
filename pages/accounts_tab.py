@@ -54,7 +54,7 @@ class Accounts:
                 invalid_mess = is_visible(browser, invalid_phone_num_erroe_loc)
                 if invalid_mess is True:
                     do_clear(browser, acc_field_loc)
-                    do_send_keys(browser, acc_field_loc, data[1:])
+                    do_send_keys(browser, acc_field_loc, data)
                     self.account_details.remove(self.account_details[3])
                     self.account_details.insert(3, data[1:])
 
