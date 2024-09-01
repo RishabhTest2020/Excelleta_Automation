@@ -94,7 +94,7 @@ class Accounts:
         do_click(browser, select_bn_loc)
         do_click(browser, business_info_h3)
         self.business_nature = get_element_text(browser, business_nature_selected).rstrip(" x ")
-        assert self.business_nature == business_nature_list[bn_type - 1]
+        assert self.business_nature == bn_type
 
     def select_business_domain_field(self, browser, bd_type=2):
         do_click(browser, business_domain)
