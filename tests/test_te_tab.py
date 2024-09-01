@@ -124,7 +124,7 @@ def edit_te_raw_material(browser, rmtype, index, rm_index):
     edit_te_steps_parts.select_surface_treatment(browser)
     edit_te_steps_parts.select_rm_type(browser, rmtype)
     edit_te_steps_parts.select_raw_material(browser, index=rm_index)
-    if os.environ['ENV'] == 'matelman':
+    if rmtype == 'Rod/Bar':
         edit_te_steps_parts.select_add_rod_size(browser)
     else:
         edit_te_steps.select_uom_of_compound_bony(browser)
