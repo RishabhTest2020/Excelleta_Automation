@@ -146,7 +146,7 @@ class Rfq:
 
     def select_dev_lead_location(self, browser, index=2):
         do_click(browser, rfq_dev_lead_loc)
-        values = get_list_of_elems_text(browser, rfq_dev_lead_loc_select[0], rfq_dev_lead_loc_select[1])
+        values = get_list_of_elems_text(browser, rfq_dev_lead_loc_select_opts[0], rfq_dev_lead_loc_select_opts[1])
         rfq_dev_lead_location_data = get_env_var_from_globals('rfq_dev_lead_location_data_')
         check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
         val = check_common_elements(rfq_dev_lead_location_data, values)
@@ -160,7 +160,7 @@ class Rfq:
 
     def select_manufacturing_location(self, browser, index):
         do_click(browser, rfq_manufacturing_loc)
-        values = get_list_of_elems_text(browser, rfq_manufacturing_loc_select[0], rfq_manufacturing_loc_select[1])
+        values = get_list_of_elems_text(browser, rfq_manufacturing_loc_select_opts[0], rfq_manufacturing_loc_select_opts[1])
         rfq_manufacturing_location_data = get_env_var_from_globals('rfq_manufacturing_location_data_')
         check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
         val = check_common_elements(rfq_manufacturing_location_data, values)

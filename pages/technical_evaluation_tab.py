@@ -382,7 +382,7 @@ class Edit_TE:
     def select_rm_type(self, browser, rmtypes):
         scroll_into_the_view(browser, rm_type_loc[0], rm_type_loc[1])
         do_click(browser, rm_type_loc)
-        values = get_list_of_elems_text(browser, rm_type_loc_select[0], rm_type_loc_select[1])
+        values = get_list_of_elems_text(browser, rm_type_loc_select_opts[0], rm_type_loc_select_opts[1])
         rm_type_dd_data = get_env_var_from_globals('rm_type_data_')
         assert values == rm_type_dd_data
         # select_name = rm_type_loc_select[1] + f'[{index}]'
