@@ -110,13 +110,13 @@ def verify_account(browser):
     rfq_steps.verify_created_dict(browser, rfq_class_data, accounts_steps.account_details[0])
 
 
-@then('Add Drawing Data')
-def create_drawing_data(browser):
+@then(parsers.parse('Add Drawing Data {busi_type}'))
+def create_drawing_data(browser, busi_type):
     # drawing_data_steps.goto_rfq_verify_chart_blink(browser, rfq_steps.__dict__['rfq_url_id'])
     drawing_data_steps.add_drawing_data(browser)
     drawing_data_steps.select_2d_soft_copy(browser)
     drawing_data_steps.select_3d_soft_copy(browser)
-    if os.environ['ENV'] == 'bony':
+    if busi_type == 'Polymer':
         drawing_data_steps.add_compound_feasibility(browser)
     else:
         drawing_data_steps.add_roi_and_approve(browser)

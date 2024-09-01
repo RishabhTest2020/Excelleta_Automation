@@ -22,10 +22,10 @@ rfq_received_date_loc = (By.XPATH, '//*[@for="rfqReceivedDate"]/..//input')
 rfq_target_date_loc = (By.XPATH, '//*[contains(text(), "Customer Target Date")]/..//input')
 rfq_dev_lead_loc = (By.XPATH, '//select[@formcontrolname="developmentLeadLocId"]')
 rfq_dev_lead_loc_select = (By.XPATH,
-                           '(//select[@formcontrolname="developmentLeadLocId"]/option[contains(text(), "name")])')
+                           '(//select[@formcontrolname="developmentLeadLocId"]/option[contains(text(), "devleadlocaton")])')
 rfq_manufacturing_loc = (By.XPATH, '//select[@formcontrolname="manufacturingLocId"]')
 rfq_manufacturing_loc_select = (By.XPATH,
-                                '(//select[@formcontrolname="manufacturingLocId"]/option[contains(text(), "name")])')
+                                '(//select[@formcontrolname="manufacturingLocId"]/option[contains(text(), "manulocation")])')
 rfq_company_priority_loc = (By.XPATH, '//select[@formcontrolname="companyPriorityId"]')
 rfq_company_priority_loc_select = (By.XPATH, '(//select[@formcontrolname="companyPriorityId"]/option)')
 

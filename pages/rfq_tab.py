@@ -152,7 +152,7 @@ class Rfq:
         val = check_common_elements(rfq_dev_lead_location_data, values)
         assert val is True
         # select_name = rfq_dev_lead_loc_select[1] + f'[{index}]'
-        select_name = rfq_dev_lead_loc_select[1].replace('name', index)
+        select_name = rfq_dev_lead_loc_select[1].replace('devleadlocaton', index)
         select_dep_loc = replace_in_tuple(rfq_dev_lead_loc_select, 1, select_name)
         self.dev_lead_location = get_element_text(browser, select_dep_loc)
         do_click(browser, select_dep_loc)
@@ -166,7 +166,7 @@ class Rfq:
         val = check_common_elements(rfq_manufacturing_location_data, values)
         assert val is True
         # select_name = rfq_manufacturing_loc_select[1] + f'[{index}]'
-        select_name = rfq_manufacturing_loc_select[1].replace('name', index)
+        select_name = rfq_manufacturing_loc_select[1].replace('manulocation', index)
         select_dep_loc = replace_in_tuple(rfq_manufacturing_loc_select, 1, select_name)
         self.manufacturing_location = get_element_text(browser, select_dep_loc)
         do_click(browser, select_dep_loc)

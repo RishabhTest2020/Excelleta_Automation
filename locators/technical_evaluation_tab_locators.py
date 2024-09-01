@@ -42,7 +42,7 @@ surface_area_unit_loc_select = (By.XPATH, '(//select[@name="surfaceAreaLengthTyp
 manu_source_loc = (By.XPATH, '//select[@name="ComponentManufacturingSource"]')
 manu_source_loc_select = (By.XPATH, '(//select[@name="ComponentManufacturingSource"]/option)')
 rm_type_loc = (By.XPATH, '//select[@name="rmType"]')
-rm_type_loc_select = (By.XPATH, '(//select[@name="rmType"]/option)')
+rm_type_loc_select = (By.XPATH, '(//select[@name="rmType"]/option[contains(text(), "rm_value")])')
 raw_mat_loc = (By.XPATH, '//select[@name="rmMaterialId"]')
 raw_mat_loc_select = (By.XPATH, '(//select[@name="rmMaterialId"]/option)')
 

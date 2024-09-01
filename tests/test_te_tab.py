@@ -19,29 +19,29 @@ te_all_data_dicts = {}
 add_st_opts_steps = AddSTOperations()
 
 
-@when(parsers.parse('Create TE data {index:d}'))
-def create_te_data(browser, index):
+@when(parsers.parse('Create TE data {index:d}, {busi_type}'))
+def create_te_data(browser, index, busi_type):
     create_testeps.add_operation(browser, index=index)
-    if os.environ['ENV'] == "bony":
+    if busi_type == "Polymer":
         create_testeps.select_machine(browser, dep_index=2)
     else:
         create_testeps.select_machine(browser)
     create_testeps.select_te_process(browser)
     create_testeps.select_te_process_unit(browser)
     create_testeps.select_operation_source(browser)
-    if os.environ['ENV'] == "bony":
+    if busi_type == "Polymer":
         create_testeps.fill_bony_te_txtbox_data(browser)
     else:
         create_testeps.fill_te_txtbox_data(browser)
     create_testeps.select_inspection_instrument(browser)
-    create_testeps.verify_te_heading(browser)
+    create_testeps.verify_te_heading(browser, busi_type)
     do_click(browser, save_btn)
     sleep(2)
     te_all_data_dicts[f'created_te_data{index}'] = create_testeps.__dict__
 
 
-@when(parsers.parse('Edit TE Assembly and fill raw material data {ass_type}'))
-def edit_te_raw_material(browser, ass_type):
+@when(parsers.parse('Edit TE Assembly and fill raw material data {ass_type}, {busi_type}'))
+def edit_te_raw_material(browser, ass_type, busi_type):
     # create_testeps.goto_te_verify_part_add_assembly(browser, drawing_data_steps.te_link,
     #                                                 f"{rfq_txtboxes_data[3]} ({str(rfq_txtboxes_data[4])})")
     edit_te_steps.edit_assembly(browser)
@@ -51,7 +51,7 @@ def edit_te_raw_material(browser, ass_type):
     if ass_type == 'single':
         edit_te_steps.select_rm_type(browser)
         edit_te_steps.select_raw_material(browser)
-        if os.environ['ENV'] == "metalman":
+        if busi_type != 'Polymer':
             edit_te_steps.select_add_rod_size(browser)
         else:
             edit_te_steps.select_uom_of_compound_bony(browser)
@@ -106,8 +106,8 @@ def add_sub_assembly(browser):
         sleep(2)
 
 
-@when(parsers.parse('Add assembly part {index:d} {rm_index:d}'))
-def edit_te_raw_material(browser, index, rm_index):
+@when(parsers.parse('Add assembly part {rmtype} {index:d} {rm_index:d}'))
+def edit_te_raw_material(browser, rmtype, index, rm_index):
     create_testeps.add_operation(browser, ops=False, index=index)
     do_click(browser, add_part_btn)
     sleep(1)
@@ -122,7 +122,7 @@ def edit_te_raw_material(browser, index, rm_index):
     edit_te_steps_parts.select_surface_area_unit(browser)
     edit_te_steps_parts.select_manufacturing_source(browser)
     edit_te_steps_parts.select_surface_treatment(browser)
-    edit_te_steps_parts.select_rm_type(browser)
+    edit_te_steps_parts.select_rm_type(browser, rmtype)
     edit_te_steps_parts.select_raw_material(browser, index=rm_index)
     edit_te_steps_parts.select_add_rod_size(browser)
     edit_te_steps_parts.__dict__['part_name'] = part_name

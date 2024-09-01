@@ -37,8 +37,8 @@ class Create_TE:
             do_click(browser, add_view_operation)
             sleep(2)
 
-    def verify_te_heading(self, browser):
-        if os.environ['ENV'] == "bony":
+    def verify_te_heading(self, browser, busi_type):
+        if busi_type == "Polymer":
             headings = ['Operation Details Polymer', 'Tooling Details Polymer', 'Other Information Polymer']
         else:
             headings = ['Operation Details Fabrication', 'Tooling Details Fabrication', 'Other Information Fabrication']
@@ -129,7 +129,7 @@ class Create_TE:
                          'Length', 'Width', 'Height', 'Gross Wt', 'Net Wt', 'Scientific Based Tooling Cost',
                          'Judgment Based Tooling Cost', 'Skilled Man Power', 'Unskilled Man Power', 'Material Handling',
                          'Remarks']
-        self.bony_te_txt_data = [150, 53, 174, 'Rod Cutter', 13, 7, 16, 25, 1700, 3249, 3500, 12, 23,
+        self.te_txt_data = [150, 53, 174, 'Rod Cutter', 13, 7, 16, 25, 1700, 3249, 3500, 12, 23,
                                  'Test Bony Material Handling', 'This is bony te for automation testing']
         for b_id, data in zip(bony_ids_list[:-1], self.bony_te_txt_data[:-1]):
             bill_loc_str = assembly_txt_boxes[1].replace("field_name", b_id)
@@ -139,7 +139,6 @@ class Create_TE:
         bill_loc_str_txt = assembly_txt_boxes_txt[1].replace("field_name", bony_ids_list[-1])
         bill_loc_txt = replace_in_tuple(assembly_txt_boxes_txt, 1, bill_loc_str_txt)
         do_send_keys(browser, bill_loc_txt, self.bony_te_txt_data[-1])
-
 
     def verify_data_te(self, browser, all_data_dict):
         loader_should_be_invisile(browser, 5)
@@ -380,13 +379,14 @@ class Edit_TE:
         do_click(browser, select_loc)
         sleep(0.5)
 
-    def select_rm_type(self, browser, index=2):
+    def select_rm_type(self, browser, rmtypes):
         scroll_into_the_view(browser, rm_type_loc[0], rm_type_loc[1])
         do_click(browser, rm_type_loc)
         values = get_list_of_elems_text(browser, rm_type_loc_select[0], rm_type_loc_select[1])
         rm_type_dd_data = get_env_var_from_globals('rm_type_data_')
         assert values == rm_type_dd_data
-        select_name = rm_type_loc_select[1] + f'[{index}]'
+        # select_name = rm_type_loc_select[1] + f'[{index}]'
+        select_name = rm_type_loc_select[1].replace('rm_value', rmtypes)
         select_loc = replace_in_tuple(rm_type_loc_select, 1, select_name)
         self.rm_type = get_element_text(browser, select_loc)
         do_click(browser, select_loc)
