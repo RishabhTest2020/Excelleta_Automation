@@ -247,7 +247,7 @@ threed_options = ['Select 3D Soft Copy', 'Completed', 'Incompleted', 'Awaiting f
 
 # Technical evaluation --------------------------------------------------------------------------------------
 
-te_machine_dd_data_matelman = ['Please select', 'Buffing/Polishing', 'CNC Machine', 'CNC Pipe Bending',
+te_machine_dd_data_metalman = ['Please select', 'Buffing/Polishing', 'CNC Machine', 'CNC Pipe Bending',
                                'CNC Press Brake',
                                'CNC wire bending', 'Cutting', 'Forging', 'Furnace', 'Gas Cutting', 'Inspection',
                                'Laser Cutting',
@@ -260,15 +260,15 @@ te_machine_dd_data_bony = ['Please select', 'Boiler & Vulcaniser', 'Breading Mac
                            'Painting Booth', 'Printing M/C', 'Proof Testing Machine', 'Shipage Testing Machine',
                            'Washing M/C', 'oven']
 
-te_process_dd_data_matelman = ['Please select', 'Milling & Drilling']
+te_process_dd_data_metalman = ['Please select', 'Milling & Drilling']
 te_process_dd_data_bony = ['Please select', 'HOSE MOUNTING + VULCANIZATION + HOSE DEMOUNTING', 'Valcanization']
 
-te_process_unit_dd_data_matelman = ['Please select', 'Nos']
+te_process_unit_dd_data_metalman = ['Please select', 'Nos']
 te_process_unit_dd_data_bony = ['Please select', 'Nos', 'Hours', 'Meter', 'Second']
 
 te_ops_source_dd_data = ['Please select', 'In House', 'Outsource']
 
-te_inspection_instrument_dd_data_matelman = ['Please select', 'Abbressive Cutter', 'Angle Plate',
+te_inspection_instrument_dd_data_metalman = ['Please select', 'Abbressive Cutter', 'Angle Plate',
                                              'Belt Polishing Machine',
                                              'Bore Gauge ( Dial Gauge)', 'Cabinet For Document File Storage',
                                              'Cmm (Arm)',

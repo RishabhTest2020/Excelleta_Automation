@@ -46,7 +46,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify created Rfq data
     Then Verify Rfq table head column
 
-  @Sanity @Sanity_metalman @Test
+  @Sanity @Sanity_metalman #@Test
   Scenario: TC_06 Create and verify Drawing data and TE data
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -335,7 +335,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4 assert True
 
-  @Sanity @Sanity_metalman #@Test
+  @Sanity @Sanity_metalman @Test
   Scenario: TC_19 Create Multi level BOM and approve flow Hosur
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -345,7 +345,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 25
     Then Create a RFQ multi, location Hosur, Delhi Corp
     Then Add Drawing Data Fabrication
-    When Navigate to Technical Evaluation tab 10
+    When Navigate to Technical Evaluation tab 15
     When Edit TE Assembly and fill raw material data multi, Fabrication
     When Create TE data 1, Fabrication
     When Add sub assembly and its data

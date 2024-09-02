@@ -229,7 +229,7 @@ class Approve_TE:
                     if args_len >= 4 and range_mod.index(i) >= 3:
                         j = i - 1
                         if range_mod.index(i) == 3:
-                            self.comments = ah_row_vals[-1]
+                            self.comments = [ah_row_vals[-1]]
                     else:
                         j = i
                     if args_len >= 4:
