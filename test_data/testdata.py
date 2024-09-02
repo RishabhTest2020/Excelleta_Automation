@@ -254,6 +254,15 @@ te_machine_dd_data_metalman = ['Please select', 'Buffing/Polishing', 'CNC Machin
                                'Machine', 'Machining', 'Manual', 'Manual Welding', 'Plasma Cutting', 'Press',
                                'Projection Welding', 'Robotic Welding', 'Rolling', 'SPM', 'Shearing', 'Straightening',
                                'Surface Finishing', 'Traub', 'Turret', 'Welding', 'Welding Machine']
+
+te_machine_dd_data_etdev = ['Please select', 'Buffing/Polishing', 'CNC Machine', 'CNC Pipe Bending',
+                               'CNC Press Brake',
+                               'CNC wire bending', 'Cutting', 'Forging', 'Furnace', 'Gas Cutting', 'Inspection',
+                               'Laser Cutting',
+                               'Machine', 'Machining', 'Manual', 'Manual Welding', 'Plasma Cutting', 'Press',
+                               'Projection Welding', 'Robotic Welding', 'Rolling', 'SPM', 'Shearing', 'Straightening',
+                               'Surface Finishing', 'Traub', 'Turret', 'Welding', 'Welding Machine']
+
 te_machine_dd_data_bony = ['Please select', 'Boiler & Vulcaniser', 'Breading Machine', 'Clamping Tool',
                            'Compression /Transfer / injection m/c/Plastic Inj', 'Crimping', 'Extruder', 'Inspection',
                            'Kneeting M/C', 'Leaktesting M/c', 'Manual', 'Mixing Mill', 'Pad Printing M/C',
@@ -261,14 +270,36 @@ te_machine_dd_data_bony = ['Please select', 'Boiler & Vulcaniser', 'Breading Mac
                            'Washing M/C', 'oven']
 
 te_process_dd_data_metalman = ['Please select', 'Milling & Drilling']
+
+te_process_dd_data_etdev = ['Please select', 'Milling & Drilling']
+
 te_process_dd_data_bony = ['Please select', 'HOSE MOUNTING + VULCANIZATION + HOSE DEMOUNTING', 'Valcanization']
 
 te_process_unit_dd_data_metalman = ['Please select', 'Nos']
+
+te_process_unit_dd_data_etdev = ['Please select', 'Nos']
+
 te_process_unit_dd_data_bony = ['Please select', 'Nos', 'Hours', 'Meter', 'Second']
 
 te_ops_source_dd_data = ['Please select', 'In House', 'Outsource']
 
 te_inspection_instrument_dd_data_metalman = ['Please select', 'Abbressive Cutter', 'Angle Plate',
+                                             'Belt Polishing Machine',
+                                             'Bore Gauge ( Dial Gauge)', 'Cabinet For Document File Storage',
+                                             'Cmm (Arm)',
+                                             'Cmm (Stationary)', 'Dial Indicator With Stand', 'Digital Height Gauge',
+                                             'Digital Vernier Caliper', 'Filler Gauge Set', 'Flat Micrometer',
+                                             'Lux Meter',
+                                             'Magnetic V Block', 'Measuring Tape', 'Microscope', 'Point Micrometer',
+                                             'Profile Projector', 'Rockwell Hardness Tester', 'Roughness Tester',
+                                             'Saw Cutter',
+                                             'Sine Bar', 'Slip Gauge Set', 'Small Vice', 'Steel Rule',
+                                             'Surface Plate (Granite)',
+                                             'Taper Scale', 'Torque Wrench +Socket M5,M6,M8,M10)',
+                                             'Tpg Gauge ( 1Nos Each)(For Nut Id)', 'Utm Machine',
+                                             'Wring Thread Gauge Set. (For Bolt Od)']
+
+te_inspection_instrument_dd_data_etdev = ['Please select', 'Abbressive Cutter', 'Angle Plate',
                                              'Belt Polishing Machine',
                                              'Bore Gauge ( Dial Gauge)', 'Cabinet For Document File Storage',
                                              'Cmm (Arm)',
