@@ -69,7 +69,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 35
     Then Create a RFQ multi, location B-31, Delhi Corp
     Then Add Drawing Data Fabrication
     When Navigate to Technical Evaluation tab 10
@@ -96,7 +96,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Fabrication
     When Navigate to Technical Evaluation tab 10
@@ -129,7 +129,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Fabrication
     When Navigate to Technical Evaluation tab 10
@@ -176,7 +176,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Fabrication
     When Navigate to Technical Evaluation tab 10
@@ -220,7 +220,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 30
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
     Then Reject ROI data
     Then Revoke ROI data
@@ -232,7 +232,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 35
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
     Then Reject technical feasibility
     Then Revoke technical feasibility
@@ -244,7 +244,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 35
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
     Then Technical feasibility as No
 
@@ -267,7 +267,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 35
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Fabrication
     When Navigate to Technical Evaluation tab 10
@@ -282,7 +282,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Fabrication
     When Navigate to Technical Evaluation tab 10
@@ -315,7 +315,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Dharuhera, Delhi Corp
     Then Add Drawing Data Fabrication
     When Navigate to Technical Evaluation tab 10
@@ -342,7 +342,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Hosur, Delhi Corp
     Then Add Drawing Data Fabrication
     When Navigate to Technical Evaluation tab 15
@@ -369,7 +369,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Fabrication
     When Navigate to Technical Evaluation tab 10
