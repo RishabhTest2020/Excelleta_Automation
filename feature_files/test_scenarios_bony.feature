@@ -26,23 +26,21 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 25
     Then Create a RFQ single, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Add Drawing Data Polymer
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data single, Polymer
     When Create TE data 1, Polymer
     Then Verify TE data
     Then Approve TE all levels, back true level 3 assert True
 
-  @Sanity @Sanity_bony #@Test
-  Scenario: TC_07 Create Multi level BOM and approve flow B31 Bony
+  @Sanity @Sanity_bony @Test
+  Scenario: TC_07 Create Multi level BOM and approve flow Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
     Then Create a RFQ multi, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Add Drawing Data Polymer
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Polymer
     When Create TE data 1, Polymer
     When Add sub assembly and its data
@@ -57,19 +55,18 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create TE data 4, Polymer
     When Create ST Ops data 3
     When Create ST Ops data 5
-    Then Approve TE all levels, back false level 4 assert True
+    Then Approve TE all levels, back false level 3 assert True
 
   @Sanity @Sanity_bony #@Test
   Scenario: TC_08 Create Multi level BOM, create norms and Generate cost approval flow Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
     Then Create a RFQ multi, location Bony Plant Gujarat,  Bony Plant Gujarat
     Then Add Drawing Data Polymer
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Polymer
     When Create TE data 1, Polymer
     When Add sub assembly and its data
@@ -96,13 +93,12 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_09 Create Multi level BOM and reject approval all levels Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
     Then Create a RFQ multi, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Add Drawing Data Polymer
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Polymer
     When Create TE data 1, Polymer
     When Add sub assembly and its data
@@ -132,13 +128,12 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_11 Create Multi level BOM, Generate cost and all level reject flow Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
     Then Create a RFQ multi, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Add Drawing Data Polymer
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Polymer
     When Create TE data 1, Polymer
     When Add sub assembly and its data
@@ -176,7 +171,7 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_12 Verify Reject And Revoke Functionality of ROI Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
@@ -188,7 +183,7 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_13 Verify Reject And Revoke Functionality OF TF Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
@@ -200,7 +195,7 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_14 Verify Technical Feasibility As No Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
@@ -212,13 +207,12 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_16 Revoke TE and verify Approval History Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
     Then Create a RFQ single, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Add Drawing Data Polymer
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data single, Polymer
     When Create TE data 1, Polymer
     Then Revoke TE and Verify History
@@ -227,13 +221,12 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_17 Create Multi level BOM, Generate cost and revoke flow Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
     Then Create a RFQ multi, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Add Drawing Data Polymer
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Polymer
     When Create TE data 1, Polymer
     When Add sub assembly and its data

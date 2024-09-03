@@ -10,7 +10,6 @@ from time import sleep, strftime
 
 class Create_TE:
     def __init__(self):
-        self.bony_te_txt_data = None
         self.te_txt_data = None
         self.inspection_instrument = None
         self.operation_source = None
@@ -21,10 +20,13 @@ class Create_TE:
     def goto_te_verify_part_add_assembly(self, browser, te_name, tool):
         te_loc = (By.XPATH, f'//a[contains(text(), "{te_name}")]')
         logging.info(te_loc)
-        try:
-            do_click(browser, te_loc, 15)
-        except TimeoutException:
-            do_click(browser, te_loc)
+        if os.environ['ENV'] == 'bony':
+            do_click(browser, te_name_link)
+        else:
+            try:
+                do_click(browser, te_loc, 15)
+            except TimeoutException:
+                do_click(browser, te_loc)
         loader_should_be_invisile(browser, 3)
         tool_txt = get_element_text(browser, assembly_node_label)
         assert tool_txt == tool
@@ -131,14 +133,14 @@ class Create_TE:
                          'Remarks']
         self.te_txt_data = [150, 53, 174, 'Rod Cutter', 13, 7, 16, 25, 1700, 3249, 3500, 12, 23,
                                  'Test Bony Material Handling', 'This is bony te for automation testing']
-        for b_id, data in zip(bony_ids_list[:-1], self.bony_te_txt_data[:-1]):
+        for b_id, data in zip(bony_ids_list[:-1], self.te_txt_data[:-1]):
             bill_loc_str = assembly_txt_boxes[1].replace("field_name", b_id)
             bill_loc = replace_in_tuple(assembly_txt_boxes, 1, bill_loc_str)
             logging.info(bill_loc)
             do_send_keys(browser, bill_loc, data)
         bill_loc_str_txt = assembly_txt_boxes_txt[1].replace("field_name", bony_ids_list[-1])
         bill_loc_txt = replace_in_tuple(assembly_txt_boxes_txt, 1, bill_loc_str_txt)
-        do_send_keys(browser, bill_loc_txt, self.bony_te_txt_data[-1])
+        do_send_keys(browser, bill_loc_txt, self.te_txt_data[-1])
 
     def verify_data_te(self, browser, all_data_dict):
         loader_should_be_invisile(browser, 5)

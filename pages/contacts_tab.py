@@ -48,6 +48,7 @@ class Contacts:
     def add_contacts_data_in_txt_box(self, browser):
         self.contact_details = [random_correct_name(5, 4, 'first_name'), random_correct_name(5, 4, 'last_name'),
                                 f'{random_email_generator()}', '9090909090']
+        logging.info(self.contact_details)
         for field_name, data in zip(contacts_create_fields_gen, self.contact_details):
             acco_field = contact_field_txtbox[1].replace('field_name', field_name)
             acc_field_loc = replace_in_tuple(contact_field_txtbox, 1, acco_field)

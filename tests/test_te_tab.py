@@ -167,9 +167,13 @@ def approve_te_levels(browser, back, level, asserts):
         do_click(browser, operations_tab_back_btn)
     current_url = browser.current_url
     te_no = current_url.split("/")[-2]
+    if os.environ['ENV'] == 'bony':
+            third_approver = rfq_steps.surface_treatment_head
+    else:
+            third_approver = rfq_steps.business_dev_head
     if level == '3':
         approve_te_steps.approve_te(browser, None, asserts, rfq_steps.development_lead, rfq_steps.plant_head,
-                                    rfq_steps.business_dev_head)
+                                    third_approver)
     else:
         approve_te_steps.approve_te(browser, te_no, asserts, rfq_steps.development_lead, rfq_steps.plant_head,
                                     rfq_steps.surface_treatment_head, rfq_steps.business_dev_head)

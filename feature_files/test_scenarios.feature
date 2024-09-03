@@ -335,7 +335,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4 assert True
 
-  @Sanity @Sanity_metalman @Test
+  @Sanity @Sanity_metalman #@Test
   Scenario: TC_19 Create Multi level BOM and approve flow Hosur
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
