@@ -217,7 +217,7 @@ class Approve_Cost_Sheet:
                     print(i)
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
                     time2 = ah_row_vals[-3]
-                    actual_vals = [f'Customer Approval', "-", "Saurabh Shrivastava", 'Submitted',
+                    actual_vals = [f'Customer Approval', "-", globalEnvs.user_name, 'Submitted',
                                    time2, self.comments[-1]]
                 elif i == range_mod[-1]:
                     print(i)
@@ -298,6 +298,7 @@ class Approve_Cost_Sheet:
                 assert ah_row_vals == actual_vals
                 do_click(browser, slide_back_btn)
                 break
+
     def revoke_cost_sheet(self, browser):
         do_click(browser, send_for_approval_btn_loc)
         do_send_keys(browser, add_comment, "test")

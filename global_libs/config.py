@@ -21,6 +21,7 @@ class global_env_vars:
     def env_vars(self):
         self.main_url = os.getenv('main_url')
         self.user_email = os.getenv('user_email')
+        self.user_name = os.getenv('user_name')
         self.user_password = os.getenv('user_password')
         self.env = os.getenv('env')
         self.api_url = os.getenv('api_url')
@@ -40,6 +41,10 @@ class global_env_vars:
         self.Anil_email = os.getenv('Anil_email')
         self.Sanjay_email = os.getenv('Sanjay_email')
         self.Pradeep_email = os.getenv('Pradeep_email')
+        self.Ashok_email = os.getenv('Ashok_email')
+        self.Prashant_email = os.getenv('Prashant_email')
+        self.Rajender_email = os.getenv('Rajender_email')
+        self.Mahesh_email = os.getenv('Mahesh_email')
         self.approver_password = os.getenv('approver_password')
 
 

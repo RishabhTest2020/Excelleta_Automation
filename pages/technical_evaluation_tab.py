@@ -238,7 +238,7 @@ class Approve_TE:
                         actual_vals = [f'TE Approval Level - {j}', args[i - 1], args[i - 1], 'Approved',
                                        time2, time1, self.comments[-1]]
                     else:
-                        actual_vals = [f'TE Approval Level - {j}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
+                        actual_vals = [f'TE Approval Level - {j}', args[i - 1], globalEnvs.user_name, 'Approved',
                                        time2, time1, self.comments[-1]]
                     logging.info(ah_row_vals)
                     logging.info(actual_vals)
