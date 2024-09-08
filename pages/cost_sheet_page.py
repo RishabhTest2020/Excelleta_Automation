@@ -173,7 +173,7 @@ class Approve_Cost_Sheet:
                 do_click(browser, cmt_submit_btn_loc)
                 current_date_time2 = datetime.now()
                 self.formatted_time_app.append(current_date_time2.strftime("%d-%b-%Y, %I:%M %p"))
-            elif i == 3:
+            elif i == range_mod[-2]:
                 do_click(browser, send_for_cust_approval_btn_loc)
                 do_send_keys(browser, add_comment, text)
                 current_date_time = datetime.now()
@@ -213,7 +213,7 @@ class Approve_Cost_Sheet:
                     time2 = ah_row_vals[-3]
                     actual_vals = [f'Management Approval Level - {i}', args[i - 1], args[i - 1], 'Approved',
                                    time2, time1, self.comments[-1]]
-                elif i == range_mod[3]:
+                elif i == range_mod[-3]:
                     print(i)
                     ah_row_vals = get_list_of_elems_text(browser, approval_pop_values[0], approval_pop_values[1])
                     time2 = ah_row_vals[-3]

@@ -8,7 +8,7 @@ class global_env_vars:
         self.get_env()
         self.env_vars()
 
-    def get_env(self, env='bony'):
+    def get_env(self, env='metalman'):
         try:
             env = os.environ['ENV']
         except KeyError:
@@ -45,6 +45,8 @@ class global_env_vars:
         self.Prashant_email = os.getenv('Prashant_email')
         self.Rajender_email = os.getenv('Rajender_email')
         self.Mahesh_email = os.getenv('Mahesh_email')
+        self.Sonam_email = os.getenv('Sonam_email')
+        self.Saket_email = os.getenv('Saket_email')
         self.approver_password = os.getenv('approver_password')
 
 
