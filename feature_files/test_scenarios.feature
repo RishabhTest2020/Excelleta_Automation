@@ -21,7 +21,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify created account data
     Then Verify accounts table head column
 
-  @Sanity @Sanity_metalman @Sanity_bony #@Test
+  @Sanity @Sanity_metalman @Sanity_bony
   Scenario: TC_04 Verify Contacts Tab and New Contact creation
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -33,7 +33,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify created contact data
     Then Verify contact table head column
 
-  @Sanity @Sanity_metalman #@Test
+  @Sanity @Sanity_metalman
   Scenario: TC_05 Verify Rfq Tab and New Rfq creation
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -46,7 +46,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify created Rfq data
     Then Verify Rfq table head column
 
-  @Sanity @Sanity_metalman #@Test
+  @Sanity @Sanity_metalman
   Scenario: TC_06 Create and verify Drawing data and TE data
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -62,7 +62,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify TE data
     Then Approve TE all levels, back true level 3 assert True
 
-  @Sanity @Sanity_metalman #@Test
+  @Sanity @Sanity_metalman
   Scenario: TC_07 Create Multi level BOM and approve flow B31
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -89,7 +89,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4 assert True
 
-  @Sanity @Sanity_metalman #@Test
+  @Sanity @Sanity_metalman
   Scenario: TC_08 Create Multi level BOM, create norms and Generate cost approval flow
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -122,7 +122,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Approve CS all levels
 #  Then Verify Cost Raw Material data Raw Material
 
-  @Sanity @Sanity_metalman #@Test
+  @Sanity @Sanity_metalman
   Scenario: TC_09 Create Multi level BOM and reject approval all levels
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -157,7 +157,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Clone TE
     Then Approve TE all levels, back false level 4 assert True
 
-  @Sanity @Sanity_metalman #@Test
+  @Sanity @Sanity_metalman
   Scenario: TC_10 Verify Norms Manufacturing locations navs
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -169,7 +169,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 25
     Then Verify Manufacturing Location of Norms
 
-  @Sanity @Sanity_metalman #@Test
+  @Sanity @Sanity_metalman
   Scenario: TC_11 Create Multi level BOM, Generate cost and all level reject flow
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -308,7 +308,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Revoke Cost sheet
 
 
-  @Sanity @Sanity_metalman #@Test
+  @Sanity @Sanity_metalman
   Scenario: TC_18 Create Multi level BOM and approve flow Dharhuhera
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -335,7 +335,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4 assert True
 
-  @Sanity @Sanity_metalman #@Test
+  @Sanity @Sanity_metalman
   Scenario: TC_19 Create Multi level BOM and approve flow Hosur
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -362,7 +362,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4 assert True
 
-  @Sanity @Sanity_metalman #@Test
+  @Sanity @Sanity_metalman
   Scenario: TC_20 Create Multi level BOM and approve flow Pantnagar3
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -382,6 +382,60 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create TE BOP data 1
     When Create TE data 4, Fabrication
     When Add assembly part Rod/Bar 2 3
+    When Create TE data 3, Fabrication
+    When Create TE BOP data 2
+    When Create TE data 4, Fabrication
+    When Create ST Ops data 3
+    When Create ST Ops data 5
+    Then Approve TE all levels, back false level 4 assert True
+
+
+  Scenario: TC_21 Verify Add Part For Sheet Metal Raw Material type
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account Fabrication
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 35
+    Then Create a RFQ multi, location B-31, Delhi Corp
+    Then Add Drawing Data Fabrication
+    When Navigate to Technical Evaluation tab 10
+    When Edit TE Assembly and fill raw material data multi, Fabrication
+    When Create TE data 1, Fabrication
+    When Add sub assembly and its data
+    When Create TE data 2, Fabrication
+    When Add assembly part Sheet Metal 1 2
+    When Create TE data 3, Fabrication
+    When Create TE BOP data 1
+    When Create TE data 4, Fabrication
+    When Add assembly part Sheet Metal 2 3
+    When Create TE data 3, Fabrication
+    When Create TE BOP data 2
+    When Create TE data 4, Fabrication
+    When Create ST Ops data 3
+    When Create ST Ops data 5
+    Then Approve TE all levels, back false level 4 assert True
+
+
+  Scenario: TC_22 Verify Add Part For Tube Raw Material type
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account Fabrication
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 35
+    Then Create a RFQ multi, location B-31, Delhi Corp
+    Then Add Drawing Data Fabrication
+    When Navigate to Technical Evaluation tab 10
+    When Edit TE Assembly and fill raw material data multi, Fabrication
+    When Create TE data 1, Fabrication
+    When Add sub assembly and its data
+    When Create TE data 2, Fabrication
+    When Add assembly part Tube 1 2
+    When Create TE data 3, Fabrication
+    When Create TE BOP data 1
+    When Create TE data 4, Fabrication
+    When Add assembly part Tube 2 3
     When Create TE data 3, Fabrication
     When Create TE BOP data 2
     When Create TE data 4, Fabrication
