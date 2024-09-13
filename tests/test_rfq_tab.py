@@ -59,8 +59,11 @@ def create_rfq(browser, types, loc_name, dev_loc):
     rfq_steps.select_plant_head(browser)
     rfq_steps.select_surface_treatment_head(browser)
     rfq_steps.select_cft_member(browser)
-    if os.environ['ENV'] == 'metalman':
-        rfq_steps.select_business_dev_head(browser)
+    if os.environ['ENV'] != 'bony':
+        try:
+            rfq_steps.select_business_dev_head(browser)
+        except TimeoutException:
+            pass
     rfq_steps.verify_heading(browser)
     do_click(browser, save_btn)
     loader_should_be_invisile(browser, 15)

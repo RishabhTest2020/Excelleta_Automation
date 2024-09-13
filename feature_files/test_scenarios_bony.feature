@@ -2,12 +2,33 @@
 Feature: Automation Sanity Test Plan Execelleta
 
   
+  @Sanity @Sanity_bony @Sanity_etdev #@TestCI
+  Scenario: TC_03 Verify Accounts Tab and New Account creation
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account Polymer
+    Then Verify account creation data
+    When Navigate to Accounts tab 5
+    Then Verify created account data
+    Then Verify accounts table head column
 
-  @Sanity @Sanity_bony #@Test
+  @Sanity @Sanity_bony @Sanity_etdev #@Test
+  Scenario: TC_04 Verify Contacts Tab and New Contact creation
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account Polymer
+    When Navigate to Contact tab 5
+    When Create an Contact
+    Then Verify created contact FE Info
+    When Navigate to Contact tab 5
+    Then Verify created contact data
+    Then Verify contact table head column
+
+  @Sanity @Sanity_bony @Sanity_etdev #@Test
   Scenario: TC_05 Verify Rfq Tab and New Rfq creation Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 20
@@ -16,11 +37,11 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify created Rfq data
     Then Verify Rfq table head column
 
-  @Sanity @Sanity_bony  #@Test
+  @Sanity @Sanity_bony @Sanity_etdev  #@Test
   Scenario: TC_06 Create and verify Drawing data and TE data Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
@@ -31,7 +52,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify TE data
     Then Approve TE all levels, back true level 3 assert True
 
-  @Sanity @Sanity_bony #@Test
+  @Sanity @Sanity_bony @Sanity_etdev @Test
   Scenario: TC_07 Create Multi level BOM and approve flow Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -57,7 +78,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 3 assert True
 
-  @Sanity @Sanity_bony #@Test
+  @Sanity @Sanity_bony @Sanity_etdev #@Test
   Scenario: TC_08 Create Multi level BOM, create norms and Generate cost approval flow Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -89,7 +110,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Approve CS all levels
 #  Then Verify Cost Raw Material data Raw Material
 
-  @Sanity @Sanity_bony #@Test
+  @Sanity @Sanity_bony @Sanity_etdev #@Test
   Scenario: TC_09 Create Multi level BOM and reject approval all levels Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -124,7 +145,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Approve TE all levels, back false level 4 assert True
     
 
-  @Sanity @Sanity_bony #@Test
+  @Sanity @Sanity_bony @Sanity_etdev #@Test
   Scenario: TC_11 Create Multi level BOM, Generate cost and all level reject flow Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -167,7 +188,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Goto MTE Cost Sheet
     Then Reject CS at level 4, cs reason lost
 
-  @Sanity @Sanity_bony
+  @Sanity @Sanity_bony @Sanity_etdev
   Scenario: TC_12 Verify Reject And Revoke Functionality of ROI Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -179,7 +200,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Reject ROI data
     Then Revoke ROI data
 
-  @Sanity @Sanity_bony
+  @Sanity @Sanity_bony @Sanity_etdev
   Scenario: TC_13 Verify Reject And Revoke Functionality OF TF Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -191,7 +212,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Reject technical feasibility
     Then Revoke technical feasibility
 
-  @Sanity @Sanity_bony
+  @Sanity @Sanity_bony @Sanity_etdev
   Scenario: TC_14 Verify Technical Feasibility As No Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -203,7 +224,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Technical feasibility as No
     
 
-  @Sanity @Sanity_bony
+  @Sanity @Sanity_bony @Sanity_etdev
   Scenario: TC_16 Revoke TE and verify Approval History Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -217,7 +238,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create TE data 1, Polymer
     Then Revoke TE and Verify History
 
-  @Sanity @Sanity_bony
+  @Sanity @Sanity_bony @Sanity_etdev
   Scenario: TC_17 Create Multi level BOM, Generate cost and revoke flow Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5

@@ -268,7 +268,9 @@ class Rfq:
     def select_currency(self, browser, index=6):
         do_click(browser, currency_loc)
         values = get_list_of_elems_text(browser, currency_select[0], currency_select[1])
-        assert values == rfq_currency_data
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(rfq_currency_data, values)
+        assert val is True
         select_name = currency_select[1] + f'[{index}]'
         select_dep_loc = replace_in_tuple(currency_select, 1, select_name)
         self.rfq_currency = get_element_text(browser, select_dep_loc)

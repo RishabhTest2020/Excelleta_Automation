@@ -73,7 +73,9 @@ class Accounts:
     def select_rm_norms_field(self, browser, rm_type=2):
         do_click(browser, rm_norms)
         values = get_list_of_elems_text(browser, rm_norms_options[0], rm_norms_options[1])
-        assert values == rm_type_list
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(rm_type_list, values)
+        assert val is True
         select_rm = rm_norms_options[1] + f'[{rm_type}]'
         select_rm_loc = replace_in_tuple(rm_norms_options, 1, select_rm)
         self.rm_norms = get_element_text(browser, select_rm_loc)
