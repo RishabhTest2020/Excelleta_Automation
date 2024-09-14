@@ -13,3 +13,4 @@ scenarios('feature_files/test_scenarios.feature')
 
 scenarios('feature_files/test_scenarios_bony.feature')
 
+scenarios('feature_files/test_scenarios_megarubber.feature')

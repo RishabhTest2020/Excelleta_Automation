@@ -20,6 +20,8 @@ business_nature_list_etdev = ['Select All', 'Fabrication', 'Heavy Fabrication']
 
 business_nature_list_bony = ['Select All', 'Fabrication', 'Heavy Fabrication', 'Polymer']
 
+business_nature_list_megarubber = ['Select All', 'Plastic', 'Rubber']
+
 business_domain_list = ['Select All', 'Domestic', 'Export']
 
 business_segment_list = ['Select All', '2 WHEELER', '3 WHEELER', '4 WHEELER', 'AGRICULTURAL EQUIPMENT',
@@ -201,6 +203,9 @@ rfq_dev_lead_location_data_bony = ['Select Development Lead Location', 'Bony Pla
                                    'Bony Plant No. 132/24', 'Bony Plant No. 77', 'Bony Plot No 37P',
                                    'Saket Fabs Pvt. Ltd.', 'SFAB Plant 18/2']
 
+rfq_dev_lead_location_data_megarubber = ['Select Development Lead Location', 'MKLC', 'MRT- Manesar', 'MRT-1F (Vasai)',
+                                   'MRT-3F (Pune)', 'PPPL Unit 1', 'PPPL Unit 2']
+
 rfq_manufacturing_location_data_metalman = ['Select Manufacturing Location', 'MAPL B-03 Waluj', 'MAPL B-12 Waluj',
                                             'MAPL B-17 Waluj', 'MAPL B-31 Waluj', 'MAPL Hosur', 'MAPL Pithampur',
                                             'MMT Dharuhera', 'MMT Pantnagar -I', 'MMT Pantnagar -III']
@@ -212,6 +217,9 @@ rfq_manufacturing_location_data_etdev = ['Select Manufacturing Location', 'MAPL 
 rfq_manufacturing_location_data_bony = ['Select Manufacturing Location', 'Bony Plant Gujarat', 'Bony Plant Manesar',
                                         'Bony Plant No. 132/24', 'Bony Plant No. 77', 'Bony Plot No 37P',
                                         'Saket Fabs Pvt. Ltd.', 'SFAB Plant 18/2']
+
+rfq_manufacturing_location_data_megarubber = ['Select Manufacturing Location', 'MKLC', 'MRT- Manesar', 'MRT-1F (Vasai)',
+                                        'MRT-3F (Pune)', 'PPPL Unit 1', 'PPPL Unit 2']
 
 rfq_company_priority_dropdown = ['Select Company Priority', 'High', 'Low', 'Medium']
 
@@ -269,11 +277,16 @@ te_machine_dd_data_bony = ['Please select', 'Boiler & Vulcaniser', 'Breading Mac
                            'Painting Booth', 'Printing M/C', 'Proof Testing Machine', 'Shipage Testing Machine',
                            'Washing M/C', 'oven']
 
+te_machine_dd_data_megarubber = ['Please select', 'Anneling', 'Assembly', 'Deflashing', 'FANUC', 'HAITIAN',
+                                 'Inspection', 'MILACRON', 'Ultrasonic welding', 'YUZUMI']
+
 te_process_dd_data_metalman = ['Please select', 'Milling & Drilling']
 
 te_process_dd_data_etdev = ['Please select', 'Milling & Drilling']
 
 te_process_dd_data_bony = ['Please select', 'HOSE MOUNTING + VULCANIZATION + HOSE DEMOUNTING', 'Valcanization']
+
+te_process_dd_data_megarubber = ['Please select', 'Manual']
 
 te_process_unit_dd_data_metalman = ['Please select', 'Nos']
 
@@ -283,7 +296,7 @@ te_process_unit_dd_data_bony = ['Please select', 'Nos', 'Hours', 'Meter', 'Secon
 
 te_ops_source_dd_data = ['Please select', 'In House', 'Outsource']
 
-te_inspection_instrument_dd_data_metalman = ['Please select', 'Abbressive Cutter', 'Angle Plate',
+te_inspection_instrument_dd_data_metaFlman = ['Please select', 'Abbressive Cutter', 'Angle Plate',
                                              'Belt Polishing Machine',
                                              'Bore Gauge ( Dial Gauge)', 'Cabinet For Document File Storage',
                                              'Cmm (Arm)',
@@ -358,6 +371,9 @@ rm_type_data_etdev = ['Please select', 'Rod/Bar', 'Sheet Metal', 'Tube']
 
 rm_type_data_bony = ['Please select', 'Compound', 'Fabric', 'Yarn']
 
+rm_type_data_megarubber = ['Please select', 'Packaging', 'Packaging Plastic', 'Paint', 'Paint Consumable', 'Plastic',
+                     'Plastic Compound', 'Tooling RM']
+
 raw_material_data_bony = ['Please select', 'AEM', 'AW-01 NATURAL', 'AW01 (POM)', 'Black (MASTERBATCH)', 'CHLOROPRENE',
                           'CSM', 'CSM (HYP 60 GREY )', 'CSM (HYP 70 GREY )', 'ECO (CNG)', 'ECO (TRISTONE)', 'EPDM',
                           'FKM', 'GRAY (MASTERBATCH)', 'GREEN (MASTERBATCH)', 'HDPE (BLACK)', 'HNBR', 'HT ACM',
@@ -388,6 +404,15 @@ raw_material_data_etdev = ['Please select', 'AISI 304 (Ø 9.53) Round', 'ASTM A5
                            'SAE 1020 (Ø 13) Round', 'SAE 1020 (Ø 14) Round', 'SAE1018 (Ø 22.4) Round',
                            'SAE1018 (Ø 28) Round',
                            'SS316 (Ø 3) Round', 'SS316 (Ø 4) Round', 'SS316 (Ø 5) Round', 'SS316 (Ø 6) Round']
+
+raw_material_data_megarubber = ['Please select', '(abc) (3494)-A vave', '(ABS IM-17V SUPER JET BLACK) PRECOLOURED vave',
+                                '(ABS IM-17V SUPER JET BLACK) PRECOLOURED virgin',
+                                '(ABS IM14G - SEASAND IVORY) PRECOLOURED vave',
+                                '(ABS IM14G - SEASAND IVORY) PRECOLOURED virgin',
+                                '(ABS-IM-14G -GLOSS BROWN ) PRECOLOURED vave',
+                                '(ABS-IM-14G -GLOSS BROWN ) PRECOLOURED virgin',
+                                '(PA4T-GF30) Black vave', '(PA4T-GF30) Black virgin', '(PC-ABS) HP1000 XANAT vave',
+                                '(PC-ABS) HP1000 XANAT virgin', '(RM grade 3494) (3494)-A virgin', 'Plastic T001']
 
 account_details_data = ['Account Name', 'Email ID', 'Website', 'Phone Number', 'Landline Number', 'PAN Number', 'GSTIN',
                         'FY Start Month', 'RM Norms Rate Type', 'Customer Code', 'Number of Working Days(In year)',
