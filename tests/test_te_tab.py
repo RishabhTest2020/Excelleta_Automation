@@ -123,10 +123,25 @@ def edit_te_raw_material(browser, rmtype, index, rm_index):
     edit_te_steps_parts.select_manufacturing_source(browser)
     edit_te_steps_parts.select_surface_treatment(browser)
     edit_te_steps_parts.select_rm_type(browser, rmtype)
-    edit_te_steps_parts.select_raw_material(browser, index=rm_index)
     if rmtype == 'Rod/Bar':
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index)
         edit_te_steps_parts.select_add_rod_size(browser)
-    else:
+    elif rmtype == 'Sheet Metal':
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index, rm_data='sheet_metal_data_')
+        do_send_keys(browser, material_gross_wt_loc, '2500')
+        do_send_keys(browser, thickness_per_drawing_loc, '123')
+        do_send_keys(browser, sfbs_width_loc, '44')
+        do_send_keys(browser, sfbs_length_loc, '35')
+        edit_te_steps_parts.enter_sheet_strip_size(browser)
+        edit_te_steps_parts.sheet_metal_headers(browser)
+    elif rmtype == 'Tube':
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index, rm_data='tube_option_data_')
+        do_send_keys(browser, material_gross_wt_loc, '2840')
+        do_send_keys(browser, thickness_per_drawing_loc, '342')
+        edit_te_steps_parts.tube_ctl_size_and_material_details_locs(browser)
+        edit_te_steps_parts.tube_data_headers(browser)
+    elif rmtype == 'Compound':
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index, rm_data='raw_material_data_')
         edit_te_steps.select_uom_of_compound_bony(browser)
         edit_te_steps.select_product_category_bony(browser)
         edit_te_steps.enter_supplier_name(browser)
@@ -138,6 +153,19 @@ def edit_te_raw_material(browser, rmtype, index, rm_index):
         edit_te_steps.enter_material_density(browser)
         edit_te_steps.enter_gross_weight_factor(browser)
         edit_te_steps.enter_fabric_gross_weight(browser)
+    elif rmtype == 'Fabric':
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index, rm_data='fabric_option_data_')
+        edit_te_steps.select_uom_of_compound_bony(browser)
+        edit_te_steps.enter_supplier_name(browser)
+        edit_te_steps.select_product_category_bony(browser)
+        edit_te_steps.fabric_net_weight_and_gross_weight(browser)
+    elif rmtype == 'Yarn':
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index, rm_data='yarn_option_data_')
+        edit_te_steps.select_uom_of_compound_bony(browser)
+        edit_te_steps.enter_supplier_name(browser)
+        edit_te_steps.select_product_category_bony(browser)
+        edit_te_steps.yarn_net_weight_and_gross_weight(browser)
+
     edit_te_steps_parts.__dict__['part_name'] = part_name
     edit_te_steps_parts.__dict__['part_component_number'] = part_component_number
     try:

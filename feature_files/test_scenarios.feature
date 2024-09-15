@@ -387,3 +387,57 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create ST Ops data 3
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4 assert True
+
+
+  Scenario: TC_21 Verify Add Part For Sheet Metal Raw Material type
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account Fabrication
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 35
+    Then Create a RFQ multi, location B-31, Delhi Corp
+    Then Add Drawing Data Fabrication
+    When Navigate to Technical Evaluation tab 10
+    When Edit TE Assembly and fill raw material data multi, Fabrication
+    When Create TE data 1, Fabrication
+    When Add sub assembly and its data
+    When Create TE data 2, Fabrication
+    When Add assembly part Sheet Metal 1 2
+    When Create TE data 3, Fabrication
+    When Create TE BOP data 1
+    When Create TE data 4, Fabrication
+    When Add assembly part Sheet Metal 2 3
+    When Create TE data 3, Fabrication
+    When Create TE BOP data 2
+    When Create TE data 4, Fabrication
+    When Create ST Ops data 3
+    When Create ST Ops data 5
+    Then Approve TE all levels, back false level 4 assert True
+
+
+  Scenario: TC_22 Verify Add Part For Tube Raw Material type
+    Given Login into Excelleta UI
+    When Navigate to Accounts tab 5
+    Then Create an account Fabrication
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 35
+    Then Create a RFQ multi, location B-31, Delhi Corp
+    Then Add Drawing Data Fabrication
+    When Navigate to Technical Evaluation tab 10
+    When Edit TE Assembly and fill raw material data multi, Fabrication
+    When Create TE data 1, Fabrication
+    When Add sub assembly and its data
+    When Create TE data 2, Fabrication
+    When Add assembly part Tube 1 2
+    When Create TE data 3, Fabrication
+    When Create TE BOP data 1
+    When Create TE data 4, Fabrication
+    When Add assembly part Tube 2 3
+    When Create TE data 3, Fabrication
+    When Create TE BOP data 2
+    When Create TE data 4, Fabrication
+    When Create ST Ops data 3
+    When Create ST Ops data 5
+    Then Approve TE all levels, back false level 4 assert True

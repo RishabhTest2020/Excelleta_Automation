@@ -327,6 +327,14 @@ class Approve_TE:
 class Edit_TE:
 
     def __init__(self):
+        self.yarn_gross_wt = None
+        self.yarn_net_wt = None
+        self.gross_fabric_wt = None
+        self.net_fabric_weight = None
+        self.tube_part_net_wt = None
+        self.ctl_part_len = None
+        self.sheet_part_net_wt = None
+        self.override_stand_sheet = None
         self.ecn_type = None
         self.surface_treatment = None
         self.net_weigh_part = 0.2
@@ -346,6 +354,7 @@ class Edit_TE:
         self.cutting_margin = None
         self.net_length = None
         self.outer_diameter = None
+        self.sheet_strip_size_data = []
 
     def edit_assembly(self, browser):
         do_click(browser, assembly_list_add_btn)
@@ -394,11 +403,11 @@ class Edit_TE:
         do_click(browser, select_loc)
         sleep(0.5)
 
-    def select_raw_material(self, browser, index=2):
+    def select_raw_material(self, browser, index=2, rm_data='raw_material_data_'):
         scroll_into_the_view(browser, rm_type_loc[0], rm_type_loc[1])
         do_click(browser, raw_mat_loc)
         values = get_list_of_elems_text(browser, raw_mat_loc_select[0], raw_mat_loc_select[1])
-        rod_bar_dd_data = get_env_var_from_globals('raw_material_data_')
+        rod_bar_dd_data = get_env_var_from_globals(rm_data)
         assert values == rod_bar_dd_data
         select_name = raw_mat_loc_select[1] + f'[{index}]'
         select_loc = replace_in_tuple(raw_mat_loc_select, 1, select_name)
@@ -501,6 +510,55 @@ class Edit_TE:
         scroll_into_the_view(browser, fabric_gross_weight_loc[0], fabric_gross_weight_loc[1])
         self.fabric_gross_weight = generate_random_number(5)
         do_send_keys(browser, fabric_gross_weight_loc, self.fabric_gross_weight)
+
+    def enter_sheet_strip_size(self, browser):
+        self.sheet_strip_size_data = [46, 63, 500]
+        for field_name, data in zip(sheet_strip_size_data_loc, self.sheet_strip_size_data):
+            sheet_strip_field = sheet_strip_col_locs[1].replace('field', field_name)
+            sheet_strip_field_loc = replace_in_tuple(sheet_strip_col_locs, 1, sheet_strip_field)
+            do_clear(browser, sheet_strip_field_loc)
+            scroll_into_the_view(browser, sheet_strip_field_loc[0], sheet_strip_field_loc[1])
+            do_send_keys(browser, sheet_strip_field_loc, data)
+        self.override_standard_strip_size(browser)
+        self.sheet_part_net_wt = '2456'
+        do_send_keys(browser, rm_part_net_wt_loc, self.sheet_part_net_wt)
+
+    def sheet_metal_headers(self, browser):
+        for val in sheet_header_data:
+            r_sheet_metal_data_headers_loc = sheet_metal_data_headers_loc[1].replace("{header}", val)
+            sheet_metal_header_loc = replace_in_tuple(sheet_metal_data_headers_loc, 1, r_sheet_metal_data_headers_loc)
+            should_be_visible(browser, sheet_metal_header_loc, "sheet_metal_header_loc")
+
+    def override_standard_strip_size(self, browser, index=2):
+        do_click(browser, override_standard_strip_size_loc)
+        override_stand_sheet_value = override_standard_strip_size_ops[1] + f'[{index}]'
+        override_stand_value_loc = replace_in_tuple(override_standard_strip_size_ops, 1, override_stand_sheet_value)
+        self.override_stand_sheet = get_element_text(browser, override_stand_value_loc)
+        do_click(browser, override_stand_value_loc)
+
+    def tube_ctl_size_and_material_details_locs(self, browser):
+        self.ctl_part_len = '5435'
+        do_send_keys(browser, rm_ctl_length_loc, self.ctl_part_len)
+        self.override_standard_strip_size(browser)
+        self.tube_part_net_wt = '6734'
+        do_send_keys(browser, rm_part_net_wt_loc, self.tube_part_net_wt)
+
+    def fabric_net_weight_and_gross_weight(self, browser):
+        self.net_fabric_weight = '57822'
+        do_send_keys(browser, rm_part_net_wt_loc, self.net_fabric_weight)
+        self.gross_fabric_wt = '48294'
+        do_send_keys(browser, fabric_gross_weight, self.gross_fabric_wt)
+
+    def yarn_net_weight_and_gross_weight(self, browser):
+        self.yarn_net_wt = '67352'
+        self.yarn_gross_wt = '57480'
+        do_send_keys(browser, rm_part_net_wt_loc, self.yarn_net_wt)
+        do_send_keys(browser, fabric_gross_weight, self.yarn_gross_wt)
+
+    def tube_data_headers(self, browser):
+        for val in tube_header_data:
+            tube_header_loc = replace_in_tuple(sheet_metal_data_headers_loc, 1, val)
+            should_be_visible(browser, tube_header_loc, "tube_header_loc")
 
 
 class CreateBopDetails:
