@@ -255,7 +255,7 @@ threed_options = ['Select 3D Soft Copy', 'Completed', 'Incompleted', 'Awaiting f
 
 # Technical evaluation --------------------------------------------------------------------------------------
 
-te_machine_dd_data_metalman = ['Please select', 'Buffing/Polishing', 'CNC Machine', 'CNC Pipe Bending',
+te_machine_dd_data_Fabrication = ['Please select', 'Buffing/Polishing', 'CNC Machine', 'CNC Pipe Bending',
                                'CNC Press Brake',
                                'CNC wire bending', 'Cutting', 'Forging', 'Furnace', 'Gas Cutting', 'Inspection',
                                'Laser Cutting',
@@ -263,21 +263,13 @@ te_machine_dd_data_metalman = ['Please select', 'Buffing/Polishing', 'CNC Machin
                                'Projection Welding', 'Robotic Welding', 'Rolling', 'SPM', 'Shearing', 'Straightening',
                                'Surface Finishing', 'Traub', 'Turret', 'Welding', 'Welding Machine']
 
-te_machine_dd_data_etdev = ['Please select', 'Buffing/Polishing', 'CNC Machine', 'CNC Pipe Bending',
-                            'CNC Press Brake',
-                            'CNC wire bending', 'Cutting', 'Forging', 'Furnace', 'Gas Cutting', 'Inspection',
-                            'Laser Cutting',
-                            'Machine', 'Machining', 'Manual', 'Manual Welding', 'Plasma Cutting', 'Press',
-                            'Projection Welding', 'Robotic Welding', 'Rolling', 'SPM', 'Shearing', 'Straightening',
-                            'Surface Finishing', 'Traub', 'Turret', 'Welding', 'Welding Machine']
-
-te_machine_dd_data_bony = ['Please select', 'Boiler & Vulcaniser', 'Breading Machine', 'Clamping Tool',
+te_machine_dd_data_Polymer = ['Please select', 'Boiler & Vulcaniser', 'Breading Machine', 'Clamping Tool',
                            'Compression /Transfer / injection m/c/Plastic Inj', 'Crimping', 'Extruder', 'Inspection',
                            'Kneeting M/C', 'Leaktesting M/c', 'Manual', 'Mixing Mill', 'Pad Printing M/C',
                            'Painting Booth', 'Printing M/C', 'Proof Testing Machine', 'Shipage Testing Machine',
                            'Washing M/C', 'oven']
 
-te_machine_dd_data_megarubber = ['Please select', 'Anneling', 'Assembly', 'Deflashing', 'FANUC', 'HAITIAN',
+te_machine_dd_data_Plastic = ['Please select', 'Anneling', 'Assembly', 'Deflashing', 'FANUC', 'HAITIAN',
                                  'Inspection', 'MILACRON', 'Ultrasonic welding', 'YUZUMI']
 
 te_process_dd_data_metalman = ['Please select', 'Milling & Drilling']
@@ -296,7 +288,7 @@ te_process_unit_dd_data_bony = ['Please select', 'Nos', 'Hours', 'Meter', 'Secon
 
 te_ops_source_dd_data = ['Please select', 'In House', 'Outsource']
 
-te_inspection_instrument_dd_data_metaFlman = ['Please select', 'Abbressive Cutter', 'Angle Plate',
+te_inspection_instrument_dd_data_Fabrication = ['Please select', 'Abbressive Cutter', 'Angle Plate',
                                              'Belt Polishing Machine',
                                              'Bore Gauge ( Dial Gauge)', 'Cabinet For Document File Storage',
                                              'Cmm (Arm)',
@@ -328,7 +320,7 @@ te_inspection_instrument_dd_data_etdev = ['Please select', 'Abbressive Cutter', 
                                           'Tpg Gauge ( 1Nos Each)(For Nut Id)', 'Utm Machine',
                                           'Wring Thread Gauge Set. (For Bolt Od)']
 
-te_inspection_instrument_dd_data_bony = ['Please select', 'Abbressive Cutter', 'Angle Plate', 'Belt Polishing Machine',
+te_inspection_instrument_dd_data_Polymer = ['Please select', 'Abbressive Cutter', 'Angle Plate', 'Belt Polishing Machine',
                                          'Bore Gauge ( Dial Gauge)', 'Cabinet For Document File Storage', 'Cmm (Arm)',
                                          'Cmm (Stationary)', 'Dial Indicator With Stand', 'Digital Height Gauge',
                                          'Digital Vernier Caliper', 'Filler Gauge Set', 'Flat Micrometer', 'Lux Meter',
@@ -365,16 +357,14 @@ surface_area_unit_dd_data = ['Please select', 'Sq. Feet', 'Sq. Inch']
 
 manufacturing_source_dd_data = ['Please select', 'In House', 'Outsource']
 
-rm_type_data_metalman = ['Please select', 'Rod/Bar', 'Sheet Metal', 'Tube']
+rm_type_data_Fabrication = ['Please select', 'Rod/Bar', 'Sheet Metal', 'Tube']
 
-rm_type_data_etdev = ['Please select', 'Rod/Bar', 'Sheet Metal', 'Tube']
+rm_type_data_Polymer = ['Please select', 'Compound', 'Fabric', 'Yarn']
 
-rm_type_data_bony = ['Please select', 'Compound', 'Fabric', 'Yarn']
-
-rm_type_data_megarubber = ['Please select', 'Packaging', 'Packaging Plastic', 'Paint', 'Paint Consumable', 'Plastic',
+rm_type_data_Plastic = ['Please select', 'Packaging', 'Packaging Plastic', 'Paint', 'Paint Consumable', 'Plastic',
                      'Plastic Compound', 'Tooling RM']
 
-raw_material_data_bony = ['Please select', 'AEM', 'AW-01 NATURAL', 'AW01 (POM)', 'Black (MASTERBATCH)', 'CHLOROPRENE',
+raw_material_data_Polymer = ['Please select', 'AEM', 'AW-01 NATURAL', 'AW01 (POM)', 'Black (MASTERBATCH)', 'CHLOROPRENE',
                           'CSM', 'CSM (HYP 60 GREY )', 'CSM (HYP 70 GREY )', 'ECO (CNG)', 'ECO (TRISTONE)', 'EPDM',
                           'FKM', 'GRAY (MASTERBATCH)', 'GREEN (MASTERBATCH)', 'HDPE (BLACK)', 'HNBR', 'HT ACM',
                           'HYTREL 4056', 'LDPE (BLACK)', 'LJ-3170N (TPO)', 'MI3530 (PP)', 'Natural (PA 66)',
@@ -383,7 +373,7 @@ raw_material_data_bony = ['Please select', 'AEM', 'AW-01 NATURAL', 'AW01 (POM)',
                           'ORANGE (MASTERBATCH)', 'POM (NATURAL)', 'PPCP (M3135)', 'PU', 'PVC (BALCK)', 'SBR',
                           'SILICONE', 'TENAC-C Z4520 (POM)', 'TF30 (POM)', 'UTN 320 (PA66)']
 
-raw_material_data_metalman = ['Please select', 'AISI 304 (Ø 9.53) Round', 'ASTM A510 TYPE 1 GRADE 1018 (Ø 5.2) Round',
+raw_material_data_Fabrication = ['Please select', 'AISI 304 (Ø 9.53) Round', 'ASTM A510 TYPE 1 GRADE 1018 (Ø 5.2) Round',
                               'C20 AS PER IS:1570 (Ø 8) Round', 'C25 (Ø 8) Round', 'C35 (IS:1570) (Ø 16) Round',
                               'EN-8 (Ø 16) Round', 'EN-8 (Ø 18) Round', 'MS (Ø 3.2) Round', 'MS (Ø 4) Round',
                               'MS (Ø 5) Round',
@@ -394,18 +384,7 @@ raw_material_data_metalman = ['Please select', 'AISI 304 (Ø 9.53) Round', 'ASTM
                               'SAE1018 (Ø 28) Round',
                               'SS316 (Ø 3) Round', 'SS316 (Ø 4) Round', 'SS316 (Ø 5) Round', 'SS316 (Ø 6) Round']
 
-raw_material_data_etdev = ['Please select', 'AISI 304 (Ø 9.53) Round', 'ASTM A510 TYPE 1 GRADE 1018 (Ø 5.2) Round',
-                           'C20 AS PER IS:1570 (Ø 8) Round', 'C25 (Ø 8) Round', 'C35 (IS:1570) (Ø 16) Round',
-                           'EN-8 (Ø 16) Round', 'EN-8 (Ø 18) Round', 'MS (Ø 3.2) Round', 'MS (Ø 4) Round',
-                           'MS (Ø 5) Round',
-                           'MS (Ø 6) Round', 'MS (Ø 7) Round', 'MS -Round Bar (Ø 65) Round', 'MS(ST 42) (Ø 6) Round',
-                           'S45C (Ø 5) Round', 'SAE 1010 (Ø 24) Round', 'SAE 1010 (Ø 3.2) Round',
-                           'SAE 1010 (Ø 8) Round',
-                           'SAE 1020 (Ø 13) Round', 'SAE 1020 (Ø 14) Round', 'SAE1018 (Ø 22.4) Round',
-                           'SAE1018 (Ø 28) Round',
-                           'SS316 (Ø 3) Round', 'SS316 (Ø 4) Round', 'SS316 (Ø 5) Round', 'SS316 (Ø 6) Round']
-
-raw_material_data_megarubber = ['Please select', '(abc) (3494)-A vave', '(ABS IM-17V SUPER JET BLACK) PRECOLOURED vave',
+raw_material_data_Plastic = ['Please select', '(abc) (3494)-A vave', '(ABS IM-17V SUPER JET BLACK) PRECOLOURED vave',
                                 '(ABS IM-17V SUPER JET BLACK) PRECOLOURED virgin',
                                 '(ABS IM14G - SEASAND IVORY) PRECOLOURED vave',
                                 '(ABS IM14G - SEASAND IVORY) PRECOLOURED virgin',
@@ -454,11 +433,15 @@ ecn_dd_data = ['Select ECN Type', 'Drawing Change', 'Part Details Change', 'Proc
 
 uom_compound_data = ['Please select', 'Bend', 'Kg', 'Nos', 'Feet', 'Hours', 'Inch', 'Millimeters',
                      'Minutes', 'Meter', 'Second', 'SQ Feet', 'SQ Inch', 'Stroke']
+
 prod_category_data = ['Please select', 'Hose', 'Mould']
+
 sheet_header_data = ['Sheet Metal Raw Material', 'Sheet Standard Size', 'Sheet Finish Blank Size(mm)',
                      'Sheet Strip Size(mm)']
+
 tube_header_data = ['Tube Raw Material', 'Tube CTL Size(mm)', 'Tube Material Details']
-sheet_metal_data_metalman = ['Please select', 'S355 JR Steel per EN10025-2 (2)', 'ASTM A1008 (1)', 'ASTM A1008 (1.2)',
+
+sheet_metal_data_Fabrication = ['Please select', 'S355 JR Steel per EN10025-2 (2)', 'ASTM A1008 (1)', 'ASTM A1008 (1.2)',
                              'ASTM A1008 (1.5)', 'ASTM A1008 (1.52)', 'ASTM A1008 (1.6)', 'ASTM A1008 (1.9)',
                              'ASTM A1011 (1.9)', 'ASTM A1011 (2)', 'ASTM A1011 (2.26)', 'ASTM A1011 (2.6)',
                              'ASTM A1011 (2.64)', 'ASTM A1011 (3)', 'ASTM A1011 (3.5)', 'ASTM A1011 (4.8)',
@@ -488,7 +471,7 @@ sheet_metal_data_metalman = ['Please select', 'S355 JR Steel per EN10025-2 (2)',
                              'SPFH590 (2)', 'SPFH590 (5)', 'SS304 (1)', 'SS316 (1.5)', 'SS316 (2)', 'SS316 (2.5)',
                              'SS316 (3)', 'SS316 (4)', 'SS316 (5)', 'SS316 (7.5)']
 
-tube_option_data_metalman = ['Please select', 'ASTM A519 (2.76) (Ø 22.23) Round', 'A6061 (2) (Ø 25) Round',
+tube_option_data_Fabrication = ['Please select', 'ASTM A519 (2.76) (Ø 22.23) Round', 'A6061 (2) (Ø 25) Round',
                              'AISI 304L ANNEALED (0.5) (Ø 6.6) Round', 'AISI 304L ANNEALED (1) (Ø 6.6) Round',
                              'ASTM A283 (1.2) (25 * 25) Square', 'ASTM A513 TYPE 1 GRADE 1010 (1.22) (Ø 22.23) Round',
                              'ASTM A513 TYPE 1 GRADE 1010 (1.7) (Ø 26.6) Round',
@@ -537,6 +520,7 @@ tube_option_data_metalman = ['Please select', 'ASTM A519 (2.76) (Ø 22.23) Round
                              'STAM 390G (3.5) (Ø 48.6) Round', 'STKM 13C (5.7) (Ø 28) Round',
                              'STKM290G (2.9) (Ø 74.3) Round']
 
-fabric_option_data_bony = ['Please select', 'Nomex']
-yarn_option_data_bony = ['Please select', 'Aramide', 'Polyester', 'Rayon']
+fabric_option_data_Polymer = ['Please select', 'Nomex']
+
+yarn_option_data_Polymer = ['Please select', 'Aramide', 'Polyester', 'Rayon']
 

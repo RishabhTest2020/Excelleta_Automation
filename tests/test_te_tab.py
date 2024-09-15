@@ -7,6 +7,7 @@ from pages.rfq_tab import Drawing_data
 from pages.technical_evaluation_tab import *
 from pytest_bdd import given, when, then, parsers
 from tests.test_rfq_tab import drawing_data_steps, rfq_steps
+from tests.test_accounts_tab import accounts_steps
 
 create_testeps = Create_TE()
 approve_te_steps = Approve_TE()
@@ -23,7 +24,7 @@ add_st_opts_steps = AddSTOperations()
 def create_te_data(browser, index, busi_type):
     create_testeps.add_operation(browser, index=index)
     if busi_type == "Polymer":
-        create_testeps.select_machine(browser, dep_index=2)
+        create_testeps.select_machine(browser, dep_index=2, bn_type=busi_type)
     else:
         create_testeps.select_machine(browser)
     create_testeps.select_te_process(browser)
@@ -33,7 +34,7 @@ def create_te_data(browser, index, busi_type):
         create_testeps.fill_bony_te_txtbox_data(browser)
     else:
         create_testeps.fill_te_txtbox_data(browser)
-    create_testeps.select_inspection_instrument(browser)
+    create_testeps.select_inspection_instrument(browser, bn_type=busi_type)
     create_testeps.verify_te_heading(browser, busi_type)
     do_click(browser, save_btn)
     sleep(2)
@@ -122,12 +123,14 @@ def edit_te_raw_material(browser, rmtype, index, rm_index):
     edit_te_steps_parts.select_surface_area_unit(browser)
     edit_te_steps_parts.select_manufacturing_source(browser)
     edit_te_steps_parts.select_surface_treatment(browser)
-    edit_te_steps_parts.select_rm_type(browser, rmtype)
+    edit_te_steps_parts.select_rm_type(browser, rmtype, accounts_steps.business_nature)
     if rmtype == 'Rod/Bar':
-        edit_te_steps_parts.select_raw_material(browser, index=rm_index)
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index,
+                                                rm_data=f'raw_material_data_{accounts_steps.business_nature}')
         edit_te_steps_parts.select_add_rod_size(browser)
     elif rmtype == 'Sheet Metal':
-        edit_te_steps_parts.select_raw_material(browser, index=rm_index, rm_data='sheet_metal_data_')
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index,
+                                                rm_data=f'sheet_metal_data_{accounts_steps.business_nature}')
         do_send_keys(browser, material_gross_wt_loc, '2500')
         do_send_keys(browser, thickness_per_drawing_loc, '123')
         do_send_keys(browser, sfbs_width_loc, '44')
@@ -135,13 +138,15 @@ def edit_te_raw_material(browser, rmtype, index, rm_index):
         edit_te_steps_parts.enter_sheet_strip_size(browser)
         edit_te_steps_parts.sheet_metal_headers(browser)
     elif rmtype == 'Tube':
-        edit_te_steps_parts.select_raw_material(browser, index=rm_index, rm_data='tube_option_data_')
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index,
+                                                rm_data=f'tube_option_data_{accounts_steps.business_nature}')
         do_send_keys(browser, material_gross_wt_loc, '2840')
         do_send_keys(browser, thickness_per_drawing_loc, '342')
         edit_te_steps_parts.tube_ctl_size_and_material_details_locs(browser)
         edit_te_steps_parts.tube_data_headers(browser)
     elif rmtype == 'Compound':
-        edit_te_steps_parts.select_raw_material(browser, index=rm_index, rm_data='raw_material_data_')
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index,
+                                                rm_data=f'raw_material_data_{accounts_steps.business_nature}')
         edit_te_steps.select_uom_of_compound_bony(browser)
         edit_te_steps.select_product_category_bony(browser)
         edit_te_steps.enter_supplier_name(browser)
@@ -154,13 +159,15 @@ def edit_te_raw_material(browser, rmtype, index, rm_index):
         edit_te_steps.enter_gross_weight_factor(browser)
         edit_te_steps.enter_fabric_gross_weight(browser)
     elif rmtype == 'Fabric':
-        edit_te_steps_parts.select_raw_material(browser, index=rm_index, rm_data='fabric_option_data_')
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index,
+                                                rm_data=f'fabric_option_data_{accounts_steps.business_nature}')
         edit_te_steps.select_uom_of_compound_bony(browser)
         edit_te_steps.enter_supplier_name(browser)
         edit_te_steps.select_product_category_bony(browser)
         edit_te_steps.fabric_net_weight_and_gross_weight(browser)
     elif rmtype == 'Yarn':
-        edit_te_steps_parts.select_raw_material(browser, index=rm_index, rm_data='yarn_option_data_')
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index,
+                                                rm_data=f'yarn_option_data_{accounts_steps.business_nature}')
         edit_te_steps.select_uom_of_compound_bony(browser)
         edit_te_steps.enter_supplier_name(browser)
         edit_te_steps.select_product_category_bony(browser)

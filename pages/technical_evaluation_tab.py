@@ -50,10 +50,10 @@ class Create_TE:
             scroll_into_the_view(browser, heading_loc[0], heading_loc[1])
             should_be_visible(browser, heading_loc, head)
 
-    def select_machine(self, browser, dep_index=3):
+    def select_machine(self, browser, dep_index=3, bn_type='Fabrication'):
         do_click(browser, machine_loc)
         values = get_list_of_elems_text(browser, machine_loc_select[0], machine_loc_select[1])
-        te_machine_dd_data = get_env_var_from_globals('te_machine_dd_data_')
+        te_machine_dd_data = globals()[f'te_machine_dd_data_{bn_type}']
         assert values == te_machine_dd_data
         select_name = machine_loc_select[1] + f'[{dep_index}]'
         select_dep_loc = replace_in_tuple(machine_loc_select, 1, select_name)
@@ -95,10 +95,10 @@ class Create_TE:
         sleep(0.5)
         return self.operation_source
 
-    def select_inspection_instrument(self, browser, dep_index=3):
+    def select_inspection_instrument(self, browser, dep_index=3, bn_type='Fabrication'):
         do_click(browser, ins_instrument_loc)
         values = get_list_of_elems_text(browser, ins_instrument_loc_select[0], ins_instrument_loc_select[1])
-        te_inspection_instrument_dd_data = get_env_var_from_globals('te_inspection_instrument_dd_data_')
+        te_inspection_instrument_dd_data = globals()[f'te_inspection_instrument_dd_data_{bn_type}']
         assert values == te_inspection_instrument_dd_data
         select_name = ins_instrument_loc_select[1] + f'[{dep_index}]'
         select_dep_loc = replace_in_tuple(ins_instrument_loc_select, 1, select_name)
@@ -390,11 +390,11 @@ class Edit_TE:
         do_click(browser, select_loc)
         sleep(0.5)
 
-    def select_rm_type(self, browser, rmtypes):
+    def select_rm_type(self, browser, rmtypes, bn_type):
         scroll_into_the_view(browser, rm_type_loc[0], rm_type_loc[1])
         do_click(browser, rm_type_loc)
         values = get_list_of_elems_text(browser, rm_type_loc_select_opts[0], rm_type_loc_select_opts[1])
-        rm_type_dd_data = get_env_var_from_globals('rm_type_data_')
+        rm_type_dd_data = globals()[f'rm_type_data_{bn_type}']
         assert values == rm_type_dd_data
         # select_name = rm_type_loc_select[1] + f'[{index}]'
         select_name = rm_type_loc_select[1].replace('rm_value', rmtypes)
@@ -407,7 +407,7 @@ class Edit_TE:
         scroll_into_the_view(browser, rm_type_loc[0], rm_type_loc[1])
         do_click(browser, raw_mat_loc)
         values = get_list_of_elems_text(browser, raw_mat_loc_select[0], raw_mat_loc_select[1])
-        rod_bar_dd_data = get_env_var_from_globals(rm_data)
+        rod_bar_dd_data = globals()[rm_data]
         assert values == rod_bar_dd_data
         select_name = raw_mat_loc_select[1] + f'[{index}]'
         select_loc = replace_in_tuple(raw_mat_loc_select, 1, select_name)

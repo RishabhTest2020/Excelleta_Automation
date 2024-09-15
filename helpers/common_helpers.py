@@ -733,3 +733,5 @@ def get_env_var_from_globals(var):
     var_str = f'{var}{env}'
     var_val = all_vars[var_str]
     return var_val
+
+
