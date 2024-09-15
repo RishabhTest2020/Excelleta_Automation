@@ -24,7 +24,7 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_04 Verify Contacts Tab and New Contact creation
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     Then Verify created contact FE Info
@@ -36,7 +36,7 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_05 Verify Rfq Tab and New Rfq creation
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 20
@@ -49,15 +49,15 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_06 Create and verify Drawing data and TE data
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
-    Then Add Drawing Data Fabrication
+    Then Add Drawing Data Plastic
     When Navigate to Technical Evaluation tab 10
-    When Edit TE Assembly and fill raw material data single, Fabrication
-    When Create TE data 1, Fabrication
+    When Edit TE Assembly and fill raw material data single, Plastic
+    When Create TE data 1, Plastic
     Then Verify TE data
     Then Approve TE all levels, back true level 3 assert True
 
@@ -65,25 +65,25 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_07 Create Multi level BOM and approve flow B31
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 35
     Then Create a RFQ multi, location B-31, Delhi Corp
-    Then Add Drawing Data Fabrication
+    Then Add Drawing Data Plastic
     When Navigate to Technical Evaluation tab 10
-    When Edit TE Assembly and fill raw material data multi, Fabrication
-    When Create TE data 1, Fabrication
+    When Edit TE Assembly and fill raw material data multi, Plastic
+    When Create TE data 1, Plastic
     When Add sub assembly and its data
-    When Create TE data 2, Fabrication
+    When Create TE data 2, Plastic
     When Add assembly part Rod/Bar 1 2
-    When Create TE data 3, Fabrication
+    When Create TE data 3, Plastic
     When Create TE BOP data 1
-    When Create TE data 4, Fabrication
+    When Create TE data 4, Plastic
     When Add assembly part Rod/Bar 2 3
-    When Create TE data 3, Fabrication
+    When Create TE data 3, Plastic
     When Create TE BOP data 2
-    When Create TE data 4, Fabrication
+    When Create TE data 4, Plastic
     When Create ST Ops data 3
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4 assert True
@@ -92,25 +92,25 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_08 Create Multi level BOM, create norms and Generate cost approval flow
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
-    Then Add Drawing Data Fabrication
+    Then Add Drawing Data Plastic
     When Navigate to Technical Evaluation tab 10
-    When Edit TE Assembly and fill raw material data multi, Fabrication
-    When Create TE data 1, Fabrication
+    When Edit TE Assembly and fill raw material data multi, Plastic
+    When Create TE data 1, Plastic
     When Add sub assembly and its data
-    When Create TE data 2, Fabrication
+    When Create TE data 2, Plastic
     When Add assembly part Rod/Bar 1 2
-    When Create TE data 3, Fabrication
+    When Create TE data 3, Plastic
     When Create TE BOP data 1
-    When Create TE data 4, Fabrication
+    When Create TE data 4, Plastic
     When Add assembly part Rod/Bar 2 3
-    When Create TE data 3, Fabrication
+    When Create TE data 3, Plastic
     When Create TE BOP data 2
-    When Create TE data 4, Fabrication
+    When Create TE data 4, Plastic
     When Create ST Ops data 3
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4 assert False
@@ -125,25 +125,25 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_09 Create Multi level BOM and reject approval all levels
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
-    Then Add Drawing Data Fabrication
+    Then Add Drawing Data Plastic
     When Navigate to Technical Evaluation tab 10
-    When Edit TE Assembly and fill raw material data multi, Fabrication
-    When Create TE data 1, Fabrication
+    When Edit TE Assembly and fill raw material data multi, Plastic
+    When Create TE data 1, Plastic
     When Add sub assembly and its data
-    When Create TE data 2, Fabrication
+    When Create TE data 2, Plastic
     When Add assembly part Rod/Bar 1 2
-    When Create TE data 3, Fabrication
+    When Create TE data 3, Plastic
     When Create TE BOP data 1
-    When Create TE data 4, Fabrication
+    When Create TE data 4, Plastic
     When Add assembly part Rod/Bar 2 3
-    When Create TE data 3, Fabrication
+    When Create TE data 3, Plastic
     When Create TE BOP data 2
-    When Create TE data 4, Fabrication
+    When Create TE data 4, Plastic
     When Create ST Ops data 3
     When Create ST Ops data 5
     Then Reject TE, back false level 1 assert True
@@ -160,7 +160,7 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_10 Verify Norms Manufacturing locations navs
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
@@ -172,25 +172,25 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_11 Create Multi level BOM, Generate cost and all level reject flow
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
-    Then Add Drawing Data Fabrication
+    Then Add Drawing Data Plastic
     When Navigate to Technical Evaluation tab 10
-    When Edit TE Assembly and fill raw material data multi, Fabrication
-    When Create TE data 1, Fabrication
+    When Edit TE Assembly and fill raw material data multi, Plastic
+    When Create TE data 1, Plastic
     When Add sub assembly and its data
-    When Create TE data 2, Fabrication
+    When Create TE data 2, Plastic
     When Add assembly part Rod/Bar 1 2
-    When Create TE data 3, Fabrication
+    When Create TE data 3, Plastic
     When Create TE BOP data 1
-    When Create TE data 4, Fabrication
+    When Create TE data 4, Plastic
     When Add assembly part Rod/Bar 2 3
-    When Create TE data 3, Fabrication
+    When Create TE data 3, Plastic
     When Create TE BOP data 2
-    When Create TE data 4, Fabrication
+    When Create TE data 4, Plastic
     When Create ST Ops data 3
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4 assert False
@@ -216,7 +216,7 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_12 Verify Reject And Revoke Functionality of ROI
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 30
@@ -228,7 +228,7 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_13 Verify Reject And Revoke Functionality OF TF
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 35
@@ -240,7 +240,7 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_14 Verify Technical Feasibility As No
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 35
@@ -251,52 +251,52 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_15 Verify Managers data in Edit RFQ
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 25
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
-    Then Add Drawing Data Fabrication
+    Then Add Drawing Data Plastic
     Then Verify Edit Managers Information in RFQ
 
   @Sanity @Sanity_megarubber
   Scenario: TC_16 Revoke TE and verify Approval History
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 35
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
-    Then Add Drawing Data Fabrication
+    Then Add Drawing Data Plastic
     When Navigate to Technical Evaluation tab 10
-    When Edit TE Assembly and fill raw material data single, Fabrication
-    When Create TE data 1, Fabrication
+    When Edit TE Assembly and fill raw material data single, Plastic
+    When Create TE data 1, Plastic
     Then Revoke TE and Verify History
 
   @Sanity @Sanity_megarubber
   Scenario: TC_17 Create Multi level BOM, Generate cost and revoke flow
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
-    Then Add Drawing Data Fabrication
+    Then Add Drawing Data Plastic
     When Navigate to Technical Evaluation tab 10
-    When Edit TE Assembly and fill raw material data multi, Fabrication
-    When Create TE data 1, Fabrication
+    When Edit TE Assembly and fill raw material data multi, Plastic
+    When Create TE data 1, Plastic
     When Add sub assembly and its data
-    When Create TE data 2, Fabrication
+    When Create TE data 2, Plastic
     When Add assembly part Rod/Bar 1 2
-    When Create TE data 3, Fabrication
+    When Create TE data 3, Plastic
     When Create TE BOP data 1
-    When Create TE data 4, Fabrication
+    When Create TE data 4, Plastic
     When Add assembly part Rod/Bar 2 3
-    When Create TE data 3, Fabrication
+    When Create TE data 3, Plastic
     When Create TE BOP data 2
-    When Create TE data 4, Fabrication
+    When Create TE data 4, Plastic
     When Create ST Ops data 3
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4 assert False
@@ -311,25 +311,25 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_18 Create Multi level BOM and approve flow Dharhuhera
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Dharuhera, Delhi Corp
-    Then Add Drawing Data Fabrication
+    Then Add Drawing Data Plastic
     When Navigate to Technical Evaluation tab 10
-    When Edit TE Assembly and fill raw material data multi, Fabrication
-    When Create TE data 1, Fabrication
+    When Edit TE Assembly and fill raw material data multi, Plastic
+    When Create TE data 1, Plastic
     When Add sub assembly and its data
-    When Create TE data 2, Fabrication
+    When Create TE data 2, Plastic
     When Add assembly part Rod/Bar 1 2
-    When Create TE data 3, Fabrication
+    When Create TE data 3, Plastic
     When Create TE BOP data 1
-    When Create TE data 4, Fabrication
+    When Create TE data 4, Plastic
     When Add assembly part Rod/Bar 2 3
-    When Create TE data 3, Fabrication
+    When Create TE data 3, Plastic
     When Create TE BOP data 2
-    When Create TE data 4, Fabrication
+    When Create TE data 4, Plastic
     When Create ST Ops data 3
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4 assert True
@@ -338,25 +338,25 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_19 Create Multi level BOM and approve flow Hosur
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Hosur, Delhi Corp
-    Then Add Drawing Data Fabrication
+    Then Add Drawing Data Plastic
     When Navigate to Technical Evaluation tab 15
-    When Edit TE Assembly and fill raw material data multi, Fabrication
-    When Create TE data 1, Fabrication
+    When Edit TE Assembly and fill raw material data multi, Plastic
+    When Create TE data 1, Plastic
     When Add sub assembly and its data
-    When Create TE data 2, Fabrication
+    When Create TE data 2, Plastic
     When Add assembly part Rod/Bar 1 2
-    When Create TE data 3, Fabrication
+    When Create TE data 3, Plastic
     When Create TE BOP data 1
-    When Create TE data 4, Fabrication
+    When Create TE data 4, Plastic
     When Add assembly part Rod/Bar 2 3
-    When Create TE data 3, Fabrication
+    When Create TE data 3, Plastic
     When Create TE BOP data 2
-    When Create TE data 4, Fabrication
+    When Create TE data 4, Plastic
     When Create ST Ops data 3
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4 assert True
@@ -365,25 +365,25 @@ Feature: Automation Sanity Test Plan Execelleta
   Scenario: TC_20 Create Multi level BOM and approve flow Pantnagar3
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
-    Then Create an account Fabrication
+    Then Create an account Plastic
     When Navigate to Contact tab 5
     When Create an Contact
     When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
-    Then Add Drawing Data Fabrication
+    Then Add Drawing Data Plastic
     When Navigate to Technical Evaluation tab 10
-    When Edit TE Assembly and fill raw material data multi, Fabrication
-    When Create TE data 1, Fabrication
+    When Edit TE Assembly and fill raw material data multi, Plastic
+    When Create TE data 1, Plastic
     When Add sub assembly and its data
-    When Create TE data 2, Fabrication
+    When Create TE data 2, Plastic
     When Add assembly part Rod/Bar 1 2
-    When Create TE data 3, Fabrication
+    When Create TE data 3, Plastic
     When Create TE BOP data 1
-    When Create TE data 4, Fabrication
+    When Create TE data 4, Plastic
     When Add assembly part Rod/Bar 2 3
-    When Create TE data 3, Fabrication
+    When Create TE data 3, Plastic
     When Create TE BOP data 2
-    When Create TE data 4, Fabrication
+    When Create TE data 4, Plastic
     When Create ST Ops data 3
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 4 assert True
