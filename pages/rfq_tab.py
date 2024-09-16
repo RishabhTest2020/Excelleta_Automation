@@ -302,9 +302,9 @@ class Rfq:
         self.rfq_shipping_address = get_element_text(browser, rfq_shipping_select)
         do_click(browser, rfq_shipping_select)
 
-    def select_other_info_checkbox(self, browser):
+    def select_other_info_checkbox(self, browser, bn_type):
         checkboxes = [roi_chkbox, tect_feas_chkbox, satc_chkbox]
-        if os.environ['ENV'] == 'bony':
+        if os.environ['ENV'] == 'bony' and bn_type == 'Polymer':
             checkboxes[0] = compound_feas_chkbox
         for chkbox in checkboxes:
             do_click(browser, chkbox)

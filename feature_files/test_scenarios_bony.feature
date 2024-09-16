@@ -52,7 +52,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Verify TE data
     Then Approve TE all levels, back true level 3 assert True
 
-  @Sanity @Sanity_bony @Sanity_etdev #@Test
+  @Sanity @Sanity_bony @Sanity_etdev @Test
   Scenario: TC_07 Create Multi level BOM and approve flow Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -269,7 +269,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Goto MTE Cost Sheet
     Then Revoke Cost sheet
 
-  @Test
+#  @Test
   Scenario: TC_18 Verify Add Part For Fabric Raw Material type
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5

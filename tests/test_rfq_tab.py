@@ -44,7 +44,7 @@ def create_rfq(browser, types, loc_name, dev_loc):
     rfq_steps.select_estimates_sop(browser)
     rfq_steps.select_incoterms(browser)
     rfq_steps.select_offer_validity(browser)
-    rfq_steps.select_other_info_checkbox(browser)
+    rfq_steps.select_other_info_checkbox(browser, accounts_steps.business_nature)
     rfq_steps.select_packaging_cost(browser)
     rfq_steps.select_per_annum_volume(browser)
     rfq_steps.select_per_day_volume(browser)
@@ -59,11 +59,11 @@ def create_rfq(browser, types, loc_name, dev_loc):
     rfq_steps.select_plant_head(browser)
     rfq_steps.select_surface_treatment_head(browser)
     rfq_steps.select_cft_member(browser)
-    if os.environ['ENV'] != 'bony':
-        try:
-            rfq_steps.select_business_dev_head(browser)
-        except TimeoutException:
-            pass
+    if os.environ['ENV'] != 'bony' and accounts_steps.business_nature != 'Polymer':
+        # try:
+        rfq_steps.select_business_dev_head(browser)
+        # except TimeoutException:
+        #     pass
     rfq_steps.verify_heading(browser)
     do_click(browser, save_btn)
     loader_should_be_invisile(browser, 15)
