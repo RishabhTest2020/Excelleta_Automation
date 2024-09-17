@@ -90,7 +90,7 @@ def browser(request):
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument("--disable-gpu")
         options.add_argument("--window-size=1920x1080")
-        options.add_argument("--disable-web-security")
+        # options.add_argument("--disable-web-security")
         options.add_argument("--allow-running-insecure-content")
         if username == 'Hp':
             service = ChromeService(executable_path=os.getcwd() + '/chromedriver-win64/chromedriver.exe')
