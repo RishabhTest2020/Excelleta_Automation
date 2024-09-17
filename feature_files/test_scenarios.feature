@@ -307,7 +307,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Revoke Cost sheet
 
 
-  @Sanity @Sanity_metalman #@Test
+  @Sanity @Sanity_metalman @Test
   Scenario: TC_18 Create Multi level BOM and approve flow Dharhuhera
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5

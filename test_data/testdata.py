@@ -373,16 +373,15 @@ raw_material_data_Polymer = ['Please select', 'AEM', 'AW-01 NATURAL', 'AW01 (POM
                           'ORANGE (MASTERBATCH)', 'POM (NATURAL)', 'PPCP (M3135)', 'PU', 'PVC (BALCK)', 'SBR',
                           'SILICONE', 'TENAC-C Z4520 (POM)', 'TF30 (POM)', 'UTN 320 (PA66)']
 
-raw_material_data_Fabrication = ['Please select', 'AISI 304 (Ø 9.53) Round', 'ASTM A510 TYPE 1 GRADE 1018 (Ø 5.2) Round',
-                              'C20 AS PER IS:1570 (Ø 8) Round', 'C25 (Ø 8) Round', 'C35 (IS:1570) (Ø 16) Round',
-                              'EN-8 (Ø 16) Round', 'EN-8 (Ø 18) Round', 'MS (Ø 3.2) Round', 'MS (Ø 4) Round',
-                              'MS (Ø 5) Round',
-                              'MS (Ø 6) Round', 'MS (Ø 7) Round', 'MS -Round Bar (Ø 65) Round', 'MS(ST 42) (Ø 6) Round',
-                              'S45C (Ø 5) Round', 'SAE 1010 (Ø 24) Round', 'SAE 1010 (Ø 3.2) Round',
-                              'SAE 1010 (Ø 8) Round',
-                              'SAE 1020 (Ø 13) Round', 'SAE 1020 (Ø 14) Round', 'SAE1018 (Ø 22.4) Round',
-                              'SAE1018 (Ø 28) Round',
-                              'SS316 (Ø 3) Round', 'SS316 (Ø 4) Round', 'SS316 (Ø 5) Round', 'SS316 (Ø 6) Round']
+raw_material_data_Fabrication = ['Please select', 'AISI 304 (Ø 9.53) Round',
+                                 'ASTM A510 TYPE 1 GRADE 1018 (Ø 5.2) Round', 'C20 AS PER IS:1570 (Ø 8) Round',
+                                 'C25 (Ø 8) Round', 'C35 (IS:1570) (Ø 16) Round',
+                                 'EN-8 (Ø 16) Round', 'EN-8 (Ø 18) Round', 'MS (Ø 3.2) Round', 'MS (Ø 4) Round',
+                                 'MS (Ø 5) Round', 'MS (Ø 6) Round', 'MS (Ø 7) Round', 'MS(ST 42) (Ø 6) Round',
+                                 'S45C (Ø 5) Round', 'SAE 1010 (Ø 24) Round', 'SAE 1010 (Ø 3.2) Round',
+                                 'SAE 1010 (Ø 8) Round', 'SAE 1020 (Ø 13) Round', 'SAE 1020 (Ø 14) Round',
+                                 'SAE1018 (Ø 22.4) Round', 'SAE1018 (Ø 28) Round', 'SS316 (Ø 3) Round',
+                                 'SS316 (Ø 4) Round', 'SS316 (Ø 5) Round', 'SS316 (Ø 6) Round']
 
 raw_material_data_Plastic = ['Please select', '(abc) (3494)-A vave', '(ABS IM-17V SUPER JET BLACK) PRECOLOURED vave',
                                 '(ABS IM-17V SUPER JET BLACK) PRECOLOURED virgin',
