@@ -39,9 +39,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 20
+    When Navigate to RFQ tab 60
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
-    When Navigate to RFQ tab 30
+    When Navigate to RFQ tab 60
     Then Verify created Rfq data
     Then Verify Rfq table head column
 
@@ -52,10 +52,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 60
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Fabrication
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data single, Fabrication
     When Create TE data 1, Fabrication
     Then Verify TE data
@@ -68,10 +67,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 35
+    When Navigate to RFQ tab 60
     Then Create a RFQ multi, location B-31, Delhi Corp
     Then Add Drawing Data Fabrication
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Fabrication
     When Create TE data 1, Fabrication
     When Add sub assembly and its data
@@ -95,10 +93,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 35
+    When Navigate to RFQ tab 60
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Fabrication
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Fabrication
     When Create TE data 1, Fabrication
     When Add sub assembly and its data
@@ -128,10 +125,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 35
+    When Navigate to RFQ tab 60
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Fabrication
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Fabrication
     When Create TE data 1, Fabrication
     When Add sub assembly and its data
@@ -163,9 +159,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 60
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 60
     Then Verify Manufacturing Location of Norms
 
   @Sanity @Sanity_metalman @Sanity_etdev #@Test
@@ -175,10 +171,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 35
+    When Navigate to RFQ tab 60
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Fabrication
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Fabrication
     When Create TE data 1, Fabrication
     When Add sub assembly and its data
@@ -219,7 +214,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 30
+    When Navigate to RFQ tab 60
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
     Then Reject ROI data
     Then Revoke ROI data
@@ -231,7 +226,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 35
+    When Navigate to RFQ tab 60
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
     Then Reject technical feasibility
     Then Revoke technical feasibility
@@ -243,7 +238,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 35
+    When Navigate to RFQ tab 60
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
     Then Technical feasibility as No
 
@@ -254,7 +249,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 60
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Fabrication
     Then Verify Edit Managers Information in RFQ
@@ -266,10 +261,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 35
+    When Navigate to RFQ tab 60
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Fabrication
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data single, Fabrication
     When Create TE data 1, Fabrication
     Then Revoke TE and Verify History
@@ -281,10 +275,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 35
+    When Navigate to RFQ tab 60
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Fabrication
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Fabrication
     When Create TE data 1, Fabrication
     When Add sub assembly and its data
@@ -314,10 +307,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 35
+    When Navigate to RFQ tab 60
     Then Create a RFQ multi, location Dharuhera, Delhi Corp
     Then Add Drawing Data Fabrication
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Fabrication
     When Create TE data 1, Fabrication
     When Add sub assembly and its data
@@ -341,10 +333,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 35
+    When Navigate to RFQ tab 60
     Then Create a RFQ multi, location Hosur, Delhi Corp
     Then Add Drawing Data Fabrication
-    When Navigate to Technical Evaluation tab 15
     When Edit TE Assembly and fill raw material data multi, Fabrication
     When Create TE data 1, Fabrication
     When Add sub assembly and its data
@@ -368,10 +359,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 35
+    When Navigate to RFQ tab 60
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Fabrication
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Fabrication
     When Create TE data 1, Fabrication
     When Add sub assembly and its data
@@ -395,10 +385,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 35
+    When Navigate to RFQ tab 60
     Then Create a RFQ multi, location B-31, Delhi Corp
     Then Add Drawing Data Fabrication
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Fabrication
     When Create TE data 1, Fabrication
     When Add sub assembly and its data
@@ -422,10 +411,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Fabrication
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 35
+    When Navigate to RFQ tab 60
     Then Create a RFQ multi, location B-31, Delhi Corp
     Then Add Drawing Data Fabrication
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Fabrication
     When Create TE data 1, Fabrication
     When Add sub assembly and its data

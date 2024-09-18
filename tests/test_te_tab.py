@@ -50,7 +50,13 @@ def edit_te_raw_material(browser, ass_type, busi_type):
     edit_te_steps.select_surface_area_unit(browser)
     edit_te_steps.select_manufacturing_source(browser)
     if ass_type == 'single':
-        edit_te_steps.select_rm_type(browser)
+        if busi_type == 'Polymer':
+            rm = 'Compound'
+        elif busi_type == 'Plastic':
+            rm = 'Plastic'
+        else:
+            rm = 'Rod/Bar'
+        edit_te_steps.select_rm_type(browser, rm, busi_type)
         edit_te_steps.select_raw_material(browser)
         if busi_type != 'Polymer':
             edit_te_steps.select_add_rod_size(browser)

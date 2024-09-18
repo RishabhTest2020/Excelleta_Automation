@@ -55,7 +55,6 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 25
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Plastic
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data single, Plastic
     When Create TE data 1, Plastic
     Then Verify TE data
@@ -71,7 +70,6 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 35
     Then Create a RFQ multi, location B-31, Delhi Corp
     Then Add Drawing Data Plastic
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Plastic
     When Create TE data 1, Plastic
     When Add sub assembly and its data
@@ -98,7 +96,6 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Plastic
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Plastic
     When Create TE data 1, Plastic
     When Add sub assembly and its data
@@ -131,7 +128,6 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Plastic
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Plastic
     When Create TE data 1, Plastic
     When Add sub assembly and its data
@@ -178,7 +174,6 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Plastic
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Plastic
     When Create TE data 1, Plastic
     When Add sub assembly and its data
@@ -269,7 +264,6 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 35
     Then Create a RFQ single, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Plastic
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data single, Plastic
     When Create TE data 1, Plastic
     Then Revoke TE and Verify History
@@ -284,7 +278,6 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Plastic
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Plastic
     When Create TE data 1, Plastic
     When Add sub assembly and its data
@@ -317,7 +310,6 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Dharuhera, Delhi Corp
     Then Add Drawing Data Plastic
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Plastic
     When Create TE data 1, Plastic
     When Add sub assembly and its data
@@ -344,7 +336,6 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Hosur, Delhi Corp
     Then Add Drawing Data Plastic
-    When Navigate to Technical Evaluation tab 15
     When Edit TE Assembly and fill raw material data multi, Plastic
     When Create TE data 1, Plastic
     When Add sub assembly and its data
@@ -371,7 +362,6 @@ Feature: Automation Sanity Test Plan Execelleta
     When Navigate to RFQ tab 35
     Then Create a RFQ multi, location Pantnagar -III, Delhi Corp
     Then Add Drawing Data Plastic
-    When Navigate to Technical Evaluation tab 10
     When Edit TE Assembly and fill raw material data multi, Plastic
     When Create TE data 1, Plastic
     When Add sub assembly and its data
