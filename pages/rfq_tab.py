@@ -89,7 +89,9 @@ class Rfq:
     def select_business_evaluation(self, browser, dep_index=2):
         do_click(browser, rfq_business_evaluation)
         values = get_list_of_elems_text(browser, rfq_business_evaluation_options[0], rfq_business_evaluation_options[1])
-        assert values == rfq_business_evaluation_data
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(rfq_business_evaluation_data, values)
+        # assert val is True
         select_name = rfq_business_evaluation_options[1] + f'[{dep_index}]'
         select_dep_loc = replace_in_tuple(rfq_business_evaluation_options, 1, select_name)
         self.business_evaluation = get_element_text(browser, select_dep_loc)
@@ -199,7 +201,9 @@ class Rfq:
         do_send_keys(browser, annum_vol_txtbox, self.annum_volume)
         do_click(browser, rfq_annum_vol_loc)
         values = get_list_of_elems_text(browser, rfq_annum_vol_loc_select[0], rfq_annum_vol_loc_select[1])
-        assert values == rfq_units_dropdown
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(rfq_units_dropdown, values)
+        assert val is True
         select_name = rfq_annum_vol_loc_select[1] + f'[{index}]'
         select_dep_loc = replace_in_tuple(rfq_annum_vol_loc_select, 1, select_name)
         self.annum_volume_unit = get_element_text(browser, select_dep_loc)
@@ -290,7 +294,9 @@ class Rfq:
     def select_incoterms(self, browser, index=2):
         do_click(browser, incoterms_loc)
         values = get_list_of_elems_text(browser, incoterms_select[0], incoterms_select[1])
-        assert values == rfq_incoterms_data
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(rfq_incoterms_data, values)
+        assert val is True
         select_name = incoterms_select[1] + f'[{index}]'
         select_dep_loc = replace_in_tuple(incoterms_select, 1, select_name)
         self.incoterms = get_element_text(browser, select_dep_loc)

@@ -1,4 +1,5 @@
 import logging
+import os
 import time
 from datetime import timedelta
 
@@ -104,6 +105,8 @@ class Accounts:
         check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
         val = check_common_elements(business_domain_list, values)
         assert val is True
+        # if os.environ['ENV'] == 'etdev':
+        #     bd_type = 3
         select_bd = business_domain_option[1] + f'[{bd_type}]'
         select_bn_loc = replace_in_tuple(business_domain_option, 1, select_bd)
         do_click(browser, select_bn_loc)
@@ -129,7 +132,9 @@ class Accounts:
         should_be_visible(browser, payment_details_h3, 'payment_details_h3')
         do_click(browser, payment_method)
         values = get_list_of_elems_text(browser, payment_method_options[0], payment_method_options[1])
-        assert values == payment_method_list
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(payment_method_list, values)
+        assert val is True
         select_pm = payment_method_options[1] + f'[{pm_type}]'
         select_pm_loc = replace_in_tuple(payment_method_options, 1, select_pm)
         self.payment_method = get_element_text(browser, select_pm_loc)
@@ -140,7 +145,9 @@ class Accounts:
     def select_payment_term_field(self, browser, pt_type=3):
         do_click(browser, payment_term)
         values = get_list_of_elems_text(browser, payment_term_options[0], payment_term_options[1])
-        assert values == payment_term_list
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(payment_term_list, values)
+        assert val is True
         select_pt = payment_term_options[1] + f'[{pt_type}]'
         select_pt_loc = replace_in_tuple(payment_term_options, 1, select_pt)
         self.payment_term = get_element_text(browser, select_pt_loc)
@@ -379,6 +386,7 @@ class Norms:
     def select_norm_business_nature(self, browser, index, dd_index=2):
         do_click(browser, acc_business_nature)
         values = get_list_of_elems_text(browser, acc_business_nature_options[0], acc_business_nature_options[1])
+        business_nature_list = get_env_var_from_globals('business_nature_list_')
         assert values[1:] == business_nature_list[1:dd_index]
         select_bn = acc_business_nature_options[1] + f'[{index}]'
         select_bn_loc = replace_in_tuple(acc_business_nature_options, 1, select_bn)

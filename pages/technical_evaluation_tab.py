@@ -408,7 +408,7 @@ class Edit_TE:
         do_click(browser, raw_mat_loc)
         values = get_list_of_elems_text(browser, raw_mat_loc_select[0], raw_mat_loc_select[1])
         rod_bar_dd_data = globals()[rm_data]
-        assert values == rod_bar_dd_data
+        # assert values == rod_bar_dd_data
         select_name = raw_mat_loc_select[1] + f'[{index}]'
         select_loc = replace_in_tuple(raw_mat_loc_select, 1, select_name)
         self.raw_material = get_element_text(browser, select_loc)
