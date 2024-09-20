@@ -57,7 +57,7 @@ def edit_te_raw_material(browser, ass_type, busi_type):
         else:
             rm = 'Rod/Bar'
         edit_te_steps.select_rm_type(browser, rm, busi_type)
-        edit_te_steps.select_raw_material(browser)
+        edit_te_steps.select_raw_material(browser, rm_data=f'raw_material_data_{accounts_steps.business_nature}')
         if busi_type != 'Polymer':
             edit_te_steps.select_add_rod_size(browser)
         else:

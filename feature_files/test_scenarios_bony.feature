@@ -31,9 +31,9 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 20
+    When Navigate to RFQ tab 250
     Then Create a RFQ single, location Bony Plant Gujarat, Bony Plant Gujarat
-    When Navigate to RFQ tab 30
+    When Navigate to RFQ tab 250
     Then Verify created Rfq data
     Then Verify Rfq table head column
 
@@ -44,7 +44,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 250
     Then Create a RFQ single, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Add Drawing Data Polymer
     When Edit TE Assembly and fill raw material data single, Polymer
@@ -59,7 +59,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 250
     Then Create a RFQ multi, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Add Drawing Data Polymer
     When Edit TE Assembly and fill raw material data multi, Polymer
@@ -85,7 +85,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 250
     Then Create a RFQ multi, location Bony Plant Gujarat,  Bony Plant Gujarat
     Then Add Drawing Data Polymer
     When Edit TE Assembly and fill raw material data multi, Polymer
@@ -117,7 +117,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 250
     Then Create a RFQ multi, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Add Drawing Data Polymer
     When Edit TE Assembly and fill raw material data multi, Polymer
@@ -152,7 +152,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 250
     Then Create a RFQ multi, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Add Drawing Data Polymer
     When Edit TE Assembly and fill raw material data multi, Polymer
@@ -195,7 +195,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 250
     Then Create a RFQ single, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Reject ROI data
     Then Revoke ROI data
@@ -207,7 +207,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 250
     Then Create a RFQ single, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Reject technical feasibility
     Then Revoke technical feasibility
@@ -219,7 +219,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 250
     Then Create a RFQ single, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Technical feasibility as No
     
@@ -231,7 +231,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 250
     Then Create a RFQ single, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Add Drawing Data Polymer
     When Edit TE Assembly and fill raw material data single, Polymer
@@ -245,7 +245,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 250
     Then Create a RFQ multi, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Add Drawing Data Polymer
     When Edit TE Assembly and fill raw material data multi, Polymer
@@ -276,7 +276,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 250
     Then Create a RFQ multi, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Add Drawing Data Polymer
     When Edit TE Assembly and fill raw material data multi, Polymer
@@ -306,7 +306,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Create an account Polymer
     When Navigate to Contact tab 5
     When Create an Contact
-    When Navigate to RFQ tab 25
+    When Navigate to RFQ tab 250
     Then Create a RFQ multi, location Bony Plant Gujarat, Bony Plant Gujarat
     Then Add Drawing Data Polymer
     When Edit TE Assembly and fill raw material data multi, Polymer
