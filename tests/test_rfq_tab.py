@@ -121,7 +121,7 @@ def create_drawing_data(browser, busi_type):
     drawing_data_steps.select_3d_soft_copy(browser)
     if busi_type == 'Polymer':
         drawing_data_steps.add_compound_feasibility(browser)
-    else:
+    if os.environ['ENV'] != 'bony':
         drawing_data_steps.add_roi_and_approve(browser)
     drawing_data_steps.add_technical_feasibility(browser)
     loader_should_be_invisile(browser, 10)

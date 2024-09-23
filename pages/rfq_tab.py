@@ -310,8 +310,10 @@ class Rfq:
 
     def select_other_info_checkbox(self, browser, bn_type):
         checkboxes = [roi_chkbox, tect_feas_chkbox, satc_chkbox]
-        if os.environ['ENV'] == 'bony' and bn_type == 'Polymer':
+        if os.environ['ENV'] == 'bony':
             checkboxes[0] = compound_feas_chkbox
+        elif bn_type == 'Polymer':
+            checkboxes.append(compound_feas_chkbox)
         for chkbox in checkboxes:
             do_click(browser, chkbox)
 
