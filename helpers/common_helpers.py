@@ -399,9 +399,9 @@ def get_error_console_logs(browser):
     error_logs = []
     browser_logs = browser.get_log('browser')
     for entry in browser_logs:
-        if entry['level'] == 'SEVERE' or entry['level'] == 'ERROR' or entry['level'] == 'CRITICAL' or entry[
-            'level'] == 'INFO':
-            if entry['source'] == 'javascript':
+        if (entry['level'] == 'SEVERE' or entry['level'] == 'ERROR' or entry['level'] == 'CRITICAL' or
+                entry['level'] == 'INFO'):
+            if entry['source'] == 'javascript' or 'api' in entry['source']:
                 error_logs.append(entry['message'])
             else:
                 pass
@@ -733,5 +733,3 @@ def get_env_var_from_globals(var):
     var_str = f'{var}{env}'
     var_val = all_vars[var_str]
     return var_val
-
-

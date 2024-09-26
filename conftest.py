@@ -16,7 +16,7 @@ from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
-from helpers.common_helpers import delete_all_class_vars_in_project, send_report_to_teams
+from helpers.common_helpers import delete_all_class_vars_in_project, send_report_to_teams, get_error_console_logs
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -61,10 +61,10 @@ def browser(request):
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option("useAutomationExtension", False)
         if username == 'Hp':
-            service = ChromeService(executable_path=os.getcwd() + '/chromedriver-win64/chromedriver.exe')
+            driver = webdriver.Chrome(options=options)
         else:
             service = webdriver.chrome.service.Service(ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=service, options=options)
+            driver = webdriver.Chrome(service=service, options=options)
         print("Selenium version:", selenium.__version__)
     elif Browser == 'headless_chrome':
         options = webdriver.ChromeOptions()
@@ -93,10 +93,10 @@ def browser(request):
         # options.add_argument("--disable-web-security")
         options.add_argument("--allow-running-insecure-content")
         if username == 'Hp':
-            service = ChromeService(executable_path=os.getcwd() + '/chromedriver-win64/chromedriver.exe')
+            driver = webdriver.Chrome(options=options)
         else:
             service = webdriver.chrome.service.Service(ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=service, options=options)
+            driver = webdriver.Chrome(service=service, options=options)
     else:
         driver = None
     driver.implicitly_wait(40)
@@ -107,6 +107,8 @@ def browser(request):
     env = os.environ['ENV']
     logging.info("Environment:" + env)
     yield driver
+    console_logs = get_error_console_logs(driver)
+    logging.info(f"Console Logs: {"\n".join(console_logs)}")
     driver.quit()
 
 
