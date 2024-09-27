@@ -22,7 +22,7 @@ tnc_loc = (By.XPATH, '//*[@id="terms"]')
 
 business_info_h3 = (By.XPATH, '//h3[contains(text(), "Business Information")]')
 business_nature = (By.XPATH, '//*[contains(text(), "Select Business Nature")]')
-business_nature_option = (By.XPATH, '(//*[contains(@name, "businessNatureIds")]//input/..)')
+business_nature_option = (By.XPATH, '(//*[@aria-label="name"]/..)')
 business_nature_option_txt = (By.XPATH, '(//*[contains(@name, "businessNatureIds")]//div)')
 business_nature_selected = (By.XPATH, '(//*[text()= "Business Nature"]/parent::*//span[@class="selected-item"])')
 business_domain = (By.XPATH, '//*[contains(text(), "Select Business Domain")]')

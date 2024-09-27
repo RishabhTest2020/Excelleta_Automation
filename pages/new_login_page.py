@@ -1,3 +1,4 @@
+import logging
 from time import sleep
 from helpers.common_helpers import *
 from global_libs.config import *
@@ -9,6 +10,7 @@ def user_login(browser, email=globalEnvs.user_email, password=globalEnvs.user_pa
     Opens main page = environ url
     """
     browser.get(globalEnvs.main_url)
+    logging.info(globalEnvs.main_url)
     wait_for_ajax(browser)
     should_be_visible(browser, excelleta_logo, 'excelleta_logo')
     do_send_keys(browser, email_text_box, email)

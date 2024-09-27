@@ -1,4 +1,5 @@
 import logging
+import os
 
 from helpers.common_helpers import *
 from locators.rfq_tab_locators import *
@@ -19,11 +20,14 @@ class Create_TE:
     def goto_te_verify_part_add_assembly(self, browser, te_name, tool):
         te_loc = (By.XPATH, f'//a[contains(text(), "{te_name}")]')
         logging.info(te_loc)
-        try:
-            do_click(browser, te_loc, 15)
-        except TimeoutException:
-            do_click(browser, te_loc)
-        loader_should_be_invisile(browser, 3)
+        # if os.environ['ENV'] == 'bony':
+        do_click(browser, te_name_link)
+        # else:
+        #     try:
+        #         do_click(browser, te_loc, 15)
+        #     except TimeoutException:
+        #         do_click(browser, te_loc)
+        loader_should_be_invisile(browser, 5)
         tool_txt = get_element_text(browser, assembly_node_label)
         assert tool_txt == tool
 
@@ -35,17 +39,21 @@ class Create_TE:
             do_click(browser, add_view_operation)
             sleep(2)
 
-    def verify_te_heading(self, browser):
-        headings = ['Operation Details Fabrication', 'Tooling Details Fabrication', 'Other Information Fabrication']
+    def verify_te_heading(self, browser, busi_type):
+        if busi_type == "Polymer":
+            headings = ['Operation Details Polymer', 'Tooling Details Polymer', 'Other Information Polymer']
+        else:
+            headings = ['Operation Details Fabrication', 'Tooling Details Fabrication', 'Other Information Fabrication']
         for head in headings:
             heading = te_headings[1].replace('heading', head)
             heading_loc = replace_in_tuple(te_headings, 1, heading)
             scroll_into_the_view(browser, heading_loc[0], heading_loc[1])
             should_be_visible(browser, heading_loc, head)
 
-    def select_machine(self, browser, dep_index=3):
+    def select_machine(self, browser, dep_index=3, bn_type='Fabrication'):
         do_click(browser, machine_loc)
         values = get_list_of_elems_text(browser, machine_loc_select[0], machine_loc_select[1])
+        te_machine_dd_data = globals()[f'te_machine_dd_data_{bn_type}']
         assert values == te_machine_dd_data
         select_name = machine_loc_select[1] + f'[{dep_index}]'
         select_dep_loc = replace_in_tuple(machine_loc_select, 1, select_name)
@@ -56,6 +64,7 @@ class Create_TE:
     def select_te_process(self, browser, dep_index=2):
         do_click(browser, process_loc)
         values = get_list_of_elems_text(browser, process_loc_select[0], process_loc_select[1])
+        te_process_dd_data = get_env_var_from_globals('te_process_dd_data_')
         assert values == te_process_dd_data
         select_name = process_loc_select[1] + f'[{dep_index}]'
         select_dep_loc = replace_in_tuple(process_loc_select, 1, select_name)
@@ -66,6 +75,7 @@ class Create_TE:
     def select_te_process_unit(self, browser, dep_index=2):
         do_click(browser, process_unit_loc)
         values = get_list_of_elems_text(browser, process_unit_loc_select[0], process_unit_loc_select[1])
+        te_process_unit_dd_data = get_env_var_from_globals('te_process_unit_dd_data_')
         assert values == te_process_unit_dd_data
         select_name = process_unit_loc_select[1] + f'[{dep_index}]'
         select_dep_loc = replace_in_tuple(process_unit_loc_select, 1, select_name)
@@ -85,9 +95,10 @@ class Create_TE:
         sleep(0.5)
         return self.operation_source
 
-    def select_inspection_instrument(self, browser, dep_index=3):
+    def select_inspection_instrument(self, browser, dep_index=3, bn_type='Fabrication'):
         do_click(browser, ins_instrument_loc)
         values = get_list_of_elems_text(browser, ins_instrument_loc_select[0], ins_instrument_loc_select[1])
+        te_inspection_instrument_dd_data = globals()[f'te_inspection_instrument_dd_data_{bn_type}']
         assert values == te_inspection_instrument_dd_data
         select_name = ins_instrument_loc_select[1] + f'[{dep_index}]'
         select_dep_loc = replace_in_tuple(ins_instrument_loc_select, 1, select_name)
@@ -112,6 +123,22 @@ class Create_TE:
         bill_loc_txt = replace_in_tuple(assembly_txt_boxes_txt, 1, bill_loc_str_txt)
         do_send_keys(browser, bill_loc_txt, self.te_txt_data[-2])
         bill_loc_str_txt = assembly_txt_boxes_txt[1].replace("field_name", ids_list[-1])
+        bill_loc_txt = replace_in_tuple(assembly_txt_boxes_txt, 1, bill_loc_str_txt)
+        do_send_keys(browser, bill_loc_txt, self.te_txt_data[-1])
+
+    def fill_bony_te_txtbox_data(self, browser):
+        bony_ids_list = ['Cycle Time', 'Unit Value', 'No. of Cavity', 'Name of Tool/Fixture',
+                         'Length', 'Width', 'Height', 'Gross Wt', 'Net Wt', 'Scientific Based Tooling Cost',
+                         'Judgment Based Tooling Cost', 'Skilled Man Power', 'Unskilled Man Power', 'Material Handling',
+                         'Remarks']
+        self.te_txt_data = [150, 53, 174, 'Rod Cutter', 13, 7, 16, 25, 1700, 3249, 3500, 12, 23,
+                                 'Test Bony Material Handling', 'This is bony te for automation testing']
+        for b_id, data in zip(bony_ids_list[:-1], self.te_txt_data[:-1]):
+            bill_loc_str = assembly_txt_boxes[1].replace("field_name", b_id)
+            bill_loc = replace_in_tuple(assembly_txt_boxes, 1, bill_loc_str)
+            logging.info(bill_loc)
+            do_send_keys(browser, bill_loc, data)
+        bill_loc_str_txt = assembly_txt_boxes_txt[1].replace("field_name", bony_ids_list[-1])
         bill_loc_txt = replace_in_tuple(assembly_txt_boxes_txt, 1, bill_loc_str_txt)
         do_send_keys(browser, bill_loc_txt, self.te_txt_data[-1])
 
@@ -211,7 +238,7 @@ class Approve_TE:
                         actual_vals = [f'TE Approval Level - {j}', args[i - 1], args[i - 1], 'Approved',
                                        time2, time1, self.comments[-1]]
                     else:
-                        actual_vals = [f'TE Approval Level - {j}', args[i - 1], 'Saurabh Shrivastava', 'Approved',
+                        actual_vals = [f'TE Approval Level - {j}', args[i - 1], globalEnvs.user_name, 'Approved',
                                        time2, time1, self.comments[-1]]
                     logging.info(ah_row_vals)
                     logging.info(actual_vals)
@@ -300,6 +327,14 @@ class Approve_TE:
 class Edit_TE:
 
     def __init__(self):
+        self.yarn_gross_wt = None
+        self.yarn_net_wt = None
+        self.gross_fabric_wt = None
+        self.net_fabric_weight = None
+        self.tube_part_net_wt = None
+        self.ctl_part_len = None
+        self.sheet_part_net_wt = None
+        self.override_stand_sheet = None
         self.ecn_type = None
         self.surface_treatment = None
         self.net_weigh_part = 0.2
@@ -309,6 +344,17 @@ class Edit_TE:
         self.manufacturing_source = None
         self.surface_area_unit = None
         self.drawing_name = None
+        self.uom_type = None
+        self.prod_category_type = None
+        self.supplier_name = None
+        self.inner_diameter = None
+        self.fabric_gross_weight = None
+        self.gross_weight_factor = None
+        self.material_density = None
+        self.cutting_margin = None
+        self.net_length = None
+        self.outer_diameter = None
+        self.sheet_strip_size_data = []
 
     def edit_assembly(self, browser):
         do_click(browser, assembly_list_add_btn)
@@ -344,22 +390,25 @@ class Edit_TE:
         do_click(browser, select_loc)
         sleep(0.5)
 
-    def select_rm_type(self, browser, index=2):
+    def select_rm_type(self, browser, rmtypes, bn_type):
         scroll_into_the_view(browser, rm_type_loc[0], rm_type_loc[1])
         do_click(browser, rm_type_loc)
-        values = get_list_of_elems_text(browser, rm_type_loc_select[0], rm_type_loc_select[1])
+        values = get_list_of_elems_text(browser, rm_type_loc_select_opts[0], rm_type_loc_select_opts[1])
+        rm_type_dd_data = globals()[f'rm_type_data_{bn_type}']
         assert values == rm_type_dd_data
-        select_name = rm_type_loc_select[1] + f'[{index}]'
+        # select_name = rm_type_loc_select[1] + f'[{index}]'
+        select_name = rm_type_loc_select[1].replace('rm_value', rmtypes)
         select_loc = replace_in_tuple(rm_type_loc_select, 1, select_name)
         self.rm_type = get_element_text(browser, select_loc)
         do_click(browser, select_loc)
         sleep(0.5)
 
-    def select_raw_material(self, browser, index=2):
+    def select_raw_material(self, browser, index=2, rm_data='raw_material_data_'):
         scroll_into_the_view(browser, rm_type_loc[0], rm_type_loc[1])
         do_click(browser, raw_mat_loc)
         values = get_list_of_elems_text(browser, raw_mat_loc_select[0], raw_mat_loc_select[1])
-        assert values == rod_bar_dd_data
+        rod_bar_dd_data = globals()[rm_data]
+        # assert values == rod_bar_dd_data
         select_name = raw_mat_loc_select[1] + f'[{index}]'
         select_loc = replace_in_tuple(raw_mat_loc_select, 1, select_name)
         self.raw_material = get_element_text(browser, select_loc)
@@ -386,7 +435,7 @@ class Edit_TE:
         self.surface_treatment = get_element_text(browser, select_loc)
         do_click(browser, select_loc)
         sleep(0.5)
-        
+
     def clone_te(self, browser, index=2):
         do_click(browser, te_clone_loc)
         do_click(browser, ecn_type_drop_down_loc)
@@ -399,7 +448,117 @@ class Edit_TE:
         do_send_keys(browser, add_comment, "test")
         do_click(browser, save_btn)
         sleep(0.5)
-        
+
+    def select_uom_of_compound_bony(self, browser, index=2):
+        scroll_into_the_view(browser, uom_compound_loc[0], uom_compound_loc[1])
+        do_click(browser, uom_compound_loc)
+        values = get_list_of_elems_text(browser, uom_compound_options_loc[0], uom_compound_options_loc[1])
+        assert values == uom_compound_data
+        select_name = uom_compound_options_loc[1] + f'[{index}]'
+        select_loc = replace_in_tuple(uom_compound_options_loc, 1, select_name)
+        self.uom_type = get_element_text(browser, select_loc)
+        do_click(browser, select_loc)
+        sleep(0.5)
+
+    def select_product_category_bony(self, browser, index=2):
+        scroll_into_the_view(browser, uom_compound_loc[0], uom_compound_loc[1])
+        do_click(browser, prod_category_loc)
+        values = get_list_of_elems_text(browser, prod_category_options_loc[0], prod_category_options_loc[1])
+        assert values == prod_category_data
+        select_name = prod_category_options_loc[1] + f'[{index}]'
+        select_loc = replace_in_tuple(uom_compound_options_loc, 1, select_name)
+        self.prod_category_type = get_element_text(browser, select_loc)
+        do_click(browser, select_loc)
+        sleep(0.5)
+
+    def enter_supplier_name(self, browser):
+        scroll_into_the_view(browser, compound_supplier_name_loc[0], compound_supplier_name_loc[1])
+        self.supplier_name = random_correct_name(8, 4, 'first_name')
+        do_send_keys(browser, compound_supplier_name_loc, self.supplier_name)
+
+    def enter_inner_diameter(self, browser):
+        scroll_into_the_view(browser, inner_diameter_loc[0], inner_diameter_loc[1])
+        self.inner_diameter = generate_random_number(3)
+        do_send_keys(browser, inner_diameter_loc, self.inner_diameter)
+
+    def enter_outer_diameter(self, browser):
+        scroll_into_the_view(browser, outer_diameter_loc[0], outer_diameter_loc[1])
+        self.outer_diameter = generate_random_number(3)
+        do_send_keys(browser, outer_diameter_loc, self.outer_diameter)
+
+    def enter_net_length(self, browser):
+        scroll_into_the_view(browser, net_length_loc[0], net_length_loc[1])
+        self.net_length = generate_random_number(5)
+        do_send_keys(browser, net_length_loc, self.net_length)
+
+    def enter_cutting_margin(self, browser):
+        scroll_into_the_view(browser, cutting_margin_loc[0], cutting_margin_loc[1])
+        self.cutting_margin = generate_random_number(5)
+        do_send_keys(browser, cutting_margin_loc, self.cutting_margin)
+
+    def enter_material_density(self, browser):
+        scroll_into_the_view(browser, material_density_loc[0], material_density_loc[1])
+        self.material_density = generate_random_number(5)
+        do_send_keys(browser, material_density_loc, self.material_density)
+
+    def enter_gross_weight_factor(self, browser):
+        scroll_into_the_view(browser, gross_weight_factor_loc[0], gross_weight_factor_loc[1])
+        self.gross_weight_factor = generate_random_number(5)
+        do_send_keys(browser, gross_weight_factor_loc, self.gross_weight_factor)
+
+    def enter_fabric_gross_weight(self, browser):
+        scroll_into_the_view(browser, fabric_gross_weight_loc[0], fabric_gross_weight_loc[1])
+        self.fabric_gross_weight = generate_random_number(5)
+        do_send_keys(browser, fabric_gross_weight_loc, self.fabric_gross_weight)
+
+    def enter_sheet_strip_size(self, browser):
+        self.sheet_strip_size_data = [46, 63, 500]
+        for field_name, data in zip(sheet_strip_size_data_loc, self.sheet_strip_size_data):
+            sheet_strip_field = sheet_strip_col_locs[1].replace('field', field_name)
+            sheet_strip_field_loc = replace_in_tuple(sheet_strip_col_locs, 1, sheet_strip_field)
+            do_clear(browser, sheet_strip_field_loc)
+            scroll_into_the_view(browser, sheet_strip_field_loc[0], sheet_strip_field_loc[1])
+            do_send_keys(browser, sheet_strip_field_loc, data)
+        self.override_standard_strip_size(browser)
+        self.sheet_part_net_wt = '2456'
+        do_send_keys(browser, rm_part_net_wt_loc, self.sheet_part_net_wt)
+
+    def sheet_metal_headers(self, browser):
+        for val in sheet_header_data:
+            r_sheet_metal_data_headers_loc = sheet_metal_data_headers_loc[1].replace("{header}", val)
+            sheet_metal_header_loc = replace_in_tuple(sheet_metal_data_headers_loc, 1, r_sheet_metal_data_headers_loc)
+            should_be_visible(browser, sheet_metal_header_loc, "sheet_metal_header_loc")
+
+    def override_standard_strip_size(self, browser, index=2):
+        do_click(browser, override_standard_strip_size_loc)
+        override_stand_sheet_value = override_standard_strip_size_ops[1] + f'[{index}]'
+        override_stand_value_loc = replace_in_tuple(override_standard_strip_size_ops, 1, override_stand_sheet_value)
+        self.override_stand_sheet = get_element_text(browser, override_stand_value_loc)
+        do_click(browser, override_stand_value_loc)
+
+    def tube_ctl_size_and_material_details_locs(self, browser):
+        self.ctl_part_len = '5435'
+        do_send_keys(browser, rm_ctl_length_loc, self.ctl_part_len)
+        self.override_standard_strip_size(browser)
+        self.tube_part_net_wt = '6734'
+        do_send_keys(browser, rm_part_net_wt_loc, self.tube_part_net_wt)
+
+    def fabric_net_weight_and_gross_weight(self, browser):
+        self.net_fabric_weight = '57822'
+        do_send_keys(browser, rm_part_net_wt_loc, self.net_fabric_weight)
+        self.gross_fabric_wt = '48294'
+        do_send_keys(browser, fabric_gross_weight, self.gross_fabric_wt)
+
+    def yarn_net_weight_and_gross_weight(self, browser):
+        self.yarn_net_wt = '67352'
+        self.yarn_gross_wt = '57480'
+        do_send_keys(browser, rm_part_net_wt_loc, self.yarn_net_wt)
+        do_send_keys(browser, fabric_gross_weight, self.yarn_gross_wt)
+
+    def tube_data_headers(self, browser):
+        for val in tube_header_data:
+            tube_header_loc = replace_in_tuple(sheet_metal_data_headers_loc, 1, val)
+            should_be_visible(browser, tube_header_loc, "tube_header_loc")
 
 
 class CreateBopDetails:

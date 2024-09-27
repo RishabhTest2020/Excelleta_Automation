@@ -21,9 +21,13 @@ rfq_confidentiality_select = (By.XPATH, '(//select[@formcontrolname="confidentia
 rfq_received_date_loc = (By.XPATH, '//*[@for="rfqReceivedDate"]/..//input')
 rfq_target_date_loc = (By.XPATH, '//*[contains(text(), "Customer Target Date")]/..//input')
 rfq_dev_lead_loc = (By.XPATH, '//select[@formcontrolname="developmentLeadLocId"]')
-rfq_dev_lead_loc_select = (By.XPATH, '(//select[@formcontrolname="developmentLeadLocId"]/option)')
+rfq_dev_lead_loc_select_opts = (By.XPATH, '(//select[@formcontrolname="developmentLeadLocId"]/option)')
+rfq_dev_lead_loc_select = (By.XPATH,
+                           '(//select[@formcontrolname="developmentLeadLocId"]/option[contains(text(), "devleadlocaton")])')
 rfq_manufacturing_loc = (By.XPATH, '//select[@formcontrolname="manufacturingLocId"]')
-rfq_manufacturing_loc_select = (By.XPATH, '(//select[@formcontrolname="manufacturingLocId"]/option)')
+rfq_manufacturing_loc_select_opts = (By.XPATH, '(//select[@formcontrolname="manufacturingLocId"]/option)')
+rfq_manufacturing_loc_select = (By.XPATH,
+                                '(//select[@formcontrolname="manufacturingLocId"]/option[contains(text(), "manulocation")])')
 rfq_company_priority_loc = (By.XPATH, '//select[@formcontrolname="companyPriorityId"]')
 rfq_company_priority_loc_select = (By.XPATH, '(//select[@formcontrolname="companyPriorityId"]/option)')
 
@@ -67,6 +71,7 @@ other_info_txt = (By.XPATH, '//h3[contains(text(), "Other Information")]')
 roi_chkbox = (By.XPATH, '//input[@formcontrolname="roiEvalution"]')
 tect_feas_chkbox = (By.XPATH, '//input[@formcontrolname="techFeasibility"]')
 satc_chkbox = (By.XPATH, '//input[@formcontrolname="sendAttachmentToCustomer"]')
+compound_feas_chkbox = (By.XPATH, '//input[@formcontrolname="compoundFeasibility"]')
 
 manager_det_txt = (By.XPATH, '//h3[contains(text(), "Manager Details")]')
 pm_lead_loc = (By.XPATH, '//select[@formcontrolname="ProjectManagerLead"]')
@@ -138,3 +143,7 @@ rfq_table_row_loc = (By.XPATH, '(//a[contains(text(), "acc_name")]/../../..//*[c
 rfq_more_details_btn_loc = (By.XPATH, '//*[contains(@class,"companyDetails")]//*[contains(text(),"RFQ More Details")]')
 rfq_details_edit_btn_loc = (By.XPATH, '//*[contains(@class,"action-btns")]//*[contains(@alt,"edit_icon")]')
 manager_details_header_loc = (By.XPATH, '//*[contains(@formgroupname,"managerDetails")]//h3[contains(text(),"Manager Details")]')
+
+compound_feas_as_yes_loc = (By.XPATH, '//label[contains(@class,"radio-label") and span[text()="Yes"]]')
+add_compound_feasibility_loc = (By.XPATH, '//*[contains(text(),"Add Compound Feasibility")]')
+compound_cf_sheet_input_loc = (By.XPATH, '//input[@id="compoundFeasibilitySheet"]')

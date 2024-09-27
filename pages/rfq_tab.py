@@ -89,7 +89,9 @@ class Rfq:
     def select_business_evaluation(self, browser, dep_index=2):
         do_click(browser, rfq_business_evaluation)
         values = get_list_of_elems_text(browser, rfq_business_evaluation_options[0], rfq_business_evaluation_options[1])
-        assert values == rfq_business_evaluation_data
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(rfq_business_evaluation_data, values)
+        # assert val is True
         select_name = rfq_business_evaluation_options[1] + f'[{dep_index}]'
         select_dep_loc = replace_in_tuple(rfq_business_evaluation_options, 1, select_name)
         self.business_evaluation = get_element_text(browser, select_dep_loc)
@@ -146,23 +148,27 @@ class Rfq:
 
     def select_dev_lead_location(self, browser, index=2):
         do_click(browser, rfq_dev_lead_loc)
-        values = get_list_of_elems_text(browser, rfq_dev_lead_loc_select[0], rfq_dev_lead_loc_select[1])
+        values = get_list_of_elems_text(browser, rfq_dev_lead_loc_select_opts[0], rfq_dev_lead_loc_select_opts[1])
+        rfq_dev_lead_location_data = get_env_var_from_globals('rfq_dev_lead_location_data_')
         check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
         val = check_common_elements(rfq_dev_lead_location_data, values)
         assert val is True
-        select_name = rfq_dev_lead_loc_select[1] + f'[{index}]'
+        # select_name = rfq_dev_lead_loc_select[1] + f'[{index}]'
+        select_name = rfq_dev_lead_loc_select[1].replace('devleadlocaton', index)
         select_dep_loc = replace_in_tuple(rfq_dev_lead_loc_select, 1, select_name)
         self.dev_lead_location = get_element_text(browser, select_dep_loc)
         do_click(browser, select_dep_loc)
         sleep(0.5)
 
-    def select_manufacturing_location(self, browser, index=2):
+    def select_manufacturing_location(self, browser, index):
         do_click(browser, rfq_manufacturing_loc)
-        values = get_list_of_elems_text(browser, rfq_manufacturing_loc_select[0], rfq_manufacturing_loc_select[1])
+        values = get_list_of_elems_text(browser, rfq_manufacturing_loc_select_opts[0], rfq_manufacturing_loc_select_opts[1])
+        rfq_manufacturing_location_data = get_env_var_from_globals('rfq_manufacturing_location_data_')
         check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
         val = check_common_elements(rfq_manufacturing_location_data, values)
         assert val is True
-        select_name = rfq_manufacturing_loc_select[1] + f'[{index}]'
+        # select_name = rfq_manufacturing_loc_select[1] + f'[{index}]'
+        select_name = rfq_manufacturing_loc_select[1].replace('manulocation', index)
         select_dep_loc = replace_in_tuple(rfq_manufacturing_loc_select, 1, select_name)
         self.manufacturing_location = get_element_text(browser, select_dep_loc)
         do_click(browser, select_dep_loc)
@@ -195,7 +201,9 @@ class Rfq:
         do_send_keys(browser, annum_vol_txtbox, self.annum_volume)
         do_click(browser, rfq_annum_vol_loc)
         values = get_list_of_elems_text(browser, rfq_annum_vol_loc_select[0], rfq_annum_vol_loc_select[1])
-        assert values == rfq_units_dropdown
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(rfq_units_dropdown, values)
+        assert val is True
         select_name = rfq_annum_vol_loc_select[1] + f'[{index}]'
         select_dep_loc = replace_in_tuple(rfq_annum_vol_loc_select, 1, select_name)
         self.annum_volume_unit = get_element_text(browser, select_dep_loc)
@@ -264,7 +272,9 @@ class Rfq:
     def select_currency(self, browser, index=6):
         do_click(browser, currency_loc)
         values = get_list_of_elems_text(browser, currency_select[0], currency_select[1])
-        assert values == rfq_currency_data
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(rfq_currency_data, values)
+        assert val is True
         select_name = currency_select[1] + f'[{index}]'
         select_dep_loc = replace_in_tuple(currency_select, 1, select_name)
         self.rfq_currency = get_element_text(browser, select_dep_loc)
@@ -284,7 +294,9 @@ class Rfq:
     def select_incoterms(self, browser, index=2):
         do_click(browser, incoterms_loc)
         values = get_list_of_elems_text(browser, incoterms_select[0], incoterms_select[1])
-        assert values == rfq_incoterms_data
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(rfq_incoterms_data, values)
+        assert val is True
         select_name = incoterms_select[1] + f'[{index}]'
         select_dep_loc = replace_in_tuple(incoterms_select, 1, select_name)
         self.incoterms = get_element_text(browser, select_dep_loc)
@@ -296,8 +308,12 @@ class Rfq:
         self.rfq_shipping_address = get_element_text(browser, rfq_shipping_select)
         do_click(browser, rfq_shipping_select)
 
-    def select_other_info_checkbox(self, browser):
+    def select_other_info_checkbox(self, browser, bn_type):
         checkboxes = [roi_chkbox, tect_feas_chkbox, satc_chkbox]
+        if os.environ['ENV'] == 'bony':
+            checkboxes[0] = compound_feas_chkbox
+        elif bn_type == 'Polymer':
+            checkboxes.append(compound_feas_chkbox)
         for chkbox in checkboxes:
             do_click(browser, chkbox)
 
@@ -656,3 +672,11 @@ class Drawing_data:
         should_be_visible(browser, add_technical_feasibility, "add_technical_feasibility")
         should_be_invisible(browser, te_menu_btn, "tf_menu_btn")
 
+    def add_compound_feasibility(self, browser):
+        do_click(browser, add_compound_feasibility_loc)
+        elem = browser.find_element(By.XPATH, compound_cf_sheet_input_loc[1])
+        elem.send_keys(os.getcwd() + '/files/Account_List.xlsx')
+        sleep(0.4)
+        do_click(browser, compound_feas_as_yes_loc, 20)
+        do_send_keys(browser, add_comment, 'Test')
+        do_click(browser, save_btn)

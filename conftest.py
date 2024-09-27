@@ -16,7 +16,7 @@ from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
-from helpers.common_helpers import delete_all_class_vars_in_project, send_report_to_teams
+from helpers.common_helpers import delete_all_class_vars_in_project, send_report_to_teams, get_error_console_logs
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -61,10 +61,10 @@ def browser(request):
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option("useAutomationExtension", False)
         if username == 'Hp':
-            service = ChromeService(executable_path=os.getcwd() + '/chromedriver-win64/chromedriver.exe')
+            driver = webdriver.Chrome(options=options)
         else:
             service = webdriver.chrome.service.Service(ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=service, options=options)
+            driver = webdriver.Chrome(service=service, options=options)
         print("Selenium version:", selenium.__version__)
     elif Browser == 'headless_chrome':
         options = webdriver.ChromeOptions()
@@ -90,13 +90,13 @@ def browser(request):
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument("--disable-gpu")
         options.add_argument("--window-size=1920x1080")
-        options.add_argument("--disable-web-security")
+        # options.add_argument("--disable-web-security")
         options.add_argument("--allow-running-insecure-content")
         if username == 'Hp':
-            service = ChromeService(executable_path=os.getcwd() + '/chromedriver-win64/chromedriver.exe')
+            driver = webdriver.Chrome(options=options)
         else:
             service = webdriver.chrome.service.Service(ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=service, options=options)
+            driver = webdriver.Chrome(service=service, options=options)
     else:
         driver = None
     driver.implicitly_wait(40)
@@ -104,12 +104,17 @@ def browser(request):
     driver.set_script_timeout(1000)
     driver.set_page_load_timeout(3000)
     print(request.node.name)
+    env = os.environ['ENV']
+    logging.info("Environment:" + env)
     yield driver
+    console_logs = get_error_console_logs(driver)
+    logging.info(f"Console Logs: {"\n".join(console_logs)}")
     driver.quit()
 
 
 def pytest_html_report_title(report):
-    report.title = " Excelleta Automation Report"
+    env = os.environ['ENV']
+    report.title = f"Excelleta Automation Report - {env}"
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
@@ -150,9 +155,8 @@ class TestResult:
 @pytest.hookimpl(hookwrapper=True)
 def pytest_terminal_summary(terminalreporter, exitstatus):
     """
-    This function takes information from BrowserStack or from GotLab worker and returns execution results on Slack
     Returns:
-        Report sent to Slack (Promo test_automation channel)
+        Report sent to Teams (test_automation channel)
     """
     yield
     if hasattr(terminalreporter.config, 'workerinput'):

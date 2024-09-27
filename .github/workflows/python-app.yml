@@ -5,6 +5,11 @@ name: Execelleta Automation
 
 on:
   workflow_dispatch:
+    inputs:
+      env:
+        description: 'Environment name'
+        required: true
+        default: 'metalman'
 
 jobs:
   build:
@@ -38,18 +43,18 @@ jobs:
 
     - name: Excelleta Sanity Test
       run: |
-        ENV=${{ secrets.ENV }} browser=headless_chrome run_id=${{ github.run_id }} pytest -s -m=${{ secrets.TAG }} -n=${{ secrets.THREADS }} -k=${{ secrets.TEST_NAME }} --last-failed --reruns 1
+        ENV=${{ github.event.inputs.env }} browser=headless_chrome run_id=${{ github.run_id }} pytest -s -m=Sanity_${{ github.event.inputs.env }} -n=${{ secrets.THREADS }} -k=${{ secrets.TEST_NAME }} --last-failed --reruns 1
       continue-on-error: true
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: automation-report
         path: report/
         retention-days: 0.5
 
     - name: Download build artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
         name: automation-report
         path: ./automation-report
