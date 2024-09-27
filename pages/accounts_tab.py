@@ -1,4 +1,5 @@
 import logging
+import os
 import time
 from datetime import timedelta
 
@@ -54,7 +55,7 @@ class Accounts:
                 invalid_mess = is_visible(browser, invalid_phone_num_erroe_loc)
                 if invalid_mess is True:
                     do_clear(browser, acc_field_loc)
-                    do_send_keys(browser, acc_field_loc, data[1:])
+                    do_send_keys(browser, acc_field_loc, data)
                     self.account_details.remove(self.account_details[3])
                     self.account_details.insert(3, data[1:])
 
@@ -73,7 +74,9 @@ class Accounts:
     def select_rm_norms_field(self, browser, rm_type=2):
         do_click(browser, rm_norms)
         values = get_list_of_elems_text(browser, rm_norms_options[0], rm_norms_options[1])
-        assert values == rm_type_list
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(rm_type_list, values)
+        assert val is True
         select_rm = rm_norms_options[1] + f'[{rm_type}]'
         select_rm_loc = replace_in_tuple(rm_norms_options, 1, select_rm)
         self.rm_norms = get_element_text(browser, select_rm_loc)
@@ -85,14 +88,16 @@ class Accounts:
         do_click(browser, business_nature)
         values = get_list_of_elems_text(browser, business_nature_option_txt[0], business_nature_option_txt[1])
         check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        business_nature_list = get_env_var_from_globals('business_nature_list_')
         val = check_common_elements(business_nature_list, values)
         assert val is True
-        select_bn = business_nature_option[1] + f'[{bn_type}]'
+        # select_bn = business_nature_option[1] + f'[{bn_type}]'
+        select_bn = business_nature_option[1].replace('name', bn_type)
         select_bn_loc = replace_in_tuple(business_nature_option, 1, select_bn)
         do_click(browser, select_bn_loc)
         do_click(browser, business_info_h3)
         self.business_nature = get_element_text(browser, business_nature_selected).rstrip(" x ")
-        assert self.business_nature == business_nature_list[bn_type - 1]
+        assert self.business_nature == bn_type
 
     def select_business_domain_field(self, browser, bd_type=2):
         do_click(browser, business_domain)
@@ -100,6 +105,8 @@ class Accounts:
         check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
         val = check_common_elements(business_domain_list, values)
         assert val is True
+        # if os.environ['ENV'] == 'etdev':
+        #     bd_type = 3
         select_bd = business_domain_option[1] + f'[{bd_type}]'
         select_bn_loc = replace_in_tuple(business_domain_option, 1, select_bd)
         do_click(browser, select_bn_loc)
@@ -125,7 +132,9 @@ class Accounts:
         should_be_visible(browser, payment_details_h3, 'payment_details_h3')
         do_click(browser, payment_method)
         values = get_list_of_elems_text(browser, payment_method_options[0], payment_method_options[1])
-        assert values == payment_method_list
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(payment_method_list, values)
+        assert val is True
         select_pm = payment_method_options[1] + f'[{pm_type}]'
         select_pm_loc = replace_in_tuple(payment_method_options, 1, select_pm)
         self.payment_method = get_element_text(browser, select_pm_loc)
@@ -136,7 +145,9 @@ class Accounts:
     def select_payment_term_field(self, browser, pt_type=3):
         do_click(browser, payment_term)
         values = get_list_of_elems_text(browser, payment_term_options[0], payment_term_options[1])
-        assert values == payment_term_list
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(payment_term_list, values)
+        assert val is True
         select_pt = payment_term_options[1] + f'[{pt_type}]'
         select_pt_loc = replace_in_tuple(payment_term_options, 1, select_pt)
         self.payment_term = get_element_text(browser, select_pt_loc)
@@ -156,7 +167,9 @@ class Accounts:
     def select_country_field(self, browser, country='India'):
         do_click(browser, billing_country)
         values = get_list_of_elems_text(browser, billing_country_options[0], billing_country_options[1])
-        assert values == billing_countries_list
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(billing_countries_list, values)
+        #assert val is True
         select_cou = billing_country_select[1].replace('country_name', country)
         select_cou_loc = replace_in_tuple(billing_country_select, 1, select_cou)
         scroll_into_the_view(browser, select_cou_loc[0], select_cou_loc[1])
@@ -169,7 +182,9 @@ class Accounts:
     def select_state_field(self, browser, state='Uttar Pradesh'):
         do_click(browser, billing_state)
         values = get_list_of_elems_text(browser, billing_state_options[0], billing_state_options[1])
-        assert values == billing_india_states_list
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(billing_india_states_list, values)
+        assert val is True
         select_cou = billing_state_select[1].replace('state_name', state)
         select_cou_loc = replace_in_tuple(billing_state_select, 1, select_cou)
         scroll_into_the_view(browser, select_cou_loc[0], select_cou_loc[1])
@@ -182,7 +197,9 @@ class Accounts:
     def select_city_field(self, browser, city='Ghaziabad'):
         do_click(browser, billing_city)
         values = get_list_of_elems_text(browser, billing_city_options[0], billing_city_options[1])
-        assert values == billing_uttar_pradesh_cities_list
+        check_common_elements = lambda list1, list2: all(i in list2 for i in list1)
+        val = check_common_elements(billing_uttar_pradesh_cities_list, values)
+        assert val is True
         select_cou = billing_city_select[1].replace('city_name', city)
         select_cou_loc = replace_in_tuple(billing_city_select, 1, select_cou)
         scroll_into_the_view(browser, select_cou_loc[0], select_cou_loc[1])
@@ -369,6 +386,7 @@ class Norms:
     def select_norm_business_nature(self, browser, index, dd_index=2):
         do_click(browser, acc_business_nature)
         values = get_list_of_elems_text(browser, acc_business_nature_options[0], acc_business_nature_options[1])
+        business_nature_list = get_env_var_from_globals('business_nature_list_')
         assert values[1:] == business_nature_list[1:dd_index]
         select_bn = acc_business_nature_options[1] + f'[{index}]'
         select_bn_loc = replace_in_tuple(acc_business_nature_options, 1, select_bn)

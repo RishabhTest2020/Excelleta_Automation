@@ -1,4 +1,5 @@
 import logging
+import os
 
 from helpers.common_helpers import *
 from locators.accounts_tab_locators import save_btn
@@ -6,6 +7,7 @@ from pages.rfq_tab import Drawing_data
 from pages.technical_evaluation_tab import *
 from pytest_bdd import given, when, then, parsers
 from tests.test_rfq_tab import drawing_data_steps, rfq_steps
+from tests.test_accounts_tab import accounts_steps
 
 create_testeps = Create_TE()
 approve_te_steps = Approve_TE()
@@ -18,33 +20,58 @@ te_all_data_dicts = {}
 add_st_opts_steps = AddSTOperations()
 
 
-@when(parsers.parse('Create TE data {index:d}'))
-def create_te_data(browser, index):
+@when(parsers.parse('Create TE data {index:d}, {busi_type}'))
+def create_te_data(browser, index, busi_type):
     create_testeps.add_operation(browser, index=index)
-    create_testeps.select_machine(browser)
+    if busi_type == "Polymer":
+        create_testeps.select_machine(browser, dep_index=2, bn_type=busi_type)
+    else:
+        create_testeps.select_machine(browser)
     create_testeps.select_te_process(browser)
     create_testeps.select_te_process_unit(browser)
     create_testeps.select_operation_source(browser)
-    create_testeps.fill_te_txtbox_data(browser)
-    create_testeps.select_inspection_instrument(browser)
-    create_testeps.verify_te_heading(browser)
+    if busi_type == "Polymer":
+        create_testeps.fill_bony_te_txtbox_data(browser)
+    else:
+        create_testeps.fill_te_txtbox_data(browser)
+    create_testeps.select_inspection_instrument(browser, bn_type=busi_type)
+    create_testeps.verify_te_heading(browser, busi_type)
     do_click(browser, save_btn)
     sleep(2)
     te_all_data_dicts[f'created_te_data{index}'] = create_testeps.__dict__
 
 
-@when(parsers.parse('Edit TE Assembly and fill raw material data {ass_type}'))
-def edit_te_raw_material(browser, ass_type):
+@when(parsers.parse('Edit TE Assembly and fill raw material data {ass_type}, {busi_type}'))
+def edit_te_raw_material(browser, ass_type, busi_type):
     create_testeps.goto_te_verify_part_add_assembly(browser, drawing_data_steps.te_link,
-                                                    f"{rfq_txtboxes_data[3] + " " + "(" + str(rfq_txtboxes_data[4]) + ")"}")
+                                                    f"{rfq_txtboxes_data[3]} ({str(rfq_txtboxes_data[4])})")
     edit_te_steps.edit_assembly(browser)
     edit_te_steps.select_drawing_name(browser)
     edit_te_steps.select_surface_area_unit(browser)
     edit_te_steps.select_manufacturing_source(browser)
     if ass_type == 'single':
-        edit_te_steps.select_rm_type(browser)
-        edit_te_steps.select_raw_material(browser)
-        edit_te_steps.select_add_rod_size(browser)
+        if busi_type == 'Polymer':
+            rm = 'Compound'
+        elif busi_type == 'Plastic':
+            rm = 'Plastic'
+        else:
+            rm = 'Rod/Bar'
+        edit_te_steps.select_rm_type(browser, rm, busi_type)
+        edit_te_steps.select_raw_material(browser, rm_data=f'raw_material_data_{accounts_steps.business_nature}')
+        if busi_type != 'Polymer':
+            edit_te_steps.select_add_rod_size(browser)
+        else:
+            edit_te_steps.select_uom_of_compound_bony(browser)
+            edit_te_steps.select_product_category_bony(browser)
+            edit_te_steps.enter_supplier_name(browser)
+            sleep(5)
+            edit_te_steps.enter_inner_diameter(browser)
+            edit_te_steps.enter_outer_diameter(browser)
+            edit_te_steps.enter_net_length(browser)
+            edit_te_steps.enter_cutting_margin(browser)
+            edit_te_steps.enter_material_density(browser)
+            edit_te_steps.enter_gross_weight_factor(browser)
+            edit_te_steps.enter_fabric_gross_weight(browser)
     else:
         surface_area_val = 100
         do_send_keys(browser, net_weight_part_loc, edit_te_steps.net_weigh_part)
@@ -86,8 +113,8 @@ def add_sub_assembly(browser):
         sleep(2)
 
 
-@when(parsers.parse('Add assembly part {index:d} {rm_index:d}'))
-def edit_te_raw_material(browser, index, rm_index):
+@when(parsers.parse('Add assembly part {rmtype} {index:d} {rm_index:d}'))
+def edit_te_raw_material(browser, rmtype, index, rm_index):
     create_testeps.add_operation(browser, ops=False, index=index)
     do_click(browser, add_part_btn)
     sleep(1)
@@ -102,9 +129,56 @@ def edit_te_raw_material(browser, index, rm_index):
     edit_te_steps_parts.select_surface_area_unit(browser)
     edit_te_steps_parts.select_manufacturing_source(browser)
     edit_te_steps_parts.select_surface_treatment(browser)
-    edit_te_steps_parts.select_rm_type(browser)
-    edit_te_steps_parts.select_raw_material(browser, index=rm_index)
-    edit_te_steps_parts.select_add_rod_size(browser)
+    edit_te_steps_parts.select_rm_type(browser, rmtype, accounts_steps.business_nature)
+    if rmtype == 'Rod/Bar':
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index,
+                                                rm_data=f'raw_material_data_{accounts_steps.business_nature}')
+        edit_te_steps_parts.select_add_rod_size(browser)
+    elif rmtype == 'Sheet Metal':
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index,
+                                                rm_data=f'sheet_metal_data_{accounts_steps.business_nature}')
+        do_send_keys(browser, material_gross_wt_loc, '2500')
+        do_send_keys(browser, thickness_per_drawing_loc, '123')
+        do_send_keys(browser, sfbs_width_loc, '44')
+        do_send_keys(browser, sfbs_length_loc, '35')
+        edit_te_steps_parts.enter_sheet_strip_size(browser)
+        edit_te_steps_parts.sheet_metal_headers(browser)
+    elif rmtype == 'Tube':
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index,
+                                                rm_data=f'tube_option_data_{accounts_steps.business_nature}')
+        do_send_keys(browser, material_gross_wt_loc, '2840')
+        do_send_keys(browser, thickness_per_drawing_loc, '342')
+        edit_te_steps_parts.tube_ctl_size_and_material_details_locs(browser)
+        edit_te_steps_parts.tube_data_headers(browser)
+    elif rmtype == 'Compound':
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index,
+                                                rm_data=f'raw_material_data_{accounts_steps.business_nature}')
+        edit_te_steps.select_uom_of_compound_bony(browser)
+        edit_te_steps.select_product_category_bony(browser)
+        edit_te_steps.enter_supplier_name(browser)
+        sleep(5)
+        edit_te_steps.enter_inner_diameter(browser)
+        edit_te_steps.enter_outer_diameter(browser)
+        edit_te_steps.enter_net_length(browser)
+        edit_te_steps.enter_cutting_margin(browser)
+        edit_te_steps.enter_material_density(browser)
+        edit_te_steps.enter_gross_weight_factor(browser)
+        edit_te_steps.enter_fabric_gross_weight(browser)
+    elif rmtype == 'Fabric':
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index,
+                                                rm_data=f'fabric_option_data_{accounts_steps.business_nature}')
+        edit_te_steps.select_uom_of_compound_bony(browser)
+        edit_te_steps.enter_supplier_name(browser)
+        edit_te_steps.select_product_category_bony(browser)
+        edit_te_steps.fabric_net_weight_and_gross_weight(browser)
+    elif rmtype == 'Yarn':
+        edit_te_steps_parts.select_raw_material(browser, index=rm_index,
+                                                rm_data=f'yarn_option_data_{accounts_steps.business_nature}')
+        edit_te_steps.select_uom_of_compound_bony(browser)
+        edit_te_steps.enter_supplier_name(browser)
+        edit_te_steps.select_product_category_bony(browser)
+        edit_te_steps.yarn_net_weight_and_gross_weight(browser)
+
     edit_te_steps_parts.__dict__['part_name'] = part_name
     edit_te_steps_parts.__dict__['part_component_number'] = part_component_number
     try:
@@ -134,9 +208,12 @@ def approve_te_levels(browser, back, level, asserts):
         do_click(browser, operations_tab_back_btn)
     current_url = browser.current_url
     te_no = current_url.split("/")[-2]
+    if os.environ['ENV'] == 'bony':
+        approver = rfq_steps.development_lead, rfq_steps.cft_member
+    else:
+        approver = rfq_steps.development_lead, rfq_steps.plant_head, rfq_steps.business_dev_head
     if level == '3':
-        approve_te_steps.approve_te(browser, None, asserts, rfq_steps.development_lead, rfq_steps.plant_head,
-                                    rfq_steps.business_dev_head)
+        approve_te_steps.approve_te(browser, te_no, asserts, *approver)
     else:
         approve_te_steps.approve_te(browser, te_no, asserts, rfq_steps.development_lead, rfq_steps.plant_head,
                                     rfq_steps.surface_treatment_head, rfq_steps.business_dev_head)

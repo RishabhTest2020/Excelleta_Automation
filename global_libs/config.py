@@ -1,3 +1,4 @@
+import logging
 import os
 from dotenv import load_dotenv
 
@@ -7,7 +8,7 @@ class global_env_vars:
         self.get_env()
         self.env_vars()
 
-    def get_env(self, env='stage'):
+    def get_env(self, env='etdev'):
         try:
             env = os.environ['ENV']
         except KeyError:
@@ -20,6 +21,7 @@ class global_env_vars:
     def env_vars(self):
         self.main_url = os.getenv('main_url')
         self.user_email = os.getenv('user_email')
+        self.user_name = os.getenv('user_name')
         self.user_password = os.getenv('user_password')
         self.env = os.getenv('env')
         self.api_url = os.getenv('api_url')
@@ -39,6 +41,12 @@ class global_env_vars:
         self.Anil_email = os.getenv('Anil_email')
         self.Sanjay_email = os.getenv('Sanjay_email')
         self.Pradeep_email = os.getenv('Pradeep_email')
+        self.Ashok_email = os.getenv('Ashok_email')
+        self.Prashant_email = os.getenv('Prashant_email')
+        self.Rajender_email = os.getenv('Rajender_email')
+        self.Mahesh_email = os.getenv('Mahesh_email')
+        self.Sonam_email = os.getenv('Sonam_email')
+        self.Saket_email = os.getenv('Saket_email')
         self.approver_password = os.getenv('approver_password')
 
 
