@@ -269,7 +269,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Goto MTE Cost Sheet
     Then Revoke Cost sheet
 
-  @Test
+  #@Test
   Scenario: TC_18 Verify Add Part For Fabric Raw Material type
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
