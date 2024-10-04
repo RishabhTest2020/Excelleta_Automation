@@ -254,7 +254,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Add Drawing Data Fabrication
     Then Verify Edit Managers Information in RFQ
 
-  @Test
+  @Sanity @Sanity_metalman @Sanity_etdev
   Scenario: TC_16 Revoke TE and verify Approval History
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
