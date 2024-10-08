@@ -81,33 +81,33 @@ Feature: Automation Sanity Test Plan Execelleta
   @Sanity @Sanity_bony @Sanity_etdev #@Test
   Scenario: TC_08 Create Multi level BOM, create norms and Generate cost approval flow Bony
     Given Login into Excelleta UI
-#    When Navigate to Accounts tab 5
-#    Then Create an account Polymer
-#    When Navigate to Contact tab 5
-#    When Create an Contact
-#    When Navigate to RFQ tab 250
-#    Then Create a RFQ multi, location Bony Plant Gujarat,  Bony Plant Gujarat
-#    Then Add Drawing Data Polymer
-#    When Edit TE Assembly and fill raw material data multi, Polymer
-#    When Create TE data 1, Polymer
-#    When Add sub assembly and its data
-#    When Create TE data 2, Polymer
-#    When Add assembly part Compound 1 2
-#    When Create TE data 3, Polymer
-#    When Create TE BOP data 1
-#    When Create TE data 4, Polymer
-#    When Add assembly part Compound 2 3
-#    When Create TE data 3, Polymer
-#    When Create TE BOP data 2
-#    When Create TE data 4, Polymer
-#    When Create ST Ops data 3
-#    When Create ST Ops data 5
-#    Then Approve TE all levels, back false level 4 assert False
-#    Then Create norms data
-#    Then Generate Costing Data and Norms, Nav direct false
-#    When Navigate to Costing Sheet tab 10
-#    Then Goto MTE Cost Sheet
-#    Then Approve CS all levels
+    When Navigate to Accounts tab 5
+    Then Create an account Polymer
+    When Navigate to Contact tab 5
+    When Create an Contact
+    When Navigate to RFQ tab 250
+    Then Create a RFQ multi, location Bony Plant Gujarat,  Bony Plant Gujarat
+    Then Add Drawing Data Polymer
+    When Edit TE Assembly and fill raw material data multi, Polymer
+    When Create TE data 1, Polymer
+    When Add sub assembly and its data
+    When Create TE data 2, Polymer
+    When Add assembly part Compound 1 2
+    When Create TE data 3, Polymer
+    When Create TE BOP data 1
+    When Create TE data 4, Polymer
+    When Add assembly part Compound 2 3
+    When Create TE data 3, Polymer
+    When Create TE BOP data 2
+    When Create TE data 4, Polymer
+    When Create ST Ops data 3
+    When Create ST Ops data 5
+    Then Approve TE all levels, back false level 4 assert False
+    Then Create norms data
+    Then Generate Costing Data and Norms, Nav direct false
+    When Navigate to Costing Sheet tab 10
+    Then Goto MTE Cost Sheet
+    Then Approve CS all levels
 #  Then Verify Cost Raw Material data Raw Material
 
   @Sanity @Sanity_bony @Sanity_etdev #@Test
