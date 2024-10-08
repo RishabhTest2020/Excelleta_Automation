@@ -110,7 +110,7 @@ rfq_surface_treatment_loc = (By.XPATH, '(//*[contains(text(), "Surface Treatment
 assembly_type_tog_loc = (By.XPATH, '(//*[contains(text(), "Assembly Type")]/..//input)[2]')
 
 diagram_highlight_blink = (By.XPATH, '//h4[contains(text(), "Stage")]/..//div[@class = "act-border"]')
-add_drawing_diagram = (By.XPATH, '//button[contains(text(), "Add Drawing Data")]')
+add_drawing_diagram = (By.XPATH, '//button[contains(text(), "Upload Drawing Data")]')
 drawing_fields_locs = [(By.XPATH, '//input[@formcontrolname="drawingName"]'),
                        (By.XPATH, '//input[@formcontrolname="customerDrwOrDocNO"]'),
                        (By.XPATH, '//textarea[@formcontrolname="remarks"]')]

@@ -110,13 +110,15 @@ cutting_margin_loc = (By.XPATH, '//*[contains(@class,"rmCuttingMargin")]//input'
 material_density_loc = (By.XPATH, '//*[contains(@class,"rmDensity")]//input')
 gross_weight_factor_loc = (By.XPATH, '//*[contains(@class,"rmGrossWtFactor")]//input')
 fabric_gross_weight_loc = (By.XPATH, '//*[contains(@class,"yarnFarbricGossWeight")]//input')
-material_gross_wt_loc = (By.XPATH, '//*[contains(@class,"rmGradeAsPerDrawing")]//input')
+material_gross_wt_loc = (By.XPATH, '//*[contains(@class, "rmGradeAsPerDrawing") or contains(@class, "rmGradePerDrawing")]//input')
 thickness_per_drawing_loc = (By.XPATH, '//*[contains(@class,"rmThicknessPerDrawing")]//input')
 sfbs_width_loc = (By.XPATH, '//*[contains(@class,"rmSFBSWidth")]//input')
 sfbs_length_loc = (By.XPATH, '//*[contains(@class,"rmSFBSLength")]//input')
 sheet_strip_col_locs = (By.XPATH, '//*[contains(@class,"field")]//input')
-override_standard_strip_size_loc = (By.XPATH, '//*[contains(@class,"overrideStdStripSize")]//select')
-override_standard_strip_size_ops = (By.XPATH, '//*[contains(@class,"overrideStdStripSize")]//option')
+override_standard_strip_size_loc = (By.XPATH, '//*[contains(@class,"overrideStdTubeSize") or '
+                                              'contains(@class,"overrideStdStripSize")]//select')
+override_standard_strip_size_ops = (By.XPATH, '//*[contains(@class,"overrideStdTubeSize") '
+                                              'or contains(@class,"overrideStdStripSize")]//option')
 rm_part_net_wt_loc = (By.XPATH, '//*[contains(@class,"rmNetWtPart")]//input')
 rm_ctl_length_loc = (By.XPATH, '//*[contains(@class,"rmCTLLength")]//input')
 sheet_metal_data_headers_loc = (By.XPATH, '//*[contains(text(),"{header}")]')

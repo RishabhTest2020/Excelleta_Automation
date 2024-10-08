@@ -108,7 +108,9 @@ def browser(request):
     logging.info("Environment:" + env)
     yield driver
     console_logs = get_error_console_logs(driver)
-    logging.info(f"Console Logs: {"\n".join(console_logs)}")
+    logs = "\n".join(console_logs)
+    logging.info(f"Console Logs: {logs}")
+    #logging.info(f"Console Logs: {"\n".join(console_logs)}")
     driver.quit()
 
 
