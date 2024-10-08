@@ -8,7 +8,7 @@ class global_env_vars:
         self.get_env()
         self.env_vars()
 
-    def get_env(self, env='etdev'):
+    def get_env(self, env='bony'):
         try:
             env = os.environ['ENV']
         except KeyError:

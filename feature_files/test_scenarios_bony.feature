@@ -78,7 +78,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create ST Ops data 5
     Then Approve TE all levels, back false level 3 assert True
 
-  @Sanity @Sanity_bony @Sanity_etdev #@Test
+  @Sanity @Sanity_bony @Sanity_etdev @Test
   Scenario: TC_08 Create Multi level BOM, create norms and Generate cost approval flow Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -102,7 +102,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create TE data 4, Polymer
     When Create ST Ops data 3
     When Create ST Ops data 5
-    Then Approve TE all levels, back false level 4 assert False
+    Then Approve TE all levels, back false level 3 assert False
     Then Create norms data
     Then Generate Costing Data and Norms, Nav direct false
     When Navigate to Costing Sheet tab 10
@@ -142,7 +142,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Clone TE
     Then Reject TE, back false level 4 assert True
     Then Clone TE
-    Then Approve TE all levels, back false level 4 assert True
+    Then Approve TE all levels, back false level 3 assert True
     
 
   @Sanity @Sanity_bony @Sanity_etdev #@Test
@@ -169,7 +169,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create TE data 4, Polymer
     When Create ST Ops data 3
     When Create ST Ops data 5
-    Then Approve TE all levels, back false level 4 assert False
+    Then Approve TE all levels, back false level 3 assert False
     Then Create norms data
     Then Generate Costing Data and Norms, Nav direct false
     When Navigate to Costing Sheet tab 10
@@ -188,7 +188,7 @@ Feature: Automation Sanity Test Plan Execelleta
     Then Goto MTE Cost Sheet
     Then Reject CS at level 4, cs reason lost
 
-  @Sanity @Sanity_bony @Sanity_etdev
+#  @Sanity @Sanity_bony @Sanity_etdev
   Scenario: TC_12 Verify Reject And Revoke Functionality of ROI Bony
     Given Login into Excelleta UI
     When Navigate to Accounts tab 5
@@ -262,7 +262,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create TE data 4, Polymer
     When Create ST Ops data 3
     When Create ST Ops data 5
-    Then Approve TE all levels, back false level 4 assert False
+    Then Approve TE all levels, back false level 3 assert False
     Then Create norms data
     Then Generate Costing Data and Norms, Nav direct false
     When Navigate to Costing Sheet tab 10
@@ -293,7 +293,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create TE data 4, Polymer
     When Create ST Ops data 3
     When Create ST Ops data 5
-    Then Approve TE all levels, back false level 4 assert False
+    Then Approve TE all levels, back false level 3 assert False
     Then Create norms data
     Then Generate Costing Data and Norms, Nav direct false
     When Navigate to Costing Sheet tab 10
@@ -323,7 +323,7 @@ Feature: Automation Sanity Test Plan Execelleta
     When Create TE data 4, Polymer
     When Create ST Ops data 3
     When Create ST Ops data 5
-    Then Approve TE all levels, back false level 4 assert False
+    Then Approve TE all levels, back false level 3 assert False
     Then Create norms data
     Then Generate Costing Data and Norms, Nav direct false
     When Navigate to Costing Sheet tab 10

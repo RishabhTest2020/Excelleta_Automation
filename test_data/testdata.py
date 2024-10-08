@@ -18,7 +18,7 @@ business_nature_list_metalman = ['Select All', 'Fabrication', 'Heavy Fabrication
 
 business_nature_list_etdev = ['Select All', 'Fabrication', 'Heavy Fabrication']
 
-business_nature_list_bony = ['Select All', 'Fabrication', 'Heavy Fabrication', 'Polymer']
+business_nature_list_bony = ['Select All', 'Fabrication', 'Polymer']
 
 business_nature_list_megarubber = ['Select All', 'Plastic', 'Rubber']
 
