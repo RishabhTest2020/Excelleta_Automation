@@ -557,7 +557,8 @@ class Edit_TE:
 
     def tube_data_headers(self, browser):
         for val in tube_header_data:
-            tube_header_loc = replace_in_tuple(sheet_metal_data_headers_loc, 1, val)
+            r_tube_data_headers_loc = sheet_metal_data_headers_loc[1].replace("{header}", val)
+            tube_header_loc = replace_in_tuple(sheet_metal_data_headers_loc, 1, r_tube_data_headers_loc)
             should_be_visible(browser, tube_header_loc, "tube_header_loc")
 
 
